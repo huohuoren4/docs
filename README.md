@@ -4,7 +4,7 @@
 
 The repository mainly stores documents related to testing, such as pytest, flask, requests, etc
 
-**Note**: The project can be internationalized and the supported languages are [English](), [简体中文]()
+**Note**: The project can be internationalized and the supported languages are [English](https://github.com/huohuoren4/docs), [简体中文](https://github.com/huohuoren4/docs/tree/zh)
 
 ## 🚀Run
 
