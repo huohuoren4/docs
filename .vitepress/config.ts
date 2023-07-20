@@ -119,13 +119,20 @@ export default defineConfig({
             { text: 'Reference guides', 
               collapsed: true,
               items: [
-                  { text: 'How to invoke pytest', link: '/python/pytest/invoke_pytest' },
+                  { text: 'Fixtures reference', link: '/python/pytest/reference_guides/fixture_reference' },
+                  { text: 'Plugin List', link: '/python/pytest/reference_guides/plugin_list' },
+                  { text: 'Configuration', link: '/python/pytest/reference_guides/configuration' },
+                  { text: 'API Reference', link: '/python/pytest/reference_guides/api_reference' }
                 ] 
             },
             { text: 'Explanation', 
               collapsed: true,
               items: [
-                  { text: 'How to invoke pytest', link: '/python/pytest/invoke_pytest' },
+                  { text: 'Anatomy of a test', link: '/python/pytest/explanation/anatomy' },
+                  { text: 'About fixtures', link: '/python/pytest/explanation/about_fixture' },
+                  { text: 'Good Integration Practices', link: '/python/pytest/explanation/integration_practice' },
+                  { text: 'Flaky tests', link: '/python/pytest/explanation/flaky_test' },
+                  { text: 'pytest import mechanisms and sys.path/PYTHONPATH', link: '/python/pytest/explanation/import_mechanism' }
                 ] 
             },
             { text: 'Further topics', 
