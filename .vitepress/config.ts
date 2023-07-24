@@ -12,11 +12,13 @@ export default defineConfig({
     ]
   ],
   
+  base: '/docs/',
   cleanUrls: true,
+  ignoreDeadLinks: true,
 
   locales: {
     root: { label: '简体中文'},
-    en: { label: 'English', link: '' }
+    en: { label: 'English', link: 'https://huohuoren4.github.io' }
   },
 
   themeConfig: {
