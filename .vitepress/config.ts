@@ -17,7 +17,7 @@ export default defineConfig({
 
   locales: {
     root: { label: 'English' },
-    zh: { label: '简体中文 (待完成)', link: '' },
+    zh: { label: '简体中文', link: 'https://huohuoren4.github.io/docs/' },
   },
 
   themeConfig: {
