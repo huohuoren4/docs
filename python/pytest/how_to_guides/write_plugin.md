@@ -128,11 +128,13 @@ If you have assertion helpers in other modules where you would need assertion re
 
 - **register_assert_rewrite**(**names*)   [source]()
 
-    - Register one or more module names to be rewritten on import.
+    Register one or more module names to be rewritten on import.
 
-    - This function will make sure that this module or all modules inside the package will get their assert statements rewritten. Thus you should make sure to call this before the module is actually imported, usually in your `__init__.py` if you are a plugin using a package.
+    This function will make sure that this module or all modules inside the package will get their assert statements rewritten. Thus you should make sure to call this before the module is actually imported, usually in your `__init__.py` if you are a plugin using a package.
 
-    - **Parameters**: **names** (str) – The module names to register.
+    - *Parameters*: 
+
+        - `names (str)` – The module names to register.
 
 This is especially important when you write a pytest plugin which is created using a package. The import hook only treats `conftest.py` files and any modules which are listed in the `pytest11` entrypoint as plugins. As an example consider the following package:
 

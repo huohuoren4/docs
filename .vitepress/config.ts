@@ -13,6 +13,7 @@ export default defineConfig({
   ],
   
   cleanUrls: true,
+  ignoreDeadLinks: true,
 
   locales: {
     root: { label: 'English' },

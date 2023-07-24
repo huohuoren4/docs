@@ -169,73 +169,75 @@ See the reporting demo for many more examples.
 
 It is possible to add your own detailed explanations by implementing the `pytest_assertrepr_compare` hook.
 
-**pytest_assertrepr_compare**(`config, op, left, right`)
+- **pytest_assertrepr_compare**(`config, op, left, right`)    [source]
 
-[source]()
+    - Return explanation for comparisons in failing assert expressions.
 
-Return explanation for comparisons in failing assert expressions.
+    - Return None for no custom explanation, otherwise return a list of strings. The strings will be joined by newlines but any newlines in a string will be escaped. Note that all but the first line will be indented slightly, the intention is for the first line to be a summary.
 
-Return None for no custom explanation, otherwise return a list of strings. The strings will be joined by newlines but any newlines in a string will be escaped. Note that all but the first line will be indented slightly, the intention is for the first line to be a summary.
+    - **Parameters**: 
 
-**Parameters**: 
-- **config** (Config) – The pytest config object.
-- **op** (str) – The operator, e.g. `"=="`, `"!="`, `"not in"`.
-- **left** (object) – The left operand.
-- **right** (object) – The right operand.
+        - **config**(Config) – The pytest config object.
 
-As an example consider adding the following hook in a conftest.py file which provides an alternative explanation for `Foo` objects:
+        - **op**(str) – The operator, e.g. `"=="`, `"!="`, `"not in"`.
 
-```python
-# content of conftest.py
-from test_foocompare import Foo
+        - **left** (object) – The left operand.
 
+        - **right** (object) – The right operand.
 
-def pytest_assertrepr_compare(op, left, right):
-    if isinstance(left, Foo) and isinstance(right, Foo) and op == "==":
-        return [
-            "Comparing Foo instances:",
-            f"   vals: {left.val} != {right.val}",
-        ]
-```
+    - As an example consider adding the following hook in a conftest.py file which provides an alternative explanation for `Foo` objects:
 
-now, given this test module:
-
-```python
-# content of test_foocompare.py
-class Foo:
-    def __init__(self, val):
-        self.val = val
-
-    def __eq__(self, other):
-        return self.val == other.val
+    ```python
+    # content of conftest.py
+    from test_foocompare import Foo
 
 
-def test_compare():
-    f1 = Foo(1)
-    f2 = Foo(2)
-    assert f1 == f2
-```
+    def pytest_assertrepr_compare(op, left, right):
+        if isinstance(left, Foo) and isinstance(right, Foo) and op == "==":
+            return [
+                "Comparing Foo instances:",
+                f"   vals: {left.val} != {right.val}",
+            ]
+    ```
 
-you can run the test module and get the custom output defined in the conftest file:
+    now, given this test module:
 
-```shell
-$ pytest -q test_foocompare.py
-F                                                                    [100%]
-================================= FAILURES =================================
-_______________________________ test_compare _______________________________
+    ```python
+    # content of test_foocompare.py
+    class Foo:
+        def __init__(self, val):
+            self.val = val
+
+        def __eq__(self, other):
+            return self.val == other.val
+
 
     def test_compare():
         f1 = Foo(1)
         f2 = Foo(2)
->       assert f1 == f2
-E       assert Comparing Foo instances:
-E            vals: 1 != 2
+        assert f1 == f2
+    ```
 
-test_foocompare.py:12: AssertionError
-========================= short test summary info ==========================
-FAILED test_foocompare.py::test_compare - assert Comparing Foo instances:
-1 failed in 0.12s
-```
+    you can run the test module and get the custom output defined in the conftest file:
+
+    ```shell
+    $ pytest -q test_foocompare.py
+    F                                                                    [100%]
+    ================================= FAILURES =================================
+    _______________________________ test_compare _______________________________
+
+        def test_compare():
+            f1 = Foo(1)
+            f2 = Foo(2)
+    >       assert f1 == f2
+    E       assert Comparing Foo instances:
+    E            vals: 1 != 2
+
+    test_foocompare.py:12: AssertionError
+    ========================= short test summary info ==========================
+    FAILED test_foocompare.py::test_compare - assert Comparing Foo instances:
+    1 failed in 0.12s
+    ```
 
 ## Assertion introspection details
 

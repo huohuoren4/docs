@@ -112,9 +112,11 @@ Plugins and `conftest.py` files may declare new hooks that can then be implement
 
 - **pytest_addhooks**(*pluginmanager*)  [source]()
 
-    - Called at plugin registration time to allow adding new hooks via a call to `pluginmanager.add_hookspecs(module_or_class, prefix)`.
+    Called at plugin registration time to allow adding new hooks via a call to `pluginmanager.add_hookspecs(module_or_class, prefix)`.
 
-    - **Parameters**: **pluginmanager** (*pytest.PytestPluginManager*) – The pytest plugin manager.
+    *Parameters*: 
+
+    - `pluginmanager (pytest.PytestPluginManager)` – The pytest plugin manager.
 
     ::: tip Note
     This hook is incompatible with hook wrappers.
