@@ -1,7 +1,7 @@
 # Get Started
 
 ::: tip 提示
-pytest document version: 7.4.0
+pytest document version: 7.4.0, only maintaining the lastest version.
 :::
 
 ## Install pytest

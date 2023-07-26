@@ -88,7 +88,7 @@ export default defineConfig({
 
     sidebar: {
       "/python/pytest/": [
-        { text: 'Pytest',
+        { text: 'Pytest v7.4.0',
           items: [
             { text: 'Get Started', link: '/python/pytest/get_started' },
             { text: 'How-to guides', 
@@ -139,7 +139,19 @@ export default defineConfig({
             { text: 'Further topics', 
               collapsed: true,
               items: [
-                  { text: 'How to invoke pytest', link: '/python/pytest/invoke_pytest' },
+                  { text: 'Examples and customization tricks', link: '/python/pytest/further_topics/example_trick' },
+                  { text: 'Backwards Compatibility Policy', link: '/python/pytest/further_topics/compatibility' },
+                  { text: 'Deprecations and Removals', link: '/python/pytest/further_topics/deprecation' },
+                  { text: 'Contribution getting started', link: '/python/pytest/further_topics/contribution' },
+                  { text: 'Development Guide', link: '/python/pytest/further_topics/development_guide' },
+                  { text: 'Sponsor', link: '/python/pytest/further_topics/sponsor' },
+                  { text: 'pytest for enterprise', link: '/python/pytest/further_topics/enterprise' },
+                  { text: 'License', link: '/python/pytest/further_topics/license' },
+                  { text: 'Contact channels', link: '/python/pytest/further_topics/contact' },
+                  { text: 'History', link: '/python/pytest/further_topics/history' },
+                  { text: 'Historical Notes', link: '/python/pytest/further_topics/historical_note' },
+                  { text: 'Talks and Tutorials', link: '/python/pytest/further_topics/talk_tutorial' },
+                  { text: 'Release announcements', link: '/python/pytest/further_topics/announcement' }
                 ] 
             }
           ]
