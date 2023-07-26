@@ -72,7 +72,7 @@ However, the commit says “create the new development trunk” and is already q
 
 - Even back there, the [FAQ](http://web.archive.org/web/20091005222413/http://codespeak.net/py/dist/faq.html) said:
 
-    ```text
+    ```
     Clearly, [a second standard library] was ambitious and the naming has maybe haunted the project rather than helping it. There may be a project name change and possibly a split up into different projects sometime.
     ```
 

@@ -374,7 +374,7 @@ The above are not hard rules, but merely guidelines, and can be (and often are!)
 
 When closing a Pull Request, it needs to be acknowledging the time, effort, and interest demonstrated by the person which submitted it. As mentioned previously, it is not the intent of the team to dismiss a stalled pull request entirely but to merely to clear up our queue, so a message like the one below is warranted when closing a pull request that went stale:
 
-```text
+```
 Hi <contributor>,
 
 First of all, we would like to thank you for your time and effort on working on this, the pytest team deeply appreciates it.

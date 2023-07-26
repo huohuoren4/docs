@@ -2,7 +2,7 @@
 
 Distributed under the terms of the MIT license, pytest is free and open source software.
 
-```text
+```
 The MIT License (MIT)
 
 Copyright (c) 2004 Holger Krekel and others
