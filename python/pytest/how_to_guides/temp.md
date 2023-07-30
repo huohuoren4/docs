@@ -2,9 +2,9 @@
 
 ## The tmp_path fixture
 
-You can use the `tmp_path` fixture which will provide a temporary directory unique to the test invocation, created in the base temporary directory.
+You can use the `tmp_path` fixture which will provide a temporary directory unique to the test invocation, created in the [base temporary directory](/python/pytest/how_to_guides/temp#the-default-base-temporary-directory).
 
-`tmp_path` is a pathlib.Path object. Here is an example test usage:
+`tmp_path` is a `pathlib.Path` object. Here is an example test usage:
 
 ```python
 # content of test_tmp_path.py
@@ -82,7 +82,7 @@ See tmp_path_factory API for details.
 
 ## The tmpdir and tmpdir_factory fixtures
 
-The `tmpdir` and `tmpdir_factory` fixtures are similar to `tmp_path` and `tmp_path_factory`, but use/return legacy py.path.local objects rather than standard pathlib.Path objects.
+The `tmpdir` and `tmpdir_factory` fixtures are similar to `tmp_path` and `tmp_path_factory`, but use/return legacy py.path.local objects rather than standard `pathlib.Path` objects.
 
 ::: tip Note
 These days, it is preferred to use `tmp_path` and `tmp_path_factory`.
@@ -93,14 +93,14 @@ In order to help modernize old code bases, one can run pytest with the legacypat
 pytest -p no:legacypath
 ```
 
-This will trigger errors on tests using the legacy paths. It can also be permanently set as part of the addopts parameter in the config file.
+This will trigger errors on tests using the legacy paths. It can also be permanently set as part of the `addopts` parameter in the config file.
 :::
 
-See tmpdir tmpdir_factory API for details.
+See [tmpdir tmpdir_factory](/python/pytest/reference_guides/api_reference#tmpdir-factory) API for details.
 
 ## The default base temporary directory
 
-Temporary directories are by default created as sub-directories of the system temporary directory. The base name will be `pytest-NUM` where `NUM` will be incremented with each test run. By default, entries older than 3 temporary directories will be removed. This behavior can be configured with tmp_path_retention_count and tmp_path_retention_policy.
+Temporary directories are by default created as sub-directories of the system temporary directory. The base name will be `pytest-NUM` where `NUM` will be incremented with each test run. By default, entries older than 3 temporary directories will be removed. This behavior can be configured with `tmp_path_retention_count` and `tmp_path_retention_policy`.
 
 Using the `--basetemp` option will remove the directory before every run, effectively meaning the temporary directories of only the most recent run will be kept.
 

@@ -169,7 +169,7 @@ Custom pytest plugin commandline arguments may include a path, as in` pytest --l
 
 ## Builtin configuration file options
 
-For the full list of options consult the reference documentation.
+For the full list of options consult the [reference documentation](/python/pytest/reference_guides/api_reference#configuration-options).
 
 ## Syntax highlighting theme customization
 

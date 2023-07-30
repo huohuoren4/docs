@@ -140,14 +140,14 @@ def window(caplog):
             pytest.fail(f"warning messages encountered during testing: {messages}")
 ```
 
-The full API is available at pytest.LogCaptureFixture.
+The full API is available at [pytest.LogCaptureFixture](/python/pytest/reference_guides/api_reference#caplog).
 
 ::: warning Warning
 The `caplog` fixture adds a handler to the root logger to capture logs. If the root logger is modified during a test, for example with `logging.config.dictConfig`, this handler may be removed and cause no logs to be captured. To avoid this, ensure that any root logger configuration only adds to the existing handlers.
 :::
 
 ## Live Logs
-By setting the log_cli configuration option to `true`, pytest will output logging records as they are emitted directly into the console.
+By setting the `log_cli` configuration option to `true`, pytest will output logging records as they are emitted directly into the console.
 
 You can specify the logging level for which log records with equal or higher level are printed to the console by passing `--log-cli-level`. This setting accepts the logging level names or numeric values as seen in logging’s documentation.
 
@@ -212,11 +212,11 @@ This feature was introduced as a drop-in replacement for the pytest-catchlog plu
 
 This feature was introduced in `3.3` and some incompatible changes have been made in `3.4` after community feedback:
 
-- Log levels are no longer changed unless explicitly requested by the log_level configuration or `--log-level` command-line options. This allows users to configure logger objects themselves. Setting log_level will set the level that is captured globally so if a specific test requires a lower level than this, use the `caplog.set_level()` functionality otherwise that test will be prone to failure.
+- Log levels are no longer changed unless explicitly requested by the `log_level` configuration or `--log-level` command-line options. This allows users to configure logger objects themselves. Setting `log_level` will set the level that is captured globally so if a specific test requires a lower level than this, use the `caplog.set_level()` functionality otherwise that test will be prone to failure.
 
-- Live Logs is now disabled by default and can be enabled setting the log_cli configuration option to `true`. When enabled, the verbosity is increased so logging for each test is visible.
+- [Live Logs](/python/pytest/how_to_guides/logging#live-logs) is now disabled by default and can be enabled setting the `log_cli` configuration option to `true`. When enabled, the verbosity is increased so logging for each test is visible.
 
-- Live Logs are now sent to `sys.stdout` and no longer require the `-s` command-line option to work.
+- [Live Logs](/python/pytest/how_to_guides/logging#live-logs) are now sent to `sys.stdout` and no longer require the `-s` command-line option to work.
 
 If you want to partially restore the logging behavior of version `3.3`, you can add this options to your `ini` file:
 
@@ -226,4 +226,4 @@ log_cli=true
 log_level=NOTSET
 ```
 
-More details about the discussion that lead to this changes can be read in issue #3013.
+More details about the discussion that lead to this changes can be read in [issue #3013](https://github.com/pytest-dev/pytest/issues/3013).

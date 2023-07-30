@@ -1,12 +1,8 @@
 # Get Started
 
-::: tip 提示
-pytest document version: 7.4.0, only maintaining the lastest version.
-:::
-
 ## Install pytest
 
-`pytest` requires: Python 3.7+ or PyPy3.
+pytest requires: `Python 3.7+` or `PyPy3`.
 
 1. Run the following command in your command line:
 
@@ -67,11 +63,11 @@ You can use the `assert` statement to verify test expectations. pytest's Advance
 
 ## Run multiple tests
 
-`pytest` will run all files of the form test_*.py or *_test.py in the current directory and its subdirectories. More generally, it follows standard test discovery rules.
+pytest will run all files of the form `test_*.py` or `*_test.py` in the current directory and its subdirectories. More generally, it follows [standard test discovery rules](/python/pytest/explanation/integration_practice#conventions-for-python-test-discovery).
 
 ## Assert that a certain exception is raised
 
-Use the raises helper to assert that some code raises an exception:
+Use the [raises](/python/pytest/how_to_guides/assert#assertions-about-expected-exceptions) helper to assert that some code raises an exception:
 
 ```python
 # content of test_sysexit.py
@@ -115,7 +111,7 @@ class TestClass:
         assert hasattr(x, "check")
 ```
 
-`pytest` discovers all tests following its Conventions for Python test discovery, so it finds both `test_` prefixed functions. There is no need to subclass anything, but make sure to prefix your class with `Test` otherwise the class will be skipped. We can simply run the module by passing its filename:
+pytest discovers all tests following its [Conventions for Python test discovery](/python/pytest/explanation/integration_practice#conventions-for-python-test-discovery), so it finds both `test_` prefixed functions. There is no need to subclass anything, but make sure to prefix your class with `Test` otherwise the class will be skipped. We can simply run the module by passing its filename:
 
 ```shell
 $ pytest -q test_class.py
@@ -183,7 +179,7 @@ Note that attributes added at class level are class attributes, so they will be 
 
 ## Request a unique temporary directory for functional tests
 
-`pytest` provides Builtin fixtures/function arguments to request arbitrary resources, like a unique temporary directory:
+pytest provides Builtin fixtures/function arguments to request arbitrary resources, like a unique temporary directory:
 
 ```python
 # content of test_tmp_path.py
@@ -215,9 +211,9 @@ FAILED test_tmp_path.py::test_needsfiles - assert 0
 1 failed in 0.12s
 ```
 
-More info on temporary directory handling is available at Temporary directories and files.
+More info on temporary directory handling is available at [Temporary directories and files](/python/pytest/how_to_guides/temp#how-to-use-temporary-directories-and-files-in-tests).
 
-Find out what kind of builtin pytest fixtures exist with the command:
+Find out what kind of builtin [pytest fixtures](/python/pytest/reference_guides/fixture_reference#fixtures-reference) exist with the command:
 
 ```shell
 pytest --fixtures   # shows builtin and custom fixtures
@@ -229,9 +225,9 @@ Note that this command omits fixtures with leading `_` unless the `-v` option is
 
 Check out additional pytest resources to help you customize tests for your unique workflow:
 
-- “How to invoke pytest” for command line invocation examples
-- “How to use pytest with an existing test suite” for working with pre-existing tests
-- “How to mark test functions with attributes” for information on the `pytest.mark` mechanism
-- “Fixtures reference” for providing a functional baseline to your tests
-- “Writing plugins” for managing and writing plugins
-- “Good Integration Practices” for virtualenv and test layouts
+- “[How to invoke pytest](/python/pytest/how_to_guides/invoke_pytest#how-to-invoke-pytest)” for command line invocation examples
+- “[How to use pytest with an existing test suite](/python/pytest/how_to_guides/test_suite#how-to-use-pytest-with-an-existing-test-suite)” for working with pre-existing tests
+- “[How to mark test functions with attributes](/python/pytest/how_to_guides/mark#how-to-mark-test-functions-with-attributes)” for information on the `pytest.mark` mechanism
+- “[Fixtures reference](/python/pytest/reference_guides/fixture_reference#fixtures-reference)” for providing a functional baseline to your tests
+- “[Writing plugins](/python/pytest/how_to_guides/write_plugin#writing-plugins)” for managing and writing plugins
+- “[Good Integration Practices](/python/pytest/explanation/integration_practice#good-integration-practices)” for virtualenv and test layouts

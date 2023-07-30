@@ -49,10 +49,11 @@ assert a % 2 == 0, "value was odd, should be even"
 
 then no assertion introspection takes places at all and the message will be simply shown in the traceback.
 
-## See Assertion introspection details for more information on assertion introspection.
+See [Assertion introspection details](/python/pytest/how_to_guides/assert#assertion-introspection-details) for more information on assertion introspection.
 
-Assertions about expected exceptions
-In order to write assertions about raised exceptions, you can use pytest.raises() as a context manager like this:
+## Assertions about expected exceptions
+
+In order to write assertions about raised exceptions, you can use [pytest.raises()](/python/pytest/reference_guides/api_reference#pytest-raises) as a context manager like this:
 
 ```python
 import pytest
@@ -73,7 +74,7 @@ def test_recursion_depth():
     assert "maximum recursion" in str(excinfo.value)
 ```
 
-`excinfo` is an ExceptionInfo instance, which is a wrapper around the actual exception raised. The main attributes of interest are `.type`, `.value` and `.traceback`.
+`excinfo` is an [ExceptionInfo](/python/pytest/reference_guides/api_reference#exceptioninfo) instance, which is a wrapper around the actual exception raised. The main attributes of interest are `.type`, `.value` and `.traceback`.
 
 You can pass a `match` keyword parameter to the context-manager to test that a regular expression matches on the string representation of an exception (similar to the `TestCase.assertRaisesRegex` method from `unittest`):
 
@@ -92,7 +93,7 @@ def test_match():
 
 The regexp parameter of the `match` method is matched with the `re.search` function, so in the above example `match='123'` would have worked as well.
 
-There’s an alternate form of the pytest.raises() function where you pass a function that will be executed with the given `*args` and `**kwargs` and assert that the given exception is raised:
+There’s an alternate form of the `pytest.raises()` function where you pass a function that will be executed with the given `*args` and `**kwargs` and assert that the given exception is raised:
 
 ```python
 pytest.raises(ExpectedException, func, *args, **kwargs)
@@ -108,11 +109,11 @@ def test_f():
     f()
 ```
 
-Using pytest.raises() is likely to be better for cases where you are testing exceptions your own code is deliberately raising, whereas using `@pytest.mark.xfail` with a check function is probably better for something like documenting unfixed bugs (where the test describes what “should” happen) or bugs in dependencies.
+Using `pytest.raises()` is likely to be better for cases where you are testing exceptions your own code is deliberately raising, whereas using `@pytest.mark.xfail` with a check function is probably better for something like documenting unfixed bugs (where the test describes what “should” happen) or bugs in dependencies.
 
 ## Assertions about expected warnings
 
-You can check that code raises a particular warning using pytest.warns.
+You can check that code raises a particular warning using [pytest.warns](/python/pytest/reference_guides/api_reference#pytest-warns).
 
 ## Making use of context-sensitive comparisons
 
@@ -169,23 +170,23 @@ See the reporting demo for many more examples.
 
 It is possible to add your own detailed explanations by implementing the `pytest_assertrepr_compare` hook.
 
-- **pytest_assertrepr_compare**(`config, op, left, right`)    [source]
+- **pytest_assertrepr_compare**(`config, op, left, right`)
 
-    - Return explanation for comparisons in failing assert expressions.
+    Return explanation for comparisons in failing assert expressions.
 
-    - Return None for no custom explanation, otherwise return a list of strings. The strings will be joined by newlines but any newlines in a string will be escaped. Note that all but the first line will be indented slightly, the intention is for the first line to be a summary.
+    Return None for no custom explanation, otherwise return a list of strings. The strings will be joined by newlines but any newlines in a string will be escaped. Note that all but the first line will be indented slightly, the intention is for the first line to be a summary.
 
-    - **Parameters**: 
+    *Parameters*: 
 
-        - **config**(Config) – The pytest config object.
+    - `config(Config)` – The pytest config object.
 
-        - **op**(str) – The operator, e.g. `"=="`, `"!="`, `"not in"`.
+    - `op(str)` – The operator, e.g. `"=="`, `"!="`, `"not in"`.
 
-        - **left** (object) – The left operand.
+    - `left (object)` – The left operand.
 
-        - **right** (object) – The right operand.
+    - `right (object)` – The right operand.
 
-    - As an example consider adding the following hook in a conftest.py file which provides an alternative explanation for `Foo` objects:
+    As an example consider adding the following hook in a [conftest.py](/python/pytest/reference_guides/fixture_reference#fixture-availability) file which provides an alternative explanation for `Foo` objects:
 
     ```python
     # content of conftest.py
@@ -243,9 +244,9 @@ It is possible to add your own detailed explanations by implementing the `pytest
 
 Reporting details about a failing assertion is achieved by rewriting assert statements before they are run. Rewritten assert statements put introspection information into the assertion failure message. pytest only rewrites test modules directly discovered by its test collection process, so **asserts in supporting modules which are not themselves test modules will not be rewritten**.
 
-You can manually enable assertion rewriting for an imported module by calling register_assert_rewrite before you import it (a good place to do that is in your root `conftest.py`).
+You can manually enable assertion rewriting for an imported module by calling [register_assert_rewrite](/python/pytest/how_to_guides/write_plugin#assertion-rewriting) before you import it (a good place to do that is in your root `conftest.py`).
 
-For further information, Benjamin Peterson wrote up Behind the scenes of pytest’s new assertion rewriting.
+For further information, Benjamin Peterson wrote up *Behind the scenes of pytest’s new assertion rewriting*.
 
 ### Assertion rewriting caches files on disk
 

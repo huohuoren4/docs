@@ -1,11 +1,11 @@
 # How to use fixtures
 
 ::: tip See also
-[About fixtures]()
+[About fixtures](/python/pytest/explanation/about_fixture#about-fixtures)
 :::
 
 ::: tip See also
-[Fixtures reference]()
+[Fixtures reference](/python/pytest/reference_guides/fixture_reference#fixtures-reference)
 :::
 
 ## “Requesting” fixtures
@@ -317,7 +317,7 @@ In this example, the `append_first` fixture is an autouse fixture. Because it ha
 
 ## Scope: sharing fixtures across classes, modules, packages or session
 
-Fixtures requiring network access depend on connectivity and are usually time-expensive to create. Extending the previous example, we can add a `scope="module"` parameter to the @pytest.fixture invocation to cause a `smtp_connection` fixture function, responsible to create a connection to a preexisting SMTP server, to only be invoked once per test module (the default is to invoke once per test function). Multiple test functions in a test module will thus each receive the same `smtp_connection` fixture instance, thus saving time. Possible values for `scope` are: `function`, `class`, `module`, `package` or `session`.
+Fixtures requiring network access depend on connectivity and are usually time-expensive to create. Extending the previous example, we can add a `scope="module"` parameter to the [@pytest.fixture](/python/pytest/reference_guides/api_reference#pytest-fixture) invocation to cause a `smtp_connection` fixture function, responsible to create a connection to a preexisting SMTP server, to only be invoked once per test module (the default is to invoke once per test function). Multiple test functions in a test module will thus each receive the same `smtp_connection` fixture instance, thus saving time. Possible values for `scope` are: `function`, `class`, `module`, `package` or `session`.
 
 The next example puts the fixture function into a separate `conftest.py` file so that tests from multiple test modules in the directory can access the fixture function:
 
@@ -347,7 +347,7 @@ def test_noop(smtp_connection):
     assert 0  # for demo purposes
 ```
 
-Here, the `test_ehlo` needs the `smtp_connection` fixture value. pytest will discover and call the @pytest.fixture marked `smtp_connection` fixture function. Running the test looks like this:
+Here, the `test_ehlo` needs the `smtp_connection` fixture value. pytest will discover and call the `@pytest.fixture` marked `smtp_connection` fixture function. Running the test looks like this:
 
 ```shell
 $ pytest test_module.py
@@ -520,7 +520,7 @@ def test_email_received(sending_user, receiving_user):
 
 Because `receiving_user` is the last fixture to run during setup, it’s the first to run during teardown.
 
-There is a risk that even having the order right on the teardown side of things doesn’t guarantee a safe cleanup. That’s covered in a bit more detail in Safe teardowns.
+There is a risk that even having the order right on the teardown side of things doesn’t guarantee a safe cleanup. That’s covered in a bit more detail in [Safe teardowns](/python/pytest/how_to_guides/fixture#safe-teardowns).
 
 ```shell
 $ pytest -q test_emaillib.py
@@ -534,9 +534,9 @@ If a yield fixture raises an exception before yielding, pytest won’t try to ru
 
 ### 2. Adding finalizers directly
 
-While yield fixtures are considered to be the cleaner and more straightforward option, there is another choice, and that is to add “finalizer” functions directly to the test’s request-context object. It brings a similar result as yield fixtures, but requires a bit more verbosity.
+While yield fixtures are considered to be the cleaner and more straightforward option, there is another choice, and that is to add “finalizer” functions directly to the test’s [request-context](/python/pytest/how_to_guides/fixture#fixtures-can-introspect-the-requesting-test-context) object. It brings a similar result as yield fixtures, but requires a bit more verbosity.
 
-In order to use this approach, we have to request the request-context object (just like we would request another fixture) in the fixture we need to add teardown code for, and then pass a callable, containing that teardown code, to its `addfinalizer` method.
+In order to use this approach, we have to request the `request-context` object (just like we would request another fixture) in the fixture we need to add teardown code for, and then pass a callable, containing that teardown code, to its `addfinalizer` method.
 
 We have to be careful though, because pytest will run that finalizer once it’s been added, even if that fixture raises an exception after adding the finalizer. So to make sure we don’t run the finalizer code when we wouldn’t need to, we would only add the finalizer once the fixture would have done something that we’d need to teardown.
 
@@ -715,7 +715,7 @@ $ pytest -q test_emaillib.py
 
 ### Safe fixture structure
 
-The safest and simplest fixture structure requires limiting fixtures to only making one state-changing action each, and then bundling them together with their teardown code, as the email examples above showed.
+The safest and simplest fixture structure requires limiting fixtures to only making one state-changing action each, and then bundling them together with their teardown code, as [the email examples above](/python/pytest/how_to_guides/fixture#_1-yield-fixtures-recommended) showed.
 
 The chance that a state-changing operation can fail but still modify state is negligible, as most of these operations tend to be transaction-based (at least at the level of testing where state could be left behind). So if we make sure that any successful state-changing action gets torn down by moving it to a separate fixture function and separating it from other, potentially failing state-changing actions, then our tests will stand the best chance at leaving the test environment the way they found it.
 
@@ -791,7 +791,7 @@ Sometimes you may want to run multiple asserts after doing all that setup, which
 
 All that’s needed is stepping up to a larger scope, then having the act step defined as an autouse fixture, and finally, making sure all the fixtures are targeting that higher level scope.
 
-Let’s pull an example from above, and tweak it a bit. Let’s say that in addition to checking for a welcome message in the header, we also want to check for a sign out button, and a link to the user’s profile.
+Let’s pull [an example from above](/python/pytest/how_to_guides/fixture#_1-yield-fixtures-recommended), and tweak it a bit. Let’s say that in addition to checking for a welcome message in the header, we also want to check for a sign out button, and a link to the user’s profile.
 
 Let’s take a look at how we can structure that so we can run multiple asserts without having to repeat all those steps again.
 
@@ -877,7 +877,7 @@ class TestLandingPageBadCredentials:
 
 ## Fixtures can introspect the requesting test context
 
-Fixture functions can accept the request object to introspect the “requesting” test function, class or module context. Further extending the previous `smtp_connection` fixture example, let’s read an optional server URL from the test module which uses our fixture:
+Fixture functions can accept the [request](/python/pytest/reference_guides/api_reference#request) object to introspect the “requesting” test function, class or module context. Further extending the previous `smtp_connection` fixture example, let’s read an optional server URL from the test module which uses our fixture:
 
 ```python
 # content of conftest.py
@@ -940,7 +940,7 @@ voila! The `smtp_connection` fixture function picked up our mail server name fro
 
 ## Using markers to pass data to fixtures
 
-Using the request object, a fixture can also access markers which are applied to a test function. This can be useful to pass data into a fixture from a test:
+Using the `request` object, a fixture can also access markers which are applied to a test function. This can be useful to pass data into a fixture from a test:
 
 ```python
 import pytest
@@ -1013,7 +1013,7 @@ def test_customer_records(make_customer_record):
 
 Fixture functions can be parametrized in which case they will be called multiple times, each time executing the set of dependent tests, i.e. the tests that depend on this fixture. Test functions usually do not need to be aware of their re-running. Fixture parametrization helps to write exhaustive functional tests for components which themselves can be configured in multiple ways.
 
-Extending the previous example, we can flag the fixture to create two `smtp_connection` fixture instances which will cause all tests using the fixture to run twice. The fixture function gets access to each parameter through the special request object:
+Extending the previous example, we can flag the fixture to create two `smtp_connection` fixture instances which will cause all tests using the fixture to run twice. The fixture function gets access to each parameter through the special `request` object:
 
 ```python
 # content of conftest.py
@@ -1030,7 +1030,7 @@ def smtp_connection(request):
     smtp_connection.close()
 ```
 
-The main change is the declaration of `params` with @pytest.fixture, a list of values for each of which the fixture function will execute and can access a value via `request.param`. No test function code needs to change. So let’s just do another run:
+The main change is the declaration of `params` with `@pytest.fixture`, a list of values for each of which the fixture function will execute and can access a value via `request.param`. No test function code needs to change. So let’s just do another run:
 
 ```shell
 $ pytest -q test_module.py
@@ -1163,7 +1163,7 @@ collected 12 items
 
 ## Using marks with parametrized fixtures
 
-pytest.param() can be used to apply marks in values sets of parametrized fixtures in the same way that they can be used with @pytest.mark.parametrize.
+`pytest.param()` can be used to apply marks in values sets of parametrized fixtures in the same way that they can be used with `@pytest.mark.parametrize`.
 
 Example:
 
@@ -1391,7 +1391,7 @@ def test():
     ...
 ```
 
-and you may specify fixture usage at the test module level using pytestmark:
+and you may specify fixture usage at the test module level using `pytestmark`:
 
 ```python
 pytestmark = pytest.mark.usefixtures("cleandir")
@@ -1578,7 +1578,7 @@ In the example above, a parametrized fixture is overridden with a non-parametriz
 
 ## Using fixtures from other projects
 
-Usually projects that provide pytest support will use entry points, so just installing those projects into an environment will make those fixtures available for use.
+Usually projects that provide pytest support will use [entry points](/python/pytest/how_to_guides/write_plugin#making-your-plugin-installable-by-others), so just installing those projects into an environment will make those fixtures available for use.
 
 In case you want to use fixtures from a project that does not use entry points, you can define pytest_plugins in your top `conftest.py` file to register that module as a plugin.
 

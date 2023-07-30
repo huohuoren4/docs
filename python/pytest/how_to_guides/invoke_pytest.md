@@ -1,10 +1,10 @@
-## How to invoke pytest
+# How to invoke pytest
 
 ::: tip See also
-[Complete pytest command-line flag reference]()
+[Complete pytest command-line flag reference](/python/pytest/reference_guides/api_reference#command-line-flags)
 :::
 
-In general, pytest is invoked with the command `pytest` (see below for other ways to invoke pytest). This will execute all tests in all files whose names follow the form `test_*`.py or `\*_test.py` in the current directory and its subdirectories. More generally, pytest follows standard test discovery rules.
+In general, pytest is invoked with the command `pytest` (see below for [other ways to invoke pytest](/python/pytest/how_to_guides/invoke_pytest#other-ways-of-calling-pytest)). This will execute all tests in all files whose names follow the form `test_*`.py or `\*_test.py` in the current directory and its subdirectories. More generally, pytest follows [standard test discovery rules](/python/pytest/explanation/integration_practice#conventions-for-python-test-discovery).
 
 ## Specifying which tests to run
 
@@ -54,7 +54,7 @@ pytest -m slow
 
 Will run all tests which are decorated with the `@pytest.mark.slow` decorator.
 
-For more information see marks.
+For more information see [marks](/python/pytest/how_to_guides/mark#how-to-mark-test-functions-with-attributes).
 
 **Run tests from packages**
 
@@ -97,7 +97,7 @@ pytest -p mypluginmodule
 The option receives a `name` parameter, which can be:
 
 - A full module dotted name, for example `myproject.plugins`. This dotted name must be importable.
-- The entry-point name of a plugin. This is the name passed to `setuptools` when the plugin is registered. For example to early-load the pytest-cov plugin you can use:
+- The entry-point name of a plugin. This is the name passed to `setuptools` when the plugin is registered. For example to early-load the `pytest-cov` plugin you can use:
 
 ```shell
 pytest -p pytest_cov
@@ -133,7 +133,7 @@ You can invoke `pytest` from Python code directly:
 retcode = pytest.main()
 ```
 
-this acts as if you would call “pytest” from the command line. It will not raise SystemExit but return the exit code instead. You can pass in options and arguments:
+this acts as if you would call “pytest” from the command line. It will not raise `SystemExit` but return the `exit code` instead. You can pass in options and arguments:
 
 ```shell
 retcode = pytest.main(["-x", "mytestdir"])

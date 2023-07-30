@@ -2,13 +2,13 @@
 
 pytest enables test parametrization at several levels:
 
-- pytest.fixture() allows one to parametrize fixture functions.
-- @pytest.mark.parametrize allows one to define multiple sets of arguments and fixtures at the test function or class.
-- pytest_generate_tests allows one to define custom parametrization schemes or extensions.
+- [pytest.fixture()](/python/pytest/reference_guides/api_reference#pytest-fixture) allows one to [parametrize fixture functions](/python/pytest/how_to_guides/fixture#parametrizing-fixtures).
+- [@pytest.mark.parametrize](/python/pytest/how_to_guides/params_fixture#pytest-mark-parametrize-parametrizing-test-functions) allows one to define multiple sets of arguments and fixtures at the test function or class.
+- [pytest_generate_tests](/python/pytest/how_to_guides/params_fixture#basic-pytest-generate-tests-example) allows one to define custom parametrization schemes or extensions.
 
 ## @pytest.mark.parametrize: parametrizing test functions
 
-The builtin pytest.mark.parametrize decorator enables parametrization of arguments for a test function. Here is a typical example of a test function that implements checking that a certain input leads to an expected output:
+The builtin `pytest.mark.parametrize` decorator enables parametrization of arguments for a test function. Here is a typical example of a test function that implements checking that a certain input leads to an expected output:
 
 ```python
 # content of test_expectation.py
@@ -68,7 +68,7 @@ Keep in mind however that this might cause unwanted side effects and even bugs d
 
 As designed in this example, only one pair of input/output values fails the simple test function. And as usual with test function arguments, you can see the input and output values in the traceback.
 
-Note that you could also use the parametrize marker on a class or a module (see How to mark test functions with attributes) which would invoke several functions with the argument sets, for instance:
+Note that you could also use the parametrize marker on a class or a module (see [How to mark test functions with attributes](/python/pytest/how_to_guides/mark#how-to-mark-test-functions-with-attributes)) which would invoke several functions with the argument sets, for instance:
 
 ```python
 import pytest
@@ -83,7 +83,7 @@ class TestClass:
         assert (n * 1) + 1 == expected
 ```
 
-To parametrize all tests in a module, you can assign to the pytestmark global variable:
+To parametrize all tests in a module, you can assign to the `pytestmark` global variable:
 
 ```python
 import pytest

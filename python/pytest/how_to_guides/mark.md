@@ -4,19 +4,19 @@ By using the `pytest.mark` helper you can easily set metadata on your test funct
 
 Here are some of the builtin markers:
 
-- usefixtures - use fixtures on a test function or class
-- filterwarnings - filter certain warnings of a test function
-- skip - always skip a test function
-- skipif - skip a test function if a certain condition is met
-- xfail - produce an “expected failure” outcome if a certain condition is met
-- parametrize - perform multiple calls to the same test function.
+- [usefixtures](/python/pytest/how_to_guides/fixture#use-fixtures-in-classes-and-modules-with-usefixtures) - use fixtures on a test function or class
+- [filterwarnings](/python/pytest/reference_guides/api_reference#pytest-mark-filterwarnings) - filter certain warnings of a test function
+- [skip](/python/pytest/how_to_guides/skip_xfail#skipping-test-functions) - always skip a test function
+- [skipif](/python/pytest/how_to_guides/skip_xfail#skipping-test-functions) - skip a test function if a certain condition is met
+- [xfail](/python/pytest/how_to_guides/skip_xfail#xfail-mark-test-functions-as-expected-to-fail) - produce an “expected failure” outcome if a certain condition is met
+- [parametrize](/python/pytest/how_to_guides/params_fixture#pytest-mark-parametrize-parametrizing-test-functions) - perform multiple calls to the same test function.
 
 It’s easy to create custom markers or to apply markers to whole test classes or modules. Those markers can be used by plugins, and also are commonly used to select tests on the command-line with the -m option.
 
 See Working with custom markers for examples which also serve as documentation.
 
 ::: tip Note
-Marks can only be applied to tests, having no effect on fixtures.
+Marks can only be applied to tests, having no effect on [fixtures](/python/pytest/reference_guides/fixture_reference#fixtures-reference).
 :::
 
 ## Registering marks
@@ -42,7 +42,7 @@ markers = [
 
 Note that everything past the `:` after the mark name is an optional description.
 
-Alternatively, you can register new markers programmatically in a pytest_configure hook:
+Alternatively, you can register new markers programmatically in a [pytest_configure](http://localhost:8080/python/pytest/reference_guides/api_reference#initialization-hooks) hook:
 
 ```python
 def pytest_configure(config):

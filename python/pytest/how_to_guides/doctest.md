@@ -1,6 +1,6 @@
 # How to run doctests
 
-By default, all files matching the `test*.txt` pattern will be run through the python standard doctest module. You can change the pattern by issuing:
+By default, all files matching the `test*.txt` pattern will be run through the python standard `doctest` module. You can change the pattern by issuing:
 
 ```shell
 pytest --doctest-glob="*.rst"
@@ -70,7 +70,7 @@ addopts = --doctest-modules
 
 ## Encoding
 
-The default encoding is **UTF-8**, but you can specify the encoding that will be used for those doctest files using the `doctest_encoding` ini option:
+The default encoding is `UTF-8`, but you can specify the encoding that will be used for those doctest files using the `doctest_encoding` ini option:
 
 ```ini
 # content of pytest.ini
@@ -80,7 +80,7 @@ doctest_encoding = latin1
 
 ## Using 'doctest' options
 
-Python’s standard doctest module provides some options to configure the strictness of doctest tests. In pytest, you can enable those flags using the configuration file.
+Python’s standard `doctest` module provides some options to configure the strictness of doctest tests. In pytest, you can enable those flags using the configuration file.
 
 For example, to make pytest ignore trailing whitespaces and ignore lengthy exception stack traces you can just write:
 
@@ -103,7 +103,7 @@ pytest also introduces new options:
 
 - `ALLOW_BYTES`: similarly, the b prefix is stripped from byte strings in expected doctest output.
 
-- `NUMBER`: when enabled, floating-point numbers only need to match as far as the precision you have written in the expected doctest output. The numbers are compared using pytest.approx() with relative tolerance equal to the precision. For example, the following output would only need to match to 2 decimal places when comparing `3.14` to `pytest.approx(math.pi, rel=10**-2)`:
+- `NUMBER`: when enabled, floating-point numbers only need to match as far as the precision you have written in the expected doctest output. The numbers are compared using [pytest.approx()](/python/pytest/reference_guides/api_reference#pytest-approx) with relative tolerance equal to the precision. For example, the following output would only need to match to 2 decimal places when comparing `3.14` to `pytest.approx(math.pi, rel=10**-2)`:
 
 ```shell
 math.pi
@@ -135,7 +135,7 @@ pytest --doctest-modules --doctest-continue-on-failure
 
 ## Output format
 
-You can change the diff output format on failure for your doctests by using one of standard doctest modules format in options (see doctest.REPORT_UDIFF, doctest.REPORT_CDIFF, doctest.REPORT_NDIFF, doctest.REPORT_ONLY_FIRST_FAILURE):
+You can change the diff output format on failure for your doctests by using one of standard doctest modules format in options (see `doctest.REPORT_UDIFF`, `doctest.REPORT_CDIFF`, `doctest.REPORT_NDIFF`, `doctest.REPORT_ONLY_FIRST_FAILURE`):
 
 ```shell
 pytest --doctest-modules --doctest-report none
@@ -160,9 +160,9 @@ It is possible to use fixtures using the `getfixture` helper:
 >>>
 ```
 
-Note that the fixture needs to be defined in a place visible by pytest, for example, a `conftest.py` file or plugin; normal python files containing docstrings are not normally scanned for fixtures unless explicitly configured by python_files.
+Note that the fixture needs to be defined in a place visible by pytest, for example, a `conftest.py` file or plugin; normal python files containing docstrings are not normally scanned for fixtures unless explicitly configured by `python_files`.
 
-Also, the usefixtures mark and fixtures marked as autouse are supported when executing text doctest files.
+Also, the [usefixtures](/python/pytest/how_to_guides/fixture#use-fixtures-in-classes-and-modules-with-usefixtures) mark and fixtures marked as [autouse](/python/pytest/how_to_guides/fixture#autouse-fixtures-fixtures-you-don-t-have-to-request) are supported when executing text doctest files.
 
 ### 'doctest_namespace' fixture
 
@@ -195,7 +195,7 @@ Note that like the normal `conftest.py`, the fixtures are discovered in the dire
 
 For the same reasons one might want to skip normal tests, it is also possible to skip tests inside doctests.
 
-To skip a single check inside a doctest you can use the standard doctest.SKIP directive:
+To skip a single check inside a doctest you can use the standard `doctest.SKIP` directive:
 
 ```python
 def test_random(y):
@@ -210,7 +210,7 @@ def test_random(y):
 
 This will skip the first check, but not the second.
 
-pytest also allows using the standard pytest functions pytest.skip() and pytest.xfail() inside doctests, which might be useful because you can then skip/xfail tests based on external conditions:
+pytest also allows using the standard pytest functions [pytest.skip()](/python/pytest/reference_guides/api_reference#pytest-skip) and [pytest.xfail()](/python/pytest/reference_guides/api_reference#pytest-xfail) inside doctests, which might be useful because you can then skip/xfail tests based on external conditions:
 
 ```shell
 >>> import sys, pytest
@@ -224,7 +224,7 @@ pytest also allows using the standard pytest functions pytest.skip() and pytest.
 However using those functions is discouraged because it reduces the readability of the docstring.
 
 ::: tip Note
-pytest.skip() and pytest.xfail() behave differently depending if the doctests are in a Python file (in docstrings) or a text file containing doctests intermingled with text:
+[pytest.skip()](/python/pytest/reference_guides/api_reference#pytest-skip) and [pytest.xfail()](/python/pytest/reference_guides/api_reference#pytest-xfail) behave differently depending if the doctests are in a Python file (in docstrings) or a text file containing doctests intermingled with text:
 
 - Python modules (docstrings): the functions only act in that specific docstring, letting the other docstrings in the same module execute as normal.
 
@@ -235,6 +235,6 @@ pytest.skip() and pytest.xfail() behave differently depending if the doctests ar
 
 While the built-in pytest support provides a good set of functionalities for using doctests, if you use them extensively you might be interested in those external packages which add many more features, and include pytest integration:
 
-- pytest-doctestplus: provides advanced doctest support and enables the testing of reStructuredText (“.rst”) files.
+- `pytest-doctestplus`: provides advanced doctest support and enables the testing of reStructuredText (“.rst”) files.
 
-- Sybil: provides a way to test examples in your documentation by parsing them from the documentation source and evaluating the parsed examples as part of your normal test run.
+- `Sybil`: provides a way to test examples in your documentation by parsing them from the documentation source and evaluating the parsed examples as part of your normal test run.

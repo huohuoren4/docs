@@ -10,10 +10,10 @@ The plugin provides two command line options to rerun failures from the last `py
 
 For cleanup (usually not needed), a `--cache-clear` option allows to remove all cross-session cache contents ahead of a test run.
 
-Other plugins may access the config.cache object to set/get **json encodable** values between pytest invocations.
+Other plugins may access the config.cache object to set/get json encodable values between pytest invocations.
 
 ::: tip Note
-This plugin is enabled by default, but can be disabled if needed: see Deactivating / unregistering a plugin by name (the internal name for this plugin is cacheprovider).
+This plugin is enabled by default, but can be disabled if needed: see [Deactivating / unregistering a plugin by name](/python/pytest/how_to_guides/use_plugin#deactivating-unregistering-a-plugin-by-name) (the internal name for this plugin is cacheprovider).
 ::: 
 
 ## Rerunning only failures or failures first
@@ -162,7 +162,7 @@ pytest --last-failed --last-failed-no-failures none   # run no tests and exit
 
 ## The new config.cache object
 
-Plugins or conftest.py support code can get a cached value using the pytest `config` object. Here is a basic example plugin which implements a fixture which re-uses previously created state across pytest invocations:
+Plugins or `conftest.py` support code can get a cached value using the pytest `config` object. Here is a basic example plugin which implements a fixture which re-uses previously created state across pytest invocations:
 
 ```python
 # content of test_caching.py
@@ -229,7 +229,7 @@ FAILED test_caching.py::test_function - assert 42 == 23
 1 failed in 0.12s
 ```
 
-See the config.cache fixture for more details.
+See the [config.cache fixture](/python/pytest/reference_guides/api_reference#config-cache) for more details.
 
 ## Inspecting Cache content
 

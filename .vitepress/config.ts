@@ -28,20 +28,19 @@ export default defineConfig({
       {
         text: 'Python',
         items: [
-          { text: 'doc', link: '/python/doc/get_started', activeMatch: '/python/doc/'},
+          { text: 'doc', link: 'https://docs.python.org/3.7/'},
           {
             text: 'Test Automatic',
             items: [
-              { text: 'pytest', link: '/python/pytest/get_started', activeMatch: '/python/pytest'},
-              { text: 'selenium', link: '...' },
-              { text: 'requests', link: '...' }
+              { text: 'pytest 🟢', link: '/python/pytest/home', activeMatch: '/python/pytest'},
+              { text: 'selenium', link: 'https://www.selenium.dev/documentation/' },
+              { text: 'requests', link: 'https://requests.readthedocs.io/' }
             ]
           },
           {
             text: 'Web Framework',
             items: [
-              { text: 'flask', link: '/python/flask/index', activeMatch: '/python/flask/' },
-              { text: 'sql', link: '...' }
+              { text: 'flask', link: 'https://flask.palletsprojects.com/'},
             ]
           }
         ]
@@ -49,11 +48,12 @@ export default defineConfig({
       {
         text: 'Golang',
         items: [
-          { text: 'doc', link: '/golang/doc/get_started', activeMatch: '/golang/doc/'},
+          { text: 'doc', link: 'https://golang.google.cn/doc/'},
           {
             text: 'Web Framework',
             items: [
-              { text: 'gin', link: '/golang/gin/get_started', activeMatch: '/golang/gin/'}
+              { text: 'gin', link: 'https://gin-gonic.com/docs/'},
+              { text: 'gin-vue-admin 🔴', link: '...'},
             ]
           }
         ]
@@ -62,19 +62,19 @@ export default defineConfig({
         text: 'Html',
         items: [
           {
-            text: 'Traditional Framework',
+            text: 'Vue Framework',
             items: [
-              { text: 'layui', link: '/layui/get_started', activeMatch: '/html/layui/'},
-              { text: 'Item B', link: '...' }
+              { text: 'vue2', link: 'https://v2.vuejs.org/'},
+              { text: 'vue3', link: 'https://vuejs.org/'},
             ]
           },
           {
-            text: 'Awesome Framework',
+            text: 'Vue Ecosystem',
             items: [
-              { text: 'vue3', link: '/vue3/index', activeMatch: '/html/vue3/' },
-              { text: 'vitepress', link: '...' }
+              { text: 'vite', link: 'https://vitejs.dev/'},
+              { text: 'vitepress', link: 'https://vitepress.dev/' }
             ]
-          }
+          },
         ]
       },
     ],
@@ -90,6 +90,7 @@ export default defineConfig({
       "/python/pytest/": [
         { text: 'Pytest v7.4.0',
           items: [
+            { text: 'Home', link: '/python/pytest/home' },
             { text: 'Get Started', link: '/python/pytest/get_started' },
             { text: 'How-to guides', 
               collapsed: true,

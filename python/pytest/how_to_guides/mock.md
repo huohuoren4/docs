@@ -2,32 +2,39 @@
 
 Sometimes tests need to invoke functionality which depends on global settings or which invokes code which cannot be easily tested such as network access. The `monkeypatch` fixture helps you to safely set/delete an attribute, dictionary item or environment variable, or to modify `sys.path` for importing.
 
-The `monkeypatch` fixture provides these helper methods for safely patching and mocking functionality in tests:
+The [monkeypatch](/python/pytest/reference_guides/api_reference#monkeypatch) fixture provides these helper methods for safely patching and mocking functionality in tests:
 
-- monkeypatch.setattr(obj, name, value, raising=True)
-- monkeypatch.delattr(obj, name, raising=True)
-- monkeypatch.setitem(mapping, name, value)
-- monkeypatch.delitem(obj, name, raising=True)
-- monkeypatch.setenv(name, value, prepend=None)
-- monkeypatch.delenv(name, raising=True)
-- monkeypatch.syspath_prepend(path)
-- monkeypatch.chdir(path)
+- `monkeypatch.setattr(obj, name, value, raising=True)`
+
+- `monkeypatch.delattr(obj, name, raising=True)`
+
+- `monkeypatch.setitem(mapping, name, value)`
+
+- `monkeypatch.delitem(obj, name, raising=True)`
+
+- `monkeypatch.setenv(name, value, prepend=None)`
+
+- `monkeypatch.delenv(name, raising=True)`
+
+- `monkeypatch.syspath_prepend(path)`
+
+- `monkeypatch.chdir(path)`
 
 All modifications will be undone after the requesting test function or fixture has finished. The `raising` parameter determines if a `KeyError` or `AttributeError` will be raised if the target of the set/deletion operation does not exist.
 
 Consider the following scenarios:
 
-1. Modifying the behavior of a function or the property of a class for a test e.g. there is an API call or database connection you will not make for a test but you know what the expected output should be. Use monkeypatch.setattr to patch the function or property with your desired testing behavior. This can include your own functions. Use monkeypatch.delattr to remove the function or property for the test.
+1. Modifying the behavior of a function or the property of a class for a test e.g. there is an API call or database connection you will not make for a test but you know what the expected output should be. Use `monkeypatch.setattr` to patch the function or property with your desired testing behavior. This can include your own functions. Use `monkeypatch.delattr` to remove the function or property for the test.
 
-2. Modifying the values of dictionaries e.g. you have a global configuration that you want to modify for certain test cases. Use monkeypatch.setitem to patch the dictionary for the test. monkeypatch.delitem can be used to remove items.
+2. Modifying the values of dictionaries e.g. you have a global configuration that you want to modify for certain test cases. Use `monkeypatch.setitem` to patch the dictionary for the test. `monkeypatch.delitem` can be used to remove items.
 
-3. Modifying environment variables for a test e.g. to test program behavior if an environment variable is missing, or to set multiple values to a known variable. monkeypatch.setenv and monkeypatch.delenv can be used for these patches.
+3. Modifying environment variables for a test e.g. to test program behavior if an environment variable is missing, or to set multiple values to a known variable. `monkeypatch.setenv` and `monkeypatch.delenv` can be used for these patches.
 
-4. Use `monkeypatch.setenv("PATH", value, prepend=os.pathsep)` to modify `$PATH`, and monkeypatch.chdir to change the context of the current working directory during a test.
+4. Use `monkeypatch.setenv("PATH", value, prepend=os.pathsep)` to modify `$PATH`, and `monkeypatch.chdir` to change the context of the current working directory during a test.
 
-5. Use monkeypatch.syspath_prepend to modify `sys.path` which will also call `pkg_resources.fixup_namespace_packages` and importlib.invalidate_caches().
+5. Use `monkeypatch.syspath_prepend` to modify `sys.path` which will also call `pkg_resources.fixup_namespace_packages` and `importlib.invalidate_caches()`.
 
-6. Use monkeypatch.context to apply patches only in a specific scope, which can help control teardown of complex fixtures or patches to the stdlib.
+6. Use `monkeypatch.context` to apply patches only in a specific scope, which can help control teardown of complex fixtures or patches to the stdlib.
 
 See the monkeypatch blog post for some introduction material and a discussion of its motivation.
 
@@ -35,7 +42,7 @@ See the monkeypatch blog post for some introduction material and a discussion of
 
 Consider a scenario where you are working with user directories. In the context of testing, you do not want your test to depend on the running user. `monkeypatch` can be used to patch functions dependent on the user to always return a specific value.
 
-In this example, monkeypatch.setattr is used to patch `Path.home` so that the known testing path `Path("/abc")` is always used when the test is run. This removes any dependency on the running user for testing purposes. monkeypatch.setattr must be called before the function which will use the patched function is called. After the test function finishes the `Path.home` modification will be undone.
+In this example, `monkeypatch.setattr` is used to patch `Path.home` so that the known testing path `Path("/abc")` is always used when the test is run. This removes any dependency on the running user for testing purposes. `monkeypatch.setattr` must be called before the function which will use the patched function is called. After the test function finishes the `Path.home` modification will be undone.
 
 ```python
 # contents of test_module.py with source code and the test
@@ -65,7 +72,7 @@ def test_getssh(monkeypatch):
 
 ## Monkeypatching returned objects: building mock classes
 
-monkeypatch.setattr can be used in conjunction with classes to mock returned objects from functions instead of values. Imagine a simple function to take an API url and return the json response.
+`monkeypatch.setattr` can be used in conjunction with classes to mock returned objects from functions instead of values. Imagine a simple function to take an API url and return the json response.
 
 ```python
 # contents of app.py, a simple API retrieval example
@@ -176,7 +183,7 @@ Be advised that it is not recommended to patch builtin functions such as `open`,
 ```
 
 ::: tip Note
-Mind that patching stdlib functions and some third-party libraries used by pytest might break pytest itself, therefore in those cases it is recommended to use MonkeyPatch.context() to limit the patching to the block you want tested:
+Mind that patching stdlib functions and some third-party libraries used by pytest might break pytest itself, therefore in those cases it is recommended to use `MonkeyPatch.context()` to limit the patching to the block you want tested:
 
 ```python
 import functools
@@ -187,7 +194,7 @@ def test_partial(monkeypatch):
         m.setattr(functools, "partial", 3)
         assert functools.partial == 3
 ```
-See issue #3290 for details.
+See [issue #3290](https://github.com/pytest-dev/pytest/issues/3290) for details.
 :::
 
 ## Monkeypatching environment variables
@@ -260,7 +267,7 @@ def test_raise_exception(mock_env_missing):
 
 ## Monkeypatching dictionaries
 
-monkeypatch.setitem can be used to safely set the values of dictionaries to specific values during tests. Take this simplified connection string example:
+`monkeypatch.setitem` can be used to safely set the values of dictionaries to specific values during tests. Take this simplified connection string example:
 
 ```python
 # contents of app.py to generate a simple connection string
@@ -295,7 +302,7 @@ def test_connection(monkeypatch):
     assert result == expected
 ```
 
-You can use the monkeypatch.delitem to remove values.
+You can use the `monkeypatch.delitem` to remove values.
 
 ```python
 # contents of test_app.py
@@ -359,4 +366,4 @@ def test_missing_user(mock_missing_default_user):
 
 ## API Reference
 
-Consult the docs for the MonkeyPatch class.
+Consult the docs for the [MonkeyPatch](/python/pytest/reference_guides/api_reference#monkeypatch) class.

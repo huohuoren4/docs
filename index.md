@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: pytest
-      link: /python/pytest/get_started
+      link: /python/pytest/home
     - theme: alt
       text: flask
       link: /python/flask/index
