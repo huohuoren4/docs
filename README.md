@@ -41,3 +41,15 @@ pnpm run docs:preview --port 8080 --host 0.0.0.0
 ## 🧙‍♂️Team
 
 **G-Tester** is a testing team, and its goal is: *Make Testing Automated And Intelligent*
+
+
+#### 4. 本周计划
+- pytest文档：
+    - 英文文档复制：100%
+    - 超链接完善：30%
+    - 中文文档的翻译：0%
+
+- flask文档：
+    - 英文文档复制：0%
+    - 超链接完善：0%
+    - 中文文档的翻译：0%
