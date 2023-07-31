@@ -10,11 +10,11 @@ hero:
     alt: G-Tester
   actions:
     - theme: brand
+      text: plan
+      link: /plan
+    - theme: alt
       text: pytest
       link: /python/pytest/home
-    - theme: alt
-      text: flask
-      link: /python/flask/index
     - theme: alt
       text: view in github
       link: https://github.com/huohuoren4/docs.git
@@ -28,5 +28,5 @@ features:
     details: Flask is a lightweight WSGI web application framework. It is designed to make getting started quick and easy.
   - icon: 🍜
     title: Allure
-    details: Allure Framework is a set of adaptors and examples for Allure Report, a flexible, lightweight multi-language test reporting tool. 
+    details: Allure Framework is a set of adaptors and examples for Allure Report, a flexible, lightweight multi-language test reporting tool.  
 ---

@@ -110,7 +110,7 @@ This is a quick overview on how to add new hooks and how they work in general, b
 
 Plugins and `conftest.py` files may declare new hooks that can then be implemented by other plugins in order to alter behaviour or interact with the new plugin:
 
-- **pytest_addhooks**(*pluginmanager*)  [source]()
+- **pytest_addhooks**(*pluginmanager*)
 
     Called at plugin registration time to allow adding new hooks via a call to `pluginmanager.add_hookspecs(module_or_class, prefix)`.
 

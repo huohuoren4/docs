@@ -6,7 +6,7 @@ The repository mainly stores documents related to testing, such as pytest, flask
 
 **Note**: The project can be internationalized and the supported languages are `English`, `简体中文`. The `main` branch is `English`, and the `zh` branch is `简体中文`.
 
-[English Demo Site](https://huohuoren4.github.io/)
+[English Demo Site](https://huohuoren4.github.io/) | [中文演示网站](https://huohuoren4.github.io/docs)
 
 ## 🚀Run
 
@@ -41,15 +41,3 @@ pnpm run docs:preview --port 8080 --host 0.0.0.0
 ## 🧙‍♂️Team
 
 **G-Tester** is a testing team, and its goal is: *Make Testing Automated And Intelligent*
-
-
-#### 4. 本周计划
-- pytest文档：
-    - 英文文档复制：100%
-    - 超链接完善：30%
-    - 中文文档的翻译：0%
-
-- flask文档：
-    - 英文文档复制：0%
-    - 超链接完善：0%
-    - 中文文档的翻译：0%

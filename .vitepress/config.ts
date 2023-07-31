@@ -25,6 +25,7 @@ export default defineConfig({
     logo: "/favicon.ico",
 
     nav: [
+      { text: 'Plan 🟡', link: '/plan'},
       {
         text: 'Python',
         items: [
@@ -32,7 +33,7 @@ export default defineConfig({
           {
             text: 'Test Automatic',
             items: [
-              { text: 'pytest 🟢', link: '/python/pytest/home', activeMatch: '/python/pytest'},
+              { text: 'pytest 🟡', link: '/python/pytest/home', activeMatch: '/python/pytest'},
               { text: 'selenium', link: 'https://www.selenium.dev/documentation/' },
               { text: 'requests', link: 'https://requests.readthedocs.io/' }
             ]
@@ -124,7 +125,24 @@ export default defineConfig({
                   { text: 'Fixtures reference', link: '/python/pytest/reference_guides/fixture_reference' },
                   { text: 'Plugin List', link: '/python/pytest/reference_guides/plugin_list' },
                   { text: 'Configuration', link: '/python/pytest/reference_guides/configuration' },
-                  { text: 'API Reference', link: '/python/pytest/reference_guides/api_reference' }
+                  { text: 'API Reference', 
+                    collapsed: true,
+                    items: [
+                      { text: 'Constants', link: '/python/pytest/reference_guides/api_reference/constants' },
+                      { text: 'Functions', link: '/python/pytest/reference_guides/api_reference/functions' },
+                      { text: 'Marks', link: '/python/pytest/reference_guides/api_reference/marks' },
+                      { text: 'Fixtures', link: '/python/pytest/reference_guides/api_reference/fixtures' },
+                      { text: 'Hooks', link: '/python/pytest/reference_guides/api_reference/hooks' },
+                      { text: 'Collection tree objects', link: '/python/pytest/reference_guides/api_reference/collection' },
+                      { text: 'Objects', link: '/python/pytest/reference_guides/api_reference/objects' },
+                      { text: 'Global Variables', link: '/python/pytest/reference_guides/api_reference/global_variables' },
+                      { text: 'Environment Variables', link: '/python/pytest/reference_guides/api_reference/env_variables' },
+                      { text: 'Exceptions', link: '/python/pytest/reference_guides/api_reference/exceptions' },
+                      { text: 'Warnings', link: '/python/pytest/reference_guides/api_reference/warnings' },
+                      { text: 'Configuration Options', link: '/python/pytest/reference_guides/api_reference/config_options' },
+                      { text: 'Command-line Flags', link: '/python/pytest/reference_guides/api_reference/cmd_flags' },
+                    ] 
+                  },
                 ] 
             },
             { text: 'Explanation', 

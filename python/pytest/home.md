@@ -1,7 +1,9 @@
 # pytest: helps you write better programs
 
 ::: tip Tip
-pytest document version: `7.4.0`, only maintaining the lastest version.
+pytest document version: `7.4.0`. the lastest version is only maintained. 
+
+lastest updated:  *2023/07/31*
 :::
 
 The `pytest` framework makes it easy to write small, readable tests, and can scale to support complex functional testing for applications and libraries.

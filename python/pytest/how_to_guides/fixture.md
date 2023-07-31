@@ -8,7 +8,7 @@
 [Fixtures reference](/python/pytest/reference_guides/fixture_reference#fixtures-reference)
 :::
 
-## “Requesting” fixtures
+## "Requesting" fixtures
 
 At a basic level, test functions request fixtures they require by declaring them as arguments.
 
