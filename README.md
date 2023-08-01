@@ -44,3 +44,4 @@ pnpm run docs:preview --port 8080 --host 0.0.0.0
 
 ## 🌿 Memo  
 标题上增加 layui, element ui
+社区链接 码云，华为云，gitlab
