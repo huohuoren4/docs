@@ -1,5 +1,9 @@
 import { defineConfig } from 'vitepress'
 
+var english_website = 'https://huohuoren4.github.io/'
+var chinese_website = 'https://huohuoren4.github.io/docs/'
+var github_website = 'https://github.com/huohuoren4/docs.git'
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: 'en',
@@ -17,7 +21,7 @@ export default defineConfig({
 
   locales: {
     root: { label: 'English' },
-    zh: { label: '简体中文', link: 'https://huohuoren4.github.io/docs/' },
+    zh: { label: '简体中文', link: chinese_website },
   },
 
   themeConfig: {
@@ -29,21 +33,36 @@ export default defineConfig({
       {
         text: 'Python',
         items: [
-          { text: 'doc', link: 'https://docs.python.org/3.7/'},
+          {text: 'doc', link: 'https://docs.python.org/3.7/'},
           {
             text: 'Test Automatic',
             items: [
               { text: 'pytest 🟡', link: '/python/pytest/home', activeMatch: '/python/pytest'},
+              { text: 'allure', link: 'https://docs.qameta.io/allure-report/'},
+              { text: 'pluggy', link: 'https://pluggy.readthedocs.io/en/'},
+              { text: 'pytest-xdist', link: 'https://pytest-xdist.readthedocs.io/en/'},
               { text: 'selenium', link: 'https://www.selenium.dev/documentation/' },
-              { text: 'requests', link: 'https://requests.readthedocs.io/' }
+              { text: 'requests', link: 'https://requests.readthedocs.io/' },
+              { text: 'paramiko', link: 'https://requests.readthedocs.io/' },
             ]
           },
           {
-            text: 'Web Framework',
+            text: 'Awesome Flask',
             items: [
-              { text: 'flask', link: 'https://flask.palletsprojects.com/'},
+              { text: 'flask 🟡', link: '/python/flask/home', activeMatch: "/python/flask/"},
+              { text: 'click', link: 'https://click.palletsprojects.com/en/'},
+              { text: 'werkzeug', link: 'https://werkzeug.palletsprojects.com/en/'},
+              { text: 'flask-restful', link: 'https://flask-restful.readthedocs.io/en/'},
+              { text: 'flask-admin', link: 'https://flask-admin.readthedocs.io/en/'},
+              { text: 'celery', link: 'https://docs.celeryq.dev/en/stable/'},
             ]
-          }
+          },
+          {
+            text: 'Awesome pytorch',
+            items: [
+              { text: 'pytorch', link: 'https://pytorch.org/tutorials/'},
+            ]
+          },
         ]
       },
       {
@@ -60,22 +79,33 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Html',
+        text: 'Vue',
         items: [
+          { text: 'doc', link: 'https://vuejs.org/'},
           {
-            text: 'Vue Framework',
-            items: [
-              { text: 'vue2', link: 'https://v2.vuejs.org/'},
-              { text: 'vue3', link: 'https://vuejs.org/'},
-            ]
-          },
-          {
-            text: 'Vue Ecosystem',
+            text: 'Awesome Vue',
             items: [
               { text: 'vite', link: 'https://vitejs.dev/'},
-              { text: 'vitepress', link: 'https://vitepress.dev/' }
+              { text: 'vitepress', link: 'https://vitepress.dev/' },
+              { text: 'element plus', link: 'https://element-plus.org/en-US/' }
             ]
           },
+        ]
+      },
+      {
+        text: 'Resources',
+        items: [
+          { text: 'Team', link: '...'},
+          { text: 'Releases', link: '...'},
+          { text: 'Contribution', link: '...'},
+          { text: 'Help Us Translate😄', link: github_website},
+        ]
+      },
+      {
+        text: 'Versions',
+        items: [
+          { text: 'v1.0🍏', link: '/index'},
+          { text: 'v2.0', link: '...'},
         ]
       },
     ],
@@ -178,9 +208,49 @@ export default defineConfig({
       ],
       "/python/flask/": [
         {
-          text: 'Flask',
+          text: 'Flask v2.3.2',
           items: [
-            { text: 'Get Started', link: '/python/flask/index' },
+            { text: 'Home', link: '/python/flask/home' },
+            { text: 'User Guide', 
+              collapsed: true,
+              items: [
+                  { text: 'Installation', link: '/python/flask/user_guide/install' },
+                  { text: 'Quickstart', link: '/python/flask/user_guide/quickstart' },
+                  { text: 'Tutorial', link: '/python/flask/user_guide/tutorial' },
+                  { text: 'Templates', link: '/python/flask/user_guide/templates' },
+                  { text: 'Testing Flask Applications', link: '/python/flask/user_guide/application' },
+                  { text: 'Handling Application Errors', link: '/python/flask/user_guide/handle_error' },
+                  { text: 'Debugging Application Errors', link: '/python/flask/user_guide/debug_error' },
+                  { text: 'Logging', link: '/python/flask/user_guide/logging' },
+                  { text: 'Configuration Handling', link: '/python/flask/user_guide/configuration' },
+                  { text: 'Signals', link: '/python/flask/user_guide/signal' },
+                  { text: 'Class-based Views', link: '/python/flask/user_guide/view' },
+                  { text: 'Application Structure and Lifecycle', link: '/python/flask/user_guide/app_structure' },
+                  { text: 'The Application Context', link: '/python/flask/user_guide/app_context' },
+                  { text: 'The Request Context', link: '/python/flask/user_guide/request_context' },
+                  { text: 'Modular Applications with Blueprints', link: '/python/flask/user_guide/blueprint' },
+                  { text: 'Extensions', link: '/python/flask/user_guide/extension' },
+                  { text: 'Command Line Interface', link: '/python/flask/user_guide/cmd_interface' },
+                  { text: 'Development Server', link: '/python/flask/user_guide/develop_server' },
+                  { text: 'Working with the Shell', link: '/python/flask/user_guide/shell' },
+                  { text: 'Patterns for Flask', link: '/python/flask/user_guide/pattern' },
+                  { text: 'Security Considerations', link: '/python/flask/user_guide/security' },
+                  { text: 'Deploying to Production', link: '/python/flask/user_guide/deploy' },
+                  { text: 'Using async and await', link: '/python/flask/user_guide/async' },
+                ] 
+            },
+            { text: 'API Reference', 
+              collapsed: true,
+              items: [
+                  { text: 'How to invoke pytest', link: '/python/pytest/how_to_guides/invoke_pytest' },
+                ] 
+            },
+            { text: 'Additional Notes', 
+              collapsed: true,
+              items: [
+                  { text: 'How to invoke pytest', link: '/python/pytest/how_to_guides/invoke_pytest' },
+                ] 
+            },
           ]
         }
       ],
@@ -190,7 +260,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/huohuoren4/docs.git' }
+      { icon: 'github', link: github_website }
     ]
   }
 })
