@@ -29,7 +29,12 @@ export default defineConfig({
     logo: "/favicon.ico",
 
     nav: [
-      { text: 'Plan 🟡', link: '/plan'},
+      { text: 'Notice 📢', 
+        items: [
+          {text: 'Plan 🟡', link: '/plan'},
+          {text: 'Message 🔔', link: '...'},
+        ]
+      },
       {
         text: 'Python',
         items: [
@@ -47,6 +52,12 @@ export default defineConfig({
             ]
           },
           {
+            text: 'Test Intelligence',
+            items: [
+              { text: 'pytorch', link: 'https://pytorch.org/tutorials/'},
+            ]
+          },
+          {
             text: 'Awesome Flask',
             items: [
               { text: 'flask 🟡', link: '/python/flask/home', activeMatch: "/python/flask/"},
@@ -55,12 +66,6 @@ export default defineConfig({
               { text: 'flask-restful', link: 'https://flask-restful.readthedocs.io/en/'},
               { text: 'flask-admin', link: 'https://flask-admin.readthedocs.io/en/'},
               { text: 'celery', link: 'https://docs.celeryq.dev/en/stable/'},
-            ]
-          },
-          {
-            text: 'Awesome pytorch',
-            items: [
-              { text: 'pytorch', link: 'https://pytorch.org/tutorials/'},
             ]
           },
         ]
@@ -99,13 +104,6 @@ export default defineConfig({
           { text: 'Releases', link: '...'},
           { text: 'Contribution', link: '...'},
           { text: 'Help Us Translate😄', link: github_website},
-        ]
-      },
-      {
-        text: 'Versions',
-        items: [
-          { text: 'v1.0🍏', link: '/index'},
-          { text: 'v2.0', link: '...'},
         ]
       },
     ],
@@ -216,8 +214,24 @@ export default defineConfig({
               items: [
                   { text: 'Installation', link: '/python/flask/user_guide/install' },
                   { text: 'Quickstart', link: '/python/flask/user_guide/quickstart' },
-                  { text: 'Tutorial', link: '/python/flask/user_guide/tutorial' },
-                  { text: 'Templates', link: '/python/flask/user_guide/templates' },
+                  { text: 'Tutorial', 
+                    collapsed: true,
+                    items: [
+                      { text: 'Introduction', link: '/python/flask/user_guide/tutorial/introduction' },
+                      { text: 'Project Layout', link: '/python/flask/user_guide/tutorial/project_layout' },
+                      { text: 'Application Setup', link: '/python/flask/user_guide/tutorial/app_setup' },
+                      { text: 'Define and Access the Database', link: '/python/flask/user_guide/tutorial/database' },
+                      { text: 'Blueprints and Views', link: '/python/flask/user_guide/tutorial/blueprint_view' },
+                      { text: 'Templates', link: '/python/flask/user_guide/tutorial/template' },
+                      { text: 'Static Files', link: '/python/flask/user_guide/tutorial/static_file' },
+                      { text: 'Blog Blueprint', link: '/python/flask/user_guide/tutorial/blog_blueprint' },
+                      { text: 'Make the Project Installable', link: '/python/flask/user_guide/tutorial/project_install' },
+                      { text: 'Test Coverage', link: '/python/flask/user_guide/tutorial/test_coverage' },
+                      { text: 'Deploy to Production', link: '/python/flask/user_guide/tutorial/deploy' },
+                      { text: 'Keep Developing', link: '/python/flask/user_guide/tutorial/develop' },
+                    ]
+                  },
+                  { text: 'Templates', link: '/python/flask/user_guide/template' },
                   { text: 'Testing Flask Applications', link: '/python/flask/user_guide/application' },
                   { text: 'Handling Application Errors', link: '/python/flask/user_guide/handle_error' },
                   { text: 'Debugging Application Errors', link: '/python/flask/user_guide/debug_error' },

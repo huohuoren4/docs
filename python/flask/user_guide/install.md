@@ -8,25 +8,25 @@ We recommend using the latest version of Python. Flask supports Python 3.8 and n
 
 These distributions will be installed automatically when installing Flask.
 
-- Werkzeug implements WSGI, the standard Python interface between applications and servers.
+- [Werkzeug](https://palletsprojects.com/p/werkzeug/) implements WSGI, the standard Python interface between applications and servers.
 
-- Jinja is a template language that renders the pages your application serves.
+- [Jinja](https://palletsprojects.com/p/jinja/) is a template language that renders the pages your application serves.
 
-- MarkupSafe comes with Jinja. It escapes untrusted input when rendering templates to avoid injection attacks.
+- [MarkupSafe](https://palletsprojects.com/p/markupsafe/) comes with Jinja. It escapes untrusted input when rendering templates to avoid injection attacks.
 
-- ItsDangerous securely signs data to ensure its integrity. This is used to protect Flask’s session cookie.
+- [ItsDangerous](https://palletsprojects.com/p/itsdangerous/) securely signs data to ensure its integrity. This is used to protect Flask’s session cookie.
 
-- Click is a framework for writing command line applications. It provides the flask command and allows adding custom management commands.
+- [Click](https://palletsprojects.com/p/click/) is a framework for writing command line applications. It provides the `flask` command and allows adding custom management commands.
 
-- Blinker provides support for Signals.
+- [Blinker](https://blinker.readthedocs.io/) provides support for [Signals](https://flask.palletsprojects.com/en/2.3.x/signals/).
 
 ### Optional dependencies
 
 These distributions will not be installed automatically. Flask will detect and use them if you install them.
 
-- python-dotenv enables support for Environment Variables From dotenv when running flask commands.
+- [python-dotenv](https://github.com/theskumar/python-dotenv#readme) enables support for [Environment Variables From dotenv](https://flask.palletsprojects.com/en/2.3.x/cli/#dotenv) when running `flask` commands.
 
-- Watchdog provides a faster, more efficient reloader for the development server.
+- [Watchdog](https://pythonhosted.org/watchdog/) provides a faster, more efficient reloader for the development server.
 
 ### greenlet
 
@@ -42,11 +42,11 @@ What problem does a virtual environment solve? The more Python projects you have
 
 Virtual environments are independent groups of Python libraries, one for each project. Packages installed for one project will not affect other projects or the operating system’s packages.
 
-Python comes bundled with the venv module to create virtual environments.
+Python comes bundled with the [venv](https://docs.python.org/3/library/venv.html#module-venv) module to create virtual environments.
 
 ### Create an environment
 
-Create a project folder and a .venv folder within:
+Create a project folder and a `.venv` folder within:
 
 ::: code-group
 
@@ -66,12 +66,24 @@ $ python3 -m venv .venv
 
 Before you work on your project, activate the corresponding environment:
 
-macOS/LinuxWindows
+::: code-group
+```shell [macOS/LinuxWindows]
 $ . .venv/bin/activate
+```
+
+```shell [Windows]
+> .venv\Scripts\activate
+```
+:::
+
 Your shell prompt will change to show the name of the activated environment.
 
-Install Flask
+## Install Flask
+
 Within the activated environment, use the following command to install Flask:
 
+```shell
 $ pip install Flask
-Flask is now installed. Check out the Quickstart or go to the Documentation Overview.
+```
+
+Flask is now installed. Check out the [Quickstart](https://flask.palletsprojects.com/en/2.3.x/quickstart/) or go to the [Documentation Overview](https://flask.palletsprojects.com/en/2.3.x/).
