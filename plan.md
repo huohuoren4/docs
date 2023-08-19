@@ -9,11 +9,17 @@ Record the doc progress and make weekly plan
 ### pytest doc
 
 - 🟢 copy document: 100% 
-- 🟡 optimized hyperlink: 30% -> 100%
+- 🟡 optimized hyperlink: 30% -> 100%   `python\pytest\how_to_guides\mock.md`
 - 🔴 translate in Chinese: 0% 
 
 ###  flask doc
 
-- 🔴 copy document: 0% -> 30%
-- 🔴 optimized hyperlink: 0% 
+- 🟢 copy document: 100%
+- 🔴 optimized hyperlink: 0% -> 100% 
+- 🔴 translate in Chinese: 0% 
+
+###  allure doc
+
+- 🟡 copy document: 0% -> 100%
+- 🔴 optimized hyperlink: 0% -> 100%
 - 🔴 translate in Chinese: 0% 

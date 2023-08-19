@@ -1,4 +1,4 @@
-# pytest import mechanisms and sys.path/PYTHONPATH
+# pytest import mechanisms and `sys.path/PYTHONPATH`
 
 ## Import modes
 

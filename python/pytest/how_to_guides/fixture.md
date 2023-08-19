@@ -276,7 +276,7 @@ def test_string_only(append_first, order, first_entry):
     assert order == [first_entry]
 ```
 
-If a requested fixture was executed once for every time it was requested during a test, then this test would fail because both `append_first` and `test_string_only` would see order as an empty list (i.e. `[]`), but since the return value of `order` was cached (along with any side effects executing it may have had) after the first time it was called, both the test and `append_first` were referencing the same object, and the test saw the effect `append_first` had on that object.
+If a requested fixture was executed once for every time it was requested during a test, then this test would fail because both `append_first` and `test_string_only` would see `order` as an empty list (i.e. `[]`), but since the return value of `order` was cached (along with any side effects executing it may have had) after the first time it was called, both the test and `append_first` were referencing the same object, and the test saw the effect `append_first` had on that object.
 
 ## Autouse fixtures (fixtures you don’t have to request)
 
@@ -317,7 +317,7 @@ In this example, the `append_first` fixture is an autouse fixture. Because it ha
 
 ## Scope: sharing fixtures across classes, modules, packages or session
 
-Fixtures requiring network access depend on connectivity and are usually time-expensive to create. Extending the previous example, we can add a `scope="module"` parameter to the [@pytest.fixture](/python/pytest/reference_guides/api_reference#pytest-fixture) invocation to cause a `smtp_connection` fixture function, responsible to create a connection to a preexisting SMTP server, to only be invoked once per test module (the default is to invoke once per test function). Multiple test functions in a test module will thus each receive the same `smtp_connection` fixture instance, thus saving time. Possible values for `scope` are: `function`, `class`, `module`, `package` or `session`.
+Fixtures requiring network access depend on connectivity and are usually time-expensive to create. Extending the previous example, we can add a `scope="module"` parameter to the `@pytest.fixture` invocation to cause a `smtp_connection` fixture function, responsible to create a connection to a preexisting SMTP server, to only be invoked once per test module (the default is to invoke once per test function). Multiple test functions in a test module will thus each receive the same `smtp_connection` fixture instance, thus saving time. Possible values for `scope` are: `function`, `class`, `module`, `package` or `session`.
 
 The next example puts the fixture function into a separate `conftest.py` file so that tests from multiple test modules in the directory can access the fixture function:
 
@@ -331,6 +331,9 @@ import pytest
 @pytest.fixture(scope="module")
 def smtp_connection():
     return smtplib.SMTP("smtp.gmail.com", 587, timeout=5)
+```
+
+```python
 # content of test_module.py
 
 
@@ -536,7 +539,7 @@ If a yield fixture raises an exception before yielding, pytest won’t try to ru
 
 While yield fixtures are considered to be the cleaner and more straightforward option, there is another choice, and that is to add “finalizer” functions directly to the test’s [request-context](/python/pytest/how_to_guides/fixture#fixtures-can-introspect-the-requesting-test-context) object. It brings a similar result as yield fixtures, but requires a bit more verbosity.
 
-In order to use this approach, we have to request the `request-context` object (just like we would request another fixture) in the fixture we need to add teardown code for, and then pass a callable, containing that teardown code, to its `addfinalizer` method.
+In order to use this approach, we have to request the [request-context](/python/pytest/how_to_guides/fixture#fixtures-can-introspect-the-requesting-test-context) object (just like we would request another fixture) in the fixture we need to add teardown code for, and then pass a callable, containing that teardown code, to its `addfinalizer` method.
 
 We have to be careful though, because pytest will run that finalizer once it’s been added, even if that fixture raises an exception after adding the finalizer. So to make sure we don’t run the finalizer code when we wouldn’t need to, we would only add the finalizer once the fixture would have done something that we’d need to teardown.
 
@@ -672,6 +675,7 @@ finalizer_2
 This is so because yield fixtures use `addfinalizer` behind the scenes: when the fixture executes, `addfinalizer` registers a function that resumes the generator, which in turn calls the teardown code.
 
 ## Safe teardowns
+
 The fixture system of pytest is very powerful, but it’s still being run by a computer, so it isn’t able to figure out how to safely teardown everything we throw at it. If we aren’t careful, an error in the wrong spot might leave stuff from our tests behind, and that can cause further issues pretty quickly.
 
 For example, consider the following tests (based off of the mail example from above):
@@ -717,7 +721,7 @@ $ pytest -q test_emaillib.py
 
 The safest and simplest fixture structure requires limiting fixtures to only making one state-changing action each, and then bundling them together with their teardown code, as [the email examples above](/python/pytest/how_to_guides/fixture#_1-yield-fixtures-recommended) showed.
 
-The chance that a state-changing operation can fail but still modify state is negligible, as most of these operations tend to be transaction-based (at least at the level of testing where state could be left behind). So if we make sure that any successful state-changing action gets torn down by moving it to a separate fixture function and separating it from other, potentially failing state-changing actions, then our tests will stand the best chance at leaving the test environment the way they found it.
+The chance that a state-changing operation can fail but still modify state is negligible, as most of these operations tend to be [transaction](https://en.wikipedia.org/wiki/Transaction_processing)-based (at least at the level of testing where state could be left behind). So if we make sure that any successful state-changing action gets torn down by moving it to a separate fixture function and separating it from other, potentially failing state-changing actions, then our tests will stand the best chance at leaving the test environment the way they found it.
 
 For an example, let’s say we have a website with a login page, and we have access to an admin API where we can generate users. For our test, we want to:
 
@@ -783,7 +787,7 @@ def test_name_on_landing_page_after_login(landing_page, user):
     assert landing_page.header == f"Welcome, {user.name}!"
 ```
 
-The way the dependencies are laid out means it’s unclear if the user fixture would execute before the `driver` fixture. But that’s ok, because those are atomic operations, and so it doesn’t matter which one runs first because the sequence of events for the test is still linearizable. But what does matter is that, no matter which one runs first, if the one raises an exception while the other would not have, neither will have left anything behind. If `driver` executes before `user`, and `user` raises an exception, the driver will still quit, and the user was never made. And if `driver` was the one to raise the exception, then the driver would never have been started and the user would never have been made.
+The way the dependencies are laid out means it’s unclear if the `user` fixture would execute before the `driver` fixture. But that’s ok, because those are atomic operations, and so it doesn’t matter which one runs first because the sequence of events for the test is still [linearizable](https://en.wikipedia.org/wiki/Linearizability). But what does matter is that, no matter which one runs first, if the one raises an exception while the other would not have, neither will have left anything behind. If `driver` executes before `user`, and `user` raises an exception, the driver will still quit, and the user was never made. And if `driver` was the one to raise the exception, then the driver would never have been started and the user would never have been made.
 
 ## Running multiple assert statements safely
 
@@ -858,9 +862,9 @@ class TestLandingPageSuccess:
 
 Notice that the methods are only referencing `self` in the signature as a formality. No state is tied to the actual test class as it might be in the `unittest.TestCase` framework. Everything is managed by the pytest fixture system.
 
-Each method only has to request the fixtures that it actually needs without worrying about order. This is because the act fixture is an autouse fixture, and it made sure all the other fixtures executed before it. There’s no more changes of state that need to take place, so the tests are free to make as many non-state-changing queries as they want without risking stepping on the toes of the other tests.
+Each method only has to request the fixtures that it actually needs without worrying about order. This is because the `act` fixture is an autouse fixture, and it made sure all the other fixtures executed before it. There’s no more changes of state that need to take place, so the tests are free to make as many non-state-changing queries as they want without risking stepping on the toes of the other tests.
 
-The `login` fixture is defined inside the class as well, because not every one of the other tests in the module will be expecting a successful login, and the act may need to be handled a little differently for another test class. For example, if we wanted to write another test scenario around submitting bad credentials, we could handle it by adding something like this to the test file:
+The `login` fixture is defined inside the class as well, because not every one of the other tests in the module will be expecting a successful login, and the `act` may need to be handled a little differently for another test class. For example, if we wanted to write another test scenario around submitting bad credentials, we could handle it by adding something like this to the test file:
 
 ```python
 class TestLandingPageBadCredentials:
@@ -877,7 +881,7 @@ class TestLandingPageBadCredentials:
 
 ## Fixtures can introspect the requesting test context
 
-Fixture functions can accept the [request](/python/pytest/reference_guides/api_reference#request) object to introspect the “requesting” test function, class or module context. Further extending the previous `smtp_connection` fixture example, let’s read an optional server URL from the test module which uses our fixture:
+Fixture functions can accept the `request` object to introspect the “requesting” test function, class or module context. Further extending the previous `smtp_connection` fixture example, let’s read an optional server URL from the test module which uses our fixture:
 
 ```python
 # content of conftest.py
@@ -1097,7 +1101,7 @@ We see that our two test functions each ran twice, against the different `smtp_c
 
 pytest will build a string that is the test ID for each fixture value in a parametrized fixture, e.g. `test_ehlo[smtp.gmail.com]` and `test_ehlo[mail.python.org]` in the above examples. These IDs can be used with -k to select specific cases to run, and they will also identify the specific case when one is failing. Running pytest with `--collect-only` will show the generated IDs.
 
-Numbers, strings, booleans and `None` will have their usual string representation used in the test ID. For other objects, pytest will make a string based on the argument name. It is possible to customise the string used in a test ID for a certain fixture value by using the ids keyword argument:
+Numbers, strings, booleans and `None` will have their usual string representation used in the test ID. For other objects, pytest will make a string based on the argument name. It is possible to customise the string used in a test ID for a certain fixture value by using the `ids` keyword argument:
 
 ```python
 # content of test_ids.py
@@ -1181,7 +1185,7 @@ def test_data(data_set):
     pass
 ```
 
-Running this test will skip the invocation of data_set with value 2:
+Running this test will skip the invocation of `data_set` with value `2`:
 
 ```shell
 $ pytest test_fixture_marks.py -v
@@ -1335,7 +1339,7 @@ The `otherarg` parametrized resource (having function scope) was set up before a
 
 ## Use fixtures in classes and modules with usefixtures
 
-Sometimes test functions do not directly need access to a fixture object. For example, tests may require to operate with an empty directory as the current working directory but otherwise do not care for the concrete directory. Here is how you can use the standard tempfile and pytest fixtures to achieve it. We separate the creation of the fixture into a `conftest.py` file:
+Sometimes test functions do not directly need access to a fixture object. For example, tests may require to operate with an empty directory as the current working directory but otherwise do not care for the concrete directory. Here is how you can use the standard [tempfile](https://docs.python.org/3/library/tempfile.html#module-tempfile) and pytest fixtures to achieve it. We separate the creation of the fixture into a `conftest.py` file:
 
 ```python
 # content of conftest.py
@@ -1580,11 +1584,11 @@ In the example above, a parametrized fixture is overridden with a non-parametriz
 
 Usually projects that provide pytest support will use [entry points](/python/pytest/how_to_guides/write_plugin#making-your-plugin-installable-by-others), so just installing those projects into an environment will make those fixtures available for use.
 
-In case you want to use fixtures from a project that does not use entry points, you can define pytest_plugins in your top `conftest.py` file to register that module as a plugin.
+In case you want to use fixtures from a project that does not use entry points, you can define `pytest_plugins` in your top `conftest.py` file to register that module as a plugin.
 
 Suppose you have some fixtures in `mylibrary.fixtures` and you want to reuse them into your `app/tests` directory.
 
-All you need to do is to define pytest_plugins in `app/tests/conftest.py` pointing to that module.
+All you need to do is to define `pytest_plugins` in `app/tests/conftest.py` pointing to that module.
 
 ```python
 pytest_plugins = "mylibrary.fixtures"

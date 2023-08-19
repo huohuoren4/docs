@@ -58,7 +58,7 @@ FAILED test_sample.py::test_answer - assert 4 == 5
 The [`100%`] refers to the overall progress of running all test cases. After it finishes, pytest then shows a failure report because `func(3)` does not return `5`.
 
 ::: tip Note
-You can use the `assert` statement to verify test expectations. pytest's Advanced assertion introspection will intelligently report intermediate values of the assert expression so you can avoid the many names of JUnit legacy methods.
+You can use the `assert` statement to verify test expectations. pytest's [Advanced assertion introspection](https://docs.python.org/3/reference/simple_stmts.html#assert) will intelligently report intermediate values of the assert expression so you can avoid the many names of [JUnit legacy methods](https://docs.python.org/3/library/unittest.html#testcase-objects).
 :::
 
 ## Run multiple tests
@@ -67,7 +67,7 @@ pytest will run all files of the form `test_*.py` or `*_test.py` in the current 
 
 ## Assert that a certain exception is raised
 
-Use the [raises](/python/pytest/how_to_guides/assert#assertions-about-expected-exceptions) helper to assert that some code raises an exception:
+Use the `raises` helper to assert that some code raises an exception:
 
 ```python
 # content of test_sysexit.py
@@ -179,7 +179,7 @@ Note that attributes added at class level are class attributes, so they will be 
 
 ## Request a unique temporary directory for functional tests
 
-pytest provides Builtin fixtures/function arguments to request arbitrary resources, like a unique temporary directory:
+pytest provides [Builtin fixtures/function arguments](/python/pytest/other/builtin) to request arbitrary resources, like a unique temporary directory:
 
 ```python
 # content of test_tmp_path.py

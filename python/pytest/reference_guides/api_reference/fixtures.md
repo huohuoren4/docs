@@ -26,9 +26,9 @@ For more details, consult the full fixtures docs.
 
 ## @pytest.fixture
 
-- **@fixture**(`fixture_function: FixtureFunction, *, scope: Union[Literal['session', 'package', 'module', 'class', 'function'], Callable[[str, Config], Literal['session', 'package', 'module', 'class', 'function']]] = 'function', params: Optional[Iterable[object]] = None, autouse: bool = False, ids: Optional[Union[Sequence[Optional[object]], Callable[[Any], Optional[object]]]] = None, name: Optional[str] = None`) → `FixtureFunction`  
+- ### @fixture(`fixture_function: FixtureFunction, *, scope: Union[Literal['session', 'package', 'module', 'class', 'function'], Callable[[str, Config], Literal['session', 'package', 'module', 'class', 'function']]] = 'function', params: Optional[Iterable[object]] = None, autouse: bool = False, ids: Optional[Union[Sequence[Optional[object]], Callable[[Any], Optional[object]]]] = None, name: Optional[str] = None`) → `FixtureFunction`  
 
-- **@fixture**(`fixture_function: None = None, *, scope: Union[Literal['session', 'package', 'module', 'class', 'function'], Callable[[str, Config], Literal['session', 'package', 'module', 'class', 'function']]] = 'function', params: Optional[Iterable[object]] = None, autouse: bool = False, ids: Optional[Union[Sequence[Optional[object]], Callable[[Any], Optional[object]]]] = None, name: Optional[str] = None`) → `FixtureFunctionMarker`
+- ### @fixture(`fixture_function: None = None, *, scope: Union[Literal['session', 'package', 'module', 'class', 'function'], Callable[[str, Config], Literal['session', 'package', 'module', 'class', 'function']]] = 'function', params: Optional[Iterable[object]] = None, autouse: bool = False, ids: Optional[Union[Sequence[Optional[object]], Callable[[Any], Optional[object]]]] = None, name: Optional[str] = None`) → `FixtureFunctionMarker`
 
     Decorator to mark a fixture factory function.
 
@@ -56,7 +56,7 @@ For more details, consult the full fixtures docs.
 
 *Tutorial*: [How to capture stdout/stderr output](https://docs.pytest.org/en/latest/how-to/capture-stdout-stderr.html#captures)
 
-- **capfd**()   
+- ### capfd()   
 
     Enable text capturing of writes to file descriptors `1` and `2`.
 
@@ -77,7 +77,7 @@ For more details, consult the full fixtures docs.
 
 *Tutorial*: [How to capture stdout/stderr output](https://docs.pytest.org/en/latest/how-to/capture-stdout-stderr.html#captures)
 
-- **capfdbinary**()     
+- ### capfdbinary()     
 
     Enable bytes capturing of writes to file descriptors `1` and `2`.
 
@@ -98,7 +98,7 @@ For more details, consult the full fixtures docs.
 
 *Tutorial*: [How to manage logging](https://docs.pytest.org/en/latest/how-to/logging.html#logging)
 
-- **caplog**()      
+- ### caplog()      
 
     Access and control log capturing.
 
@@ -114,7 +114,7 @@ For more details, consult the full fixtures docs.
 
     Returns a [pytest.LogCaptureFixture](https://docs.pytest.org/en/latest/reference/reference.html#pytest.LogCaptureFixture) instance.
 
-- final class **LogCaptureFixture**   
+- ### *final class* LogCaptureFixture   
 
     Provides access and control of log capturing.
 
@@ -182,7 +182,7 @@ For more details, consult the full fixtures docs.
 
         - `logger (Optional[str])` – The logger to update. If not given, the root logger.
 
-    - **with at_level**(`level, logger=None`)   
+    - with **at_level**(`level, logger=None`)   
 
         Context manager that sets the level for capturing of logs. After the end of the ‘with’ statement the level is restored to its original value.
 
@@ -198,7 +198,7 @@ For more details, consult the full fixtures docs.
 
 *Tutorial*: [How to capture stdout/stderr output](https://docs.pytest.org/en/latest/how-to/capture-stdout-stderr.html#captures)
 
-- **capsys**()      
+- ### capsys()      
 
     Enable text capturing of writes to `sys.stdout` and `sys.stderr`.
 
@@ -215,7 +215,7 @@ For more details, consult the full fixtures docs.
         assert captured.out == "hello\n"
     ```
 
-- class **CaptureFixture**    
+- ### *class* CaptureFixture    
 
     Object returned by the [capsys](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-capsys), [capsysbinary](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-capsysbinary), [capfd](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-capfd) and [capfdbinary](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-capfdbinary) fixtures.
 
@@ -235,7 +235,7 @@ For more details, consult the full fixtures docs.
 
 *Tutorial*: [How to capture stdout/stderr output](https://docs.pytest.org/en/latest/how-to/capture-stdout-stderr.html#captures)
 
-- **capsysbinary**()  
+- ### capsysbinary()  
 
     Enable bytes capturing of writes to `sys.stdout` and `sys.stderr`.
 
@@ -262,7 +262,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
 `config.cache` is an instance of `pytest.Cache`:
 
-- final class **Cache**   
+- ### *final class* Cache   
 
     Instance of the `cache` fixture.
 
@@ -304,7 +304,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
 *Tutorial*: [How to run doctests](https://docs.pytest.org/en/latest/how-to/doctest.html#doctest)
 
-- **doctest_namespace**()     
+- ### doctest_namespace()     
 
     Fixture that returns a dict that will be injected into the namespace of doctests.
 
@@ -322,13 +322,13 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
 *Tutorial*: [How to monkeypatch/mock modules and environments](https://docs.pytest.org/en/latest/how-to/monkeypatch.html#monkeypatching)
 
-- **monkeypatch**()     
+- ### monkeypatch()     
 
     A convenient fixture for monkey-patching.
 
-    The fixture provides these methods to modify objects, dictionaries, or [os.environ](https://docs.python.org/3/library/os.html#os.environ):
+    The fixture provides these methods to modify objects, dictionaries, or `os.environ`:
 
-    - [monkeypatch.setattr(`obj, name, value, raising=True`)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.setattr)
+    - `monkeypatch.setattr(obj, name, value, raising=True)`
 
     - [monkeypatch.delattr(`obj, name, raising=True`)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.delattr)
 
@@ -352,7 +352,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
     Returns a [MonkeyPatch](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch) instance.
 
-- final class **MonkeyPatch**       
+- ### *final class* MonkeyPatch       
 
     Helper to conveniently monkeypatch attributes/items/environment variables/syspath.
 
@@ -360,7 +360,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
     *Changed in version 6.2*: Can now also be used directly as `pytest.MonkeyPatch()`, for when the fixture is not available. In this case, use [with MonkeyPatch.context() as mp](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.context): or remember to call [undo()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.undo) explicitly.
 
-    - classmethod **with context**()        
+    - classmethod with **context**()        
 
         Context manager that returns a new [MonkeyPatch](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch) object which undoes any patching done inside the · block upon exit.
 
@@ -465,7 +465,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
 ## pytestconfig
 
-- **pytestconfig**()        
+- ### pytestconfig()        
 
     Session-scoped fixture that returns the session’s [pytest.Config](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Config) object.
 
@@ -491,7 +491,7 @@ To use it, include in your topmost `conftest.py` file:
 pytest_plugins = "pytester"
 ```
 
-- final class **Pytester**      
+- ### *final class* Pytester      
 
     Facilities to write tests/configuration files, execute pytest in isolation, and match against expected output, perfect for black-box testing of pytest plugins.
 
@@ -884,7 +884,7 @@ pytest_plugins = "pytester"
 
         The pexpect child is returned.
 
-- final class **RunResult**       
+- ### *final class* RunResult      
 
     The result of running a command from [Pytester](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester).
 
@@ -944,7 +944,7 @@ pytest_plugins = "pytester"
 
         `warnings` and `deselected` are only checked if not None.
 
-- class **LineMatcher**       
+- ### *class* LineMatcher       
 
     Flexible matching of text.
 
@@ -1018,7 +1018,7 @@ pytest_plugins = "pytester"
 
         Return the entire original text.
 
-- final class **HookRecorder**        
+- ### *final class* HookRecorder        
 
     Record all hooks called in a plugin manager.
 
@@ -1034,7 +1034,7 @@ pytest_plugins = "pytester"
 
         Return a testreport whose dotted import path matches.
 
-- final class **RecordedHookCall**        
+- ### *final class* RecordedHookCall        
 
     A recorded call to a hook.
 
@@ -1050,7 +1050,7 @@ pytest_plugins = "pytester"
 
 *Tutorial*: [record_property](https://docs.pytest.org/en/latest/how-to/output.html#record-property-example)
 
-- **record_property**()       
+- ### record_property()       
 
     Add extra properties to the calling test.
 
@@ -1069,7 +1069,7 @@ pytest_plugins = "pytester"
 
 *Tutorial*: [record_testsuite_property](https://docs.pytest.org/en/latest/how-to/output.html#record-testsuite-property-example)
 
-- **record_testsuite_property**()     
+- ### record_testsuite_property()     
 
     Record a new `<property>` tag as child of the root `<testsuite>`.
 
@@ -1099,13 +1099,13 @@ pytest_plugins = "pytester"
 
 *Tutorial*: [Asserting warnings with the warns function](https://docs.pytest.org/en/latest/how-to/capture-warnings.html#assertwarnings)
 
-- **recwarn**()     
+- ### recwarn()     
 
     Return a [WarningsRecorder](https://docs.pytest.org/en/latest/reference/reference.html#pytest.WarningsRecorder) instance that records all warnings emitted by test functions.
 
     See <https://docs.pytest.org/en/latest/how-to/capture-warnings.html> for information on warning categories.
 
-- class **WarningsRecorder**      
+- ### *class* WarningsRecorder      
 
     A context manager to record raised warnings.
 
@@ -1131,11 +1131,11 @@ pytest_plugins = "pytester"
 
 ## request
 
-**Example**: [Pass different values to a test function, depending on command line options](https://docs.pytest.org/en/latest/example/simple.html#request-example)
+*Example*: [Pass different values to a test function, depending on command line options](https://docs.pytest.org/en/latest/example/simple.html#request-example)
 
 The `request` fixture is a special fixture providing information of the requesting test function.
 
-- class **FixtureRequest**        
+- ### *class* FixtureRequest        
 
     A request for a fixture from a test or fixture function.
 
@@ -1233,7 +1233,7 @@ Identical to [pytester](https://docs.pytest.org/en/latest/reference/reference.ht
 
 New code should avoid using [testdir](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-testdir) in favor of [pytester](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-pytester).
 
-- final class **Testdir**     
+- ### *final class* Testdir     
 
     Similar to [Pytester](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester), but this class works with legacy legacy_path objects instead.
 
@@ -1393,7 +1393,7 @@ New code should avoid using [testdir](https://docs.pytest.org/en/latest/referenc
 
 *Tutorial*: [How to use temporary directories and files in tests](https://docs.pytest.org/en/latest/how-to/tmp_path.html#tmp-path)
 
-- **tmp_path**()      
+- ### tmp_path()      
 
     Return a temporary directory path object which is unique to each test function invocation, created as a sub directory of the base temporary directory.
 
@@ -1407,7 +1407,7 @@ New code should avoid using [testdir](https://docs.pytest.org/en/latest/referenc
 
 `tmp_path_factory`  is an instance of [TempPathFactory](https://docs.pytest.org/en/latest/reference/reference.html#pytest.TempPathFactory):
 
-- final class **TempPathFactory**     
+- ### *final class* TempPathFactory     
 
     Factory for temporary directories under the common base temp directory.
 
@@ -1439,7 +1439,7 @@ New code should avoid using [testdir](https://docs.pytest.org/en/latest/referenc
 
 *Tutorial*: [The tmpdir and tmpdir_factory fixtures](https://docs.pytest.org/en/latest/how-to/tmp_path.html#tmpdir-and-tmpdir-factory)
 
-- **tmpdir**()
+- ### tmpdir()
 
     Return a temporary directory path object which is unique to each test function invocation, created as a sub directory of the base temporary directory.
 
@@ -1459,7 +1459,7 @@ New code should avoid using [testdir](https://docs.pytest.org/en/latest/referenc
 
 `tmpdir_factory` is an instance of [TempdirFactory](https://docs.pytest.org/en/latest/reference/reference.html#pytest.TempdirFactory):
 
-- final class **TempdirFactory**      
+- ### *final class* TempdirFactory      
 
     Backward compatibility wrapper that implements `py.path.local` for [TempPathFactory](https://docs.pytest.org/en/latest/reference/reference.html#pytest.TempPathFactory).
 

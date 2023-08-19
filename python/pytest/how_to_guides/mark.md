@@ -5,7 +5,7 @@ By using the `pytest.mark` helper you can easily set metadata on your test funct
 Here are some of the builtin markers:
 
 - [usefixtures](/python/pytest/how_to_guides/fixture#use-fixtures-in-classes-and-modules-with-usefixtures) - use fixtures on a test function or class
-- [filterwarnings](/python/pytest/reference_guides/api_reference#pytest-mark-filterwarnings) - filter certain warnings of a test function
+- [filterwarnings](/python/pytest/how_to_guides/warning#pytest-mark-filterwarnings) - filter certain warnings of a test function
 - [skip](/python/pytest/how_to_guides/skip_xfail#skipping-test-functions) - always skip a test function
 - [skipif](/python/pytest/how_to_guides/skip_xfail#skipping-test-functions) - skip a test function if a certain condition is met
 - [xfail](/python/pytest/how_to_guides/skip_xfail#xfail-mark-test-functions-as-expected-to-fail) - produce an “expected failure” outcome if a certain condition is met

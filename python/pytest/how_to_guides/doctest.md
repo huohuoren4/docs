@@ -103,27 +103,27 @@ pytest also introduces new options:
 
 - `ALLOW_BYTES`: similarly, the b prefix is stripped from byte strings in expected doctest output.
 
-- `NUMBER`: when enabled, floating-point numbers only need to match as far as the precision you have written in the expected doctest output. The numbers are compared using [pytest.approx()](/python/pytest/reference_guides/api_reference#pytest-approx) with relative tolerance equal to the precision. For example, the following output would only need to match to 2 decimal places when comparing `3.14` to `pytest.approx(math.pi, rel=10**-2)`:
+- `NUMBER`: when enabled, floating-point numbers only need to match as far as the precision you have written in the expected doctest output. The numbers are compared using `pytest.approx()` with relative tolerance equal to the precision. For example, the following output would only need to match to 2 decimal places when comparing `3.14` to `pytest.approx(math.pi, rel=10**-2)`:
 
-```shell
-math.pi
-3.14
-```
+    ```shell
+    math.pi
+    3.14
+    ```
 
-If you wrote `3.1416` then the actual output would need to match to approximately 4 decimal places; and so on.
+    If you wrote `3.1416` then the actual output would need to match to approximately 4 decimal places; and so on.
 
-This avoids false positives caused by limited floating-point precision, like this:
+    This avoids false positives caused by limited floating-point precision, like this:
 
-```shell
-Expected:
-    0.233
-Got:
-    0.23300000000000001
-```
+    ```shell
+    Expected:
+        0.233
+    Got:
+        0.23300000000000001
+    ```
 
-`NUMBER` also supports lists of floating-point numbers – in fact, it matches floating-point numbers appearing anywhere in the output, even inside a string! This means that it may not be appropriate to enable globally in `doctest_optionflags` in your configuration file.
+    `NUMBER` also supports lists of floating-point numbers – in fact, it matches floating-point numbers appearing anywhere in the output, even inside a string! This means that it may not be appropriate to enable globally in `doctest_optionflags` in your configuration file.
 
-*New in version 5.1.*
+    *New in version 5.1.*
 
 ## Continue on failure
 
@@ -162,7 +162,7 @@ It is possible to use fixtures using the `getfixture` helper:
 
 Note that the fixture needs to be defined in a place visible by pytest, for example, a `conftest.py` file or plugin; normal python files containing docstrings are not normally scanned for fixtures unless explicitly configured by `python_files`.
 
-Also, the [usefixtures](/python/pytest/how_to_guides/fixture#use-fixtures-in-classes-and-modules-with-usefixtures) mark and fixtures marked as [autouse](/python/pytest/how_to_guides/fixture#autouse-fixtures-fixtures-you-don-t-have-to-request) are supported when executing text doctest files.
+Also, the [usefixtures](/python/pytest/how_to_guides/fixture#use-fixtures-in-classes-and-modules-with-usefixtures) mark and fixtures marked as `autouse` are supported when executing text doctest files.
 
 ### 'doctest_namespace' fixture
 
@@ -210,7 +210,7 @@ def test_random(y):
 
 This will skip the first check, but not the second.
 
-pytest also allows using the standard pytest functions [pytest.skip()](/python/pytest/reference_guides/api_reference#pytest-skip) and [pytest.xfail()](/python/pytest/reference_guides/api_reference#pytest-xfail) inside doctests, which might be useful because you can then skip/xfail tests based on external conditions:
+pytest also allows using the standard pytest functions `pytest.skip()` and `pytest.xfail()` inside doctests, which might be useful because you can then skip/xfail tests based on external conditions:
 
 ```shell
 >>> import sys, pytest
@@ -224,7 +224,7 @@ pytest also allows using the standard pytest functions [pytest.skip()](/python/p
 However using those functions is discouraged because it reduces the readability of the docstring.
 
 ::: tip Note
-[pytest.skip()](/python/pytest/reference_guides/api_reference#pytest-skip) and [pytest.xfail()](/python/pytest/reference_guides/api_reference#pytest-xfail) behave differently depending if the doctests are in a Python file (in docstrings) or a text file containing doctests intermingled with text:
+`pytest.skip()` and `pytest.xfail()` behave differently depending if the doctests are in a Python file (in docstrings) or a text file containing doctests intermingled with text:
 
 - Python modules (docstrings): the functions only act in that specific docstring, letting the other docstrings in the same module execute as normal.
 
@@ -235,6 +235,6 @@ However using those functions is discouraged because it reduces the readability 
 
 While the built-in pytest support provides a good set of functionalities for using doctests, if you use them extensively you might be interested in those external packages which add many more features, and include pytest integration:
 
-- `pytest-doctestplus`: provides advanced doctest support and enables the testing of reStructuredText (“.rst”) files.
+- [pytest-doctestplus](https://github.com/astropy/pytest-doctestplus): provides advanced doctest support and enables the testing of reStructuredText (“.rst”) files.
 
-- `Sybil`: provides a way to test examples in your documentation by parsing them from the documentation source and evaluating the parsed examples as part of your normal test run.
+- [Sybil](https://sybil.readthedocs.io/): provides a way to test examples in your documentation by parsing them from the documentation source and evaluating the parsed examples as part of your normal test run.

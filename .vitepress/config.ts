@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 var english_website = 'https://huohuoren4.github.io/'
 var chinese_website = 'https://huohuoren4.github.io/docs/'
 var github_website = 'https://github.com/huohuoren4/docs.git'
+var edit_link = 'https://github.com/huohuoren4/docs/tree/main/:path'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -18,6 +19,8 @@ export default defineConfig({
   
   cleanUrls: true,
   ignoreDeadLinks: true,
+  lastUpdated: true,
+
 
   locales: {
     root: { label: 'English' },
@@ -27,6 +30,11 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/favicon.ico",
+
+    editLink: {
+      pattern: edit_link,
+      text: 'Edit this page on GitHub'
+    },
 
     nav: [
       { text: 'Notice 📢', 
@@ -43,7 +51,7 @@ export default defineConfig({
             text: 'Test Automatic',
             items: [
               { text: 'pytest 🟡', link: '/python/pytest/home', activeMatch: '/python/pytest'},
-              { text: 'allure', link: 'https://docs.qameta.io/allure-report/'},
+              { text: 'allure 🟡', link: '/python/allure/get_start', activeMatch: '/python/allure'},
               { text: 'pluggy', link: 'https://pluggy.readthedocs.io/en/'},
               { text: 'pytest-xdist', link: 'https://pytest-xdist.readthedocs.io/en/'},
               { text: 'selenium', link: 'https://www.selenium.dev/documentation/' },
@@ -108,7 +116,7 @@ export default defineConfig({
       },
     ],
 
-    outline: { level: [2, 3] },
+    outline: { level: "deep" },
 
     footer: {
       message: 'Released under the MIT License.',
@@ -180,13 +188,25 @@ export default defineConfig({
                   { text: 'About fixtures', link: '/python/pytest/explanation/about_fixture' },
                   { text: 'Good Integration Practices', link: '/python/pytest/explanation/integration_practice' },
                   { text: 'Flaky tests', link: '/python/pytest/explanation/flaky_test' },
-                  { text: 'pytest import mechanisms and sys.path/PYTHONPATH', link: '/python/pytest/explanation/import_mechanism' }
+                  { text: 'pytest import mechanisms ', link: '/python/pytest/explanation/import_mechanism' }
                 ] 
             },
             { text: 'Further topics', 
               collapsed: true,
               items: [
-                  { text: 'Examples and customization tricks', link: '/python/pytest/further_topics/example_trick' },
+                  { text: 'Examples and customization tricks', 
+                    collapsed: true,
+                    items: [
+                      {text: 'Contents', link: '/python/pytest/further_topics/example_trick/content' },
+                      {text: 'Demo of Python failure reports with pytest', link: '/python/pytest/further_topics/example_trick/failure_report' },
+                      {text: 'Basic patterns and examples', link: '/python/pytest/further_topics/example_trick/basic_pattern' },
+                      {text: 'Parametrizing tests', link: '/python/pytest/further_topics/example_trick/parametrize' },
+                      {text: 'Working with custom markers', link: '/python/pytest/further_topics/example_trick/custom_mark' },
+                      {text: 'A session-fixture which can look at all collected tests', link: '/python/pytest/further_topics/example_trick/session_fixture' },
+                      {text: 'Changing standard (Python) test discovery', link: '/python/pytest/further_topics/example_trick/test_discovery' },
+                      {text: 'Working with non-python tests', link: '/python/pytest/further_topics/example_trick/work' },
+                    ] 
+                  },
                   { text: 'Backwards Compatibility Policy', link: '/python/pytest/further_topics/compatibility' },
                   { text: 'Deprecations and Removals', link: '/python/pytest/further_topics/deprecation' },
                   { text: 'Contribution getting started', link: '/python/pytest/further_topics/contribution' },
@@ -203,6 +223,16 @@ export default defineConfig({
             }
           ]
         }
+      ],
+      "/python/allure/": [
+        { 
+          text: 'Allure v2.23.1',
+          items: [
+            { text: 'Get started', link: '/python/allure/get_start' },
+            { text: 'Language support', link: '/python/allure/language' },
+            { text: 'Report and plugin', link: '/python/allure/report' },
+          ]
+        },
       ],
       "/python/flask/": [
         {
@@ -284,13 +314,37 @@ export default defineConfig({
             { text: 'API Reference', 
               collapsed: true,
               items: [
-                  { text: 'How to invoke pytest', link: '/python/pytest/how_to_guides/invoke_pytest' },
+                  { text: 'Application Object', link: '/python/flask/api_reference/app_obj' },
+                  { text: 'Blueprint Objects', link: '/python/flask/api_reference/blueprint_obj' },
+                  { text: 'Incoming Request Data', link: '/python/flask/api_reference/request_data' },
+                  { text: 'Response Objects', link: '/python/flask/api_reference/response_obj' },
+                  { text: 'Sessions', link: '/python/flask/api_reference/session' },
+                  { text: 'Session Interface', link: '/python/flask/api_reference/session_interface' },
+                  { text: 'Test Client', link: '/python/flask/api_reference/test_client' },
+                  { text: 'Test CLI Runner', link: '/python/flask/api_reference/test_cli' },
+                  { text: 'Application Globals', link: '/python/flask/api_reference/app_global' },
+                  { text: 'Useful Functions and Classes', link: '/python/flask/api_reference/function_class' },
+                  { text: 'Message Flashing', link: '/python/flask/api_reference/message_flash' },
+                  { text: 'JSON Support', link: '/python/flask/api_reference/json_support' },
+                  { text: 'Template Rendering', link: '/python/flask/api_reference/template_render' },
+                  { text: 'Configuration', link: '/python/flask/api_reference/config' },
+                  { text: 'Stream Helpers', link: '/python/flask/api_reference/stream_help' },
+                  { text: 'Useful Internals', link: '/python/flask/api_reference/useful_internal' },
+                  { text: 'Signals', link: '/python/flask/api_reference/signal' },
+                  { text: 'Class-Based Views', link: '/python/flask/api_reference/view' },
+                  { text: 'URL Route Registrations', link: '/python/flask/api_reference/url_route' },
+                  { text: 'View Function Options', link: '/python/flask/api_reference/view_function' },
+                  { text: 'Command Line Interface', link: '/python/flask/api_reference/cmd_line' },
                 ] 
             },
             { text: 'Additional Notes', 
               collapsed: true,
               items: [
-                  { text: 'How to invoke pytest', link: '/python/pytest/how_to_guides/invoke_pytest' },
+                  { text: 'Design Decisions in Flask', link: '/python/flask/additional_note/design_decision' },
+                  { text: 'Flask Extension Development', link: '/python/flask/additional_note/flask_extension' },
+                  { text: 'How to contribute to Flask', link: '/python/flask/additional_note/contribute' },
+                  { text: 'BSD-3-Clause License', link: '/python/flask/additional_note/license' },
+                  { text: 'Changes', link: '/python/flask/additional_note/change' },
                 ] 
             },
           ]

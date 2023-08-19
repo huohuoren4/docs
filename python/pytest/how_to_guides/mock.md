@@ -2,7 +2,7 @@
 
 Sometimes tests need to invoke functionality which depends on global settings or which invokes code which cannot be easily tested such as network access. The `monkeypatch` fixture helps you to safely set/delete an attribute, dictionary item or environment variable, or to modify `sys.path` for importing.
 
-The [monkeypatch](/python/pytest/reference_guides/api_reference#monkeypatch) fixture provides these helper methods for safely patching and mocking functionality in tests:
+The `monkeypatch` fixture provides these helper methods for safely patching and mocking functionality in tests:
 
 - `monkeypatch.setattr(obj, name, value, raising=True)`
 
@@ -36,7 +36,7 @@ Consider the following scenarios:
 
 6. Use `monkeypatch.context` to apply patches only in a specific scope, which can help control teardown of complex fixtures or patches to the stdlib.
 
-See the monkeypatch blog post for some introduction material and a discussion of its motivation.
+See the [monkeypatch blog post](https://tetamap.wordpress.com//2009/03/03/monkeypatching-in-unit-tests-done-right/) for some introduction material and a discussion of its motivation.
 
 ## Monkeypatching functions
 
@@ -85,7 +85,7 @@ def get_json(url):
     return r.json()
 ```
 
-We need to mock r, the returned response object for testing purposes. The mock of `r` needs a `.json()` method which returns a dictionary. This can be done in our test file by defining a class to represent `r`.
+We need to mock `r`, the returned response object for testing purposes. The mock of `r` needs a `.json()` method which returns a dictionary. This can be done in our test file by defining a class to represent `r`.
 
 ```python
 # contents of test_app.py, a simple test for our API retrieval
@@ -122,7 +122,7 @@ def test_get_json(monkeypatch):
 
 `monkeypatch` applies the mock for `requests.get` with our `mock_get` function. The `mock_get` function returns an instance of the `MockResponse` class, which has a `json()` method defined to return a known testing dictionary and does not require any outside API connection.
 
-You can build the `MockResponse` class with the appropriate degree of complexity for the scenario you are testing. For instance, it could include an ok property that always returns `True`, or return different values from the `json()` mocked method based on input strings.
+You can build the `MockResponse` class with the appropriate degree of complexity for the scenario you are testing. For instance, it could include an `ok` property that always returns `True`, or return different values from the `json()` mocked method based on input strings.
 
 This mock can be shared across tests using a `fixture`:
 
@@ -180,10 +180,10 @@ This autouse fixture will be executed for each test function and it will delete 
 
 ::: tip Note
 Be advised that it is not recommended to patch builtin functions such as `open`, `compile`, etc., because it might break pytest’s internals. If that’s unavoidable, passing `--tb=native`, `--assert=plain` and `--capture=no` might help although there’s no guarantee.
-```
+:::
 
 ::: tip Note
-Mind that patching stdlib functions and some third-party libraries used by pytest might break pytest itself, therefore in those cases it is recommended to use `MonkeyPatch.context()` to limit the patching to the block you want tested:
+Mind that patching `stdlib` functions and some third-party libraries used by pytest might break pytest itself, therefore in those cases it is recommended to use `MonkeyPatch.context()` to limit the patching to the block you want tested:
 
 ```python
 import functools
@@ -366,4 +366,4 @@ def test_missing_user(mock_missing_default_user):
 
 ## API Reference
 
-Consult the docs for the [MonkeyPatch](/python/pytest/reference_guides/api_reference#monkeypatch) class.
+Consult the docs for the `MonkeyPatch` class.

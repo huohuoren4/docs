@@ -102,31 +102,31 @@
 
     If you’re thinking about using `approx`, then you might want to know how it compares to other good ways of comparing floating-point numbers. All of these algorithms are based on relative and absolute tolerances and should agree for the most part, but they do have meaningful differences:
 
-    - `math.isclose(a, b, rel_tol=1e-9, abs_tol=0.0)`: True if the relative tolerance is met w.r.t. either a or b or if the absolute tolerance is met. Because the relative tolerance is calculated w.r.t. both a and b, this test is symmetric (i.e. neither a nor b is a “reference value”). You have to specify an absolute tolerance if you want to compare to `0.0` because there is no tolerance by default. More information: [math.isclose()](https://docs.python.org/3/library/math.html#math.isclose).
+    - `math.isclose(a, b, rel_tol=1e-9, abs_tol=0.0)`: True if the relative tolerance is met w.r.t. either a or b or if the absolute tolerance is met. Because the relative tolerance is calculated w.r.t. both a and b, this test is symmetric (i.e. neither a nor b is a “reference value”). You have to specify an absolute tolerance if you want to compare to `0.0` because there is no tolerance by default. More information: `math.isclose()`.
 
-    - `numpy.isclose(a, b, rtol=1e-5, atol=1e-8)`: True if the difference between a and b is less that the sum of the relative tolerance w.r.t. b and the absolute tolerance. Because the relative tolerance is only calculated w.r.t. b, this test is asymmetric and you can think of b as the reference value. Support for comparing sequences is provided by [numpy.allclose()](https://numpy.org/doc/stable/reference/generated/numpy.allclose.html#numpy.allclose). More information: numpy.isclose.
+    - `numpy.isclose(a, b, rtol=1e-5, atol=1e-8)`: True if the difference between a and b is less that the sum of the relative tolerance w.r.t. b and the absolute tolerance. Because the relative tolerance is only calculated w.r.t. b, this test is asymmetric and you can think of b as the reference value. Support for comparing sequences is provided by `numpy.allclose()`. More information: numpy.isclose.
 
-    - `unittest.TestCase.assertAlmostEqual(a, b)`: True if a and b are within an absolute tolerance of `1e-7`. No relative tolerance is considered , so this function is not appropriate for very large or very small numbers. Also, it’s only available in subclasses of `unittest.TestCase` and it’s ugly because it doesn’t follow PEP8. More information: [unittest.TestCase.assertAlmostEqual()](https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertAlmostEqual).
+    - `unittest.TestCase.assertAlmostEqual(a, b)`: True if a and b are within an absolute tolerance of `1e-7`. No relative tolerance is considered , so this function is not appropriate for very large or very small numbers. Also, it’s only available in subclasses of `unittest.TestCase` and it’s ugly because it doesn’t follow PEP8. More information: `unittest.TestCase.assertAlmostEqual()`.
 
     - `a == pytest.approx(b, rel=1e-6, abs=1e-12)`: True if the relative tolerance is met w.r.t. b or if the absolute tolerance is met. Because the relative tolerance is only calculated w.r.t. b, this test is asymmetric and you can think of b as the reference value. In the special case that you explicitly specify an absolute tolerance but not a relative tolerance, only the absolute tolerance is considered.
 
     ::: tip Note
     `approx` can handle numpy arrays, but we recommend the specialised test helpers in [Test Support (numpy.testing)](https://numpy.org/doc/stable/reference/routines.testing.html) if you need support for comparisons, NaNs, or ULP-based tolerances.
 
-    To match strings using regex, you can use [Matches](https://github.com/asottile/re-assert#re_assertmatchespattern-str-args-kwargs) from the [re_assert package](https://github.com/asottile/re-assert).
+    To match strings using regex, you can use `Matches` from the [re_assert package](https://github.com/asottile/re-assert).
     :::
 
     ::: warning Warning
     *Changed in version 3.2.*
 
-    In order to avoid inconsistent behavior, [TypeError](https://docs.python.org/3/library/exceptions.html#TypeError) is raised for `>`, `>=`, `<` and `<=` comparisons. The example below illustrates the problem:
+    In order to avoid inconsistent behavior, `TypeError` is raised for `>`, `>=`, `<` and `<=` comparisons. The example below illustrates the problem:
 
     ```shell
     assert approx(0.1) > 0.1 + 1e-10  # calls approx(0.1).__gt__(0.1 + 1e-10)
     assert 0.1 + 1e-10 > approx(0.1)  # calls approx(0.1).__lt__(0.1 + 1e-10)
     ```
 
-    In the second example one expects `approx(0.1).__le__(0.1 + 1e-10)` to be called. But instead, `approx(0.1).__lt__(0.1 + 1e-10)` is used to comparison. This is because the call hierarchy of rich comparisons follows a fixed behavior. More information: [object.__ge__()](https://docs.python.org/3/reference/datamodel.html#object.__ge__)
+    In the second example one expects `approx(0.1).__le__(0.1 + 1e-10)` to be called. But instead, `approx(0.1).__lt__(0.1 + 1e-10)` is used to comparison. This is because the call hierarchy of rich comparisons follows a fixed behavior. More information: `object.__ge__()`
     :::
 
     *Changed in version 3.7.1*: `approx` raises `TypeError` when it encounters a dict value or sequence element of nonnumeric type.
@@ -166,7 +166,7 @@
     - `msg (Optional[str])` – Same as `reason`, but deprecated. Will be removed in a future version, use `reason` instead.
 
     ::: tip Note
-    It is better to use [the pytest.mark.skipif](/python/pytest/reference_guides/fixture_reference#pytest-mark-skipif-ref) marker when possible to declare a test to be skipped under certain conditions like mismatching platforms or dependencies. Similarly, use the` # doctest: +SKIP` directive (see [doctest.SKIP](https://docs.python.org/3/library/doctest.html#doctest.SKIP)) to skip a doctest statically.
+    It is better to use the `pytest.mark.skipif`) marker when possible to declare a test to be skipped under certain conditions like mismatching platforms or dependencies. Similarly, use the `# doctest: +SKIP` directive (see `doctest.SKIP`) to skip a doctest statically.
     :::
 
 ## pytest.importorskip
@@ -206,7 +206,7 @@
     - `reason (str)` – The message to show the user as reason for the xfail.
 
     ::: tip Note
-    It is better to use the [pytest.mark.xfail](/python/pytest/reference_guides/fixture_reference#pytest-mark-xfail-ref) marker when possible to declare a test to be xfailed under certain conditions like known bugs or missing features.
+    It is better to use the `pytest.mark.xfail` marker when possible to declare a test to be xfailed under certain conditions like known bugs or missing features.
     :::
 
 ## pytest.exit
@@ -231,7 +231,7 @@
 
     *Parameters*:
 
-    - `args (Optional[Union[List[str], PathLike[str]]])` – List of command line arguments. If `None` or not given, defaults to reading arguments directly from the process command line ([sys.argv](https://docs.python.org/3/library/sys.html#sys.argv)).
+    - `args (Optional[Union[List[str], PathLike[str]]])` – List of command line arguments. If `None` or not given, defaults to reading arguments directly from the process command line (`sys.argv`).
 
     - `plugins (Optional[Sequence[Union[str, object]]])` – List of plugin objects to be auto-registered during initialization.
 
@@ -243,7 +243,7 @@
 
 - **param**(`*values[, id][, marks]`)     
 
-    Specify a parameter in [pytest.mark.parametrize](https://docs.pytest.org/en/latest/reference/reference.html#pytest-mark-parametrize) calls or [parametrized fixtures](https://docs.pytest.org/en/latest/how-to/fixtures.html#fixture-parametrize-marks).
+    Specify a parameter in `pytest.mark.parametrize` calls or [parametrized fixtures](https://docs.pytest.org/en/latest/how-to/fixtures.html#fixture-parametrize-marks).
 
     ```python
     @pytest.mark.parametrize(
@@ -269,9 +269,9 @@
 
 *Tutorial*: [Assertions about expected exceptions](https://docs.pytest.org/en/latest/how-to/assert.html#assertraises)
 
-- **with raises**(`expected_exception: Union[Type[E], Tuple[Type[E], ...]], *, match: Optional[Union[str, Pattern[str]]] = ...`) → `RaisesContext[E] as excinfo`      
+- with **raises**(`expected_exception: Union[Type[E], Tuple[Type[E], ...]], *, match: Optional[Union[str, Pattern[str]]] = ...`) → `RaisesContext[E] as excinfo`      
 
-- **with raises**(`expected_exception: Union[Type[E], Tuple[Type[E], ...]], func: Callable[[...], Any], *args: Any, **kwargs: Any`) → `ExceptionInfo[E] as excinfo`
+- with **raises**(`expected_exception: Union[Type[E], Tuple[Type[E], ...]], func: Callable[[...], Any], *args: Any, **kwargs: Any`) → `ExceptionInfo[E] as excinfo`
 
     Assert that a code block/function call raises an exception.
 
@@ -380,9 +380,9 @@
 
 *Tutorial*: [Ensuring code triggers a deprecation warning](https://docs.pytest.org/en/latest/how-to/capture-warnings.html#ensuring-function-triggers)
 
-- **with deprecated_call**(`*, match: Optional[Union[str, Pattern[str]]] = ...`) → `WarningsRecorder`    
+- with **deprecated_call**(`*, match: Optional[Union[str, Pattern[str]]] = ...`) → `WarningsRecorder`    
 
-- **with deprecated_call**(`func: Callable[[...], T], *args: Any, **kwargs: Any`) → `T`
+- with **deprecated_call**(`func: Callable[[...], T], *args: Any, **kwargs: Any`) → `T`
 
     Assert that code produces a `DeprecationWarning` or `PendingDeprecationWarning`.
 
@@ -423,9 +423,9 @@
 
 *Tutorial*: Asserting warnings with the warns function
 
-- **with warns**(`expected_warning: ~typing.Union[~typing.Type[Warning], ~typing.Tuple[~typing.Type[Warning], ...]] = <class Warning>, *, match: ~typing.Optional[~typing.Union[str, ~typing.Pattern[str]]] = None`) → `WarningsChecker`      
+- with **warns**(`expected_warning: ~typing.Union[~typing.Type[Warning], ~typing.Tuple[~typing.Type[Warning], ...]] = <class Warning>, *, match: ~typing.Optional[~typing.Union[str, ~typing.Pattern[str]]] = None`) → `WarningsChecker`      
 
-- **with warns**(`expected_warning: Union[Type[Warning], Tuple[Type[Warning], ...]], func: Callable[[...], T], *args: Any, **kwargs: Any`) → `T`
+- with **warns**(`expected_warning: Union[Type[Warning], Tuple[Type[Warning], ...]], func: Callable[[...], T], *args: Any, **kwargs: Any`) → `T`
 
     Assert that code raises a particular class of warning.
 

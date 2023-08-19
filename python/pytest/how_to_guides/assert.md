@@ -39,7 +39,7 @@ FAILED test_assert1.py::test_function - assert 3 == 4
 ============================ 1 failed in 0.12s =============================
 ```
 
-`pytest` has support for showing the values of the most common subexpressions including calls, attributes, comparisons, and binary and unary operators. (See Demo of Python failure reports with pytest). This allows you to use the idiomatic python constructs without boilerplate code while not losing introspection information.
+`pytest` has support for showing the values of the most common subexpressions including calls, attributes, comparisons, and binary and unary operators. (See [Demo of Python failure reports with pytest](/python/pytest/further_topics/example_trick/failure_report)). This allows you to use the idiomatic python constructs without boilerplate code while not losing introspection information.
 
 However, if you specify a message with the assertion like this:
 
@@ -53,7 +53,7 @@ See [Assertion introspection details](/python/pytest/how_to_guides/assert#assert
 
 ## Assertions about expected exceptions
 
-In order to write assertions about raised exceptions, you can use [pytest.raises()](/python/pytest/reference_guides/api_reference#pytest-raises) as a context manager like this:
+In order to write assertions about raised exceptions, you can use `pytest.raises()` as a context manager like this:
 
 ```python
 import pytest
@@ -74,7 +74,7 @@ def test_recursion_depth():
     assert "maximum recursion" in str(excinfo.value)
 ```
 
-`excinfo` is an [ExceptionInfo](/python/pytest/reference_guides/api_reference#exceptioninfo) instance, which is a wrapper around the actual exception raised. The main attributes of interest are `.type`, `.value` and `.traceback`.
+`excinfo` is an `ExceptionInfo` instance, which is a wrapper around the actual exception raised. The main attributes of interest are `.type`, `.value` and `.traceback`.
 
 You can pass a `match` keyword parameter to the context-manager to test that a regular expression matches on the string representation of an exception (similar to the `TestCase.assertRaisesRegex` method from `unittest`):
 
@@ -113,7 +113,7 @@ Using `pytest.raises()` is likely to be better for cases where you are testing e
 
 ## Assertions about expected warnings
 
-You can check that code raises a particular warning using [pytest.warns](/python/pytest/reference_guides/api_reference#pytest-warns).
+You can check that code raises a particular warning using `pytest.warns`.
 
 ## Making use of context-sensitive comparisons
 
@@ -164,7 +164,7 @@ Special comparisons are done for a number of cases:
 - comparing long sequences: first failing indices
 - comparing dicts: different entries
 
-See the reporting demo for many more examples.
+See the [reporting demo](/python/pytest/further_topics/example_trick/failure_report) for many more examples.
 
 ## Defining your own explanation for failed assertions
 
@@ -244,9 +244,9 @@ It is possible to add your own detailed explanations by implementing the `pytest
 
 Reporting details about a failing assertion is achieved by rewriting assert statements before they are run. Rewritten assert statements put introspection information into the assertion failure message. pytest only rewrites test modules directly discovered by its test collection process, so **asserts in supporting modules which are not themselves test modules will not be rewritten**.
 
-You can manually enable assertion rewriting for an imported module by calling [register_assert_rewrite](/python/pytest/how_to_guides/write_plugin#assertion-rewriting) before you import it (a good place to do that is in your root `conftest.py`).
+You can manually enable assertion rewriting for an imported module by calling `register_assert_rewrite` before you import it (a good place to do that is in your root `conftest.py`).
 
-For further information, Benjamin Peterson wrote up *Behind the scenes of pytest’s new assertion rewriting*.
+For further information, Benjamin Peterson wrote up [Behind the scenes of pytest’s new assertion rewriting](http://pybites.blogspot.com/2011/07/behind-scenes-of-pytests-new-assertion.html).
 
 ### Assertion rewriting caches files on disk
 

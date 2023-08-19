@@ -1,6 +1,6 @@
 # How to use temporary directories and files in tests
 
-## The tmp_path fixture
+## The `tmp_path` fixture
 
 You can use the `tmp_path` fixture which will provide a temporary directory unique to the test invocation, created in the [base temporary directory](/python/pytest/how_to_guides/temp#the-default-base-temporary-directory).
 
@@ -53,7 +53,7 @@ FAILED test_tmp_path.py::test_create_file - assert 0
 ============================ 1 failed in 0.12s =============================
 ```
 
-## The tmp_path_factory fixture
+## The `tmp_path_factory` fixture
 
 The `tmp_path_factory` is a session-scoped fixture which can be used to create arbitrary temporary directories from any other fixture or test.
 
@@ -78,9 +78,9 @@ def test_histogram(image_file):
     # compute and test histogram
 ```
 
-See tmp_path_factory API for details.
+See `tmp_path_factory` API for details.
 
-## The tmpdir and tmpdir_factory fixtures
+## The `tmpdir` and `tmpdir_factory` fixtures
 
 The `tmpdir` and `tmpdir_factory` fixtures are similar to `tmp_path` and `tmp_path_factory`, but use/return legacy py.path.local objects rather than standard `pathlib.Path` objects.
 
@@ -96,7 +96,7 @@ pytest -p no:legacypath
 This will trigger errors on tests using the legacy paths. It can also be permanently set as part of the `addopts` parameter in the config file.
 :::
 
-See [tmpdir tmpdir_factory](/python/pytest/reference_guides/api_reference#tmpdir-factory) API for details.
+See `tmpdir` `tmpdir_factory` API for details.
 
 ## The default base temporary directory
 

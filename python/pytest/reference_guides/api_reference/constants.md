@@ -1,6 +1,10 @@
-# Constants
+# API Reference
 
-## pytest.__version__
+This page contains the full reference to pytest’s API.
+
+## Constants
+
+### pytest.__version__
 
 The current pytest version, as a string:
 
@@ -10,7 +14,7 @@ The current pytest version, as a string:
 '7.0.0'
 ```
 
-## pytest.version_tuple
+### pytest.version_tuple
 
 *New in version 7.0.*
 
