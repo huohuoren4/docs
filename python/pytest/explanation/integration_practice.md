@@ -26,7 +26,7 @@ pip install -e .
 
 which lets you change your source code (both tests and application) and rerun tests at will.
 
-## Conventions for Python test discovery
+## Conventions for Python test discovery {#conventions-for-python-test-discovery}
 
 `pytest` implements the following standard test discovery:
 

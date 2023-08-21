@@ -1,4 +1,4 @@
-# How to invoke pytest
+# How to invoke pytest {#how-to-invoke-pytest}
 
 ::: tip See also
 [Complete pytest command-line flag reference](/python/pytest/reference_guides/api_reference/cmd_flags#command-line-flags)
@@ -6,7 +6,7 @@
 
 In general, pytest is invoked with the command `pytest` (see below for [other ways to invoke pytest](/python/pytest/how_to_guides/invoke_pytest#other-ways-of-calling-pytest)). This will execute all tests in all files whose names follow the form `test_*`.py or `\*_test.py` in the current directory and its subdirectories. More generally, pytest follows [standard test discovery rules](/python/pytest/explanation/integration_practice#conventions-for-python-test-discovery).
 
-## Specifying which tests to run
+## Specifying which tests to run {#specifying-which-tests-to-run}
 
 Pytest supports several ways to run and select tests from the command-line.
 
@@ -64,7 +64,7 @@ pytest --pyargs pkg.testing
 
 This will import `pkg.testing` and use its filesystem location to find and run tests from.
 
-## Getting help on version, option names, environment variables
+## Getting help on version, option names, environment variables {#getting-help-on-version-option-names-environment-variables}
 
 ```shell
 pytest --version   # shows where pytest was imported from
@@ -72,7 +72,7 @@ pytest --fixtures  # show available builtin function arguments
 pytest -h | --help # show help on command line and config file options
 ```
 
-## Profiling test execution duration
+## Profiling test execution duration {#profiling-test-execution-duration}
 
 *Changed in version 6.0.*
 
@@ -84,9 +84,9 @@ pytest --durations=10 --durations-min=1.0
 
 By default, pytest will not show test durations that are too small (<0.005s) unless `-vv` is passed on the command-line.
 
-## Managing loading of plugins
+## Managing loading of plugins {#managing-loading-of-plugins}
 
-### Early loading plugins
+### Early loading plugins {#early-loading-plugins}
 
 You can early-load plugins (internal and external) explicitly in the command-line with the `-p` option:
 
@@ -103,7 +103,7 @@ The option receives a `name` parameter, which can be:
 pytest -p pytest_cov
 ```
 
-### Disabling plugins
+### Disabling plugins {#disabling-plugins}
 
 To disable loading specific plugins at invocation time, use the `-p` option together with the prefix `no`:.
 
@@ -113,9 +113,9 @@ Example: to disable loading the plugin `doctest`, which is responsible for execu
 pytest -p no:doctest
 ```
 
-## Other ways of calling pytest
+## Other ways of calling pytest {#other-ways-of-calling-pytest}
 
-### Calling pytest through python -m pytest
+### Calling pytest through python -m pytest {#calling-pytest-through-python-m-pytest}
 
 You can invoke testing through the Python interpreter from the command line:
 
@@ -125,7 +125,7 @@ python -m pytest [...]
 
 This is almost equivalent to invoking the command line script `pytest [...]` directly, except that calling via `python` will also add the current directory to `sys.path`.
 
-### Calling pytest from Python code
+### Calling pytest from Python code {#calling-pytest-from-python-code}
 
 You can invoke `pytest` from Python code directly:
 

@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 
-var english_website = 'https://huohuoren4.github.io/'
 var chinese_website = 'https://huohuoren4.github.io/docs/'
 var github_website = 'https://github.com/huohuoren4/docs.git'
 var edit_link = 'https://github.com/huohuoren4/docs/tree/main/:path'

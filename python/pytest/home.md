@@ -1,4 +1,4 @@
-# pytest: helps you write better programs
+# pytest: helps you write better programs {#pytest-helps-you-write-better-programs}
 
 ::: tip Tip
 pytest document version: `7.4.0`. the lastest version is only maintained. 
@@ -10,7 +10,7 @@ The `pytest` framework makes it easy to write small, readable tests, and can sca
 
 *PyPI package name*: [pytest](https://pypi.org/project/pytest/)
 
-## A quick example
+## A quick example {#a-quick-example}
 
 ```python
 # content of test_sample.py
@@ -49,7 +49,7 @@ FAILED test_sample.py::test_answer - assert 4 == 5
 
 Due to `pytest`’s detailed assertion introspection, only plain `assert` statements are used. See [Get started](/python/pytest/get_started) for a basic introduction to using pytest.
 
-## Features
+## Features {#features}
 
 - Detailed info on failing [assert statements](/python/pytest/how_to_guides/assert#how-to-write-and-report-assertions-in-tests) (no need to remember `self.assert*` names)
 
@@ -63,7 +63,7 @@ Due to `pytest`’s detailed assertion introspection, only plain `assert` statem
 
 - Rich plugin architecture, with over 800+ [external plugins](/python/pytest/reference_guides/plugin_list#plugin-list) and thriving community
 
-## Documentation
+## Documentation {#documentation}
 
 - [Get started](/python/pytest/get_started) - install pytest and grasp its basics just twenty minutes
 
@@ -73,11 +73,11 @@ Due to `pytest`’s detailed assertion introspection, only plain `assert` statem
 
 - [Explanation](/python/pytest/explanation/anatomy#anatomy-of-a-test) - background, discussion of key topics, answers to higher-level questions
 
-## Bugs/Requests
+## Bugs/Requests {#bugs-requests}
 
 Please use the [GitHub issue tracker](https://github.com/pytest-dev/pytest/issues) to submit bugs or request features.
 
-## Support pytest
+## Support pytest {#support-pytest}
 
 [Open Collective](https://opencollective.com/) is an online funding platform for open and transparent communities. It provides tools to raise money and share your finances in full transparency.
 
@@ -85,7 +85,7 @@ It is the platform of choice for individuals and companies that want to make one
 
 See more details in the [pytest collective](https://opencollective.com/pytest).
 
-## pytest for enterprise
+## pytest for enterprise {#pytest-for-enterprise}
 
 Available as part of the Tidelift Subscription.
 
@@ -93,6 +93,6 @@ The maintainers of pytest and thousands of other packages are working with Tidel
 
 [Learn more](https://tidelift.com/subscription/pkg/pypi-pytest?utm_source=pypi-pytest&utm_medium=referral&utm_campaign=enterprise&utm_term=repo).
 
-## Security
+## Security {#security}
 
 pytest has never been associated with a security vulnerability, but in any case, to report a security vulnerability please use the [Tidelift security contact](https://tidelift.com/security). Tidelift will coordinate the fix and disclosure.

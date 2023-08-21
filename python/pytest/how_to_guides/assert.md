@@ -1,4 +1,4 @@
-# How to write and report assertions in tests
+# How to write and report assertions in tests {#how-to-write-and-report-assertions-in-tests}
 
 ## Asserting with the assert statement
 

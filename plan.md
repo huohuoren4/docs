@@ -1,10 +1,10 @@
 # 🧾Plan
 
-Record the doc progress and make weekly plan
+Record the doc progress and make monthly plan
 
-## 📝Plan of the Week
+## 📝Plan of the Month
 
-*2023/07/31 ~ 2023/08/06*
+*2023/08/01 ~ 2023/08/31*
 
 ### pytest doc
 

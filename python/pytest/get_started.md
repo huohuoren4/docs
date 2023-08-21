@@ -1,6 +1,6 @@
-# Get Started
+# Get Started {#get-started}
 
-## Install pytest
+## Install pytest {#install-pytest}
 
 pytest requires: `Python 3.7+` or `PyPy3`.
 
@@ -16,7 +16,7 @@ $ pytest --version
 pytest 7.4.0
 ```
 
-## Create your first test
+## Create your first test {#create-your-first-test}
 
 Create a new file called `test_sample.py`, containing a function, and a test:
 
@@ -61,11 +61,11 @@ The [`100%`] refers to the overall progress of running all test cases. After it 
 You can use the `assert` statement to verify test expectations. pytest's [Advanced assertion introspection](https://docs.python.org/3/reference/simple_stmts.html#assert) will intelligently report intermediate values of the assert expression so you can avoid the many names of [JUnit legacy methods](https://docs.python.org/3/library/unittest.html#testcase-objects).
 :::
 
-## Run multiple tests
+## Run multiple tests {#run-multiple-tests}
 
 pytest will run all files of the form `test_*.py` or `*_test.py` in the current directory and its subdirectories. More generally, it follows [standard test discovery rules](/python/pytest/explanation/integration_practice#conventions-for-python-test-discovery).
 
-## Assert that a certain exception is raised
+## Assert that a certain exception is raised {#assert-that-a-certain-exception-is-raised}
 
 Use the `raises` helper to assert that some code raises an exception:
 
@@ -95,7 +95,7 @@ $ pytest -q test_sysexit.py
 The `-q/--quiet` flag keeps the output brief in this and following examples.
 :::
 
-## Group multiple tests in a class
+## Group multiple tests in a class {#group-multiple-tests-in-a-class}
 
 Once you develop multiple tests, you may want to group them into a class. pytest makes it easy to create a class containing more than one test:
 
@@ -177,7 +177,7 @@ FAILED test_class_demo.py::TestClassDemoInstance::test_two - assert 0 == 1
 
 Note that attributes added at class level are class attributes, so they will be shared between tests.
 
-## Request a unique temporary directory for functional tests
+## Request a unique temporary directory for functional tests {#request-a-unique-temporary-directory-for-functional-tests}
 
 pytest provides [Builtin fixtures/function arguments](/python/pytest/other/builtin) to request arbitrary resources, like a unique temporary directory:
 
@@ -221,7 +221,7 @@ pytest --fixtures   # shows builtin and custom fixtures
 
 Note that this command omits fixtures with leading `_` unless the `-v` option is added.
 
-## Continue reading
+## Continue reading {#continue-reading}
 
 Check out additional pytest resources to help you customize tests for your unique workflow:
 
