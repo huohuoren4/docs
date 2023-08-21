@@ -52,7 +52,7 @@ Keeping backwards compatibility has a very high priority in the pytest project. 
 
 With the pytest 3.0 release we introduced a clear communication scheme for when we will actually remove the old busted joint and politely ask you to use the new hotness instead, while giving you enough time to adjust your tests or raise concerns if there are valid reasons to keep deprecated functionality around.
 
-To communicate changes we issue deprecation warnings using a custom warning hierarchy (see [Internal pytest warnings](https://docs.pytest.org/en/latest/how-to/capture-warnings.html#internal-warnings)). These warnings may be suppressed using the standard means: `-W` command-line flag or `filterwarnings` ini options (see [How to capture warnings](https://docs.pytest.org/en/latest/how-to/capture-warnings.html#warnings)), but we suggest to use these sparingly and temporarily, and heed the warnings when possible.
+To communicate changes we issue deprecation warnings using a custom warning hierarchy (see [Internal pytest warnings](/python/pytest/how_to_guides/warning#internal-pytest-warnings)). These warnings may be suppressed using the standard means: `-W` command-line flag or `filterwarnings` ini options (see [How to capture warnings](/python/pytest/how_to_guides/warning#how-to-capture-warnings)), but we suggest to use these sparingly and temporarily, and heed the warnings when possible.
 
 We will only start the removal of deprecated functionality in major releases (e.g. if we deprecate something in 3.0 we will start to remove it in 4.0), and keep it around for at least two minor releases (e.g. if we deprecate something in 3.9 and 4.0 is the next release, we start to remove it in 5.0, not in 4.0).
 
@@ -60,7 +60,7 @@ When the deprecation expires (e.g. 4.0 is released), we won’t remove the depre
 
 ### Deprecation Roadmap
 
-Features currently deprecated and removed in previous releases can be found in [Deprecations and Removals](https://docs.pytest.org/en/latest/deprecations.html#deprecations).
+Features currently deprecated and removed in previous releases can be found in [Deprecations and Removals](/python/pytest/further_topics/deprecation#deprecations-and-removals).
 
 We track future deprecation and removal of features using milestones and the [deprecation](https://github.com/pytest-dev/pytest/issues?q=label%3A%22type%3A+deprecation%22) and [removal](https://github.com/pytest-dev/pytest/labels/type%3A%20removal) labels on GitHub.
 

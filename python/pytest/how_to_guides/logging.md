@@ -41,7 +41,7 @@ text going to stderr
 ==================== 2 failed in 0.02 seconds =====================
 ```
 
-These options can also be customized through pytest.ini file:
+These options can also be customized through `pytest.ini` file:
 
 ```ini
 [pytest]
@@ -104,7 +104,7 @@ def test_baz(caplog):
 
 For all the available attributes of the log records see the `logging.LogRecord` class.
 
-You can also resort to record_tuples if all you want to do is to ensure, that certain messages have been logged under a given logger name with a given severity and message:
+You can also resort to `record_tuples` if all you want to do is to ensure, that certain messages have been logged under a given logger name with a given severity and message:
 
 ```python
 def test_foo(caplog):
@@ -140,7 +140,7 @@ def window(caplog):
             pytest.fail(f"warning messages encountered during testing: {messages}")
 ```
 
-The full API is available at [pytest.LogCaptureFixture](/python/pytest/reference_guides/api_reference#caplog).
+The full API is available at `pytest.LogCaptureFixture`.
 
 ::: warning Warning
 The `caplog` fixture adds a handler to the root logger to capture logs. If the root logger is modified during a test, for example with `logging.config.dictConfig`, this handler may be removed and cause no logs to be captured. To avoid this, ensure that any root logger configuration only adds to the existing handlers.
@@ -149,7 +149,7 @@ The `caplog` fixture adds a handler to the root logger to capture logs. If the r
 ## Live Logs
 By setting the `log_cli` configuration option to `true`, pytest will output logging records as they are emitted directly into the console.
 
-You can specify the logging level for which log records with equal or higher level are printed to the console by passing `--log-cli-level`. This setting accepts the logging level names or numeric values as seen in logging’s documentation.
+You can specify the logging level for which log records with equal or higher level are printed to the console by passing `--log-cli-level`. This setting accepts the logging level names or numeric values as seen in [logging’s documentation](https://docs.python.org/3/library/logging.html#levels).
 
 Additionally, you can also specify `--log-cli-format` and `--log-cli-date-format` which mirror and default to `--log-format` and `--log-date-format` if not provided, but are applied only to the console logging handler.
 
@@ -163,7 +163,7 @@ All of the CLI log options can also be set in the configuration INI file. The op
 
 If you need to record the whole test suite logging calls to a file, you can pass `--log-file=/path/to/log/file`. This log file is opened in write mode which means that it will be overwritten at each run tests session. Note that relative paths for the log-file location, whether passed on the CLI or declared in a config file, are always resolved relative to the current working directory.
 
-You can also specify the logging level for the log file by passing `--log-file-level`. This setting accepts the logging level names or numeric values as seen in logging’s documentation.
+You can also specify the logging level for the log file by passing `--log-file-level`. This setting accepts the logging level names or numeric values as seen in [logging’s documentation](https://docs.python.org/3/library/logging.html#levels).
 
 Additionally, you can also specify `--log-file-format` and `--log-file-date-format` which are equal to `--log-format` and `--log-date-format` but are applied to the log file logging handler.
 
@@ -201,7 +201,7 @@ This feature and its API are considered experimental and might change between re
 
 ## Release notes
 
-This feature was introduced as a drop-in replacement for the pytest-catchlog plugin and they conflict with each other. The backward compatibility API with `pytest-capturelog` has been dropped when this feature was introduced, so if for that reason you still need `pytest-catchlog` you can disable the internal feature by adding to your `pytest.ini`:
+This feature was introduced as a drop-in replacement for the `pytest-catchlog` plugin and they conflict with each other. The backward compatibility API with `pytest-capturelog` has been dropped when this feature was introduced, so if for that reason you still need `pytest-catchlog` you can disable the internal feature by adding to your `pytest.ini`:
 
 ```ini
 [pytest]

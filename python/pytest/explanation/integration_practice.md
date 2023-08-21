@@ -2,7 +2,7 @@
 
 ## Install package with pip
 
-For development, we recommend you use [venv](https://docs.python.org/3/library/venv.html#module-venv) for virtual environments and pip for installing your application and any dependencies, as well as the `pytest` package itself. This ensures your code and dependencies are isolated from your system Python installation.
+For development, we recommend you use `venv` for virtual environments and pip for installing your application and any dependencies, as well as the `pytest` package itself. This ensures your code and dependencies are isolated from your system Python installation.
 
 Create a `pyproject.toml` file in the root of your repository as described in [Packaging Python Projects](https://packaging.python.org/en/latest/tutorials/packaging-projects/). The first few lines should look like this:
 
@@ -30,11 +30,11 @@ which lets you change your source code (both tests and application) and rerun te
 
 `pytest` implements the following standard test discovery:
 
-- If no arguments are specified then collection starts from [testpaths](https://docs.pytest.org/en/latest/reference/reference.html#confval-testpaths) (if configured) or the current directory. Alternatively, command line arguments can be used in any combination of directories, file names or node ids.
+- If no arguments are specified then collection starts from `testpaths` (if configured) or the current directory. Alternatively, command line arguments can be used in any combination of directories, file names or node ids.
 
-- Recurse into directories, unless they match [norecursedirs](https://docs.pytest.org/en/latest/reference/reference.html#confval-norecursedirs).
+- Recurse into directories, unless they match `norecursedirs`.
 
-- In those directories, search for `test_*.py` or `*_test.py` files, imported by their [test package name](https://docs.pytest.org/en/latest/explanation/goodpractices.html#test-package-name).
+- In those directories, search for `test_*.py` or `*_test.py` files, imported by their test package name.
 
 - From those files, collect test items:
 
@@ -42,9 +42,9 @@ which lets you change your source code (both tests and application) and rerun te
 
     - `test` prefixed test functions or methods inside `Test` prefixed test classes (without an `__init__` method). Methods decorated with `@staticmethod` and `@classmethods` are also considered.
 
-For examples of how to customize your test discovery [Changing standard (Python) test discovery](https://docs.pytest.org/en/latest/example/pythoncollection.html).
+For examples of how to customize your test discovery [Changing standard (Python) test discovery](/python/pytest/further_topics/example_trick/test_discovery#changing-standard-python-test-discovery).
 
-Within Python modules, `pytest` also discovers tests using the standard [unittest.TestCase](https://docs.pytest.org/en/latest/how-to/unittest.html#unittest-testcase) subclassing technique.
+Within Python modules, `pytest` also discovers tests using the standard `unittest.TestCase` subclassing technique.
 
 ## Choosing a test layout / import rules
 
@@ -73,7 +73,7 @@ This has the following benefits:
 
 - Your tests can run against the local copy with an editable install after executing `pip install --editable .`.
 
-For new projects, we recommend to use `importlib` [import mode](https://docs.pytest.org/en/latest/explanation/pythonpath.html#import-modes) (see [which-import-mode](https://docs.pytest.org/en/latest/explanation/goodpractices.html#which-import-mode) for a detailed explanation). To this end, add the following to your `pyproject.toml`:
+For new projects, we recommend to use `importlib` [import mode](/python/pytest/explanation/import_mechanism#import-modes) (see [which-import-mode](/python/pytest/explanation/integration_practice#choosing-an-import-mode) for a detailed explanation). To this end, add the following to your `pyproject.toml`:
 
 ```toml
 [tool.pytest.ini_options]
@@ -93,7 +93,7 @@ If you do not use an editable install and use the `src` layout as above you need
 PYTHONPATH=src pytest
 ```
 
-or in a permanent manner by using the [pythonpath](https://docs.pytest.org/en/latest/reference/reference.html#confval-pythonpath) configuration variable and adding the following to your `pyproject.toml`:
+or in a permanent manner by using the `pythonpath` configuration variable and adding the following to your `pyproject.toml`:
 
 ```toml
 [tool.pytest.ini_options]
@@ -104,7 +104,7 @@ pythonpath = "src"
 ::: tip Note
 If you do not use an editable install and not use the `src` layout (`mypkg` directly in the root directory) you can rely on the fact that Python by default puts the current directory in `sys.path` to import your package and run `python -m pytest` to execute the tests against the local copy directly.
 
-See [Invoking pytest versus python -m pytest](https://docs.pytest.org/en/latest/explanation/pythonpath.html#pytest-vs-python-m-pytest) for more information about the difference between calling `pytest` and `python -m pytest`.
+See [Invoking pytest versus python -m pytest](/python/pytest/explanation/import_mechanism#invoking-pytest-versus-python-m-pytest) for more information about the difference between calling `pytest` and `python -m pytest`.
 :::
 
 ### Tests as part of application code
@@ -132,10 +132,10 @@ pytest --pyargs mypkg
 
 `pytest` will discover where `mypkg` is installed and collect tests from there.
 
-Note that this layout also works in conjunction with the s`rc layout mentioned in the previous section.
+Note that this layout also works in conjunction with the `src` layout mentioned in the previous section.
 
 ::: tip Note
-You can use namespace packages (PEP420) for your application but pytest will still perform [test package name](https://docs.pytest.org/en/latest/explanation/goodpractices.html#test-package-name) discovery based on the presence of `__init__.py` files. If you use one of the two recommended file system layouts above but leave away the `__init__.py` files from your directories, it should just work. From “inlined tests”, however, you will need to use absolute imports for getting at your application code.
+You can use namespace packages (PEP420) for your application but pytest will still perform test package name discovery based on the presence of `__init__.py` files. If you use one of the two recommended file system layouts above but leave away the `__init__.py` files from your directories, it should just work. From “inlined tests”, however, you will need to use absolute imports for getting at your application code.
 :::
 
 ::: tip Note
@@ -154,9 +154,9 @@ With `--import-mode=importlib` things are less convoluted because pytest doesn�
 
 ### Choosing an import mode
 
-For historical reasons, pytest defaults to the `prepend` import mode instead of the `importlib` import mode we recommend for new projects. The reason lies in the way the `prepend` mode works:
+For historical reasons, pytest defaults to the `prepend` [import mode](/python/pytest/explanation/import_mechanism#import-modes) instead of the `importlib` import mode we recommend for new projects. The reason lies in the way the `prepend` mode works:
 
-Since there are no packages to derive a full package name from, `pytest` will import your test files as top-level modules. The test files in the first example ([src layout](https://docs.pytest.org/en/latest/explanation/goodpractices.html#src-layout)) would be imported as `test_app` and `test_view` top-level modules by adding `tests/` to `sys.path`.
+Since there are no packages to derive a full package name from, `pytest` will import your test files as top-level modules. The test files in the first example (src layout) would be imported as `test_app` and `test_view` top-level modules by adding `tests/` to `sys.path`.
 
 This results in a drawback compared to the import mode `importlib`: your test files must have unique names.
 
@@ -178,7 +178,7 @@ tests/
 
 Now pytest will load the modules as `tests.foo.test_view` and `tests.bar.test_view`, allowing you to have modules with the same name. But now this introduces a subtle problem: in order to load the test modules from the `tests` directory, pytest prepends the root of the repository to `sys.path`, which adds the side-effect that now `mypkg` is also importable.
 
-This is problematic if you are using a tool like tox to test your package in a virtual environment, because you want to test the installed version of your package, not the local code from the repository.
+This is problematic if you are using a tool like [tox](https://docs.pytest.org/en/latest/explanation/goodpractices.html#tox) to test your package in a virtual environment, because you want to test the installed version of your package, not the local code from the repository.
 
 The `importlib` import mode does not have any of the drawbacks above, because `sys.path` is not changed when importing test modules.
 

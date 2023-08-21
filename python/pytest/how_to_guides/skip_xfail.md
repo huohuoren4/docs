@@ -47,9 +47,10 @@ if not sys.platform.startswith("win"):
     pytest.skip("skipping windows-only tests", allow_module_level=True)
 ```
 
-Reference: [pytest.mark.skip](/python/pytest/reference_guides/api_reference#pytest-mark-skip)
+Reference: `pytest.mark.skip`
 
 ### skipif
+
 If you wish to skip something conditionally then you can use `skipif` instead. Here is an example of marking a test function to be skipped when run on an interpreter earlier than Python3.10:
 
 ```python
@@ -93,9 +94,9 @@ def test_anotherfunction():
 
 For larger test suites it’s usually a good idea to have one file where you define the markers which you then consistently apply throughout your test suite.
 
-Alternatively, you can use condition strings instead of booleans, but they can’t be shared between modules easily so they are supported mainly for backward compatibility reasons.
+Alternatively, you can use [condition strings](/python/pytest/further_topics/historical_note#conditions-as-strings-instead-of-booleans) instead of booleans, but they can’t be shared between modules easily so they are supported mainly for backward compatibility reasons.
 
-**Reference**: [pytest.mark.skipif](/python/pytest/reference_guides/api_reference#pytest-mark-skipif)
+**Reference**: `pytest.mark.skipif`
 
 ### Skip all test functions of a class or module
 
@@ -121,11 +122,11 @@ If multiple `skipif` decorators are applied to a test function, it will be skipp
 
 ### Skipping files or directories
 
-Sometimes you may need to skip an entire file or directory, for example if the tests rely on Python version-specific features or contain code that you do not wish pytest to run. In this case, you must exclude the files and directories from collection. Refer to Customizing test collection for more information.
+Sometimes you may need to skip an entire file or directory, for example if the tests rely on Python version-specific features or contain code that you do not wish pytest to run. In this case, you must exclude the files and directories from collection. Refer to [Customizing test collection](/python/pytest/further_topics/example_trick/test_discovery#customizing-test-collection) for more information.
 
 ### Skipping on a missing import dependency
 
-You can skip tests on a missing import by using pytest.importorskip at module level, within a test, or test setup function.
+You can skip tests on a missing import by using `pytest.importorskip` at module level, within a test, or test setup function.
 
 ```python
 docutils = pytest.importorskip("docutils")
@@ -163,7 +164,7 @@ pexpect = pytest.importorskip("pexpect")
 
 ## XFail: mark test functions as expected to fail
 
-You can use the xfail marker to indicate that you expect a test to fail:
+You can use the `xfail` marker to indicate that you expect a test to fail:
 
 ```python
 @pytest.mark.xfail
@@ -188,9 +189,9 @@ def test_function2():
 
 These two examples illustrate situations where you don’t want to check for a condition at the module level, which is when a condition would otherwise be evaluated for marks.
 
-This will make `test_function` `XFAIL`. Note that no other code is executed after [pytest.mark.xfail()](/python/pytest/reference_guides/api_reference#pytest-mark-xfail) call, differently from the marker. That’s because it is implemented internally by raising a known exception.
+This will make `test_function` `XFAIL`. Note that no other code is executed after `pytest.mark.xfail()` call, differently from the marker. That’s because it is implemented internally by raising a known exception.
 
-**Reference**: [pytest.mark.xfail](/python/pytest/reference_guides/api_reference#pytest-mark-xfail)
+**Reference**: `pytest.mark.xfail`
 
 ### condition parameter
 
@@ -202,7 +203,7 @@ def test_function():
     ...
 ```
 
-Note that you have to pass a reason as well (see the parameter description at [pytest.mark.xfail](/python/pytest/reference_guides/api_reference#pytest-mark-xfail)).
+Note that you have to pass a reason as well (see the parameter description at `pytest.mark.xfail`).
 
 ### reason parameter
 
@@ -265,7 +266,7 @@ By specifying on the commandline:
 pytest --runxfail
 ```
 
-you can force the running and reporting of an `xfail` marked test as if it weren’t marked at all. This also causes [pytest.xfail()](/python/pytest/reference_guides/api_reference#pytest-xfail) to produce no effect.
+you can force the running and reporting of an `xfail` marked test as if it weren’t marked at all. This also causes `pytest.xfail()` to produce no effect.
 
 ### Examples
 

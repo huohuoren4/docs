@@ -20,51 +20,51 @@ Almost all `unittest` features are supported:
 
 - `setUpModule/tearDownModule`;
 
-Additionally, subtests are supported by the pytest-subtests plugin.
+Additionally, [subtests](https://docs.python.org/3/library/unittest.html#subtests) are supported by the [pytest-subtests](https://github.com/pytest-dev/pytest-subtests) plugin.
 
 Up to this point pytest does not have support for the following features:
 
-- load_tests protocol;
+- [load_tests protocol](https://docs.python.org/3/library/unittest.html#load-tests-protocol);
 
 ## Benefits out of the box
 
 By running your test suite with pytest you can make use of several features, in most cases without having to modify existing code:
 
-- Obtain more informative tracebacks;
+- Obtain [more informative tracebacks](/python/pytest/further_topics/example_trick/failure_report#demo-of-python-failure-reports-with-pytest);
 
-- stdout and stderr capturing;
+- [stdout and stderr](/python/pytest/how_to_guides/output#how-to-capture-stdout-stderr-output) capturing;
 
-- Test selection options using `-k` and `-m` flags;
+- [Test selection options](/python/pytest/how_to_guides/invoke_pytest#specifying-which-tests-to-run) using `-k` and `-m` flags;
 
 - Stopping after the first (or N) failures;
 
-- `–pdb` command-line option for debugging on test failures (see note below);
+- `–pdb` command-line option for debugging on test failures (see [note](/python/pytest/how_to_guides/unittest#using-autouse-fixtures-and-accessing-other-fixtures) below);
 
-- Distribute tests to multiple CPUs using the pytest-xdist plugin;
+- Distribute tests to multiple CPUs using the [pytest-xdist](https://pypi.org/project/pytest-xdist/) plugin;
 
-- Use plain assert-statements instead of `self.assert*` functions (unittest2pytest is immensely helpful in this);
+- Use [plain assert-statements](/python/pytest/how_to_guides/assert#how-to-write-and-report-assertions-in-tests) instead of `self.assert*` functions ([unittest2pytest](https://pypi.org/project/unittest2pytest/) is immensely helpful in this);
 
-## pytest features in unittest.TestCase subclasses
+## pytest features in `unittest.TestCase` subclasses
 
 The following pytest features work in `unittest.TestCase` subclasses:
 
-- Marks: skip, skipif, xfail;
+- Marks: `skip`, `skipif`, `xfail`;
 
-- Auto-use fixtures;
+- [Auto-use fixtures](/python/pytest/how_to_guides/unittest#mixing-pytest-fixtures-into-unittest-testcase-subclasses-using-marks);
 
 The following pytest features do not work, and probably never will due to different design philosophies:
 
-- Fixtures (except for `autouse` fixtures, see below);
+- [Fixtures](/python/pytest/reference_guides/fixture_reference#fixtures-reference) (except for `autouse` fixtures, see [below](/python/pytest/how_to_guides/unittest#mixing-pytest-fixtures-into-unittest-testcase-subclasses-using-marks));
 
-- Parametrization;
+- [Parametrization](/python/pytest/how_to_guides/params_fixture#how-to-parametrize-fixtures-and-test-functions);
 
-- Custom hooks;
+- [Custom hooks](/python/pytest/how_to_guides/write_plugin#writing-plugins);
 
 Third party plugins may or may not work well, depending on the plugin and the test suite.
 
 ## Mixing pytest fixtures into unittest.TestCase subclasses using marks
 
-Running your unittest with `pytest` allows you to use its fixture mechanism with `unittest.TestCase` style tests. Assuming you have at least skimmed the pytest fixture features, let’s jump-start into an example that integrates a pytest `db_class` fixture, setting up a class-cached database object, and then reference it from a unittest-style test:
+Running your unittest with `pytest` allows you to use its [fixture mechanism](/python/pytest/reference_guides/fixture_reference#fixtures-reference) with `unittest.TestCase` style tests. Assuming you have at least skimmed the pytest fixture features, let’s jump-start into an example that integrates a pytest `db_class` fixture, setting up a class-cached database object, and then reference it from a unittest-style test:
 
 ```python
 # content of conftest.py
@@ -84,7 +84,7 @@ def db_class(request):
     request.cls.db = DummyDB()
 ```
 
-This defines a fixture function `db_class` which - if used - is called once for each test class and which sets the class-level db attribute to a `DummyDB` instance. The fixture function achieves this by receiving a special `request` object which gives access to the requesting test context such as the `cls` attribute, denoting the class from which the fixture is used. This architecture de-couples fixture writing from actual test code and allows re-use of the fixture by a minimal reference, the fixture name. So let’s write an actual `unittest.TestCase` class using our fixture definition:
+This defines a fixture function `db_class` which - if used - is called once for each test class and which sets the class-level `db` attribute to a `DummyDB` instance. The fixture function achieves this by receiving a special `request` object which gives access to [the requesting test context](/python/pytest/how_to_guides/fixture#fixtures-can-introspect-the-requesting-test-context) such as the `cls` attribute, denoting the class from which the fixture is used. This architecture de-couples fixture writing from actual test code and allows re-use of the fixture by a minimal reference, the fixture name. So let’s write an actual `unittest.TestCase` class using our fixture definition:
 
 ```python
 # content of test_unittest_db.py
@@ -149,7 +149,7 @@ This default pytest traceback shows that the two test methods share the same `se
 
 Although it’s usually better to explicitly declare use of fixtures you need for a given test, you may sometimes want to have fixtures that are automatically used in a given context. After all, the traditional style of unittest-setup mandates the use of this implicit fixture writing and chances are, you are used to it or like it.
 
-You can flag fixture functions with `@pytest.fixture(autouse=True)` and define the fixture function in the context where you want it used. Let’s look at an `initdir` fixture which makes all test methods of a `TestCase` class execute in a temporary directory with a pre-initialized `samplefile.ini`. Our `initdir` fixture itself uses the pytest builtin tmp_path fixture to delegate the creation of a per-test temporary directory:
+You can flag fixture functions with `@pytest.fixture(autouse=True)` and define the fixture function in the context where you want it used. Let’s look at an `initdir` fixture which makes all test methods of a `TestCase` class execute in a temporary directory with a pre-initialized `samplefile.ini`. Our `initdir` fixture itself uses the pytest builtin `tmp_path` fixture to delegate the creation of a per-test temporary directory:
 
 ```python
 # content of test_unittest_cleandir.py
@@ -183,7 +183,7 @@ $ pytest -q test_unittest_cleandir.py
 … gives us one passed test because the `initdir` fixture function was executed ahead of the `test_method`.
 
 ::: tip Note
-`unittest.TestCase` methods cannot directly receive fixture arguments as implementing that is likely to inflict on the ability to run general unittest.TestCase test suites.
+`unittest.TestCase` methods cannot directly receive fixture arguments as implementing that is likely to inflict on the ability to run general `unittest.TestCase` test suites.
 
 The above `usefixtures` and `autouse` examples should help to mix in pytest fixtures into unittest suites.
 
@@ -191,5 +191,5 @@ You can also gradually move away from subclassing from `unittest.TestCase` to pl
 :::
 
 ::: tip Note
-Due to architectural differences between the two frameworks, setup and teardown for `unittest`-based tests is performed during the `call` phase of testing instead of in `pytest’s` standard `setup` and `teardown` stages. This can be important to understand in some situations, particularly when reasoning about errors. For example, if a `unittest`-based suite exhibits errors during setup, `pytest` will report no errors during its `setup` phase and will instead raise the error during `call`.
+Due to architectural differences between the two frameworks, setup and teardown for `unittest`-based tests is performed during the `call` phase of testing instead of in `pytest`’s standard `setup` and `teardown` stages. This can be important to understand in some situations, particularly when reasoning about errors. For example, if a `unittest`-based suite exhibits errors during setup, `pytest` will report no errors during its `setup` phase and will instead raise the error during `call`.
 :::

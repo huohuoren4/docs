@@ -4,7 +4,7 @@ Marks can be used apply meta data to test functions (but not fixtures), which ca
 
 ## pytest.mark.filterwarnings
 
-*Tutorial*: [@pytest.mark.filterwarnings](https://docs.pytest.org/en/latest/how-to/capture-warnings.html#filterwarnings)
+*Tutorial*: [@pytest.mark.filterwarnings](/python/pytest/how_to_guides/warning#pytest-mark-filterwarnings)
 
 Add warning filters to marked test items.
 
@@ -24,13 +24,13 @@ Add warning filters to marked test items.
 
 ## pytest.mark.parametrize
 
-*Tutorial*: [How to parametrize fixtures and test functions](https://docs.pytest.org/en/latest/how-to/parametrize.html#parametrize)
+*Tutorial*: [How to parametrize fixtures and test functions](/python/pytest/how_to_guides/params_fixture#how-to-parametrize-fixtures-and-test-functions)
 
-This mark has the same signature as [pytest.Metafunc.parametrize()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Metafunc.parametrize); see there.
+This mark has the same signature as `pytest.Metafunc.parametrize()`; see there.
 
 ## pytest.mark.skip
 
-*Tutorial*: [Skipping test functions](https://docs.pytest.org/en/latest/how-to/skipping.html#skip)
+*Tutorial*: [Skipping test functions](/python/pytest/how_to_guides/skip_xfail#skipping-test-functions)
 
 Unconditionally skip a test function.
 
@@ -42,7 +42,7 @@ Unconditionally skip a test function.
 
 ## pytest.mark.skipif
 
-*Tutorial*: [Skipping test functions](https://docs.pytest.org/en/latest/how-to/skipping.html#skipif)
+*Tutorial*: [Skipping test functions](/python/pytest/how_to_guides/skip_xfail#skipping-test-functions)
 
 Skip a test function if a condition is `True`.
 
@@ -50,13 +50,13 @@ Skip a test function if a condition is `True`.
 
     *Parameters*:
 
-    - `condition (bool or str)` – `True/False` if the condition should be skipped or a [condition string](https://docs.pytest.org/en/latest/historical-notes.html#string-conditions).
+    - `condition (bool or str)` – `True/False` if the condition should be skipped or a [condition string](/python/pytest/further_topics/historical_note#conditions-as-strings-instead-of-booleans).
 
     - `reason (str)` – Reason why the test function is being skipped.
 
 ## pytest.mark.usefixtures
 
-*Tutorial*: [Use fixtures in classes and modules with usefixtures](https://docs.pytest.org/en/latest/how-to/fixtures.html#usefixtures)
+*Tutorial*: [Use fixtures in classes and modules with usefixtures](/python/pytest/how_to_guides/fixture#use-fixtures-in-classes-and-modules-with-usefixtures)
 
 Mark a test function as using the given fixture names.
 
@@ -74,7 +74,7 @@ Also note that this mark has no effect when applied to fixtures.
 
 ## pytest.mark.xfail
 
-*Tutorial*: [XFail: mark test functions as expected to fail](https://docs.pytest.org/en/latest/how-to/skipping.html#xfail)
+*Tutorial*: [XFail: mark test functions as expected to fail](/python/pytest/how_to_guides/skip_xfail#xfail-mark-test-functions-as-expected-to-fail)
 
 Marks a test function as expected to fail.
 
@@ -82,9 +82,9 @@ Marks a test function as expected to fail.
 
     *Parameters*:
 
-    - `condition (bool or str)` – Condition for marking the test function as xfail (`True/False` or a condition string). If a bool, you also have to specify `reason` (see condition string).
+    - `condition (bool or str)` – Condition for marking the test function as xfail (`True/False` or a [condition string](/python/pytest/further_topics/historical_note#conditions-as-strings-instead-of-booleans)). If a bool, you also have to specify `reason` (see [condition string](/python/pytest/further_topics/historical_note#conditions-as-strings-instead-of-booleans)).
 
-    - `reason (str)` – Reason why the test function is marked as xfail.
+    - `reason (str)` – Reason why the test function is marked as `xfail`.
 
     - `raises (Type[Exception])` – Exception subclass (or tuple of subclasses) expected to be raised by the test function; other exceptions will fail the test.
 
@@ -108,7 +108,7 @@ def test_function():
     ...
 ```
 
-Will create and attach a [Mark](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Mark) object to the collected [Item](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Item), which can then be accessed by fixtures or hooks with [Node.iter_markers](https://docs.pytest.org/en/latest/reference/reference.html#pytest.nodes.Node.iter_markers). The `mark` object will have the following attributes:
+Will create and attach a `Mark` object to the collected `Item`, which can then be accessed by fixtures or hooks with `Node.iter_markers`. The `mark` object will have the following attributes:
 
 ```python
 mark.args == (10, "slow")
@@ -124,4 +124,4 @@ def test_function():
     ...
 ```
 
-When [Node.iter_markers](https://docs.pytest.org/en/latest/reference/reference.html#pytest.nodes.Node.iter_markers) or [Node.iter_markers_with_node](https://docs.pytest.org/en/latest/reference/reference.html#pytest.nodes.Node.iter_markers_with_node) is used with multiple markers, the marker closest to the function will be iterated over first. The above example will result in `@pytest.mark.slow` followed by `@pytest.mark.timeout(...)`.
+When `Node.iter_markers` or `Node.iter_markers_with_node` is used with multiple markers, the marker closest to the function will be iterated over first. The above example will result in `@pytest.mark.slow` followed by `@pytest.mark.timeout(...)`.

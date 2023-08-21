@@ -2,7 +2,7 @@
 
 Here is a list of builtin configuration options that may be written in a `pytest.ini` (or `.pytest.ini`), `pyproject.toml`, `tox.ini`, or `setup.cfg` file, usually located at the root of your repository.
 
-To see each file format in details, see [Configuration file formats](https://docs.pytest.org/en/latest/reference/customize.html#config-file-formats).
+To see each file format in details, see [Configuration file formats](/python/pytest/reference_guides/configuration#configuration-file-formats).
 
 ::: tip Warning
 Usage of `setup.cfg` is not recommended except for very simple use cases. `.cfg` files use a different parser than `pytest.ini` and `tox.ini` which might cause hard to track down problems. When possible, it is recommended to use the latter files, or `pyproject.toml`, to hold your pytest configuration.
@@ -34,7 +34,7 @@ Default is to add no options.
 
 ## cache_dir
 
-Sets a directory where stores content of cache plugin. Default directory is `.pytest_cache` which is created in [rootdir](https://docs.pytest.org/en/latest/reference/customize.html#rootdir). Directory may be relative or absolute path. If setting relative path, then directory is created relative to rootdir. Additionally path may contain environment variables, that will be expanded. For more information about cache plugin please refer to How to [re-run failed tests and maintain state between test runs](https://docs.pytest.org/en/latest/how-to/cache.html#cache-provider).
+Sets a directory where stores content of cache plugin. Default directory is `.pytest_cache` which is created in `rootdir`. Directory may be relative or absolute path. If setting relative path, then directory is created relative to rootdir. Additionally path may contain environment variables, that will be expanded. For more information about cache plugin please refer to [How to re-run failed tests and maintain state between test runs](/python/pytest/how_to_guides/re_run#how-to-re-run-failed-tests-and-maintain-state-between-test-runs).
 
 ## console_output_style
 
@@ -58,11 +58,11 @@ console_output_style = classic
 
 ## doctest_encoding
 
-Default encoding to use to decode text files with docstrings. [See how pytest handles doctests](https://docs.pytest.org/en/latest/how-to/doctest.html#doctest).
+Default encoding to use to decode text files with docstrings. See [how pytest handles doctests](/python/pytest/how_to_guides/doctest#how-to-run-doctests).
 
 ## doctest_optionflags
 
-One or more doctest flag names from the standard `doctest` module. [See how pytest handles doctests](https://docs.pytest.org/en/latest/how-to/doctest.html#doctest).
+One or more doctest flag names from the standard `doctest` module. See [how pytest handles doctests](/python/pytest/how_to_guides/doctest#how-to-run-doctests).
 
 ## empty_parameter_set_mark
 
@@ -86,7 +86,7 @@ The default value of this option is planned to change to `xfail` in future relea
 
 ## faulthandler_timeout
 
-Dumps the tracebacks of all threads if a test takes longer than X seconds to run (including fixture setup and teardown). Implemented using the [faulthandler.dump_traceback_later() ](https://docs.python.org/3/library/faulthandler.html#faulthandler.dump_traceback_later)function, so all caveats there apply.
+Dumps the tracebacks of all threads if a test takes longer than X seconds to run (including fixture setup and teardown). Implemented using the `faulthandler.dump_traceback_later()` function, so all caveats there apply.
 
 ```ini
 # content of pytest.ini
@@ -108,7 +108,7 @@ filterwarnings =
     ignore::DeprecationWarning
 ```
 
-This tells pytest to ignore deprecation warnings and turn all other warnings into errors. For more information please refer to [How to capture warnings](https://docs.pytest.org/en/latest/how-to/capture-warnings.html#warnings).
+This tells pytest to ignore deprecation warnings and turn all other warnings into errors. For more information please refer to [How to capture warnings](/python/pytest/how_to_guides/warning#how-to-capture-warnings).
 
 ## junit_duration_report
 
@@ -210,7 +210,7 @@ Supports passing kwarg `extra={"auto_indent": [value]}` to calls to `logging.log
 
 ## log_cli
 
-Enable log display during test run (also known as [“live logging”](https://docs.pytest.org/en/latest/how-to/logging.html#live-logs)). The default is `False`.
+Enable log display during test run (also known as [“live logging”](/python/pytest/how_to_guides/logging#live-logs)). The default is `False`.
 
 ```ini
 [pytest]
@@ -226,7 +226,7 @@ Sets a `time.strftime()`-compatible string that will be used when formatting dat
 log_cli_date_format = %Y-%m-%d %H:%M:%S
 ```
 
-For more information, see [Live Logs](https://docs.pytest.org/en/latest/how-to/logging.html#live-logs).
+For more information, see [Live Logs](/python/pytest/how_to_guides/logging#live-logs).
 
 ## log_cli_format
 
@@ -237,7 +237,7 @@ Sets a `logging`-compatible string used to format live logging messages.
 log_cli_format = %(asctime)s %(levelname)s %(message)s
 ```
 
-For more information, see [Live Logs](https://docs.pytest.org/en/latest/how-to/logging.html#live-logs).
+For more information, see [Live Logs](/python/pytest/how_to_guides/logging#live-logs).
 
 ## log_cli_level
 
@@ -248,7 +248,7 @@ Sets the minimum log message level that should be captured for live logging. The
 log_cli_level = INFO
 ```
 
-For more information, see [Live Logs](https://docs.pytest.org/en/latest/how-to/logging.html#live-logs).
+For more information, see [Live Logs](/python/pytest/how_to_guides/logging#live-logs).
 
 ## log_date_format
 
@@ -259,7 +259,7 @@ Sets a `time.strftime()`-compatible string that will be used when formatting dat
 log_date_format = %Y-%m-%d %H:%M:%S
 ```
 
-For more information, see [How to manage logging](https://docs.pytest.org/en/latest/how-to/logging.html#logging).
+For more information, see [How to manage logging](/python/pytest/how_to_guides/logging#how-to-manage-logging).
 
 ## log_file
 
@@ -270,7 +270,7 @@ Sets a file name relative to the current working directory where log messages sh
 log_file = logs/pytest-logs.txt
 ```
 
-For more information, see [How to manage logging](https://docs.pytest.org/en/latest/how-to/logging.html#logging).
+For more information, see [How to manage logging](/python/pytest/how_to_guides/logging#how-to-manage-logging).
 
 ## log_file_date_format
 
@@ -281,7 +281,7 @@ Sets a `time.strftime()`-compatible string that will be used when formatting dat
 log_file_date_format = %Y-%m-%d %H:%M:%S
 ```
 
-For more information, see [How to manage logging](https://docs.pytest.org/en/latest/how-to/logging.html#logging).
+For more information, see [How to manage logging](/python/pytest/how_to_guides/logging#how-to-manage-logging).
 
 ## log_file_format
 
@@ -292,7 +292,7 @@ Sets a `logging`-compatible string used to format logging messages redirected to
 log_file_format = %(asctime)s %(levelname)s %(message)s
 ```
 
-For more information, see [How to manage logging](https://docs.pytest.org/en/latest/how-to/logging.html#logging).
+For more information, see [How to manage logging](/python/pytest/how_to_guides/logging#how-to-manage-logging).
 
 ## log_file_level
 
@@ -303,7 +303,7 @@ Sets the minimum log message level that should be captured for the logging file.
 log_file_level = INFO
 ```
 
-For more information, see [How to manage logging](https://docs.pytest.org/en/latest/how-to/logging.html#logging).
+For more information, see [How to manage logging](/python/pytest/how_to_guides/logging#how-to-manage-logging).
 
 ## log_format
 
@@ -314,7 +314,7 @@ Sets a `logging`-compatible string used to format captured logging messages.
 log_format = %(asctime)s %(levelname)s %(message)s
 ```
 
-For more information, see [How to manage logging](https://docs.pytest.org/en/latest/how-to/logging.html#logging).
+For more information, see [How to manage logging](/python/pytest/how_to_guides/logging#how-to-manage-logging).
 
 ## log_level
 
@@ -325,7 +325,7 @@ Sets the minimum log message level that should be captured for logging capture. 
 log_level = INFO
 ```
 
-For more information, see [How to manage logging](https://docs.pytest.org/en/latest/how-to/logging.html#logging).
+For more information, see [How to manage logging](/python/pytest/how_to_guides/logging#how-to-manage-logging).
 
 ## markers
 
@@ -386,7 +386,7 @@ One or more name prefixes or glob-style patterns determining which classes are c
 python_classes = *Suite
 ```
 
-Note that `unittest.TestCase` derived classes are always collected regardless of this option, as `unittest’s` own collection framework is used to collect those tests.
+Note that `unittest.TestCase` derived classes are always collected regardless of this option, as `unittest`’s own collection framework is used to collect those tests.
 
 ## python_files
 
@@ -418,13 +418,13 @@ One or more name prefixes or glob-patterns determining which test functions and 
 python_functions = *_test
 ```
 
-Note that this has no effect on methods that live on a `unittest.TestCase` derived class, as `unittest’s` own collection framework is used to collect those tests.
+Note that this has no effect on methods that live on a `unittest.TestCase` derived class, as `unittest`’s own collection framework is used to collect those tests.
 
-See [Changing naming conventions](https://docs.pytest.org/en/latest/example/pythoncollection.html#change-naming-conventions) for more detailed examples.
+See [Changing naming conventions](/python/pytest/further_topics/example_trick/test_discovery#changing-naming-conventions) for more detailed examples.
 
 ## pythonpath
 
-Sets list of directories that should be added to the python search path. Directories will be added to the head of [sys.path](https://docs.python.org/3/library/sys.html#sys.path). Similar to the [PYTHONPATH](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH) environment variable, the directories will be included in where Python will look for imported modules. Paths are relative to the [rootdir](https://docs.pytest.org/en/latest/reference/customize.html#rootdir) directory. Directories remain in path for the duration of the test session.
+Sets list of directories that should be added to the python search path. Directories will be added to the head of `sys.path`. Similar to the `PYTHONPATH` environment variable, the directories will be included in where Python will look for imported modules. Paths are relative to the `rootdir` directory. Directories remain in path for the duration of the test session.
 
 ```ini
 [pytest]
@@ -432,7 +432,7 @@ pythonpath = src1 src2
 ```
 
 ::: tip Note
-pythonpath does not affect some imports that happen very early, most notably plugins loaded using the -p command line option.
+`pythonpath` does not affect some imports that happen very early, most notably plugins loaded using the `-p` command line option.
 :::
 
 ## required_plugins
@@ -446,7 +446,7 @@ required_plugins = pytest-django>=3.0.0,<4.0.0 pytest-html pytest-xdist>=1.0.0
 
 ## testpaths
 
-Sets list of directories that should be searched for tests when no specific directories, files or test ids are given in the command line when executing pytest from the rootdir directory. File system paths may use shell-style wildcards, including the recursive `` pattern.
+Sets list of directories that should be searched for tests when no specific directories, files or test ids are given in the command line when executing pytest from the rootdir directory. File system paths may use shell-style wildcards, including the recursive `**` pattern.
 
 Useful when all project tests are in a known location to speed up test collection and to avoid picking up undesired tests by accident.
 
@@ -507,7 +507,7 @@ usefixtures =
 
 ## xfail_strict
 
-If set to `True`, tests marked with `@pytest.mark.xfail` that actually succeed will by default fail the test suite. For more information, see [strict parameter](https://docs.pytest.org/en/latest/how-to/skipping.html#xfail-strict-tutorial).
+If set to `True`, tests marked with `@pytest.mark.xfail` that actually succeed will by default fail the test suite. For more information, see [strict parameter](/python/pytest/how_to_guides/skip_xfail#strict-parameter).
 
 ```ini
 [pytest]

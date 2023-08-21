@@ -20,7 +20,7 @@
     True
     ```
 
-    However, comparisons like this are tedious to write and difficult to understand. Furthermore, absolute comparisons like the one above are usually discouraged because there’s no tolerance that works well for all situations. `1e-6` is good for numbers around 1, but too small for very big numbers and too big for very small ones. It’s better to express the tolerance as a fraction of the expected value, but relative comparisons like that are even more difficult to write correctly and concisely.
+    However, comparisons like this are tedious to write and difficult to understand. Furthermore, absolute comparisons like the one above are usually discouraged because there’s no tolerance that works well for all situations. `1e-6` is good for numbers around `1`, but too small for very big numbers and too big for very small ones. It’s better to express the tolerance as a fraction of the expected value, but relative comparisons like that are even more difficult to write correctly and concisely.
 
     The `approx` class performs floating-point comparisons using a syntax that’s as intuitive as possible:
 
@@ -104,7 +104,7 @@
 
     - `math.isclose(a, b, rel_tol=1e-9, abs_tol=0.0)`: True if the relative tolerance is met w.r.t. either a or b or if the absolute tolerance is met. Because the relative tolerance is calculated w.r.t. both a and b, this test is symmetric (i.e. neither a nor b is a “reference value”). You have to specify an absolute tolerance if you want to compare to `0.0` because there is no tolerance by default. More information: `math.isclose()`.
 
-    - `numpy.isclose(a, b, rtol=1e-5, atol=1e-8)`: True if the difference between a and b is less that the sum of the relative tolerance w.r.t. b and the absolute tolerance. Because the relative tolerance is only calculated w.r.t. b, this test is asymmetric and you can think of b as the reference value. Support for comparing sequences is provided by `numpy.allclose()`. More information: numpy.isclose.
+    - `numpy.isclose(a, b, rtol=1e-5, atol=1e-8)`: True if the difference between a and b is less that the sum of the relative tolerance w.r.t. b and the absolute tolerance. Because the relative tolerance is only calculated w.r.t. b, this test is asymmetric and you can think of b as the reference value. Support for comparing sequences is provided by `numpy.allclose()`. More information: `numpy.isclose`.
 
     - `unittest.TestCase.assertAlmostEqual(a, b)`: True if a and b are within an absolute tolerance of `1e-7`. No relative tolerance is considered , so this function is not appropriate for very large or very small numbers. Also, it’s only available in subclasses of `unittest.TestCase` and it’s ugly because it doesn’t follow PEP8. More information: `unittest.TestCase.assertAlmostEqual()`.
 
@@ -135,7 +135,7 @@
 
 ## pytest.fail
 
-*Tutorial*: [How to use skip and xfail to deal with tests that cannot succeed](https://docs.pytest.org/en/latest/how-to/skipping.html#skipping)
+*Tutorial*: [How to use skip and xfail to deal with tests that cannot succeed](/python/pytest/how_to_guides/skip_xfail#how-to-use-skip-and-xfail-to-deal-with-tests-that-cannot-succeed)
 
 - **fail**(`reason[, pytrace=True, msg=None]`)    
 
@@ -147,7 +147,7 @@
 
     - `pytrace (bool)` – If False, msg represents the full failure information and no python traceback will be reported.
 
-    - `python (Optional[str])` – Same as reason, but deprecated. Will be removed in a future version, use reason instead.
+    - `python (Optional[str])` – Same as `reason`, but deprecated. Will be removed in a future version, use `reason` instead.
 
 ## pytest.skip
 
@@ -243,7 +243,7 @@
 
 - **param**(`*values[, id][, marks]`)     
 
-    Specify a parameter in `pytest.mark.parametrize` calls or [parametrized fixtures](https://docs.pytest.org/en/latest/how-to/fixtures.html#fixture-parametrize-marks).
+    Specify a parameter in `pytest.mark.parametrize` calls or [parametrized fixtures](/python/pytest/how_to_guides/fixture#using-marks-with-parametrized-fixtures).
 
     ```python
     @pytest.mark.parametrize(
@@ -269,9 +269,9 @@
 
 *Tutorial*: [Assertions about expected exceptions](https://docs.pytest.org/en/latest/how-to/assert.html#assertraises)
 
-- with **raises**(`expected_exception: Union[Type[E], Tuple[Type[E], ...]], *, match: Optional[Union[str, Pattern[str]]] = ...`) → `RaisesContext[E] as excinfo`      
+- `with` **raises**(`expected_exception: Union[Type[E], Tuple[Type[E], ...]], *, match: Optional[Union[str, Pattern[str]]] = ...`) → `RaisesContext[E] as excinfo`      
 
-- with **raises**(`expected_exception: Union[Type[E], Tuple[Type[E], ...]], func: Callable[[...], Any], *args: Any, **kwargs: Any`) → `ExceptionInfo[E] as excinfo`
+- `with` **raises**(`expected_exception: Union[Type[E], Tuple[Type[E], ...]], func: Callable[[...], Any], *args: Any, **kwargs: Any`) → `ExceptionInfo[E] as excinfo`
 
     Assert that a code block/function call raises an exception.
 
@@ -279,9 +279,9 @@
 
     - `expected_exception (Type[E] | Tuple[Type[E], ...])` – The expected exception type, or a tuple if one of multiple possible exception types are expected.
 
-    - `match (str | Pattern[str] | None)` – If specified, a string containing a regular expression, or a regular expression object, that is tested against the string representation of the exception ande its `PEP-678 <https://peps.python.org/pep-0678/> __notes__`  using [re.search()](https://docs.python.org/3/library/re.html#re.search). 
+    - `match (str | Pattern[str] | None)` – If specified, a string containing a regular expression, or a regular expression object, that is tested against the string representation of the exception ande its `PEP-678 <https://peps.python.org/pep-0678/> __notes__`  using `re.search()`. 
 
-    To match a literal string that may contain [special characters](https://docs.python.org/3/library/re.html#re-syntax), the pattern can first be escaped with [re.escape()](https://docs.python.org/3/library/re.html#re.escape). (This is only used when [pytest.raises()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.raises) is used as a context manager, and passed through to the function otherwise. When using [pytest.raises()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.raises) as a function, you can use: `pytest.raises(Exc, func, match="passed on").match("my pattern").)`
+    To match a literal string that may contain [special characters](https://docs.python.org/3/library/re.html#re-syntax), the pattern can first be escaped with `re.escape()`. (This is only used when `pytest.raises()` is used as a context manager, and passed through to the function otherwise. When using `pytest.raises()` as a function, you can use: `pytest.raises(Exc, func, match="passed on").match("my pattern").)`
 
     Use `pytest.raises` as a context manager, which will capture the exception of the given type:
 
@@ -312,7 +312,7 @@
     ···     raise e
     ```
 
-    The context manager produces an **ExceptionInfo** object which can be used to inspect the details of the captured exception:
+    The context manager produces an `ExceptionInfo` object which can be used to inspect the details of the captured exception:
 
     ```shell
     >>> with pytest.raises(ValueError) as exc_info:
@@ -344,9 +344,9 @@
 
     Using with `pytest.mark.parametrize`
 
-    When using [pytest.mark.parametrize](https://docs.pytest.org/en/latest/reference/reference.html#pytest-mark-parametrize-ref) it is possible to parametrize tests such that some runs raise an exception and others do not.
+    When using `pytest.mark.parametrize` it is possible to parametrize tests such that some runs raise an exception and others do not.
 
-    See [Parametrizing conditional raising](https://docs.pytest.org/en/latest/example/parametrize.html#parametrizing-conditional-raising) for an example.
+    See [Parametrizing conditional raising](/python/pytest/further_topics/example_trick/parametrize#parametrizing-conditional-raising) for an example.
 
     *Legacy form*
 
@@ -378,11 +378,11 @@
 
 ## pytest.deprecated_call
 
-*Tutorial*: [Ensuring code triggers a deprecation warning](https://docs.pytest.org/en/latest/how-to/capture-warnings.html#ensuring-function-triggers)
+*Tutorial*: [Ensuring code triggers a deprecation warning](/python/pytest/how_to_guides/warning#ensuring-code-triggers-a-deprecation-warning)
 
-- with **deprecated_call**(`*, match: Optional[Union[str, Pattern[str]]] = ...`) → `WarningsRecorder`    
+- `with` **deprecated_call**(`*, match: Optional[Union[str, Pattern[str]]] = ...`) → `WarningsRecorder`    
 
-- with **deprecated_call**(`func: Callable[[...], T], *args: Any, **kwargs: Any`) → `T`
+- `with` **deprecated_call**(`func: Callable[[...], T], *args: Any, **kwargs: Any`) → `T`
 
     Assert that code produces a `DeprecationWarning` or `PendingDeprecationWarning`.
 
@@ -403,11 +403,11 @@
 
     In the context manager form you may use the keyword argument `match` to assert that the warning matches a text or regex.
 
-    The context manager produces a list of warnings.WarningMessage objects, one for each warning raised.
+    The context manager produces a list of `warnings.WarningMessage` objects, one for each warning raised.
 
 ## pytest.register_assert_rewrite
 
-*Tutorial*: [Assertion Rewriting](https://docs.pytest.org/en/latest/how-to/writing_plugins.html#assertion-rewriting)
+*Tutorial*: [Assertion Rewriting](/python/pytest/how_to_guides/write_plugin#assertion-rewriting)
 
 - **register_assert_rewrite**(`*names`)     
 
@@ -421,17 +421,17 @@
 
 ## pytest.warns
 
-*Tutorial*: Asserting warnings with the warns function
+*Tutorial*: [Asserting warnings with the warns function](/python/pytest/how_to_guides/warning#asserting-warnings-with-the-warns-function)
 
-- with **warns**(`expected_warning: ~typing.Union[~typing.Type[Warning], ~typing.Tuple[~typing.Type[Warning], ...]] = <class Warning>, *, match: ~typing.Optional[~typing.Union[str, ~typing.Pattern[str]]] = None`) → `WarningsChecker`      
+- `with` **warns**(`expected_warning: ~typing.Union[~typing.Type[Warning], ~typing.Tuple[~typing.Type[Warning], ...]] = <class Warning>, *, match: ~typing.Optional[~typing.Union[str, ~typing.Pattern[str]]] = None`) → `WarningsChecker`      
 
-- with **warns**(`expected_warning: Union[Type[Warning], Tuple[Type[Warning], ...]], func: Callable[[...], T], *args: Any, **kwargs: Any`) → `T`
+- `with` **warns**(`expected_warning: Union[Type[Warning], Tuple[Type[Warning], ...]], func: Callable[[...], T], *args: Any, **kwargs: Any`) → `T`
 
     Assert that code raises a particular class of warning.
 
     Specifically, the parameter `expected_warning` can be a warning class or sequence of warning classes, and the code inside the `with` block must issue at least one warning of that class or classes.
 
-    This helper produces a list of **warnings.WarningMessage** objects, one for each warning emitted (regardless of whether it is an `expected_warning` or not). Since pytest 8.0, unmatched warnings are also re-emitted when the context closes.
+    This helper produces a list of `warnings.WarningMessage` objects, one for each warning emitted (regardless of whether it is an `expected_warning` or not). Since pytest 8.0, unmatched warnings are also re-emitted when the context closes.
 
     This function can be used as a context manager:
 
@@ -441,7 +441,7 @@
     ···     warnings.warn("my warning", RuntimeWarning)
     ```
 
-    In the context manager form you may use the keyword argument match to assert that the warning matches a text or regex:
+    In the context manager form you may use the keyword argument `match` to assert that the warning matches a text or regex:
 
     ```shell
     >>> with pytest.warns(UserWarning, match='must be 0 or None'):
@@ -460,14 +460,14 @@
 
     Using with `pytest.mark.parametrize`
 
-    When using [pytest.mark.parametrize](https://docs.pytest.org/en/latest/reference/reference.html#pytest-mark-parametrize-ref) it is possible to parametrize tests such that some runs raise a warning and others do not.
+    When using `pytest.mark.parametrize` it is possible to parametrize tests such that some runs raise a warning and others do not.
 
-    This could be achieved in the same way as with exceptions, see [Parametrizing conditional raising](https://docs.pytest.org/en/latest/example/parametrize.html#parametrizing-conditional-raising) for an example.
+    This could be achieved in the same way as with exceptions, see [Parametrizing conditional raising](/python/pytest/further_topics/example_trick/parametrize#parametrizing-conditional-raising) for an example.
 
 ## pytest.freeze_includes
 
-*Tutorial*: [Freezing pytest](https://docs.pytest.org/en/latest/example/simple.html#freezing-pytest)
+*Tutorial*: [Freezing pytest](/python/pytest/further_topics/example_trick/basic_pattern#freezing-pytest)
 
 - **freeze_includes**()   
 
-   Return a list of module names used by pytest that should be included by cx_freeze.
+   Return a list of module names used by pytest that should be included by `cx_freeze`.

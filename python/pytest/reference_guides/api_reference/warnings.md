@@ -2,98 +2,98 @@
 
 Custom warnings generated in some situations such as improper usage or deprecated features.
 
-## class PytestWarning
+## `class` PytestWarning
 
-- *Bases*: `UserWarning`
+*Bases*: `UserWarning`
 
 Base class for all warnings emitted by pytest.
 
-## class PytestAssertRewriteWarning
+## `class` PytestAssertRewriteWarning
 
-- *Bases*: `PytestWarning`
+*Bases*: `PytestWarning`
 
 Warning emitted by the pytest assert rewrite module.
 
-## class PytestCacheWarning
+## `class` PytestCacheWarning
 
-- *Bases*: `PytestWarning`
+*Bases*: `PytestWarning`
 
 Warning emitted by the cache plugin in various situations.
 
-## class PytestCollectionWarning
+## `class` PytestCollectionWarning
 
-- *Bases*: `PytestWarning`
+*Bases*: `PytestWarning`
 
 Warning emitted when pytest is not able to collect a file or symbol in a module.
 
-## class PytestConfigWarning
+## `class` PytestConfigWarning
 
-- *Bases*: `PytestWarning`
+*Bases*: `PytestWarning`
 
 Warning emitted for configuration issues.
 
-## class PytestDeprecationWarning
+## `class` PytestDeprecationWarning
 
-- *Bases*: `PytestWarning`, `DeprecationWarning`
+*Bases*: `PytestWarning`, `DeprecationWarning`
 
 Warning class for features that will be removed in a future version.
 
-## class PytestExperimentalApiWarning
+## `class` PytestExperimentalApiWarning
 
-- *Bases*: `PytestWarning`, `FutureWarning`
+*Bases*: `PytestWarning`, `FutureWarning`
 
 Warning category used to denote experiments in pytest.
 
 Use sparingly as the API might change or even be removed completely in a future version.
 
-## class PytestReturnNotNoneWarning
+## `class` PytestReturnNotNoneWarning
 
-- *Bases*: `PytestRemovedIn8Warning`
+*Bases*: `PytestRemovedIn8Warning`
 
 Warning emitted when a test function is returning value other than None.
 
-## class PytestRemovedIn8Warning
+## `class` PytestRemovedIn8Warning
 
-- *Bases*: `PytestDeprecationWarning`
+*Bases*: `PytestDeprecationWarning`
 
 Warning class for features that will be removed in pytest 8.
 
-## class PytestRemovedIn9Warning
+## `class` PytestRemovedIn9Warning
 
-- *Bases*: `PytestDeprecationWarning`
+*Bases*: `PytestDeprecationWarning`
  
 Warning class for features that will be removed in pytest 9.
 
-## class PytestUnhandledCoroutineWarning
+## `class` PytestUnhandledCoroutineWarning
 
-- *Bases*: `PytestReturnNotNoneWarning`
+*Bases*: `PytestReturnNotNoneWarning`
 
 Warning emitted for an unhandled coroutine.
 
-A coroutine was encountered when collecting test functions, but was not handled by any async-aware ## plugin. Coroutine test functions are not natively supported.
+A coroutine was encountered when collecting test functions, but was not handled by any async-aware plugin. Coroutine test functions are not natively supported.
 
-## class PytestUnknownMarkWarning
+## `class` PytestUnknownMarkWarning
 
-- *Bases*: `PytestWarning`
+*Bases*: `PytestWarning`
 
 Warning emitted on use of unknown markers.
  
-See How to mark test functions with attributes for details.
+See [How to mark test functions with attributes](/python/pytest/how_to_guides/mark#how-to-mark-test-functions-with-attributes) for details.
 
-## class PytestUnraisableExceptionWarning
+## `class` PytestUnraisableExceptionWarning
 
-- *Bases*: `PytestWarning`
+*Bases*: `PytestWarning`
 
 An unraisable exception was reported.
 
 Unraisable exceptions are exceptions raised in `__del__` implementations and similar situations when the exception cannot be raised as normal.
 
-## class PytestUnhandledThreadExceptionWarning
+## `class` PytestUnhandledThreadExceptionWarning
 
-- *Bases*: `PytestWarning`
+*Bases*: `PytestWarning`
 
 An unhandled exception occurred in a Thread.
 
 Such exceptions don’t propagate normally.
 
-Consult the [Internal pytest warnings](https://docs.pytest.org/en/latest/how-to/capture-warnings.html#internal-warnings) section in the documentation for more information.
+Consult the [Internal pytest warnings](/python/pytest/how_to_guides/warning#internal-pytest-warnings) section in the documentation for more information.

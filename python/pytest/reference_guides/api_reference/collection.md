@@ -4,7 +4,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
 ## Node
 
-- class **Node**      
+- `class` **Node**      
 
     Base class of `Collector` and `Item`, the components of the test collection tree.
 
@@ -12,7 +12,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **fspath**: `LocalPath`
 
-        A `LEGACY_PATH` copy of the path attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.nodes.Node.path) instead.
+        A `LEGACY_PATH` copy of the path attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using `path` instead.
 
     - **name**: `str`
 
@@ -50,7 +50,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         A place where plugins can store information on the node for their own use.
 
-    - classmethod **from_parent**(`parent, **kw`)     
+    - `classmethod` **from_parent**(`parent, **kw`)     
 
         Public constructor for Nodes.
 
@@ -62,7 +62,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         - `parent (Node)` – The parent node of this Node.
 
-    - property **ihook**
+    - `property` **ihook**
 
         - fspath-sensitive hook proxy used to call pytest hooks.
 
@@ -87,9 +87,9 @@ These are the collector and item classes (collectively called “nodes”) which
         node.warn(UserWarning("some message"))
         ```
 
-        *Changed in version 6.2*: Any subclass of [Warning](https://docs.python.org/3/library/exceptions.html#Warning) is now accepted, rather than only [PytestWarning](https://docs.pytest.org/en/latest/reference/reference.html#pytest.PytestWarning) subclasses.
+        *Changed in version 6.2*: Any subclass of `Warning` is now accepted, rather than only `PytestWarning` subclasses.
 
-    - property **nodeid**: `str`
+    - `property` **nodeid**: `str`
 
        ` A ::`-separated string denoting its collection tree address.
 
@@ -117,13 +117,13 @@ These are the collector and item classes (collectively called “nodes”) which
 
         *Parameters*:
 
-        - name (Optional[str]) – If given, filter the results by the name attribute.
+        - `name (Optional[str])` – If given, filter the results by the name attribute.
 
         *Returns*: An iterator of the markers of the node.
 
         *Return type*: `Iterator[Mark]`
 
-    - for ... in **iter_markers_with_node**(`name=None`)        
+    - `for ... in` **iter_markers_with_node**(`name=None`)        
 
         Iterate over all markers of the node.
 
@@ -155,7 +155,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         Register a function to be called without arguments when this node is finalized.
 
-        This method can only be called when this node is active in a setup chain, for example during self.setup().
+        This method can only be called when this node is active in a setup chain, for example during `self.setup()`.
 
     - **getparent**(`cls`)        
 
@@ -174,16 +174,16 @@ These are the collector and item classes (collectively called “nodes”) which
         Return a representation of a collection or test failure.
 
         ::: tip See also
-        [Working with non-python tests](https://docs.pytest.org/en/latest/example/nonpython.html#non-python-tests)
+        [Working with non-python tests](/python/pytest/further_topics/example_trick/work#working-with-non-python-tests)
         :::
 
         *Parameters*:
 
-        - excinfo (ExceptionInfo[BaseException]) – Exception information for the failure.
+        - `excinfo (ExceptionInfo[BaseException])` – Exception information for the failure.
 
 ## Collector
 
-- class **Collector**     
+- `class` **Collector**     
 
     - *Bases*: `Node`
 
@@ -191,9 +191,9 @@ These are the collector and item classes (collectively called “nodes”) which
 
     `Collector` create children through `collect()` and thus iteratively build the collection tree.
 
-    - exception **CollectError**      
+    - `exception` **CollectError**      
 
-        Bases: [Exception](https://docs.python.org/3/library/exceptions.html#Exception)
+        Bases: `Exception`
 
         An error during collection, contains a custom message.
 
@@ -227,11 +227,11 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **path**: `Path`
 
-        Filesystem path where this node was collected from (can be None).
+        Filesystem path where this node was collected from (can be `None`).
 
     - **fspath**: `LocalPath`
 
-        A `LEGACY_PATH` copy of the [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Collector.path) attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as [Item.reportinfo()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Item.reportinfo). Will be deprecated in a future release, prefer using [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Collector.path) instead.
+        A `LEGACY_PATH` copy of the `path` attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using `path` instead.
 
     - **keywords**: `MutableMapping[str, Any]`
 
@@ -251,7 +251,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
 ## Item
 
-- class **Item**      
+- `class` **Item**      
 
     - *Bases*: `Node`
 
@@ -285,7 +285,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **fspath**: `LocalPath`
 
-        A LEGACY_PATH copy of the path attribute. Intended for usage for methods not migrated to pathlib.Path yet, such as Item.reportinfo(). Will be deprecated in a future release, prefer using path instead.
+        A `LEGACY_PATH` copy of the `path` attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using `path` instead.
 
     - **keywords**: `MutableMapping[str, Any]`
 
@@ -310,7 +310,7 @@ These are the collector and item classes (collectively called “nodes”) which
         Must be implemented by subclasses.
 
         ::: tip See also
-        [Working with non-python tests](https://docs.pytest.org/en/latest/example/nonpython.html#non-python-tests)
+        [Working with non-python tests](/python/pytest/further_topics/example_trick/work#working-with-non-python-tests)
         :::
 
     - **add_report_section**(`when, key, content`)      
@@ -342,22 +342,22 @@ These are the collector and item classes (collectively called “nodes”) which
         - A name of the test to be shown (default `""`)
 
         ::: tip See also
-        [Working with non-python tests](https://docs.pytest.org/en/latest/example/nonpython.html#non-python-tests)
+        [Working with non-python tests](/python/pytest/further_topics/example_trick/work#working-with-non-python-tests)
         ::: 
 
-    - property **location**: `Tuple[str, Optional[int], str]`
+    - `property` **location**: `Tuple[str, Optional[int], str]`
 
         Returns a tuple of `(relfspath, lineno, testname)` for this item where `relfspath` is file path relative to `config.rootpath` and lineno is a 0-based line number.
 
 ## File
 
-- class **File**      
+- `class` **File**      
 
     - *Bases*: `FSCollector`
 
     Base class for collecting tests from a file.
 
-    [Working with non-python tests.](https://docs.pytest.org/en/latest/example/nonpython.html#non-python-tests)
+    [Working with non-python tests](/python/pytest/further_topics/example_trick/work#working-with-non-python-tests)
 
     - **name**: `str`
 
@@ -381,7 +381,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **fspath**: `LocalPath`
 
-        A `LEGACY_PATH` copy of the path attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as [Item.reportinfo()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Item.reportinfo). Will be deprecated in a future release, prefer using [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.File.path) instead.
+        A `LEGACY_PATH` copy of the path attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using `path` instead.
 
     - **keywords**: `MutableMapping[str, Any]`
 
@@ -401,7 +401,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
 ## FSCollector
 
-- class **FSCollector**       
+- `class` **FSCollector**       
 
     - *Bases*: `Collector`
 
@@ -409,9 +409,9 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **path**: `Path`
 
-        Filesystem path where this node was collected from (can be None).
+        Filesystem path where this node was collected from (can be `None`).
 
-    - classmethod **from_parent**(`parent, *, fspath=None, path=None, **kw`)        
+    - `classmethod` **from_parent**(`parent, *, fspath=None, path=None, **kw`)        
 
         The public constructor.
 
@@ -433,7 +433,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **fspath**: `LocalPath`
 
-        A `LEGACY_PATH` copy of the path attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.nodes.FSCollector.path) instead.
+        A `LEGACY_PATH` copy of the path attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using `path` instead.
 
     - **keywords**: `MutableMapping[str, Any]`
 
@@ -453,7 +453,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
 ## Session
 
-- final class `Session`       
+- `final class` `Session`       
 
     - *Bases*: `FSCollector`
 
@@ -461,19 +461,19 @@ These are the collector and item classes (collectively called “nodes”) which
 
     `Session` collects the initial paths given as arguments to pytest.
 
-    - exception **Interrupted**
+    - `exception` **Interrupted**
 
-        - *Bases*: KeyboardInterrupt
+        - *Bases*: `KeyboardInterrupt`
 
         Signals that the test run was interrupted.
 
-    - exception **Failed**
+    - `exception` **Failed**
 
         - *Bases*: `Exception`
 
         Signals a stop as failed test run.
 
-    - property **startpath**: `Path`
+    - `property` **startpath**: `Path`
 
         The path from which pytest was invoked.
 
@@ -485,11 +485,11 @@ These are the collector and item classes (collectively called “nodes”) which
 
         Perform the collection phase for this session.
 
-        This is called by the default [pytest_collection](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_collection) hook implementation; see the documentation of this hook for more details. For testing purposes, it may also be called directly on a fresh `Session`.
+        This is called by the default `pytest_collection` hook implementation; see the documentation of this hook for more details. For testing purposes, it may also be called directly on a fresh `Session`.
 
         This function normally recursively expands any collectors collected from the session to their items, and only items are returned. For testing purposes, this may be suppressed by passing `genitems=False`, in which case the return value contains these collectors unexpanded, and `session.items` is empty.
 
-    - for ... in **collect**()        
+    - `for ... in` **collect**()        
 
         Collect children (items and collectors) for this collector.
 
@@ -511,11 +511,11 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **path**: `Path`
 
-        Filesystem path where this node was collected from (can be None).
+        Filesystem path where this node was collected from (can be `None`).
 
 ## Package
 
-- class **Package**       
+- `class` **Package**       
 
     - *Bases*: `Module`
 
@@ -525,7 +525,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         A unique name within the scope of the parent node.
 
-    - for ... in **collect**()        
+    - `for ... in` **collect**()        
 
         Collect children (items and collectors) for this collector.
 
@@ -547,7 +547,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **fspath**: `LocalPath`
 
-        A `LEGACY_PATH` copy of the [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Package.path) attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as [Item.reportinfo()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Item.reportinfo). Will be deprecated in a future release, prefer using [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Package.path) instead.
+        A `LEGACY_PATH` copy of the `path` attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using `path` instead.
 
     - **keywords**: `MutableMapping[str, Any]`
 
@@ -567,7 +567,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
 ## Module
 
-- class **Module**        
+- `class` **Module**        
 
     - *Bases*: `File`, `PyCollector`
 
@@ -599,7 +599,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **fspath**: `LocalPath`
 
-        A `LEGACY_PATH` copy of the [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Module.path) attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as [Item.reportinfo()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Item.reportinfo). Will be deprecated in a future release, prefer using [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Module.path) instead.
+        A `LEGACY_PATH` copy of the `path` attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using `path` instead.
 
     - **keywords**: `MutableMapping[str, Any]`
 
@@ -619,13 +619,13 @@ These are the collector and item classes (collectively called “nodes”) which
 
 ## Class
 
-- class **Class**     
+- `class` **Class**     
 
     - *Bases*: `PyCollector`
 
     Collector for test methods (and nested classes) in a Python class.
 
-    - classmethod **from_parent**(`parent, *, name, obj=None, **kw`)        
+    - `classmethod` **from_parent**(`parent, *, name, obj=None, **kw`)        
 
         The public constructor.
 
@@ -655,7 +655,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **fspath**: `LocalPath`
 
-        A `LEGACY_PATH` copy of the [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Class.path) attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as [Item.reportinfo()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Item.reportinfo). Will be deprecated in a future release, prefer using [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Class.path) instead.
+        A `LEGACY_PATH` copy of the `path` attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using `path` instead.
 
     - **keywords**: `MutableMapping[str, Any]`
 
@@ -675,7 +675,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
 ## Function
 
-- class **Function**      
+- `class` **Function**      
 
     - *Bases*: `PyobjMixin`, `Item`
 
@@ -707,11 +707,11 @@ These are the collector and item classes (collectively called “nodes”) which
 
         *New in version 3.0.*
 
-    - classmethod **from_parent**(`parent, **kw`)     
+    - `classmethod` **from_parent**(`parent, **kw`)     
 
         The public constructor.
 
-    - property **function**
+    - `property` **function**
 
         Underlying python ‘function’ object.
 
@@ -724,7 +724,7 @@ These are the collector and item classes (collectively called “nodes”) which
         Return a representation of a collection or test failure.
 
         ::: tip See also
-        Working with non-python tests
+        [Working with non-python tests](/python/pytest/further_topics/example_trick/work#working-with-non-python-tests)
         :::
 
         *Parameters*:
@@ -753,7 +753,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **fspath**: `LocalPath`
 
-        A `LEGACY_PATH` copy of the [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Function.path) attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as [Item.reportinfo()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Item.reportinfo). Will be deprecated in a future release, prefer using [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Function.path) instead.
+        A `LEGACY_PATH` copy of the `path` attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using `path` instead.
 
     - **keywords**: `MutableMapping[str, Any]`
 
@@ -777,7 +777,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
 ## FunctionDefinition
 
-- class **FunctionDefinition**        
+- `class` **FunctionDefinition**        
 
     - *Bases*: `Function`
 
@@ -813,7 +813,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
     - **fspath**: `LocalPath`
 
-        A `LEGACY_PATH` copy of the [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.python.FunctionDefinition.path) attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.python.FunctionDefinition.path) instead.
+        A `LEGACY_PATH` copy of the `path` attribute. Intended for usage for methods not migrated to `pathlib.Path` yet, such as `Item.reportinfo()`. Will be deprecated in a future release, prefer using `path` instead.
 
     - **keywords**: `MutableMapping[str, Any]`
 

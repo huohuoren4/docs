@@ -1,6 +1,6 @@
 # Fixtures
 
-*Tutorial*: [Fixtures reference](https://docs.pytest.org/en/latest/reference/fixtures.html#fixture)
+*Tutorial*: [Fixtures reference](/python/pytest/reference_guides/fixture_reference#fixtures-reference)
 
 Fixtures are requested by test functions or other fixtures by declaring them as argument names.
 
@@ -22,7 +22,7 @@ def db_session(tmp_path):
     return connect(fn)
 ```
 
-For more details, consult the full fixtures docs.
+For more details, consult the full [fixtures docs](/python/pytest/reference_guides/fixture_reference#fixtures-reference).
 
 ## @pytest.fixture
 
@@ -42,11 +42,11 @@ For more details, consult the full fixtures docs.
 
     *Parameters*:
 
-    - `scope` – The scope for which this fixture is shared; one of `"function"` (default), `"class"`, `"module"`, `"package"` or `"session"`. This parameter may also be a callable which receives `(fixture_name, config)` as parameters, and must return a str with one of the values mentioned above. See [Dynamic scope ](https://docs.pytest.org/en/latest/how-to/fixtures.html#dynamic-scope)in the docs for more information.
+    - `scope` – The scope for which this fixture is shared; one of `"function"` (default), `"class"`, `"module"`, `"package"` or `"session"`. This parameter may also be a callable which receives `(fixture_name, config)` as parameters, and must return a str with one of the values mentioned above. See [Dynamic scope](/python/pytest/how_to_guides/fixture#dynamic-scope) in the docs for more information.
 
     - `params` – An optional list of parameters which will cause multiple invocations of the fixture function and all of the tests using it. The current parameter is available in `request.param`.
 
-    - `autouse` – If True, the fixture func is activated for all tests that can see it. If False (the default), an explicit reference is needed to activate the fixture.
+    - `autouse` – If `True`, the fixture func is activated for all tests that can see it. If `False` (the default), an explicit reference is needed to activate the fixture.
 
     - `ids` – Sequence of ids each corresponding to the params so that they are part of the test id. If no ids are provided they will be generated automatically from the params.
 
@@ -54,7 +54,7 @@ For more details, consult the full fixtures docs.
 
 ## capfd
 
-*Tutorial*: [How to capture stdout/stderr output](https://docs.pytest.org/en/latest/how-to/capture-stdout-stderr.html#captures)
+*Tutorial*: [How to capture stdout/stderr output](/python/pytest/how_to_guides/output#how-to-capture-stdout-stderr-output)
 
 - ### capfd()   
 
@@ -62,7 +62,7 @@ For more details, consult the full fixtures docs.
 
     The captured output is made available via `capfd.readouterr()` method calls, which return a `(out, err)` namedtuple. `out` and `err` will be `text` objects.
 
-    Returns an instance of [CaptureFixture[str]](https://docs.pytest.org/en/latest/reference/reference.html#pytest.CaptureFixture).
+    Returns an instance of `CaptureFixture[str]`.
 
     *Example*:
 
@@ -75,7 +75,7 @@ For more details, consult the full fixtures docs.
 
 ## capfdbinary
 
-*Tutorial*: [How to capture stdout/stderr output](https://docs.pytest.org/en/latest/how-to/capture-stdout-stderr.html#captures)
+*Tutorial*: [How to capture stdout/stderr output](/python/pytest/how_to_guides/output#how-to-capture-stdout-stderr-output)
 
 - ### capfdbinary()     
 
@@ -83,7 +83,7 @@ For more details, consult the full fixtures docs.
 
     The captured output is made available via `capfd.readouterr()` method calls, which return a `(out, err)` namedtuple. `out` and `err` will be `byte` objects.
 
-    Returns an instance of [CaptureFixture[bytes]](https://docs.pytest.org/en/latest/reference/reference.html#pytest.CaptureFixture).
+    Returns an instance of `CaptureFixture[bytes]`.
 
     *Example*:
 
@@ -96,7 +96,7 @@ For more details, consult the full fixtures docs.
 
 ## caplog
 
-*Tutorial*: [How to manage logging](https://docs.pytest.org/en/latest/how-to/logging.html#logging)
+*Tutorial*: [How to manage logging](/python/pytest/how_to_guides/logging#how-to-manage-logging)
 
 - ### caplog()      
 
@@ -112,13 +112,13 @@ For more details, consult the full fixtures docs.
     * caplog.clear()         -> clear captured records and formatted log output string
     ```
 
-    Returns a [pytest.LogCaptureFixture](https://docs.pytest.org/en/latest/reference/reference.html#pytest.LogCaptureFixture) instance.
+    Returns a `pytest.LogCaptureFixture` instance.
 
-- ### *final class* LogCaptureFixture   
+- ### `final class` LogCaptureFixture   
 
     Provides access and control of log capturing.
 
-    - property **handler**: `LogCaptureHandler`
+    - `property` **handler**: `LogCaptureHandler`
 
         Get the logging handler used by the fixture.
 
@@ -132,25 +132,25 @@ For more details, consult the full fixtures docs.
 
         *Returns*:  The list of captured records at the given stage.
 
-        *Return type*:  `List[LogRecord]`
+        *Return type*: `List[LogRecord]`
 
         *New in version 3.4.*
 
-    - property **text**: str
+    - `property` **text**: `str`
 
         The formatted log text.
 
-    - property **records**: `List[LogRecord]`
+    - `property` **records**: `List[LogRecord]`
 
         The list of log records.
 
-    - property **record_tuples**: `List[Tuple[str, int, str]]`
+    - `property` **record_tuples**: `List[Tuple[str, int, str]]`
 
         A list of a stripped down version of log records intended for use in assertion comparison.
 
         The format of the tuple is: `(logger_name, log_level, message)`
 
-    - property **messages**: `List[str]`
+    - `property` **messages**: `List[str]`
 
         A list of format-interpolated log messages.
 
@@ -158,7 +158,7 @@ For more details, consult the full fixtures docs.
 
         Unlike ‘text’, which contains the output from the handler, log messages in this list are unadorned with levels, timestamps, etc, making exact comparisons more reliable.
 
-        Note that traceback or stack info (from [logging.exception()](https://docs.python.org/3/library/logging.html#logging.exception) or the `exc_info` or `stack_info` arguments to the logging functions) is not included, as this is added by the formatter in the handler.
+        Note that traceback or stack info (from `logging.exception()` or the `exc_info` or `stack_info` arguments to the logging functions) is not included, as this is added by the formatter in the handler.
 
         *New in version 3.7.*
 
@@ -182,11 +182,11 @@ For more details, consult the full fixtures docs.
 
         - `logger (Optional[str])` – The logger to update. If not given, the root logger.
 
-    - with **at_level**(`level, logger=None`)   
+    - `with` **at_level**(`level, logger=None`)   
 
         Context manager that sets the level for capturing of logs. After the end of the ‘with’ statement the level is restored to its original value.
 
-        Will enable the requested logging level if it was disabled via logging.disable().
+        Will enable the requested logging level if it was disabled via `logging.disable()`.
 
         *Parameters*:
 
@@ -196,7 +196,7 @@ For more details, consult the full fixtures docs.
 
 ## capsys
 
-*Tutorial*: [How to capture stdout/stderr output](https://docs.pytest.org/en/latest/how-to/capture-stdout-stderr.html#captures)
+*Tutorial*: [How to capture stdout/stderr output](/python/pytest/how_to_guides/output#how-to-capture-stdout-stderr-output)
 
 - ### capsys()      
 
@@ -204,7 +204,7 @@ For more details, consult the full fixtures docs.
 
     The captured output is made available via `capsys.readouterr()` method calls, which return a `(out, err)` namedtuple. `out` and `err` will be `text` objects.
 
-    Returns an instance of [CaptureFixture[str]](https://docs.pytest.org/en/latest/reference/reference.html#pytest.CaptureFixture).
+    Returns an instance of `CaptureFixture[str]`.
 
     *Example*:
 
@@ -215,25 +215,25 @@ For more details, consult the full fixtures docs.
         assert captured.out == "hello\n"
     ```
 
-- ### *class* CaptureFixture    
+- ### `class` CaptureFixture    
 
-    Object returned by the [capsys](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-capsys), [capsysbinary](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-capsysbinary), [capfd](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-capfd) and [capfdbinary](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-capfdbinary) fixtures.
+    Object returned by the `capsys`, `capsysbinary`, `capfd` and `capfdbinary` fixtures.
 
     - **readouterr**()  
 
         Read and return the captured output so far, resetting the internal buffer.
 
-        *Returns*: The captured content as a namedtuple with out and err string attributes.
+        *Returns*: The captured content as a namedtuple with `out` and `err` string attributes.
 
         *Return type*: `CaptureResult`
 
-    - **with disabled**()   
+    - `with` **disabled**()   
 
-        Temporarily disable capturing while inside the with block.
+        Temporarily disable capturing while inside the `with` block.
 
 ## capsysbinary
 
-*Tutorial*: [How to capture stdout/stderr output](https://docs.pytest.org/en/latest/how-to/capture-stdout-stderr.html#captures)
+*Tutorial*: [How to capture stdout/stderr output](/python/pytest/how_to_guides/output#how-to-capture-stdout-stderr-output)
 
 - ### capsysbinary()  
 
@@ -241,7 +241,7 @@ For more details, consult the full fixtures docs.
 
     The captured output is made available via `capsysbinary.readouterr()` method calls, which return a `(out, err)` namedtuple. `out` and `err` will be `bytes` objects.
 
-    *Returns* an instance of [CaptureFixture[bytes]](https://docs.pytest.org/en/latest/reference/reference.html#pytest.CaptureFixture).
+    *Returns* an instance of `CaptureFixture[bytes]`.
 
     *Example*:
 
@@ -254,7 +254,7 @@ For more details, consult the full fixtures docs.
 
 ## config.cache
 
-*Tutorial*: [How to re-run failed tests and maintain state between test runs](https://docs.pytest.org/en/latest/how-to/cache.html#cache)
+*Tutorial*: [How to re-run failed tests and maintain state between test runs](/python/pytest/how_to_guides/re_run#how-to-re-run-failed-tests-and-maintain-state-between-test-runs)
 
 The `config.cache` object allows other plugins and fixtures to store and retrieve values across test runs. To access it from fixtures request `pytestconfig` into your fixture and get it with `pytestconfig.cache`.
 
@@ -262,7 +262,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
 `config.cache` is an instance of `pytest.Cache`:
 
-- ### *final class* Cache   
+- ### `final class` Cache   
 
     Instance of the `cache` fixture.
 
@@ -302,11 +302,11 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
 ## doctest_namespace
 
-*Tutorial*: [How to run doctests](https://docs.pytest.org/en/latest/how-to/doctest.html#doctest)
+*Tutorial*: [How to run doctests](/python/pytest/how_to_guides/doctest#how-to-run-doctests)
 
 - ### doctest_namespace()     
 
-    Fixture that returns a dict that will be injected into the namespace of doctests.
+    Fixture that returns a `dict` that will be injected into the namespace of doctests.
 
     Usually this fixture is used in conjunction with another `autouse` fixture:
 
@@ -316,11 +316,11 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
         doctest_namespace["np"] = numpy
     ```
 
-    For more details: [‘doctest_namespace’ fixture](https://docs.pytest.org/en/latest/how-to/doctest.html#doctest-namespace).
+    For more details: [‘doctest_namespace’ fixture](/python/pytest/how_to_guides/doctest#doctest-namespace-fixture).
 
 ## monkeypatch
 
-*Tutorial*: [How to monkeypatch/mock modules and environments](https://docs.pytest.org/en/latest/how-to/monkeypatch.html#monkeypatching)
+*Tutorial*: [How to monkeypatch/mock modules and environments](/python/pytest/how_to_guides/mock#how-to-monkeypatch-mock-modules-and-environments)
 
 - ### monkeypatch()     
 
@@ -330,39 +330,39 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
     - `monkeypatch.setattr(obj, name, value, raising=True)`
 
-    - [monkeypatch.delattr(`obj, name, raising=True`)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.delattr)
+    - `monkeypatch.delattr(obj, name, raising=True)`
 
-    - [monkeypatch.setitem(`mapping, name, value`)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.setitem)
+    - `monkeypatch.setitem(mapping, name, value)`
 
-    - [monkeypatch.delitem(`obj, name, raising=True`)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.delitem)
+    - `monkeypatch.delitem(obj, name, raising=True)`
 
-    - [monkeypatch.setenv(`name, value, prepend=None`)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.setenv)
+    - `monkeypatch.setenv(name, value, prepend=None)`
 
-    - [monkeypatch.delenv(`name, raising=True`)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.delenv)
+    - `monkeypatch.delenv(name, raising=True)`
 
-    - [monkeypatch.syspath_prepend(`path`)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.syspath_prepend)
+    - `monkeypatch.syspath_prepend(path)`
 
-    - [monkeypatch.chdir(`path`)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.chdir)
+    - `monkeypatch.chdir(path)`
 
-    - [monkeypatch.context()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.context)
+    - `monkeypatch.context()`
 
-    All modifications will be undone after the requesting test function or fixture has finished. The `raising` parameter determines if a [KeyError](https://docs.python.org/3/library/exceptions.html#KeyError) or [AttributeError](https://docs.python.org/3/library/exceptions.html#AttributeError) will be raised if the set/deletion operation does not have the specified target.
+    All modifications will be undone after the requesting test function or fixture has finished. The `raising` parameter determines if a `KeyError` or `AttributeError` will be raised if the set/deletion operation does not have the specified target.
 
-    To undo modifications done by the fixture in a contained scope, use [context()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.context).
+    To undo modifications done by the fixture in a contained scope, use `context()`.
 
-    Returns a [MonkeyPatch](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch) instance.
+    Returns a `MonkeyPatch` instance.
 
-- ### *final class* MonkeyPatch       
+- ### `final class` MonkeyPatch       
 
     Helper to conveniently monkeypatch attributes/items/environment variables/syspath.
 
-    Returned by the [monkeypatch](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-monkeypatch) fixture.
+    Returned by the `monkeypatch` fixture.
 
-    *Changed in version 6.2*: Can now also be used directly as `pytest.MonkeyPatch()`, for when the fixture is not available. In this case, use [with MonkeyPatch.context() as mp](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.context): or remember to call [undo()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.undo) explicitly.
+    *Changed in version 6.2*: Can now also be used directly as `pytest.MonkeyPatch()`, for when the fixture is not available. In this case, use `with MonkeyPatch.context() as mp`: or remember to call `undo()` explicitly.
 
-    - classmethod with **context**()        
+    - `classmethod with` **context**()        
 
-        Context manager that returns a new [MonkeyPatch](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch) object which undoes any patching done inside the · block upon exit.
+        Context manager that returns a new `MonkeyPatch` object which undoes any patching done inside the `with` block upon exit.
 
         *Example*:
 
@@ -391,7 +391,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
         monkeypatch.setattr(os, "getcwd", lambda: "/")
         ```
 
-        The code above replaces the [os.getcwd()](https://docs.python.org/3/library/os.html#os.getcwd) function by a `lambda` which always returns `"/"`.
+        The code above replaces the `os.getcwd()` function by a `lambda` which always returns `"/"`.
 
         For convenience, you can specify a string as `target` which will be interpreted as a dotted import path, with the last part being the attribute name:
 
@@ -399,13 +399,13 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
         monkeypatch.setattr("os.getcwd", lambda: "/")
         ```
 
-        Raises [AttributeError](https://docs.python.org/3/library/exceptions.html#AttributeError) if the attribute does not exist, unless `raising` is set to False.
+        Raises `AttributeError` if the attribute does not exist, unless `raising` is set to False.
 
         *Where to patch*
 
         `monkeypatch.setattr` works by (temporarily) changing the object that a name points to with another one. There can be many names pointing to any individual object, so for patching to work you must ensure that you patch the name used by the system under test.
 
-        See the section [Where to patch](https://docs.python.org/3/library/unittest.mock.html#where-to-patch) in the [unittest.mock](https://docs.python.org/3/library/unittest.mock.html#module-unittest.mock) docs for a complete explanation, which is meant for [unittest.mock.patch()](https://docs.python.org/3/library/unittest.mock.html#unittest.mock.patch) but applies to `monkeypatch.setattr` as well.
+        See the section [Where to patch](https://docs.python.org/3/library/unittest.mock.html#where-to-patch) in the `unittest.mock` docs for a complete explanation, which is meant for `unittest.mock.patch()` but applies to `monkeypatch.setattr` as well.
 
     - **delattr**(`target, name=<notset>, raising=True`)      
 
@@ -460,14 +460,14 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
         ::: tip Note
         The same `monkeypatch` fixture is used across a single test function invocation. If `monkeypatch` is used both by the test function itself and one of the test fixtures, calling `undo()` will undo all of the changes made in both functions.
 
-        Prefer to use [context()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MonkeyPatch.context) instead.
+        Prefer to use `context()` instead.
         :::
 
 ## pytestconfig
 
 - ### pytestconfig()        
 
-    Session-scoped fixture that returns the session’s [pytest.Config](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Config) object.
+    Session-scoped fixture that returns the session’s `pytest.Config` object.
 
     *Example*:
 
@@ -481,7 +481,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
 *New in version 6.2.*
 
-Provides a [Pytester](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester) instance that can be used to run and test pytest itself.
+Provides a `Pytester` instance that can be used to run and test pytest itself.
 
 It provides an empty directory where pytest can be executed in isolation, and contains facilities to write tests, configuration files, and match against expected output.
 
@@ -491,25 +491,25 @@ To use it, include in your topmost `conftest.py` file:
 pytest_plugins = "pytester"
 ```
 
-- ### *final class* Pytester      
+- ### `final class` Pytester      
 
     Facilities to write tests/configuration files, execute pytest in isolation, and match against expected output, perfect for black-box testing of pytest plugins.
 
-    It attempts to isolate the test run from external factors as much as possible, modifying the current working directory to path and environment variables during initialization.
+    It attempts to isolate the test run from external factors as much as possible, modifying the current working directory to `path` and environment variables during initialization.
 
-    - exception **TimeoutExpired**        
+    - `exception` **TimeoutExpired**        
 
     - **plugins**: `List[Union[str, object]]`
 
-        A list of plugins to use with [parseconfig()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.parseconfig) and [runpytest()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.runpytest). Initially this is an empty list but plugins can be added to the list. The type of items to add to the list depends on the method using them so refer to them for details.
+        A list of plugins to use with `parseconfig()` and `runpytest()`. Initially this is an empty list but plugins can be added to the list. The type of items to add to the list depends on the method using them so refer to them for details.
 
-    - property **path**: [Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path)
+    - `property` **path**: `Path`
 
         Temporary directory path used to create files/run tests from, etc.
 
     - **make_hook_recorder**(`pluginmanager`)     
 
-        Create a new [HookRecorder](https://docs.pytest.org/en/latest/reference/reference.html#pytest.HookRecorder) for a [PytestPluginManager](https://docs.pytest.org/en/latest/reference/reference.html#pytest.PytestPluginManager).
+        Create a new `HookRecorder` for a `PytestPluginManager`.
 
     - **chdir**()       
 
@@ -531,7 +531,7 @@ pytest_plugins = "pytester"
 
         *Returns*: The first created file.
 
-        *Return type*: [Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path)
+        *Return type*: `Path`
 
         *Examples*:
 
@@ -541,7 +541,7 @@ pytest_plugins = "pytester"
         pytester.makefile(".ini", pytest="[pytest]\naddopts=-rs\n")
         ```
 
-        To create binary files, use [pathlib.Path.write_bytes()](https://docs.python.org/3/library/pathlib.html#pathlib.Path.write_bytes) directly:
+        To create binary files, use `pathlib.Path.write_bytes()` directly:
 
         ```python
         filename = pytester.path.joinpath("foo.bin")
@@ -556,45 +556,45 @@ pytest_plugins = "pytester"
 
         - `source (str)` – The contents.
 
-        *Returns*: The conftest.py file.
+        *Returns*: The `conftest.py` file.
 
-        *Return type*: [Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path)
+        *Return type*: `Path`
 
     - **makeini**(`source`)     
 
-        Write a tox.ini file.
+        Write a `tox.ini` file.
 
         *Parameters*:
 
         - `source (str)` – The contents.
 
-        *Returns*: The tox.ini file.
+        *Returns*: The `tox.ini` file.
 
-        *Return type*: [Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path)
+        *Return type*: `Path`
 
     - **getinicfg**(`source`)       
 
-        Return the pytest section from the tox.ini config file.
+        Return the pytest section from the `tox.ini` config file.
 
     - **makepyprojecttoml**(`source`)       
 
-        Write a pyproject.toml file.
+        Write a `pyproject.toml` file.
 
         *Parameters*:
 
         - `source (str)` – The contents.
 
-        *Returns*: The pyproject.ini file.
+        *Returns*: The `pyproject.ini` file.
 
-        *Return type*: [Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path)
+        *Return type*: `Path`
 
         *New in version 6.0.*
 
     - **makepyfile**(`*args, **kwargs`)     
 
-        Shortcut for .makefile() with a .py extension.
+        Shortcut for `.makefile()` with a .py extension.
 
-        Defaults to the test name with a ‘.py’ extension, e.g test_foobar.py, overwriting existing files.
+        Defaults to the test name with a ‘.py’ extension, e.g `test_foobar.py`, overwriting existing files.
 
         *Examples*:
 
@@ -609,9 +609,9 @@ pytest_plugins = "pytester"
 
     - **maketxtfile**(`*args, **kwargs`)      
 
-        Shortcut for .makefile() with a .txt extension.
+        Shortcut for `.makefile()` with a .txt extension.
 
-        Defaults to the test name with a ‘.txt’ extension, e.g test_foobar.txt, overwriting existing files.
+        Defaults to the test name with a ‘.txt’ extension, e.g `test_foobar.txt`, overwriting existing files.
 
         *Examples*:
 
@@ -626,7 +626,7 @@ pytest_plugins = "pytester"
 
     - **syspathinsert**(`path=None`)        
 
-        Prepend a directory to sys.path, defaults to [path](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.path).
+        Prepend a directory to sys.path, defaults to `path`.
 
         This is undone automatically when this object dies at the end of each test.
 
@@ -644,7 +644,7 @@ pytest_plugins = "pytester"
 
         *Returns*: The created directory.
 
-        *Return type*: [Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path)
+        *Return type*: `Path`
 
     - **mkpydir**(`name`)     
 
@@ -654,7 +654,7 @@ pytest_plugins = "pytester"
 
     - **copy_example**(`name=None`)     
 
-        Copy file from project’s directory into the testdir.
+        Copy file from project’s directory into the `testdir`.
 
         *Parameters*:
 
@@ -662,7 +662,7 @@ pytest_plugins = "pytester"
 
         *Returns*: Path to the copied directory (inside `self.path`).
 
-        *Return type*: [Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path)
+        *Return type*: `Path`
 
     - **getnode**(`config, arg`)      
 
@@ -670,7 +670,7 @@ pytest_plugins = "pytester"
 
         *Parameters*:
 
-        - `config (Config)` – A pytest config. See [parseconfig()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.parseconfig) and [parseconfigure()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.parseconfigure) for creating it.
+        - `config (Config)` – A pytest config. See `parseconfig()` for creating it.
 
         - `arg (Union[str, PathLike[str]])` – Path to the file.
 
@@ -682,7 +682,7 @@ pytest_plugins = "pytester"
 
         Return the collection node of a file.
 
-        This is like [getnode()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.getnode) but uses [parseconfigure()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.parseconfigure) to create the (configured) pytest Config instance.
+        This is like `getnode()` but uses `parseconfigure()` to create the (configured) pytest Config instance.
 
         *Parameters*:
 
@@ -716,7 +716,7 @@ pytest_plugins = "pytester"
 
         Run a test module in process using `pytest.main()`.
 
-        This run writes “source” into a temporary file and runs `pytest.main()` on it, returning a [HookRecorder](https://docs.pytest.org/en/latest/reference/reference.html#pytest.HookRecorder) instance for the result.
+        This run writes “source” into a temporary file and runs `pytest.main()` on it, returning a `HookRecorder` instance for the result.
 
         *Parameters*:
 
@@ -728,43 +728,43 @@ pytest_plugins = "pytester"
 
         Run `pytest.main(['--collectonly'])` in-process.
 
-        Runs the [pytest.main()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.main) function to run all of pytest inside the test process itself like [inline_run()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.inline_run), but returns a tuple of the collected items and a [HookRecorder](https://docs.pytest.org/en/latest/reference/reference.html#pytest.HookRecorder) instance.
+        Runs the `pytest.main()` function to run all of pytest inside the test process itself `like inline_run()`, but returns a tuple of the collected items and a `HookRecorder` instance.
 
     - **inline_run**(`*args, plugins=(), no_reraise_ctrlc=False`)     
 
         Run `pytest.main()` in-process, returning a HookRecorder.
 
-        Runs the [pytest.main()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.main) function to run all of pytest inside the test process itself. This means it can return a [HookRecorder](https://docs.pytest.org/en/latest/reference/reference.html#pytest.HookRecorder) instance which gives more detailed results from that run than can be done by matching stdout/stderr from [runpytest()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.runpytest).
+        Runs the `pytest.main()` function to run all of pytest inside the test process itself. This means it can return a `HookRecorder` instance which gives more detailed results from that run than can be done by matching stdout/stderr from `runpytest()`.
 
         *Parameters*:
 
-        - `args (Union[str, PathLike[str]])` – Command line arguments to pass to [pytest.main()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.main).
+        - `args (Union[str, PathLike[str]])` – Command line arguments to pass to `pytest.main()`.
 
         - `plugins` – Extra plugin instances the `pytest.main()` instance should use.
 
-        - `no_reraise_ctrlc (bool)` – Typically we reraise keyboard interrupts from the child run. If True, the KeyboardInterrupt exception is captured.
+        - `no_reraise_ctrlc (bool)` – Typically we reraise keyboard interrupts from the child run. If True, the `KeyboardInterrupt` exception is captured.
 
     - **runpytest_inprocess**(`*args, **kwargs`)      
 
-        Return result of running pytest in-process, providing a similar interface to what self.runpytest() provides.
+        Return result of running pytest in-process, providing a similar interface to what `self.runpytest()` provides.
 
     - **runpytest**(`*args, **kwargs`)        
 
-        Run pytest inline or in a subprocess, depending on the command line option “–runpytest” and return a [RunResult](https://docs.pytest.org/en/latest/reference/reference.html#pytest.RunResult).
+        Run pytest inline or in a subprocess, depending on the command line option “–runpytest” and return a `RunResult`.
 
     - **parseconfig**(`*args`)      
 
-        Return a new pytest [pytest.Config](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Config) instance from given commandline args.
+        Return a new pytest `pytest.Config` instance from given commandline args.
 
-        This invokes the pytest bootstrapping code in _pytest.config to create a new [pytest.PytestPluginManager](https://docs.pytest.org/en/latest/reference/reference.html#pytest.PytestPluginManager) and call the [pytest_cmdline_parse](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_cmdline_parse) hook to create a new pytest.Config instance.
+        This invokes the pytest bootstrapping code in _pytest.config to create a new `pytest.PytestPluginManager` and call the `pytest_cmdline_parse` hook to create a new pytest.Config instance.
 
-        If [plugins](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.plugins) has been populated they should be plugin modules to be registered with the plugin manager.
+        If `plugins` has been populated they should be plugin modules to be registered with the plugin manager.
 
     - **parseconfigure**(`*args`)       
 
-        Return a new pytest configured Config instance.
+        Return a new pytest configured `Config` instance.
 
-        Returns a new [pytest.Config](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Config) instance like [parseconfig()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.parseconfig), but also calls the [pytest_configure](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_configure) hook.
+        Returns a new `pytest.Config` instance like `parseconfig()`, but also calls the `pytest_configure` hook.
 
     - **getitem**(`source, funcname='test_func'`)       
 
@@ -780,7 +780,7 @@ pytest_plugins = "pytester"
 
         *Returns*: The test item.
 
-        *Return type*: [Item](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Item)
+        *Return type*: `Item`
 
     - **getitems**(`source`)        
 
@@ -792,13 +792,13 @@ pytest_plugins = "pytester"
 
         Return the module collection node for `source`.
 
-        Writes `source` to a file using [makepyfile()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.makepyfile) and then runs the pytest collection on it, returning the collection node for the test module.
+        Writes `source` to a file using `makepyfile()` and then runs the pytest collection on it, returning the collection node for the test module.
 
         *Parameters*:
 
         - `source (Union[str, PathLike[str]])` – The source code of the module to collect.
 
-        - `configargs` – Any extra arguments to pass to parseconfigure().
+        - `configargs` – Any extra arguments to pass to `parseconfigure()`.
 
         - `withinit (bool)` – Whether to also write an `__init__.py` file to the same directory to ensure it is a package.
 
@@ -816,39 +816,39 @@ pytest_plugins = "pytester"
 
     - **popen**(`cmdargs, stdout=-1, stderr=-1, stdin=NotSetType.token, **kw`)        
 
-        Invoke [subprocess.Popen](https://docs.python.org/3/library/subprocess.html#subprocess.Popen).
+        Invoke `subprocess.Popen`.
 
-        Calls [subprocess.Popen](https://docs.python.org/3/library/subprocess.html#subprocess.Popen) making sure the current working directory is in `PYTHONPATH`.
+        Calls `subprocess.Popen` making sure the current working directory is in `PYTHONPATH`.
 
-        You probably want to use [run()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.run) instead.
+        You probably want to use `run()` instead.
 
     - **run**(`*cmdargs, timeout=None, stdin=NotSetType.token`)       
 
         Run a command with arguments.
 
-        Run a process using [subprocess.Popen](https://docs.python.org/3/library/subprocess.html#subprocess.Popen) saving the stdout and stderr.
+        Run a process using `subprocess.Popen` saving the `stdout` and `stderr`.
 
         *Parameters*:
 
-        - cmdargs (Union[str, PathLike[str]]) – The sequence of arguments to pass to [subprocess.Popen](https://docs.python.org/3/library/subprocess.html#subprocess.Popen), with path-like objects being converted to str automatically.
+        - `cmdargs (Union[str, PathLike[str]])` – The sequence of arguments to pass to `subprocess.Popen`, with path-like objects being converted to str automatically.
 
-        - timeout (Optional[float]) – The period in seconds after which to timeout and raise [Pytester.TimeoutExpired](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.TimeoutExpired).
+        - `timeout (Optional[float])` – The period in seconds after which to timeout and raise `Pytester.TimeoutExpired`.
 
-        - stdin (Union[NotSetType, bytes, IO[Any], int]) – Optional standard input.
+        - `stdin (Union[NotSetType, bytes, IO[Any], int])` – Optional standard input.
 
-            - If it is `CLOSE_STDIN` (Default), then this method calls [subprocess.Popen](https://docs.python.org/3/library/subprocess.html#subprocess.Popen) with `stdin=subprocess.PIPE`, and the standard input is closed immediately after the new command is started.
+            - If it is `CLOSE_STDIN` (Default), then this method calls `subprocess.Popen` with `stdin=subprocess.PIPE`, and the standard input is closed immediately after the new command is started.
 
-            - If it is of type [bytes](https://docs.python.org/3/library/stdtypes.html#bytes), these bytes are sent to the standard input of the command.
+            - If it is of type `bytes`, these bytes are sent to the standard input of the command.
 
-            - Otherwise, it is passed through to [subprocess.Popen](https://docs.python.org/3/library/subprocess.html#subprocess.Popen). For further information in this case, consult the document of the · parameter in [subprocess.Popen](https://docs.python.org/3/library/subprocess.html#subprocess.Popen).
+            - Otherwise, it is passed through to `subprocess.Popen`. For further information in this case, consult the document of the · parameter in `subprocess.Popen`.
 
         *Returns*: The result.
 
-        *Return type*: [RunResult](https://docs.pytest.org/en/latest/reference/reference.html#pytest.RunResult)
+        *Return type*: `RunResult`
 
     - **runpython**(`script`)       
 
-        Run a python script using sys.executable as interpreter.
+        Run a python script using `sys.executable` as interpreter.
 
     - **runpython_c**(`command`)        
 
@@ -858,17 +858,17 @@ pytest_plugins = "pytester"
 
         Run pytest as a subprocess with given arguments.
 
-        Any plugins added to the [plugins](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.plugins) list will be added using the `-p` command line option. Additionally `--basetemp` is used to put any temporary files and directories in a numbered directory prefixed with “runpytest-” to not conflict with the normal numbered pytest location for temporary files and directories.
+        Any plugins added to the `plugins` list will be added using the `-p` command line option. Additionally `--basetemp` is used to put any temporary files and directories in a numbered directory prefixed with “runpytest-” to not conflict with the normal numbered pytest location for temporary files and directories.
 
         *Parameters*:
 
         - `args (Union[str, PathLike[str]])` – The sequence of arguments to pass to the pytest subprocess.
 
-        - `timeout (Optional[float])` – The period in seconds after which to timeout and raise [Pytester.TimeoutExpired](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.TimeoutExpired).
+        - `timeout (Optional[float])` – The period in seconds after which to timeout and raise `Pytester.TimeoutExpired`.
 
         *Returns*: The result.
 
-        *Return type*: [RunResult](https://docs.pytest.org/en/latest/reference/reference.html#pytest.RunResult)
+        *Return type*: `RunResult`
 
     - **spawn_pytest**(`string, expect_timeout=10.0`)     
 
@@ -884,9 +884,9 @@ pytest_plugins = "pytester"
 
         The pexpect child is returned.
 
-- ### *final class* RunResult      
+- ### `final class` RunResult      
 
-    The result of running a command from [Pytester](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester).
+    The result of running a command from `Pytester`.
 
     - **ret**: `Union[int, ExitCode]`
 
@@ -894,21 +894,21 @@ pytest_plugins = "pytester"
 
     - **outlines**
 
-        List of lines captured from stdout.
+        List of lines captured from `stdout`.
 
     - **errlines**
 
-        List of lines captured from stderr.
+        List of lines captured from `stderr`.
 
     - **stdout**
 
-        LineMatcher of stdout.
+        `LineMatcher` of `stdout`.
 
-        Use e.g. [str(stdout)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.LineMatcher.__str__) to reconstruct stdout, or the commonly used [stdout.fnmatch_lines()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.LineMatcher.fnmatch_lines) method.
+        Use e.g. `str(stdout)` to reconstruct stdout, or the commonly used `stdout.fnmatch_lines()` method.
 
     - **stderr**
 
-        - [LineMatcher](https://docs.pytest.org/en/latest/reference/reference.html#pytest.LineMatcher) of stderr.
+        - `LineMatcher` of `stderr`.
 
     - **duration**
 
@@ -926,7 +926,7 @@ pytest_plugins = "pytester"
 
         Will return `{"failed": 1, "passed": 1, "warnings": 1, "errors": 1}`.
 
-    - classmethod **parse_summary_nouns**(`lines`)        
+    - `classmethod` **parse_summary_nouns**(`lines`)        
 
         Extract the nouns from a pytest terminal summary line.
 
@@ -944,7 +944,7 @@ pytest_plugins = "pytester"
 
         `warnings` and `deselected` are only checked if not None.
 
-- ### *class* LineMatcher       
+- ### `class` LineMatcher       
 
     Flexible matching of text.
 
@@ -956,15 +956,15 @@ pytest_plugins = "pytester"
 
         Return the entire original text.
 
-        *New in version 6.2*: You can use [str()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.LineMatcher.str) in older versions.
+        *New in version 6.2*: You can use `str()` in older versions.
 
     - **fnmatch_lines_random**(`lines2`)        
 
-        Check lines exist in the output in any order (using [fnmatch.fnmatch()](https://docs.python.org/3/library/fnmatch.html#fnmatch.fnmatch)).
+        Check lines exist in the output in any order (using `fnmatch.fnmatch()`).
 
     - **re_match_lines_random**(`lines2`)     
 
-        Check lines exist in the output in any order (using [re.match()](https://docs.python.org/3/library/re.html#re.match)).
+        Check lines exist in the output in any order (using `re.match()`).
 
     - **get_lines_after**(`fnline`)       
 
@@ -974,9 +974,9 @@ pytest_plugins = "pytester"
 
     - **fnmatch_lines**(`lines2, *, consecutive=False`)       
 
-        Check lines exist in the output (using [fnmatch.fnmatch()](https://docs.python.org/3/library/fnmatch.html#fnmatch.fnmatch)).
+        Check lines exist in the output (using `fnmatch.fnmatch()`).
 
-        The argument is a list of lines which have to match and can use glob wildcards. If they do not match a pytest.fail() is called. The matches and non-matches are also shown as part of the error message.
+        The argument is a list of lines which have to match and can use glob wildcards. If they do not match a `pytest.fail()` is called. The matches and non-matches are also shown as part of the error message.
 
         *Parameters*:
 
@@ -986,9 +986,9 @@ pytest_plugins = "pytester"
 
     - **re_match_lines**(`lines2, *, consecutive=False`)        
 
-        Check lines exist in the output (using [re.match()](https://docs.python.org/3/library/re.html#re.match)).
+        Check lines exist in the output (using `re.match()`).
 
-        The argument is a list of lines which have to match using `re.match`. If they do not match a pytest.fail() is called.
+        The argument is a list of lines which have to match using `re.match`. If they do not match a `pytest.fail()` is called.
 
         The matches and non-matches are also shown as part of the error message.
 
@@ -1018,11 +1018,11 @@ pytest_plugins = "pytester"
 
         Return the entire original text.
 
-- ### *final class* HookRecorder        
+- ### `final class` HookRecorder        
 
     Record all hooks called in a plugin manager.
 
-    Hook recorders are created by [Pytester](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester).
+    Hook recorders are created by `Pytester`.
 
     This wraps all the hook calls in the plugin manager, recording each call before propagating the normal calls.
 
@@ -1034,7 +1034,7 @@ pytest_plugins = "pytester"
 
         Return a testreport whose dotted import path matches.
 
-- ### *final class* RecordedHookCall        
+- ### `final class` RecordedHookCall        
 
     A recorded call to a hook.
 
@@ -1092,20 +1092,20 @@ pytest_plugins = "pytester"
     - `value` – The property value. Will be converted to a string.
 
     ::: warning Warning
-    Currently this fixture does not work with the pytest-xdist plugin. See [issue #7767](https://github.com/pytest-dev/pytest/issues/7767) for details.
+    Currently this fixture does not work with the [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) plugin. See [issue #7767](https://github.com/pytest-dev/pytest/issues/7767) for details.
     :::
 
 ## recwarn
 
-*Tutorial*: [Asserting warnings with the warns function](https://docs.pytest.org/en/latest/how-to/capture-warnings.html#assertwarnings)
+*Tutorial*: [Asserting warnings with the warns function](/python/pytest/how_to_guides/warning#asserting-warnings-with-the-warns-function)
 
 - ### recwarn()     
 
-    Return a [WarningsRecorder](https://docs.pytest.org/en/latest/reference/reference.html#pytest.WarningsRecorder) instance that records all warnings emitted by test functions.
+    Return a `WarningsRecorder` instance that records all warnings emitted by test functions.
 
-    See <https://docs.pytest.org/en/latest/how-to/capture-warnings.html> for information on warning categories.
+    See [How to capture warnings](/python/pytest/how_to_guides/warning#how-to-capture-warnings) for information on warning categories.
 
-- ### *class* WarningsRecorder      
+- ### `class` WarningsRecorder      
 
     A context manager to record raised warnings.
 
@@ -1113,11 +1113,11 @@ pytest_plugins = "pytester"
 
     Adapted from `warnings.catch_warnings`.
 
-    :::: tip Note
-    `DeprecationWarning` and `PendingDeprecationWarning` are treated differently; see [Ensuring code triggers a deprecation warning](https://docs.pytest.org/en/latest/how-to/capture-warnings.html#ensuring-function-triggers).
+    ::: tip Note
+    `DeprecationWarning` and `PendingDeprecationWarning` are treated differently; see [Ensuring code triggers a deprecation warning](/python/pytest/how_to_guides/warning#ensuring-code-triggers-a-deprecation-warning).
     :::
 
-    - property **list**: `List[WarningMessage]`
+    - `property` **list**: `List[WarningMessage]`
 
         The list of recorded warnings.
 
@@ -1131,61 +1131,61 @@ pytest_plugins = "pytester"
 
 ## request
 
-*Example*: [Pass different values to a test function, depending on command line options](https://docs.pytest.org/en/latest/example/simple.html#request-example)
+*Example*: [Pass different values to a test function, depending on command line options](/python/pytest/further_topics/example_trick/basic_pattern#pass-different-values-to-a-test-function-depending-on-command-line-options)
 
 The `request` fixture is a special fixture providing information of the requesting test function.
 
-- ### *class* FixtureRequest        
+- ### `class` FixtureRequest        
 
     A request for a fixture from a test or fixture function.
 
-    A request object gives access to the requesting test context and has an optional param attribute in case the fixture is parametrized indirectly.
+    A request object gives access to the requesting test context and has an optional `param` attribute in case the fixture is parametrized indirectly.
 
     - **fixturename**:` Optional[str]`
 
         Fixture for which this request is being performed.
 
-    - property **scope**: `Literal['session', 'package', 'module', 'class', 'function']`
+    - `property` **scope**: `Literal['session', 'package', 'module', 'class', 'function']`
 
         Scope string, one of “function”, “class”, “module”, “package”, “session”.
 
-    - property **fixturenames**: `List[str]`
+    - `property` **fixturenames**: `List[str]`
 
         Names of all active fixtures in this request.
 
-    - property **node**
+    - `property` **node**
 
         Underlying collection node (depends on current request scope).
 
-    - property **config**: `Config`
+    - `property` **config**: `Config`
 
         The pytest config object associated with this request.
 
-    - property **function**
+    - `property` **function**
 
         Test function object if the request has a per-function scope.
 
-    - property **cls**
+    - `property` **cls**
 
         Class (can be None) where the test function was collected.
 
-    - property **instance**
+    - `property` **instance**
 
         Instance (can be None) on which test function was collected.
 
-    - property **module**
+    - `property` **module**
 
         Python module object where the test function was collected.
 
-    - property **path**: [Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path)
+    - `property` **path**: `Path`
 
         Path where the test function was collected.
 
-    - property **keywords**: MutableMapping[str, Any]
+    - `property` **keywords**: `MutableMapping[str, Any]`
 
         Keywords/markers dictionary for the underlying node.
 
-    - property **session**: `Session`
+    - `property` **session**: `Session`
 
         Pytest session object.
 
@@ -1229,29 +1229,29 @@ The `request` fixture is a special fixture providing information of the requesti
 
 ## testdir
 
-Identical to [pytester](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-pytester), but provides an instance whose methods return legacy `py.path.local` objects instead when applicable.
+Identical to `pytester`, but provides an instance whose methods return legacy `py.path.local` objects instead when applicable.
 
-New code should avoid using [testdir](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-testdir) in favor of [pytester](https://docs.pytest.org/en/latest/reference/reference.html#std-fixture-pytester).
+New code should avoid using `testdir` in favor of `pytester`.
 
-- ### *final class* Testdir     
+- ### `final class` Testdir     
 
-    Similar to [Pytester](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester), but this class works with legacy legacy_path objects instead.
+    Similar to `Pytester`, but this class works with legacy `legacy_path` objects instead.
 
-    All methods just forward to an internal Pytester instance, converting results to `legacy_path` objects as necessary.
+    All methods just forward to an internal `Pytester` instance, converting results to `legacy_path` objects as necessary.
 
-    - exception **TimeoutExpired**
+    - `exception` **TimeoutExpired**
 
-    - property **tmpdir**: `LocalPath`
+    - `property` **tmpdir**: `LocalPath`
 
         Temporary directory where tests are executed.
 
     - **make_hook_recorder**(`pluginmanager`)     
 
-        See [Pytester.make_hook_recorder()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.make_hook_recorder).
+        See `Pytester.make_hook_recorder()`.
 
     - **chdir**()       
 
-        See [Pytester.chdir()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.chdir).
+        See `Pytester.chdir()`.
 
     - **finalize**()        
 
@@ -1259,155 +1259,155 @@ New code should avoid using [testdir](https://docs.pytest.org/en/latest/referenc
 
     - **makefile**(`ext, *args, **kwargs`)        
 
-        See [Pytester.makefile()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.makefile).
+        See `Pytester.makefile()`.
 
     - **makeconftest**(`source`)      
 
-        See [Pytester.makeconftest()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.makeconftest).
+        See `Pytester.makeconftest()`.
 
     - **makeini**(`source`)       
 
-        See [Pytester.makeini()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.makeini).
+        See `Pytester.makeini()`.
 
     - **getinicfg**(`source`)     
 
-        See [Pytester.getinicfg()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.getinicfg).
+        See `Pytester.getinicfg()`.
 
     - **makepyprojecttoml**(`source`)     
 
-        See [Pytester.makepyprojecttoml()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.makepyprojecttoml).
+        See `Pytester.makepyprojecttoml()`.
 
     - **makepyfile**(`*args, **kwargs`)       
 
-        See [Pytester.makepyfile()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.makepyfile).
+        See `Pytester.makepyfile()`.
 
     - **maketxtfile**(`*args, **kwargs`)      
 
-        See [Pytester.maketxtfile()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.maketxtfile).
+        See `Pytester.maketxtfile()`.
 
     - **syspathinsert**(`path=None`)      
 
-        See [Pytester.syspathinsert()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.syspathinsert).
+        See `Pytester.syspathinsert()`.
 
     - **mkdir**(`name`)       
 
-        See [Pytester.mkdir()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.mkdir).
+        See `Pytester.mkdir()`.
 
     - **mkpydir**(`name`)     
 
-        See [Pytester.mkpydir()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.mkpydir).
+        See `Pytester.mkpydir()`.
 
     - **copy_example**(`name=None`)       
 
-        See [Pytester.copy_example()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.copy_example).
+        See `Pytester.copy_example()`.
 
     - **getnode**(`config, arg`)      
 
-        See [Pytester.getnode()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.getnode).
+        See `Pytester.getnode()`.
 
     - **getpathnode**(`path`)     
 
-        See [Pytester.getpathnode()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.getpathnode).
+        See `Pytester.getpathnode()`.
 
     - **genitems**(`colitems`)        
 
-        See [Pytester.genitems()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.genitems).
+        See `Pytester.genitems()`.
 
     - **runitem**(`source`)       
 
-        See [Pytester.runitem()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.runitem).
+        See `Pytester.runitem()`.
 
     - **inline_runsource**(`source, *cmdlineargs`)        
 
-        See [Pytester.inline_runsource()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.inline_runsource).
+        See `Pytester.inline_runsource()`.
 
     - **inline_genitems**(`*args`)        
 
-        See [Pytester.inline_genitems()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.inline_genitems).
+        See `Pytester.inline_genitems()`.
 
     - **inline_run**(`*args, plugins=(), no_reraise_ctrlc=False`)     
 
-        See [Pytester.inline_run()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.inline_run).
+        See `Pytester.inline_run()`].
 
     - **runpytest_inprocess**(`*args, **kwargs`)      
 
-        See [Pytester.runpytest_inprocess()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.runpytest_inprocess).
+        See `Pytester.runpytest_inprocess()`.
 
     - **runpytest**(`*args, **kwargs`)        
 
-        See [Pytester.runpytest()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.runpytest).
+        See `Pytester.runpytest()`.
 
     - **parseconfig**(`*args`)        
 
-        See [Pytester.parseconfig()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.parseconfig).
+        See `Pytester.parseconfig()`.
 
     - **parseconfigure**(`*args`)     
 
-        See [Pytester.parseconfigure()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.parseconfigure).
+        See `Pytester.parseconfigure()`.
 
     - **getitem**(`source, funcname='test_func'`)     
 
-        See [Pytester.getitem()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.getitem).
+        See `Pytester.getitem()`.
 
     - **getitems**(`source`)      
 
-        See [Pytester.getitems()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.getitems).
+        See `Pytester.getitems()`.
 
     - **getmodulecol**(`source, configargs=(), withinit=False`)       
 
-        See [Pytester.getmodulecol()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.getmodulecol).
+        See `Pytester.getmodulecol()`.
 
     - **collect_by_name**(`modcol, name`)     
 
-        See [Pytester.collect_by_name()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.collect_by_name).
+        See `Pytester.collect_by_name()`.
 
     - **popen**(`cmdargs, stdout=-1, stderr=-1, stdin=NotSetType.token, **kw`)        
 
-        See [Pytester.popen()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.popen).
+        See `Pytester.popen()`.
 
     - **run**(`*cmdargs, timeout=None, stdin=NotSetType.token`)       
 
-        See [Pytester.run()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.run).
+        See `Pytester.run()`.
 
     - **runpython**(`script`)     
 
-        See [Pytester.runpython()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.runpython).
+        See `Pytester.runpython()`.
 
     - **runpython_c**(`command`)      
 
-        See [Pytester.runpython_c()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.runpython_c).
+        See `Pytester.runpython_c()`.
 
     - **runpytest_subprocess**(`*args, timeout=None`)     
 
-        See [Pytester.runpytest_subprocess()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.runpytest_subprocess).
+        See `Pytester.runpytest_subprocess()`.
 
     - **spawn_pytest**(`string, expect_timeout=10.0`)     
 
-        See [Pytester.spawn_pytest()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.spawn_pytest).
+        See `Pytester.spawn_pytest()`.
 
     - **spawn**(`cmd, expect_timeout=10.0`)       
 
-        See [Pytester.spawn()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Pytester.spawn).
+        See `Pytester.spawn()`.
 
 ## tmp_path
 
-*Tutorial*: [How to use temporary directories and files in tests](https://docs.pytest.org/en/latest/how-to/tmp_path.html#tmp-path)
+*Tutorial*: [How to use temporary directories and files in tests](/python/pytest/how_to_guides/temp#how-to-use-temporary-directories-and-files-in-tests)
 
 - ### tmp_path()      
 
     Return a temporary directory path object which is unique to each test function invocation, created as a sub directory of the base temporary directory.
 
-    By default, a new base temporary directory is created each test session, and old bases are removed after 3 sessions, to aid in debugging. This behavior can be configured with [tmp_path_retention_count](https://docs.pytest.org/en/latest/reference/reference.html#confval-tmp_path_retention_count) and [tmp_path_retention_policy](https://docs.pytest.org/en/latest/reference/reference.html#confval-tmp_path_retention_policy). If `--basetemp` is used then it is cleared each session. See [The default base temporary](https://docs.pytest.org/en/latest/how-to/tmp_path.html#base-temporary-directory) directory.
+    By default, a new base temporary directory is created each test session, and old bases are removed after 3 sessions, to aid in debugging. This behavior can be configured with `tmp_path_retention_count` and `tmp_path_retention_policy`. If `--basetemp` is used then it is cleared each session. See [The default base temporary](/python/pytest/how_to_guides/temp#the-default-base-temporary-directory) directory.
 
-    The returned object is a [pathlib.Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path) object.
+    The returned object is a `pathlib.Path` object.
 
 ## tmp_path_factory
 
-*Tutorial*: [The tmp_path_factory fixture](https://docs.pytest.org/en/latest/how-to/tmp_path.html#tmp-path-factory-example)
+*Tutorial*: [The tmp_path_factory fixture](/python/pytest/how_to_guides/temp#the-tmp-path-factory-fixture)
 
-`tmp_path_factory`  is an instance of [TempPathFactory](https://docs.pytest.org/en/latest/reference/reference.html#pytest.TempPathFactory):
+`tmp_path_factory`  is an instance of `TempPathFactory`:
 
-- ### *final class* TempPathFactory     
+- ### `final class` TempPathFactory     
 
     Factory for temporary directories under the common base temp directory.
 
@@ -1437,42 +1437,42 @@ New code should avoid using [testdir](https://docs.pytest.org/en/latest/referenc
 
 ## tmpdir
 
-*Tutorial*: [The tmpdir and tmpdir_factory fixtures](https://docs.pytest.org/en/latest/how-to/tmp_path.html#tmpdir-and-tmpdir-factory)
+*Tutorial*: [The tmpdir and tmpdir_factory fixtures](/python/pytest/how_to_guides/temp#the-tmpdir-and-tmpdir-factory-fixtures)
 
 - ### tmpdir()
 
     Return a temporary directory path object which is unique to each test function invocation, created as a sub directory of the base temporary directory.
 
-    By default, a new base temporary directory is created each test session, and old bases are removed after 3 sessions, to aid in debugging. If `--basetemp` is used then it is cleared each session. See [The default base temporary directory](https://docs.pytest.org/en/latest/how-to/tmp_path.html#base-temporary-directory).
+    By default, a new base temporary directory is created each test session, and old bases are removed after 3 sessions, to aid in debugging. If `--basetemp` is used then it is cleared each session. See [The default base temporary directory](/python/pytest/how_to_guides/temp#the-default-base-temporary-directory).
 
-    The returned object is a [legacy_path](https://py.readthedocs.io/en/latest/path.html) object.
+    The returned object is a `legacy_path` object.
 
     ::: tip Note
     These days, it is preferred to use `tmp_path`.
 
-    [About the tmpdir and tmpdir_factory fixtures](https://docs.pytest.org/en/latest/how-to/tmp_path.html#tmpdir-and-tmpdir-factory).
+    [About the tmpdir and tmpdir_factory fixtures](/python/pytest/how_to_guides/temp#the-tmpdir-and-tmpdir-factory-fixtures).
     :::
 
 ## tmpdir_factory
 
-*Tutorial*: [The tmpdir and tmpdir_factory fixtures](https://docs.pytest.org/en/latest/how-to/tmp_path.html#tmpdir-and-tmpdir-factory)
+*Tutorial*: [The tmpdir and tmpdir_factory fixtures](/python/pytest/how_to_guides/temp#the-tmpdir-and-tmpdir-factory-fixtures)
 
-`tmpdir_factory` is an instance of [TempdirFactory](https://docs.pytest.org/en/latest/reference/reference.html#pytest.TempdirFactory):
+`tmpdir_factory` is an instance of `TempdirFactory`:
 
-- ### *final class* TempdirFactory      
+- ### `final class` TempdirFactory      
 
-    Backward compatibility wrapper that implements `py.path.local` for [TempPathFactory](https://docs.pytest.org/en/latest/reference/reference.html#pytest.TempPathFactory).
+    Backward compatibility wrapper that implements `py.path.local` for `TempPathFactory`.
 
     ::: tip Note
     These days, it is preferred to use `tmp_path_factory`.
 
-    [About the tmpdir and tmpdir_factory fixtures](https://docs.pytest.org/en/latest/how-to/tmp_path.html#tmpdir-and-tmpdir-factory).
+    [About the tmpdir and tmpdir_factory fixtures](/python/pytest/how_to_guides/temp#the-tmpdir-and-tmpdir-factory-fixtures).
     ::: 
 
     - **mktemp**(`basename, numbered=True`)     
 
-        Same as [TempPathFactory.mktemp()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.TempPathFactory.mktemp), but returns a `py.path.local` object.
+        Same as `TempPathFactory.mktemp()`, but returns a `py.path.local` object.
 
     - **getbasetemp**()     
 
-        Same as [TempPathFactory.getbasetemp()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.TempPathFactory.getbasetemp), but returns a `py.path.local` object.
+        Same as `TempPathFactory.getbasetemp()`, but returns a `py.path.local` object.

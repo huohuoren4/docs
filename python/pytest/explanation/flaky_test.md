@@ -22,17 +22,17 @@ Flaky tests sometimes appear when a test suite is run in parallel (such as use o
 
 ### Overly strict assertion
 
-Overly strict assertions can cause problems with floating point comparison as well as timing issues. [pytest.approx()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.approx) is useful here.
+Overly strict assertions can cause problems with floating point comparison as well as timing issues. `pytest.approx()` is useful here.
 
 ## Pytest features
 
 ### Xfail strict
 
-[pytest.mark.xfail](https://docs.pytest.org/en/latest/reference/reference.html#pytest-mark-xfail-ref) with `strict=False` can be used to mark a test so that its failure does not cause the whole build to break. This could be considered like a manual quarantine, and is rather dangerous to use permanently.
+`pytest.mark.xfail` with `strict=False` can be used to mark a test so that its failure does not cause the whole build to break. This could be considered like a manual quarantine, and is rather dangerous to use permanently.
 
 ### PYTEST_CURRENT_TEST
 
-[PYTEST_CURRENT_TEST](https://docs.pytest.org/en/latest/reference/reference.html#envvar-PYTEST_CURRENT_TEST) may be useful for figuring out “which test got stuck”. See [PYTEST_CURRENT_TEST environment variable](https://docs.pytest.org/en/latest/example/simple.html#pytest-current-test-env) for more details.
+`PYTEST_CURRENT_TEST` may be useful for figuring out “which test got stuck”. See [PYTEST_CURRENT_TEST environment variable](/python/pytest/further_topics/example_trick/basic_pattern#pytest-current-test-environment-variable) for more details.
 
 ### Plugins
 

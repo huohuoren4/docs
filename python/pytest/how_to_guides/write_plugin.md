@@ -1,14 +1,14 @@
 # Writing plugins
 
-It is easy to implement local conftest plugins for your own project or pip-installable plugins that can be used throughout many projects, including third party projects. Please refer to How to install and use plugins if you only want to use but not write plugins.
+It is easy to implement [local conftest plugins](/python/pytest/how_to_guides/write_plugin#conftest-py-local-per-directory-plugins) for your own project or [pip-installable plugins](/python/pytest/how_to_guides/write_plugin#making-your-plugin-installable-by-others) that can be used throughout many projects, including third party projects. Please refer to [How to install and use plugins](/python/pytest/how_to_guides/use_plugin#how-to-install-and-use-plugins) if you only want to use but not write plugins.
 
-A plugin contains one or multiple hook functions. Writing hooks explains the basics and details of how you can write a hook function yourself. `pytest` implements all aspects of configuration, collection, running and reporting by calling well specified hooks of the following plugins:
+A plugin contains one or multiple hook functions. [Writing hooks](/python/pytest/how_to_guides/hook_func#writing-hook-functions) explains the basics and details of how you can write a hook function yourself. `pytest` implements all aspects of configuration, collection, running and reporting by calling well specified hooks of the following plugins:
 
 - builtin plugins: loaded from pytest’s internal `_pytest` directory.
 
-- external plugins: modules discovered through setuptools entry points
+- [external plugins](/python/pytest/how_to_guides/use_plugin#how-to-install-and-use-plugins): modules discovered through [setuptools entry points](/python/pytest/how_to_guides/write_plugin#making-your-plugin-installable-by-others)
 
-- conftest.py plugins: modules auto-discovered in test directories
+- [conftest.py plugins](/python/pytest/how_to_guides/write_plugin#conftest-py-local-per-directory-plugins): modules auto-discovered in test directories
 
 In principle, each hook call is a `1:N` Python function call where N is the number of registered implementation functions for a given specification. All specifications and implementations follow the `pytest_` prefix naming convention, making them easy to distinguish and find.
 
@@ -22,19 +22,19 @@ In principle, each hook call is a `1:N` Python function call where N is the numb
 
 3. by scanning the command line for the `-p name` option and loading the specified plugin. This happens before normal command-line parsing.
 
-4. by loading all plugins registered through setuptools entry points.
+4. by loading all plugins registered through [setuptools entry points](/python/pytest/how_to_guides/write_plugin#making-your-plugin-installable-by-others).
 
-5. by loading all plugins specified through the PYTEST_PLUGINS environment variable.
+5. by loading all plugins specified through the `PYTEST_PLUGINS` environment variable.
 
 6. by loading all `conftest.py` files as inferred by the command line invocation:
 
    - if no test paths are specified, use the current dir as a test path
 
-   - if exists, load `conftest.py` and `test*/conftest.py` relative to the directory part of the first test path. After the `conftest.py` file is loaded, load all plugins specified in its pytest_plugins variable if present.
+   - if exists, load `conftest.py` and `test*/conftest.py` relative to the directory part of the first test path. After the `conftest.py` file is loaded, load all plugins specified in its `pytest_plugins` variable if present.
 
     Note that pytest does not find `conftest.py` files in deeper nested sub directories at tool startup. It is usually a good idea to keep your `conftest.py` file in the top level test or project root directory.
 
-7. by recursively loading all plugins specified by the pytest_plugins variable in `conftest.py` files.
+7. by recursively loading all plugins specified by the `pytest_plugins` variable in `conftest.py` files.
 
 ## conftest.py: local per-directory plugins
 
@@ -65,36 +65,36 @@ pytest a/test_sub.py --capture=no  # will show "setting up"
 ::: tip Note
 If you have `conftest.py` files which do not reside in a python package directory (i.e. one containing an `__init__.py`) then “import conftest” can be ambiguous because there might be other `conftest.py` files as well on your `PYTHONPATH` or `sys.path`. It is thus good practice for projects to either put `conftest.py` under a package scope or to never import anything from a `conftest.py` file.
 
-See also: pytest import mechanisms and sys.path/PYTHONPATH.
+See also: [pytest import mechanisms and sys.path/PYTHONPATH](/python/pytest/explanation/import_mechanism#pytest-import-mechanisms-and-sys-path-pythonpath).
 :::
 
 ::: tip Note
-Some hooks should be implemented only in plugins or conftest.py files situated at the tests root directory due to how pytest discovers plugins during startup, see the documentation of each hook for details.
+Some hooks should be implemented only in plugins or `conftest.py` files situated at the tests root directory due to how pytest discovers plugins during startup, see the documentation of each hook for details.
 :::
 
 ## Writing your own plugin
 
 If you want to write a plugin, there are many real-life examples you can copy from:
 
-- a custom collection example plugin: A basic example for specifying tests in Yaml files
+- a custom collection example plugin: [A basic example for specifying tests in Yaml files](/python/pytest/further_topics/example_trick/work#a-basic-example-for-specifying-tests-in-yaml-files)
 
 - builtin plugins which provide pytest’s own functionality
 
-- many external plugins providing additional features
+- many [external plugins](/python/pytest/reference_guides/plugin_list#plugin-list) providing additional features
 
-All of these plugins implement hooks and/or fixtures to extend and add functionality.
+All of these plugins implement hooks and/or [fixtures](/python/pytest/reference_guides/fixture_reference#fixtures-reference) to extend and add functionality.
 
 ::: tip Note
-Make sure to check out the excellent cookiecutter-pytest-plugin project, which is a cookiecutter template for authoring plugins.
+Make sure to check out the excellent [cookiecutter-pytest-plugin](https://github.com/pytest-dev/cookiecutter-pytest-plugin) project, which is a [cookiecutter template](https://github.com/audreyr/cookiecutter) for authoring plugins.
 
 The template provides an excellent starting point with a working plugin, tests running with tox, a comprehensive README file as well as a pre-configured entry-point.
 :::
 
-Also consider contributing your plugin to pytest-dev once it has some happy users other than yourself.
+Also consider [contributing your plugin to pytest-dev](/python/pytest/further_topics/contribution#submitting-plugins-to-pytest-dev) once it has some happy users other than yourself.
 
 ## Making your plugin installable by others
 
-If you want to make your plugin externally available, you may define a so-called entry point for your distribution so that `pytest` finds your plugin module. Entry points are a feature that is provided by setuptools.
+If you want to make your plugin externally available, you may define a so-called entry point for your distribution so that `pytest` finds your plugin module. Entry points are a feature that is provided by [setuptools](https://setuptools.pypa.io/en/stable/index.html).
 
 pytest looks up the `pytest11` entrypoint to discover its plugins, thus you can make your plugin available by defining it in your `pyproject.toml` file.
 
@@ -117,12 +117,12 @@ myproject = "myproject.pluginmodule"
 If a package is installed this way, `pytest` will load `myproject.pluginmodule` as a plugin which can define hooks. Confirm registration with `pytest --trace-config`
 
 ::: tip Note
-Make sure to include `Framework :: Pytest` in your list of PyPI classifiers to make it easy for users to find your plugin.
+Make sure to include `Framework :: Pytest` in your list of [PyPI classifiers](https://pypi.org/classifiers/) to make it easy for users to find your plugin.
 :::
 
 ## Assertion Rewriting
 
-One of the main features of `pytest` is the use of plain assert statements and the detailed introspection of expressions upon assertion failures. This is provided by “assertion rewriting” which modifies the parsed AST before it gets compiled to bytecode. This is done via a PEP 302 import hook which gets installed early on when `pytest` starts up and will perform this rewriting when modules get imported. However, since we do not want to test different bytecode from what you will run in production, this hook only rewrites test modules themselves (as defined by the python_files configuration option), and any modules which are part of plugins. Any other imported module will not be rewritten and normal assertion behaviour will happen.
+One of the main features of `pytest` is the use of plain assert statements and the detailed introspection of expressions upon assertion failures. This is provided by “assertion rewriting” which modifies the parsed AST before it gets compiled to bytecode. This is done via a [PEP 302](https://peps.python.org/pep-0302/) import hook which gets installed early on when `pytest` starts up and will perform this rewriting when modules get imported. However, since we do not want to test different bytecode from what you will run in production, this hook only rewrites test modules themselves (as defined by the `python_files` configuration option), and any modules which are part of plugins. Any other imported module will not be rewritten and normal assertion behaviour will happen.
 
 If you have assertion helpers in other modules where you would need assertion rewriting to be enabled you need to ask `pytest` explicitly to rewrite this module before it gets imported.
 
@@ -160,7 +160,7 @@ pytest.register_assert_rewrite("pytest_foo.helper")
 
 ## Requiring/Loading plugins in a test module or conftest file
 
-You can require plugins in a test module or a `conftest.py` file using pytest_plugins:
+You can require plugins in a test module or a `conftest.py` file using `pytest_plugins`:
 
 ```python
 pytest_plugins = ["name1", "name2"]
@@ -172,17 +172,17 @@ When the test module or conftest plugin is loaded the specified plugins will be 
 pytest_plugins = "myapp.testsupport.myplugin"
 ```
 
-pytest_plugins are processed recursively, so note that in the example above if `myapp.testsupport.myplugin` also declares pytest_plugins, the contents of the variable will also be loaded as plugins, and so on.
+`pytest_plugins` are processed recursively, so note that in the example above if `myapp.testsupport.myplugin` also declares `pytest_plugins`, the contents of the variable will also be loaded as plugins, and so on.
 
 ::: tip Note
-Requiring plugins using pytest_plugins variable in non-root `conftest.py` files is deprecated.
+Requiring plugins using `pytest_plugins` variable in non-root `conftest.py` files is deprecated.
 
-This is important because `conftest.py` files implement per-directory hook implementations, but once a plugin is imported, it will affect the entire directory tree. In order to avoid confusion, defining pytest_plugins in any `conftest.py` file which is not located in the tests root directory is deprecated, and will raise a warning.
+This is important because `conftest.py` files implement per-directory hook implementations, but once a plugin is imported, it will affect the entire directory tree. In order to avoid confusion, defining `pytest_plugins` in any `conftest.py` file which is not located in the tests root directory is deprecated, and will raise a warning.
 :::
 
-This mechanism makes it easy to share fixtures within applications or even external applications without the need to create external plugins using the `setuptools’s` entry point technique.
+This mechanism makes it easy to share fixtures within applications or even external applications without the need to create external plugins using the `setuptools`’s entry point technique.
 
-Plugins imported by pytest_plugins will also automatically be marked for assertion rewriting (see pytest.register_assert_rewrite()). However for this to have any effect the module must not be imported already; if it was already imported at the time the pytest_plugins statement is processed, a warning will result and assertions inside the plugin will not be rewritten. To fix this you can either call pytest.register_assert_rewrite() yourself before the module is imported, or you can arrange the code to delay the importing until after the plugin is registered.
+Plugins imported by `pytest_plugins` will also automatically be marked for assertion rewriting (see `pytest.register_assert_rewrite()`). However for this to have any effect the module must not be imported already; if it was already imported at the time the `pytest_plugins` statement is processed, a warning will result and assertions inside the plugin will not be rewritten. To fix this you can either call `pytest.register_assert_rewrite()` yourself before the module is imported, or you can arrange the code to delay the importing until after the plugin is registered.
 
 ## Accessing another plugin by name
 
@@ -220,7 +220,7 @@ pytest_plugins = ["pytester"]
 
 Alternatively you can invoke pytest with the `-p pytester` command line option.
 
-This will allow you to use the pytester fixture for testing your plugin code.
+This will allow you to use the `pytester` fixture for testing your plugin code.
 
 Let’s demonstrate what you can do with the plugin with an example. Imagine we developed a plugin that provides a fixture `hello` which yields a function and we can invoke this function with one optional parameter. It will return a string value of `Hello World!` if we do not supply a value or `Hello {value}!` if we do supply a string value.
 
@@ -326,5 +326,5 @@ test_example.py ..                                                   [100%]
 ============================ 2 passed in 0.12s =============================
 ```
 
-For more information about the result object that `runpytest()` returns, and the methods that it provides please check out the RunResult documentation.
+For more information about the result object that `runpytest()` returns, and the methods that it provides please check out the `RunResult` documentation.
 

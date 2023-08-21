@@ -9,7 +9,7 @@ Record the doc progress and make weekly plan
 ### pytest doc
 
 - 🟢 copy document: 100% 
-- 🟡 optimized hyperlink: 30% -> 100%   `python\pytest\how_to_guides\mock.md`
+- 🟡 optimized hyperlink: 30% -> 100%, http://localhost:8080/python/pytest/further_topics/deprecation
 - 🔴 translate in Chinese: 0% 
 
 ###  flask doc

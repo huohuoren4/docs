@@ -1,6 +1,7 @@
 # Configuration
 
-Command line options and configuration file settings
+## Command line options and configuration file settings
+
 You can get help on command line options and values in INI-style configurations files by using the general help option:
 
 ```shell
@@ -11,7 +12,7 @@ This will display command line and configuration file settings which were regist
 
 ## Configuration file formats
 
-Many pytest settings can be set in a *configuration file*, which by convention resides in the root directory of your repository.
+Many [pytest settings](/python/pytest/reference_guides/api_reference/config_options#configuration-options) can be set in a configuration file, which by convention resides in the root directory of your repository.
 
 A quick example of the configuration files supported by pytest:
 
@@ -51,12 +52,12 @@ testpaths = [
 ::: tip Note
 One might wonder why `[tool.pytest.ini_options]` instead of `[tool.pytest]` as is the case with other tools.
 
-The reason is that the pytest team intends to fully utilize the rich TOML data format for configuration in the future, reserving the `[tool.pytest]` table for that. The `ini_options` table is being used, for now, as a bridge between the existing .ini configuration system and the future configuration format.
+The reason is that the pytest team intends to fully utilize the rich TOML data format for configuration in the future, reserving the `[tool.pytest]` table for that. The `ini_options` table is being used, for now, as a bridge between the existing `.ini` configuration system and the future configuration format.
 :::
 
 ### tox.ini
 
-`tox.ini` files are the configuration files of the tox project, and can also be used to hold pytest configuration if they have a `[pytest]` section.
+`tox.ini` files are the configuration files of the [tox](https://tox.readthedocs.io/) project, and can also be used to hold pytest configuration if they have a `[pytest]` section.
 
 ```ini
 # tox.ini
@@ -92,13 +93,13 @@ pytest determines a `rootdir` for each test run which depends on the command lin
 
 Here’s a summary what `pytest` uses `rootdir` for:
 
-Construct nodeids during collection; each test is assigned a unique nodeid which is rooted at the `rootdir` and takes into account the full path, class name, function name and parametrization (if any).
+- Construct nodeids during collection; each test is assigned a unique nodeid which is rooted at the `rootdir` and takes into account the full path, class name, function name and parametrization (if any).
 
-Is used by plugins as a stable location to store project/test run specific information; for example, the internal cache plugin creates a` .pytest_cache` subdirectory in `rootdir` to store its cross-test run state.
+- Is used by plugins as a stable location to store project/test run specific information; for example, the internal cache plugin creates a` .pytest_cache` subdirectory in `rootdir` to store its cross-test run state.
 
-`rootdir` is NOT used to modify `sys.path/PYTHONPATH` or influence how modules are imported. See pytest import mechanisms and sys.path/PYTHONPATH for more details.
+`rootdir` is NOT used to modify `sys.path/PYTHONPATH` or influence how modules are imported. See [pytest import mechanisms and sys.path/PYTHONPATH](/python/pytest/explanation/import_mechanism#pytest-import-mechanisms-and-sys-path-pythonpath) for more details.
 
-The` --rootdir=path` command-line option can be used to force a specific directory. Note that contrary to other command-line options, `--rootdir` cannot be used with addopts inside `pytest.ini` because the `rootdir` is used to find `pytest.ini` already.
+The `--rootdir=path` command-line option can be used to force a specific directory. Note that contrary to other command-line options, `--rootdir` cannot be used with `addopts` inside `pytest.ini` because the `rootdir` is used to find `pytest.ini` already.
 
 ### Finding the rootdir
 
@@ -110,7 +111,7 @@ Here is the algorithm which finds the rootdir from `args`:
 
 - Look for `pytest.ini`, `pyproject.toml`, `tox.ini`, and `setup.cfg` files in the ancestor directory and upwards. If one is matched, it becomes the `configfile` and its directory becomes the `rootdir`.
 
-- If no configuration file was found, look for setup.py upwards from the common ancestor directory to determine the rootdir.
+- If no configuration file was found, look for `setup.py` upwards from the common ancestor directory to determine the `rootdir`.
 
 - If no `setup.py` was found, look for `pytest.ini`, `pyproject.toml`, `tox.ini`, and `setup.cfg` in each of the specified `args` and upwards. If one is matched, it becomes the `configfile` and its directory becomes the `rootdir`.
 
@@ -124,19 +125,19 @@ Files will only be matched for configuration if:
 
 - `pyproject.toml`: contains a `[tool.pytest.ini_options]` table.
 
-- `tox.ini`: contains a `[pytest] `section.
+- `tox.ini`: contains a `[pytest]` section.
 
 - `setup.cfg`: contains a `[tool:pytest]` section.
 
 The files are considered in the order above. Options from multiple `configfiles` candidates are never merged - the first match wins.
 
-The Config object (accessible via hooks or through the pytestconfig fixture) will subsequently carry these attributes:
+The `Config` object (accessible via hooks or through the `pytestconfig` fixture) will subsequently carry these attributes:
 
-- config.rootpath: the determined root directory, guaranteed to exist.
+- `config.rootpath`: the determined root directory, guaranteed to exist.
 
-- config.inipath: the determined `configfile`, may be `None` (it is named `inipath` for historical reasons).
+- `config.inipath`: the determined `configfile`, may be `None` (it is named `inipath` for historical reasons).
 
-*New in version 6.1*: The `config.rootpath` and `config.inipath` properties. They are pathlib.Path versions of the older `config.rootdir` and `config.inifile`, which have type `py.path.local`, and still exist for backward compatibility.
+*New in version 6.1*: The `config.rootpath` and `config.inipath` properties. They are `pathlib.Path` versions of the older `config.rootdir` and `config.inifile`, which have type `py.path.local`, and still exist for backward compatibility.
 
 The `rootdir` is used as a reference directory for constructing test addresses (“nodeids”) and can be used also by plugins for storing per-testrun information.
 
@@ -164,18 +165,18 @@ setup.py
 ```
 
 ::: warning Warning
-Custom pytest plugin commandline arguments may include a path, as in` pytest --log-output ../../test.log args`. Then `args` is mandatory, otherwise pytest uses the folder of test.log for rootdir determination (see also issue #1435). A dot `.` for referencing to the current working directory is also possible.
+Custom pytest plugin commandline arguments may include a path, as in `pytest --log-output ../../test.log args`. Then `args` is mandatory, otherwise pytest uses the folder of test.log for rootdir determination (see also [issue #1435](https://github.com/pytest-dev/pytest/issues/1435)). A dot `.` for referencing to the current working directory is also possible.
 :::
 
 ## Builtin configuration file options
 
-For the full list of options consult the [reference documentation](/python/pytest/reference_guides/api_reference#configuration-options).
+For the full list of options consult the [reference documentation](/python/pytest/reference_guides/api_reference/config_options#configuration-options).
 
 ## Syntax highlighting theme customization
 
 The syntax highlighting themes used by pytest can be customized using two environment variables:
 
-- **PYTEST_THEME** sets a pygment style to use.
+- `PYTEST_THEME` sets a [pygment style](https://pygments.org/docs/styles/) to use.
 
-- **PYTEST_THEME_MODE** sets this style to light or dark.
+- `PYTEST_THEME_MODE` sets this style to light or dark.
 

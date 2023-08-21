@@ -12,11 +12,11 @@ When set (regardless of value), pytest acknowledges that is running in a CI proc
 
 ## PYTEST_ADDOPTS
 
-This contains a command-line (parsed by the py:mod:`shlex` module) that will be prepended to the command line given by the user, see [Builtin configuration file options](https://docs.pytest.org/en/latest/reference/customize.html#adding-default-options) for more information.
+This contains a command-line (parsed by the py:mod:`shlex` module) that will be prepended to the command line given by the user, see [Builtin configuration file options](/python/pytest/reference_guides/configuration#builtin-configuration-file-options) for more information.
 
 ## PYTEST_CURRENT_TEST
 
-This is not meant to be set by users, but is set by pytest internally with the name of the current test so other processes can inspect it, see [PYTEST_CURRENT_TEST environment variable](https://docs.pytest.org/en/latest/example/simple.html#pytest-current-test-env) for more information.
+This is not meant to be set by users, but is set by pytest internally with the name of the current test so other processes can inspect it, see [PYTEST_CURRENT_TEST environment variable](/python/pytest/further_topics/example_trick/basic_pattern#pytest-current-test-environment-variable) for more information.
 
 ## PYTEST_DEBUG
 
@@ -40,7 +40,7 @@ Sets a [pygment style](https://pygments.org/docs/styles/) to use for the code ou
 
 ## PYTEST_THEME_MODE
 
-Sets the [PYTEST_THEME](https://docs.pytest.org/en/latest/reference/reference.html#envvar-PYTEST_THEME) to be either dark or light.
+Sets the `PYTEST_THEME` to be either dark or light.
 
 ## PY_COLORS
 
@@ -48,7 +48,7 @@ When set to `1`, pytest will use color in terminal output. When set to 0, pytest
 
 ## NO_COLOR
 
-When set (regardless of value), pytest will not use color in terminal output. `PY_COLORS` takes precedence over `NO_COLOR`, which takes precedence over `FORCE_COLOR`. See no-color.org for other libraries supporting this community standard.
+When set (regardless of value), pytest will not use color in terminal output. `PY_COLORS` takes precedence over `NO_COLOR`, which takes precedence over `FORCE_COLOR`. See [no-color.org](https://no-color.org/) for other libraries supporting this community standard.
 
 ## FORCE_COLOR
 

@@ -1,10 +1,10 @@
 # Objects
 
-Objects accessible from fixtures or hooks or importable from `pytest`.
+Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_reference#fixtures-reference) or hooks or importable from `pytest`.
 
 ## CallInfo
 
-- final class **CallInfo**        
+- ### `final class` **CallInfo**        
 
     Result/Exception info of a function invocation.
 
@@ -28,13 +28,13 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         The context of invocation: “collect”, “setup”, “call” or “teardown”.
 
-    - property **result**: `TResult`
+    - `property` **result**: `TResult`
 
         The return value of the call, if it didn’t raise.
 
         Can only be accessed if excinfo is None.
 
-    - classmethod **from_call**(`func, when, reraise=None`)     
+    - `classmethod` **from_call**(`func, when, reraise=None`)     
 
         Call func, wrapping the result in a CallInfo.
 
@@ -48,7 +48,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
 ## CollectReport
 
-- final class **CollectReport**       
+- ### `final class` **CollectReport**       
 
     - *Bases*: `BaseReport`
 
@@ -76,25 +76,25 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         Tuples of str `(heading, content)` with extra information for the test report. Used by pytest to add text captured from `stdout`, `stderr`, and intercepted logging events. May be used by other plugins to add arbitrary information to reports.
 
-    - property **caplog**: `str`
+    - `property` **caplog**: `str`
 
         Return captured log lines, if log capturing is enabled.
 
         *New in version 3.5.*
 
-    - property **capstderr**: `str`
+    - `property` **capstderr**: `str`
 
         Return captured text from stderr, if capturing is enabled.
 
         *New in version 3.0.*
 
-    - property **capstdout**: `str`
+    - `property` **capstdout**: `str`
 
         Return captured text from stdout, if capturing is enabled.
 
         *New in version 3.0.*
 
-    - property **count_towards_summary**: `bool`
+    - `property` **count_towards_summary**: `bool`
 
         Experimental Whether this report should be counted towards the totals shown at the end of the test session: “1 passed, 1 failure, etc”.
 
@@ -102,15 +102,15 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
         This function is considered experimental, so beware that it is subject to changes even in patch releases.
         :::
 
-    - property **failed**: `bool`
+    - `property` **failed**: `bool`
 
         Whether the outcome is failed.
 
-    - property **fspath**: `str`
+    - `property` **fspath**: `str`
 
         The path portion of the reported node, as a string.
 
-    - property **head_line**: `Optional[str]`
+    - `property` **head_line**: `Optional[str]`
 
         Experimental The head line shown with longrepr output for this report, more commonly during traceback representation during failures:
 
@@ -124,35 +124,35 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
         This function is considered experimental, so beware that it is subject to changes even in patch releases.
         :::
 
-    - property **longreprtext**: `str`
+    - `property` **longreprtext**: `str`
 
         Read-only property that returns the full string representation of `longrepr`.
 
         *New in version 3.0.*
 
-    - property **passed**: `bool`
+    - `property` **passed**: `bool`
 
         Whether the outcome is passed.
 
-    - property **skipped**: `bool`
+    - `property` **skipped**: `bool`
 
         Whether the outcome is skipped.
 
 ## Config
 
-- final class **Config**      
+- ### `final class` **Config**      
 
     Access to configuration values, pluginmanager and plugin hooks.
 
     - **Parameters**:
 
-        - **pluginmanager** (`PytestPluginManager`) – A pytest `PluginManager`.
+        - `pluginmanager (PytestPluginManager)` – A pytest `PluginManager`.
 
-        - **invocation_params** (`InvocationParams`) – Object containing parameters regarding the [pytest.main()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.main) invocation.
+        - `invocation_params (InvocationParams)` – Object containing parameters regarding the `pytest.main()` invocation.
 
-    - final class **InvocationParams**(`*, args, plugins, dir`)     
+    - `final class` **InvocationParams**(`*, args, plugins, dir`)     
 
-        Holds parameters passed during [pytest.main()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.main).
+        Holds parameters passed during `pytest.main()`.
 
         The object attributes are read-only.
 
@@ -166,7 +166,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
     - **args**: `Tuple[str, ...]`
 
-        The command-line arguments as passed to [pytest.main()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.main).
+        The command-line arguments as passed to `pytest.main()`.
 
     - **plugins**: `Optional[Sequence[Union[str, object]]]`
 
@@ -174,9 +174,9 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
     - **dir**: `Path`
 
-        The directory from which [pytest.main()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.main) was invoked.
+        The directory from which `pytest.main()` was invoked.
 
-    - class **ArgsSource**(`value`)     
+    - `class` **ArgsSource**(`value`)     
 
         Indicates the source of the test arguments.
 
@@ -198,13 +198,13 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         Access to command line option as attributes.
 
-        - **Type**: [argparse.Namespace](https://docs.python.org/3/library/argparse.html#argparse.Namespace)
+        - *Type*: `argparse.Namespace`
 
     - **invocation_params**
 
         The parameters with which pytest was invoked.
 
-        *Type*: [InvocationParams](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Config.InvocationParams)
+        *Type*: `InvocationParams`
 
     - **pluginmanager**
 
@@ -218,15 +218,15 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         *Type*: `Stash`
 
-    - property **rootpath**: `Path`
+    - `property` **rootpath**: `Path`
 
-        The path to the [rootdir](https://docs.pytest.org/en/latest/reference/customize.html#rootdir).
+        The path to the `rootdir`.
 
-        *Type*: [pathlib.Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path)
+        *Type*: `pathlib.Path`
 
         *New in version 6.1.*
 
-    - property **inipath**: `Optional[Path]`
+    - `property` **inipath**: `Optional[Path]`
 
         The path to the configfile.
 
@@ -236,9 +236,9 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
     - **add_cleanup**(`func`)     
 
-        Add a function to be called when the config object gets out of use (usually coinciding with pytest_unconfigure).
+        Add a function to be called when the config object gets out of use (usually coinciding with `pytest_unconfigure`).
 
-    - classmethod **fromdictargs**(`option_dict, args`)     
+    - `classmethod` **fromdictargs**(`option_dict, args`)     
 
         Constructor usable for subprocesses.
 
@@ -264,7 +264,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         Return configuration value from an ini file.
 
-        If the specified name hasn’t been registered through a prior parser.addini call (usually from a plugin), a ValueError is raised.
+        If the specified name hasn’t been registered through a prior `parser.addini` call (usually from a plugin), a ValueError is raised.
 
     - **getoption**(`name, default=<NOTSET>, skip=False`)       
 
@@ -282,33 +282,33 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         *Deprecated*, use `getoption()` instead.
 
-    - getvalueorskip(`name, path=None`)     
+    - **getvalueorskip**(`name, path=None`)     
 
         *Deprecated*, use `getoption(skip=True)` instead.
 
 ## ExceptionInfo
 
-- final class **ExceptionInfo**       
+- ### `final class` **ExceptionInfo**       
 
     Wraps `sys.exc_info()` objects and offers help for navigating the traceback.
 
-    - classmethod **from_exception**(`exception, exprinfo=None`)        
+    - `classmethod` **from_exception**(`exception, exprinfo=None`)        
 
         Return an ExceptionInfo for an existing exception.
 
-        The exception must have a non-`None` `__traceback__` attribute, otherwise this function fails with an assertion error. This means that the exception must have been raised, or added a traceback with the with_traceback() method.
+        The exception must have a non-`None` `__traceback__` attribute, otherwise this function fails with an assertion error. This means that the exception must have been raised, or added a traceback with the `with_traceback()` method.
 
         *Parameters*:
 
-        - `exprinfo (Optional[str])` – A text string helping to determine if we should strip AssertionError from the output. Defaults to the exception `message/__str__()`.
+        - `exprinfo (Optional[str])` – A text string helping to determine if we should strip `AssertionError` from the output. Defaults to the exception `message/__str__()`.
 
         *New in version 7.4.*
 
-    - classmethod **from_exc_info**(`exc_info, exprinfo=None`)      
+    - `classmethod` **from_exc_info**(`exc_info, exprinfo=None`)      
 
         Like `from_exception()`, but using old-style exc_info tuple.
 
-    - classmethod **from_current**(`exprinfo=None`)       
+    - `classmethod` **from_current**(`exprinfo=None`)       
 
         Return an `ExceptionInfo` matching the current traceback.
 
@@ -320,7 +320,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         - `exprinf (Optional[str])` – A text string helping to determine if we should strip - `AssertionError` from the output. Defaults to the exception `message/__str__()`.
 
-    - classmethod **for_later**()     
+    - `classmethod` **for_later**()     
 
         Return an unfilled ExceptionInfo.
 
@@ -328,23 +328,23 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         Fill an unfilled ExceptionInfo created with `for_later()`.
 
-    - property **type**: `Type[E]`
+    - `property` **type**: `Type[E]`
 
         The exception class.
 
-    - property **value**: `E`
+    - `property` **value**: `E`
 
         The exception value.
 
-    - property **tb**: `TracebackType`
+    - `property` **tb**: `TracebackType`
 
         The exception raw traceback.
 
-    - property **typename**: `str`
+    - `property` **typename**: `str`
 
         The type name of the exception.
 
-    - property **traceback**: `Traceback`
+    - `property` **traceback**: `Traceback`
 
         The traceback.
 
@@ -374,11 +374,11 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         - `tbfilter (Union[bool, Callable[[ExceptionInfo[BaseException]], Traceback]])` – A filter for traceback entries.
 
-            If false, don’t hide any entries.
+            - If false, don’t hide any entries.
 
-            If true, hide internal entries and entries that contain a local variable `__tracebackhide__ = True`.
+            - If true, hide internal entries and entries that contain a local variable `__tracebackhide__ = True`.
 
-            If a callable, delegates the filtering to the callable.
+            - If a callable, delegates the filtering to the callable.
 
             Ignored if `style` is `"native"`.
 
@@ -392,13 +392,13 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
     - **match**(`regexp`)       
 
-        Check whether the regular expression `regexp` matches the string representation of the exception using [re.search()](https://docs.python.org/3/library/re.html#re.search).
+        Check whether the regular expression `regexp` matches the string representation of the exception using `re.search()`.
 
         If it matches `True` is returned, otherwise an `AssertionError` is raised.
 
 ## ExitCode
 
-- final class **ExitCode**(`value`)     
+- ### `final class` **ExitCode**(`value`)     
 
     Encodes the valid exit codes by pytest.
 
@@ -432,7 +432,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
 ## FixtureDef
 
-- final class **FixtureDef**      
+- ### `final class` **FixtureDef**      
 
     - *Bases*: `Generic[FixtureValue]`
 
@@ -440,13 +440,13 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
     *Note*: At this time, only explicitly documented fields and methods are considered public stable API.
 
-    - property **scope**: `Literal['session', 'package', 'module', 'class', 'function']`
+    - `property` **scope**: `Literal['session', 'package', 'module', 'class', 'function']`
 
         Scope string, one of `“function”`, `“class”`,` “module”`, `“package”`, `“session”`.
 
 ## MarkDecorator
 
-- class **MarkDecorator**     
+- ### `class` **MarkDecorator**     
 
     A decorator for applying a mark on test functions and classes.
 
@@ -475,29 +475,29 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
     *Note*: The rules above prevent a `MarkDecorator` from storing only a single function or class reference as its positional argument with no additional keyword or positional arguments. You can work around this by using `with_args()`.
 
-    - property **name**: `str`
+    - `property` **name**: `str`
 
         Alias for `mark.name`.
 
-    - property **args**: `Tuple[Any, ...]`
+    - `property` **args**: `Tuple[Any, ...]`
 
         Alias for `mark.args`.
 
-    - property **kwargs**: `Mapping[str, Any]`
+    - `property` **kwargs**: `Mapping[str, Any]`
 
         Alias for `mark.kwargs`.
 
     - **with_args**(`*args, **kwargs`)      
 
-        Return a MarkDecorator with extra arguments added.
+        Return a `MarkDecorator` with extra arguments added.
 
         Unlike calling the MarkDecorator, `with_args()` can be used even if the sole argument is a `callable/class`.
 
 ## MarkGenerator
 
-- final class **MarkGenerator**       
+- ### `final class` **MarkGenerator**       
 
-    Factory for [MarkDecorator](https://docs.pytest.org/en/latest/reference/reference.html#pytest.MarkDecorator) objects - exposed as a `pytest.mark` singleton instance.
+    Factory for `MarkDecorator` objects - exposed as a `pytest.mark` singleton instance.
 
     *Example*:
 
@@ -509,11 +509,11 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
        pass
     ```
 
-    applies a ‘slowtest’ [Mark](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Mark) on `test_function`.
+    applies a ‘slowtest’ `Mark` on `test_function`.
 
 ## Mark
 
-- final class **Mark**        
+- ### `final class` **Mark**        
 
     A pytest mark.
 
@@ -543,19 +543,19 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
 ## Metafunc
 
-- final class **Metafunc**        
+- ### `final class` **Metafunc**        
 
-    Objects passed to the pytest_generate_tests hook.
+    Objects passed to the `pytest_generate_tests` hook.
 
     They help to inspect a test function and to generate tests according to test configuration or values specified in the class or module where a test function is defined.
 
     - **definition**
 
-        Access to the underlying [_pytest.python.FunctionDefinition](https://docs.pytest.org/en/latest/reference/reference.html#pytest.python.FunctionDefinition).
+        Access to the underlying `_pytest.python.FunctionDefinition`.
 
     - **config**
 
-        Access to the [pytest.Config](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Config) object for the test session.
+        Access to the `pytest.Config` object for the test session.
 
     - **module**
 
@@ -599,13 +599,13 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
 ## Parser
 
-- final class **Parser**      
+- ### `final class` **Parser**      
 
     `Parser` for command line arguments and `ini`-file values.
 
     - **Variables**:
 
-        - **extra_info** – Dict of generic param -> value to display in case there’s an error processing the command line arguments.
+        - `extra_info` – Dict of generic param -> value to display in case there’s an error processing the command line arguments.
 
     - **getgroup**(`name, description='', after=None`)        
 
@@ -623,7 +623,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         *Return type*: `OptionGroup`
 
-        The returned group object has an `addoption` method with the same signature as [parser.addoption](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Parser.addoption) but will be shown in the respective group in the output of `pytest --help`.
+        The returned group object has an `addoption` method with the same signature as `parser.addoption` but will be shown in the respective group in the output of `pytest --help`.
 
     - **addoption**(`*opts, **attrs`)       
 
@@ -671,7 +671,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
             - `linelist`: a list of strings, separated by line breaks
 
-            - `paths`: a list of [pathlib.Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path), separated as in a shell
+            - `paths`: a list of `pathlib.Path`, separated as in a shell
 
             - `pathlist`: a list of `py.path`, separated as in a shell
 
@@ -681,11 +681,11 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         - `default (Optional[Any])` – Default value if no ini-file option exists but is queried.
 
-        The value of ini-variables can be retrieved via a call to [config.getini(name)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Config.getini).
+        The value of ini-variables can be retrieved via a call to `config.getini(name)`.
 
 ## OptionGroup
 
-- class **OptionGroup**       
+- ### `class` **OptionGroup**       
 
     A group of options shown in its own section.
 
@@ -703,11 +703,11 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
 ## PytestPluginManager
 
-- final class **PytestPluginManager**     
+- ### `final class` **PytestPluginManager**     
 
     - *Bases*: `PluginManager`
 
-    - A [pluggy.PluginManager](https://pluggy.readthedocs.io/en/stable/api_reference.html#pluggy.PluginManager) with additional pytest-specific functionality:
+    - A `pluggy.PluginManager` with additional pytest-specific functionality:
 
         - Loading plugins from the command line, `PYTEST_PLUGINS` env variable and `pytest_plugins` global variables found in plugins being loaded.
 
@@ -721,11 +721,11 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         Register a plugin and return its name.
 
-        If a name is not specified, a name is generated using get_canonical_name().
+        If a name is not specified, a name is generated using `get_canonical_name()`.
 
-        If the name is blocked from registering, returns None.
+        If the name is blocked from registering, returns `None`.
 
-        If the plugin is already registered, raises a ValueError.
+        If the plugin is already registered, raises a `ValueError`.
 
     - **getplugin**(`name`)       
 
@@ -737,7 +737,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         Import a plugin with `modname`.
 
-        If `consider_entry_points` is True, entry point names are also considered to find a plugin.
+        If `consider_entry_points` is `True`, entry point names are also considered to find a plugin.
 
     - **add_hookcall_monitoring**(`before, after`)
 
@@ -769,7 +769,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         Return a canonical name for a plugin object.
 
-        Note that a plugin may be registered under a different name specified by the caller of [register(plugin, name)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.PytestPluginManager.register). To obtain the name of n registered plugin use [get_name(plugin)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.PytestPluginManager.get_name) instead.
+        Note that a plugin may be registered under a different name specified by the caller of `register(plugin, name)`. To obtain the name of n registered plugin use `get_name(plugin)` instead.
 
     - **get_hookcallers**(`plugin`)
 
@@ -837,9 +837,9 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
 ## TestReport
 
-- final class **TestReport**      
+- ### `final class` **TestReport**      
 
-    - Bases: `BaseReport`
+    - *Bases*: `BaseReport`
 
     Basic test report object (also used for setup and teardown calls if they fail).
 
@@ -851,7 +851,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
     - **location**: `Tuple[str, Optional[int], str]`
 
-        A (filesystempath, lineno, domaininfo) tuple indicating the actual location of a test item - it might be different from the collected one e.g. if a method is inherited from a different module. The filesystempath may be relative to `config.rootdir`. The line number is 0-based.
+        A `(filesystempath, lineno, domaininfo)` tuple indicating the actual location of a test item - it might be different from the collected one e.g. if a method is inherited from a different module. The filesystempath may be relative to `config.rootdir`. The line number is 0-based.
 
     - **keywords**: `Mapping[str, Any]`
 
@@ -889,7 +889,7 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         The system time when the call ended, in seconds since the epoch.
 
-    - classmethod **from_item_and_call**(`item, call`)      
+    - `classmethod` **from_item_and_call**(`item, call`)      
 
         Create and fill a TestReport with standard item and call info.
 
@@ -899,25 +899,25 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
         - `call (CallInfo[None])` – The call info.
 
-    - property **caplog**: `str`
+    - `property` **caplog**: `str`
 
         Return captured log lines, if log capturing is enabled.
 
         *New in version 3.5.*
 
-    - property **capstderr**: `str`
+    - `property` **capstderr**: `str`
 
-        Return captured text from stderr, if capturing is enabled.
-
-        *New in version 3.0.*
-
-    - property **capstdout**: `str`
-
-        Return captured text from stdout, if capturing is enabled.
+        Return captured text from `stderr`, if capturing is enabled.
 
         *New in version 3.0.*
 
-    - property **count_towards_summary**: `bool`
+    - `property` **capstdout**: `str`
+
+        Return captured text from `stdout`, if capturing is enabled.
+
+        *New in version 3.0.*
+
+    - `property` **count_towards_summary**: `bool`
 
         Experimental Whether this report should be counted towards the totals shown at the end of the test session: “1 passed, 1 failure, etc”.
 
@@ -925,15 +925,15 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
         This function is considered experimental, so beware that it is subject to changes even in patch releases.
         ::: 
 
-    - property **failed**: `bool`
+    - `property` **failed**: `bool`
 
         Whether the outcome is failed.
 
-    - property **fspath**: `str`
+    - `property` **fspath**: `str`
 
         The path portion of the reported node, as a string.
 
-    - property **head_line**: `Optional[str]`
+    - `property` **head_line**: `Optional[str]`
 
         Experimental The head line shown with longrepr output for this report, more commonly during traceback representation during failures:
 
@@ -947,33 +947,33 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
         This function is considered experimental, so beware that it is subject to changes even in patch releases.
         :::
 
-    - property **longreprtext**: `str`
+    - `property` **longreprtext**: `str`
 
         Read-only property that returns the full string representation of `longrepr`.
 
         *New in version 3.0.*
 
-    - property **passed**: `bool`
+    - `property` **passed**: `bool`
 
         Whether the outcome is passed.
 
-    - property **skipped**: `bool`
+    - `property` **skipped**: `bool`
 
         Whether the outcome is skipped.
 
 ## TestShortLogReport
 
-- class **TestShortLogReport**        
+- ### `class` **TestShortLogReport**        
 
     Used to store the test status result category, shortletter and verbose word. For example `"rerun", "R", ("RERUN", {"yellow": True})`.
 
     - **Variables**:
 
-        - **category** – The class of result, for example `“passed”`, `“skipped”`, `“error”`, or the empty string.
+        - `category` – The class of result, for example `“passed”`, `“skipped”`, `“error”`, or the empty string.
 
-        - **letter** – The short letter shown as testing progresses, for example `"."`, `"s"`, `"E"`, or the empty string.
+        - `letter` – The short letter shown as testing progresses, for example `"."`, `"s"`, `"E"`, or the empty string.
 
-        - **word** – Verbose word is shown as testing progresses in verbose mode, for example `"PASSED"`, `"SKIPPED"`, `"ERROR"`, or the empty string.
+        - `word` – Verbose word is shown as testing progresses in verbose mode, for example `"PASSED"`, `"SKIPPED"`, `"ERROR"`, or the empty string.
 
     - **category**: `str`
 
@@ -989,21 +989,21 @@ Objects accessible from fixtures or hooks or importable from `pytest`.
 
 ## _Result
 
-Result object used within [hook wrappers](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#hookwrapper), see [_Result in the pluggy documentation](https://pluggy.readthedocs.io/en/stable/api_reference.html#pluggy._callers._Result) for more information.
+Result object used within [hook wrappers](/python/pytest/how_to_guides/hook_func#hook-wrappers-executing-around-other-hooks), see [_Result in the pluggy documentation](https://pluggy.readthedocs.io/en/stable/api_reference.html#pluggy._callers._Result) for more information.
 
 ## Stash
 
-- class **Stash**     
+- ### `class` **Stash**     
 
     `Stash` is a type-safe heterogeneous mutable mapping that allows keys and value types to be defined separately from where it (the `Stash`) is created.
 
-    Usually you will be given an object which has a `Stash`, for example [Config](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Config) or a [Node](https://docs.pytest.org/en/latest/reference/reference.html#pytest.nodes.Node):
+    Usually you will be given an object which has a `Stash`, for example `Config` or a `Node`:
 
     ```python
     stash: Stash = some_object.stash
     ```
 
-    If a module or plugin wants to store data in this `Stash`, it creates [StashKeys](https://docs.pytest.org/en/latest/reference/reference.html#pytest.StashKey) for its keys (at the module level):
+    If a module or plugin wants to store data in this `Stash`, it creates `StashKeys` for its keys (at the module level):
 
     ```python
     # At the top-level of the module
@@ -1060,12 +1060,12 @@ Result object used within [hook wrappers](https://docs.pytest.org/en/latest/how-
 
         Return how many items exist in the stash.
 
-- class **StashKey**      
+- ### `class` **StashKey**      
 
     - *Bases*: `Generic[T]`
 
-    `StashKey` is an object used as a key to a [Stash](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Stash).
+    `StashKey` is an object used as a key to a `Stash`.
 
-    A `StashKey` is associated with the type T of the value of the key.
+    A `StashKey` is associated with the type `T` of the value of the key.
 
     A `StashKey` is unique and cannot conflict with another key.

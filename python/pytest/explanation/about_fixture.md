@@ -1,24 +1,24 @@
 # About fixtures
 
 ::: tip See also
-[How to use fixtures](https://docs.pytest.org/en/latest/how-to/fixtures.html#how-to-fixtures)
+[How to use fixtures](/python/pytest/how_to_guides/fixture#how-to-use-fixtures)
 :::
 
 ::: tip See also
-[Fixtures reference](https://docs.pytest.org/en/latest/reference/fixtures.html#reference-fixtures)
+[Fixtures reference](/python/pytest/reference_guides/fixture_reference#fixtures-reference)
 :::
 
 pytest fixtures are designed to be explicit, modular and scalable.
 
 ## What fixtures are
 
-In testing, a fixture provides a defined, reliable and consistent context for the tests. This could include environment (for example a database configured with known parameters) or content (such as a dataset).
+In testing, a [fixture](https://en.wikipedia.org/wiki/Test_fixture#Software) provides a defined, reliable and consistent context for the tests. This could include environment (for example a database configured with known parameters) or content (such as a dataset).
 
-Fixtures define the steps and data that constitute the arrange phase of a test (see [Anatomy of a test](https://docs.pytest.org/en/latest/explanation/anatomy.html#test-anatomy)). In pytest, they are functions you define that serve this purpose. They can also be used to define a test’s act phase; this is a powerful technique for designing more complex tests.
+Fixtures define the steps and data that constitute the arrange phase of a test (see [Anatomy of a test](/python/pytest/explanation/anatomy#anatomy-of-a-test)). In pytest, they are functions you define that serve this purpose. They can also be used to define a test’s act phase; this is a powerful technique for designing more complex tests.
 
 The services, state, or other operating environments set up by fixtures are accessed by test functions through arguments. For each fixture used by a test function there is typically a parameter (named after the fixture) in the test function’s definition.
 
-We can tell pytest that a particular function is a fixture by decorating it with [@pytest.fixture](https://docs.pytest.org/en/latest/reference/reference.html#pytest.fixture). Here’s a simple example of what a fixture in pytest might look like:
+We can tell pytest that a particular function is a fixture by decorating it with `@pytest.fixture`. Here’s a simple example of what a fixture in pytest might look like:
 
 ```python
 import pytest
@@ -60,7 +60,7 @@ pytest fixtures offer dramatic improvements over the classic xUnit style of setu
 
 - teardown logic can be easily, and safely managed, no matter how many fixtures are used, without the need to carefully handle errors by hand or micromanage the order that cleanup steps are added.
 
-In addition, pytest continues to support [How to implement xunit-style set-up](https://docs.pytest.org/en/latest/how-to/xunit_setup.html#xunitsetup). You can mix both styles, moving incrementally from classic to new style, as you prefer. You can also start out from existing [unittest.TestCase style](https://docs.pytest.org/en/latest/how-to/unittest.html#unittest-testcase) or [nose based](https://docs.pytest.org/en/latest/how-to/nose.html#nosestyle) projects.
+In addition, pytest continues to support [How to implement xunit-style set-up](/python/pytest/how_to_guides/xunit#how-to-implement-xunit-style-set-up). You can mix both styles, moving incrementally from classic to new style, as you prefer. You can also start out from existing [unittest.TestCase style](/python/pytest/how_to_guides/unittest#how-to-use-unittest-based-tests-with-pytest) or [nose based](/python/pytest/how_to_guides/nose_test#how-to-run-tests-written-for-nose) projects.
 
 ## Fixture errors
 
@@ -110,7 +110,7 @@ Another good approach is by adding the data files in the `tests` folder. There a
 
 ## A note about fixture cleanup
 
-pytest does not do any special processing for [SIGTERM](https://docs.python.org/3/library/signal.html#signal.SIGTERM) and SIGQUIT signals ([SIGINT](https://docs.python.org/3/library/signal.html#signal.SIGINT) is handled naturally by the Python runtime via [KeyboardInterrupt](https://docs.python.org/3/library/exceptions.html#KeyboardInterrupt)), so fixtures that manage external resources which are important to be cleared when the Python process is terminated (by those signals) might leak resources.
+pytest does not do any special processing for `SIGTERM` and `SIGQUIT` signals (`SIGINT` is handled naturally by the Python runtime via `KeyboardInterrupt`), so fixtures that manage external resources which are important to be cleared when the Python process is terminated (by those signals) might leak resources.
 
 The reason pytest does not handle those signals to perform fixture cleanup is that signal handlers are global, and changing them might interfere with the code under execution.
 

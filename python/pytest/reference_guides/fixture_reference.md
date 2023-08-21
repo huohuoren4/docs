@@ -1,24 +1,24 @@
 # Fixtures reference
 
 ::: tip See also
-About fixtures
+[About fixtures](/python/pytest/explanation/about_fixture#about-fixtures)
 :::
 
 ::: tip See also
-How to use fixtures
+[How to use fixtures](/python/pytest/how_to_guides/fixture#how-to-use-fixtures)
 :::
 
 ## Built-in fixtures
 
-Fixtures are defined using the @pytest.fixture decorator. Pytest has several useful built-in fixtures:
+Fixtures are defined using the `@pytest.fixture` decorator. Pytest has several useful built-in fixtures:
 
 - **capfd**
 
-    Capture, as text, output to file descriptors 1 and 2.
+    Capture, as text, output to file descriptors `1` and `2`.
 
 - **capfdbinary**
 
-    Capture, as bytes, output to file descriptors 1 and 2.
+    Capture, as bytes, output to file descriptors `1` and `2`.
 
 - **caplog**
 
@@ -70,25 +70,25 @@ Fixtures are defined using the @pytest.fixture decorator. Pytest has several use
 
 - **tmp_path**
 
-    Provide a pathlib.Path object to a temporary directory which is unique to each test function.
+    Provide a `pathlib.Path` object to a temporary directory which is unique to each test function.
 
 - **tmp_path_factory**
 
-    Make session-scoped temporary directories and return pathlib.Path objects.
+    Make session-scoped temporary directories and return `pathlib.Path` objects.
 
 - **tmpdir**
 
-    Provide a py.path.local object to a temporary directory which is unique to each test function; replaced by tmp_path.
+    Provide a `py.path.local` object to a temporary directory which is unique to each test function; replaced by `tmp_path`.
 
 - **tmpdir_factory**
 
-    Make session-scoped temporary directories and return py.path.local objects; replaced by tmp_path_factory.
+    Make session-scoped temporary directories and return `py.path.local` objects; replaced by `tmp_path_factory`.
 
 ## Fixture availability
 
 Fixture availability is determined from the perspective of the test. A fixture is only available for tests to request if they are in the scope that fixture is defined in. If a fixture is defined inside a class, it can only be requested by tests inside that class. But if a fixture is defined inside the global scope of the module, than every test in that module, even if it’s defined inside a class, can request it.
 
-Similarly, a test can also only be affected by an autouse fixture if that test is in the same scope that autouse fixture is defined in (see Autouse fixtures are executed first within their scope).
+Similarly, a test can also only be affected by an autouse fixture if that test is in the same scope that autouse fixture is defined in (see [Autouse fixtures are executed first within their scope](/python/pytest/reference_guides/fixture_reference#autouse-fixtures-are-executed-first-within-their-scope)).
 
 A fixture can also request any other fixture, no matter where it’s defined, so long as the test requesting them can see all fixtures involved.
 
@@ -133,7 +133,7 @@ From the tests’ perspectives, they have no problem seeing each of the fixtures
 So when they run, `outer` will have no problem finding `inner`, because pytest searched from the tests’ perspectives.
 
 ::: tip Note
-The scope a fixture is defined in has no bearing on the order it will be instantiated in: the order is mandated by the logic described here.
+The scope a fixture is defined in has no bearing on the order it will be instantiated in: the order is mandated by the logic described [here](/python/pytest/reference_guides/fixture_reference#fixture-instantiation-order).
 :::
 
 ### conftest.py: sharing fixtures across multiple files
@@ -202,9 +202,9 @@ The directories become their own sort of scope where fixtures that are defined i
 
 Tests are allowed to search upward (stepping outside a circle) for fixtures, but can never go down (stepping inside a circle) to continue their search. So `tests/subpackage/test_subpackage.py::test_order` would be able to find the innermost fixture defined in `tests/subpackage/test_subpackage.py`, but the one defined in `tests/test_top.py` would be unavailable to it because it would have to step down a level (step inside a circle) to find it.
 
-The first fixture the test finds is the one that will be used, so fixtures can be overridden if you need to change or extend what one does for a particular scope.
+The first fixture the test finds is the one that will be used, so [fixtures can be overridden](/python/pytest/how_to_guides/fixture#overriding-fixtures-on-various-levels) if you need to change or extend what one does for a particular scope.
 
-You can also use the `conftest.py` file to implement local per-directory plugins.
+You can also use the `conftest.py` file to implement [local per-directory plugins](/python/pytest/how_to_guides/write_plugin#conftest-py-local-per-directory-plugins).
 
 ### Fixtures from third-party plugins
 
@@ -380,7 +380,7 @@ The rules provided by each fixture (as to what fixture(s) each one has to come a
 
 Enough information has to be provided through these requests in order for pytest to be able to figure out a clear, linear chain of dependencies, and as a result, an order of operations for a given test. If there’s any ambiguity, and the order of operations can be interpreted more than one way, you should assume pytest could go with any one of those interpretations at any point.
 
-For example, if d didn’t request c, i.e.the graph would look like this:
+For example, if `d` didn’t request `c`, i.e.the graph would look like this:
 
 ![test_fixtures_order_dependencies_unclear](/pytest/test_fixtures_order_dependencies_unclear.png)
 
@@ -394,9 +394,9 @@ This isn’t necessarily bad, but it’s something to keep in mind. If the order
 
 Autouse fixtures are assumed to apply to every test that could reference them, so they are executed before other fixtures in that scope. Fixtures that are requested by autouse fixtures effectively become autouse fixtures themselves for the tests that the real autouse fixture applies to.
 
-So if fixture a is autouse and fixture b is not, but fixture a requests fixture b, then fixture b will effectively be an autouse fixture as well, but only for the tests that a applies to.
+So if fixture `a` is autouse and fixture `b` is not, but fixture a requests fixture `b`, then fixture `b` will effectively be an autouse fixture as well, but only for the tests that `a` applies to.
 
-In the last example, the graph became unclear if d didn’t request c. But if c was autouse, then b and a would effectively also be autouse because c depends on them. As a result, they would all be shifted above non-autouse fixtures within that scope.
+In the last example, the graph became unclear if `d` didn’t request `c`. But if `c` was autouse, then `b` and `a` would effectively also be autouse because `c` depends on them. As a result, they would all be shifted above non-autouse fixtures within that scope.
 
 So if the test file looked like this:
 
@@ -452,11 +452,11 @@ the graph would look like this:
 
 ![test_fixtures_order_autouse](/pytest/test_fixtures_order_autouse.png)
 
-Because c can now be put above d in the graph, pytest can once again linearize the graph to this:
+Because `c` can now be put above `d` in the graph, pytest can once again linearize the graph to this:
 
 ![test_fixtures_order_autouse_flat](/pytest/test_fixtures_order_autouse_flat.png)
 
-In this example, c makes b and a effectively autouse fixtures as well.
+In this example, `c` makes `b` and `a` effectively autouse fixtures as well.
 
 Be careful with autouse, though, as an autouse fixture will automatically execute for every test that can reach it, even if they don’t request it. For example, consider this file:
 
@@ -494,7 +494,7 @@ class TestClassWithoutC1Request:
         assert order == ["c1", "c2"]
 ```
 
-Even though nothing in TestClassWithoutC1Request is requesting c1, it still is executed for the tests inside it anyway:
+Even though nothing in `TestClassWithoutC1Request` is requesting `c1`, it still is executed for the tests inside it anyway:
 
 ![test_fixtures_order_autouse_multiple_scopes](/pytest/test_fixtures_order_autouse_multiple_scopes.png)
 

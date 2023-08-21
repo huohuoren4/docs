@@ -58,11 +58,11 @@ In other cases, the wrapper wants the adjust or adapt the result, in which case 
 
 If the hook implementation failed with an exception, the wrapper can handle that exception using a `try-catch-finally` around the `yield`, by propagating it, supressing it, or raising a different exception entirely.
 
-For more information, consult the pluggy documentation about hook wrappers.
+For more information, consult the [pluggy documentation about hook wrappers](https://pluggy.readthedocs.io/en/stable/index.html#hookwrappers).
 
 ## Hook function ordering / call example
 
-For any given hook specification there may be more than one implementation and we thus generally view `hook` execution as a `1:N` function call where N is the number of registered functions. There are ways to influence if a hook implementation comes before or after others, i.e. the position in the N-sized list of functions:
+For any given hook specification there may be more than one implementation and we thus generally view `hook` execution as a `1:N` function call where N is the number of registered functions. There are ways to influence if a hook implementation comes before or after others, i.e. the position in the `N`-sized list of functions:
 
 ```python
 # Plugin 1
@@ -92,20 +92,20 @@ def pytest_collection_modifyitems(items):
 
 Here is the order of execution:
 
-1. Plugin3’s pytest_collection_modifyitems called until the yield point because it is a hook wrapper.
+1. Plugin3’s `pytest_collection_modifyitems` called until the yield point because it is a hook wrapper.
 
-2. Plugin1’s pytest_collection_modifyitems is called because it is marked with `tryfirst=True`.
+2. Plugin1’s `pytest_collection_modifyitems` is called because it is marked with `tryfirst=True`.
 
 3. Plugin2’s pytest_collection_modifyitems is called because it is marked with `trylast=True` (but even without this mark it would come after Plugin1).
 
-4. Plugin3’s pytest_collection_modifyitems then executing the code after the yield point. The yield receives the result from calling the non-wrappers, or raises an exception if the non-wrappers raised.
+4. Plugin3’s `pytest_collection_modifyitems` then executing the code after the yield point. The yield receives the result from calling the non-wrappers, or raises an exception if the non-wrappers raised.
 
 It’s possible to use `tryfirst` and `trylast` also on hook wrappers in which case it will influence the ordering of hook wrappers among each other.
 
 ## Declaring new hooks
 
 ::: tip Note
-This is a quick overview on how to add new hooks and how they work in general, but a more complete overview can be found in the pluggy documentation.
+This is a quick overview on how to add new hooks and how they work in general, but a more complete overview can be found in [the pluggy documentation](https://pluggy.readthedocs.io/en/latest/).
 :::
 
 Plugins and `conftest.py` files may declare new hooks that can then be implemented by other plugins in order to alter behaviour or interact with the new plugin:
@@ -143,7 +143,7 @@ def pytest_addhooks(pluginmanager):
     pluginmanager.add_hookspecs(sample_hook)
 ```
 
-For a real world example, see newhooks.py from xdist.
+For a real world example, see [newhooks.py](https://github.com/pytest-dev/pytest-xdist/blob/974bd566c599dc6a9ea291838c6f226197208b46/xdist/newhooks.py) from [xdist](https://github.com/pytest-dev/pytest-xdist).
 
 Hooks may be called both from fixtures or from other hooks. In both cases, hooks are called through the `hook` object, available in the `config` object. Most hooks receive a `config` object directly, while fixtures may use the `pytestconfig` fixture which provides the same object.
 
@@ -214,7 +214,7 @@ def pytest_config_file_default_value():
 
 ## Optionally using hooks from 3rd party plugins
 
-Using new hooks from plugins as explained above might be a little tricky because of the standard validation mechanism: if you depend on a plugin that is not installed, validation will fail and the error message will not make much sense to your users.
+Using new hooks from plugins as explained above might be a little tricky because of the standard [validation mechanism](/python/pytest/how_to_guides/hook_func#hook-function-validation-and-execution): if you depend on a plugin that is not installed, validation will fail and the error message will not make much sense to your users.
 
 One approach is to defer the hook implementation to a new plugin instead of declaring the hook functions directly in your plugin module, for example:
 
@@ -238,7 +238,7 @@ This has the added benefit of allowing you to conditionally install hooks depend
 
 ## Storing data on items across hook functions
 
-Plugins often need to store data on Items in one hook implementation, and access it in another. One common solution is to just assign some private attribute directly on the item, but type-checkers like mypy frown upon this, and it may also cause conflicts with other plugins. So pytest offers a better way to do this, item.stash.
+Plugins often need to store data on `Items` in one hook implementation, and access it in another. One common solution is to just assign some private attribute directly on the item, but type-checkers like mypy frown upon this, and it may also cause conflicts with other plugins. So pytest offers a better way to do this, `item.stash`.
 
 To use the “stash” in your plugins, first create “stash keys” somewhere at the top level of your plugin:
 
@@ -263,4 +263,4 @@ def pytest_runtest_teardown(item: pytest.Item) -> None:
         print("Oh?")
     item.stash[done_that_key] = "yes!"
 ```
-Stashes are available on all node types (like Class, Session) and also on Config, if needed.
+Stashes are available on all node types (like `Class`, `Session`) and also on `Config`, if needed.

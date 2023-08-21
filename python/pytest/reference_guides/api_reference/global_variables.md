@@ -4,9 +4,9 @@ pytest treats some global variables in a special manner when defined in a test m
 
 ## collect_ignore
 
-*Tutorial*: [Customizing test collection](https://docs.pytest.org/en/latest/example/pythoncollection.html#customizing-test-collection)
+*Tutorial*: [Customizing test collection](/python/pytest/further_topics/example_trick/test_discovery#customizing-test-collection)
     
-Can be declared in `conftest.py` files to exclude test directories or modules. Needs to be a list of paths (`str`, [pathlib.Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path) or any [os.PathLike](https://docs.python.org/3/library/os.html#os.PathLike)).
+Can be declared in `conftest.py` files to exclude test directories or modules. Needs to be a list of paths (`str`, `pathlib.Path` or any `os.PathLike`).
 
 ```python
 collect_ignore = ["setup.py"]
@@ -14,7 +14,7 @@ collect_ignore = ["setup.py"]
 
 ## collect_ignore_glob
 
-*Tutorial*: [Customizing test collection](https://docs.pytest.org/en/latest/example/pythoncollection.html#customizing-test-collection)
+*Tutorial*: [Customizing test collection](/python/pytest/further_topics/example_trick/test_discovery#customizing-test-collection)
 
 Can be declared in conftest.py files to exclude test directories or modules with Unix shell-style wildcards. Needs to be `list[str]` where `str` can contain glob patterns.
 
@@ -24,7 +24,7 @@ collect_ignore_glob = ["*_ignore.py"]
 
 ## pytest_plugins
 
-*Tutorial*: [Requiring/Loading plugins in a test module or conftest file](https://docs.pytest.org/en/latest/how-to/plugins.html#available-installable-plugins)
+*Tutorial*: [Requiring/Loading plugins in a test module or conftest file](/python/pytest/how_to_guides/use_plugin#requiring-loading-plugins-in-a-test-module-or-conftest-file)
 
 Can be declared at the global level in test modules and `conftest.py` files to register additional - plugins. Can be either a `str` or `Sequence[str]`.
 
@@ -38,9 +38,9 @@ pytest_plugins = ("myapp.testsupport.tools", "myapp.testsupport.regression")
 
 ## pytestmark
 
-*Tutorial*: [Marking whole classes or modules](https://docs.pytest.org/en/latest/example/markers.html#scoped-marking)
+*Tutorial*: [Marking whole classes or modules](/python/pytest/further_topics/example_trick/custom_mark#marking-whole-classes-or-modules)
 
-Can be declared at the global level in test modules to apply one or more [marks](https://docs.pytest.org/en/latest/reference/reference.html#marks-ref) to all test - functions and methods. Can be either a single mark or a list of marks (applied in left-to-right - order).
+Can be declared at the global level in test modules to apply one or more marks to all test - functions and methods. Can be either a single mark or a list of marks (applied in left-to-right - order).
 
 ```python
 import pytest

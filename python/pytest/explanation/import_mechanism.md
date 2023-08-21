@@ -4,7 +4,7 @@
 
 pytest as a testing framework needs to import test modules and `conftest.py` files for execution.
 
-Importing files in Python (at least until recently) is a non-trivial processes, often requiring changing [sys.path](https://docs.python.org/3/library/sys.html#sys.path). Some aspects of the import process can be controlled through the `--import-mode` command-line flag, which can assume these values:
+Importing files in Python (at least until recently) is a non-trivial processes, often requiring changing `sys.path`. Some aspects of the import process can be controlled through the `--import-mode` command-line flag, which can assume these values:
 
 - `prepend` (default): the directory path containing each module will be inserted into the beginning of `sys.path` if not already there, and then imported with the `importlib.import_module` function.
 
@@ -35,7 +35,7 @@ Importing files in Python (at least until recently) is a non-trivial processes, 
     Initially we intended to make `importlib` the default in future releases, however it is clear now that it has its own set of drawbacks so the default will remain `prepend` for the foreseeable future.
 
 ::: tip See also
-The [pythonpath](https://docs.pytest.org/en/latest/reference/reference.html#confval-pythonpath) configuration variable.
+The `pythonpath` configuration variable.
 :::
 
 ## prepend and append import modes scenarios
@@ -68,7 +68,7 @@ pytest will find `foo/bar/tests/test_foo.py` and realize it is part of a package
 
 The same logic applies to the `conftest.py` file: it will be imported as `foo.conftest` module.
 
-Preserving the full package name is important when tests live in a package to avoid problems and allow test modules to have duplicated names. This is also discussed in details in [Conventions for Python test discovery](https://docs.pytest.org/en/latest/explanation/goodpractices.html#test-discovery).
+Preserving the full package name is important when tests live in a package to avoid problems and allow test modules to have duplicated names. This is also discussed in details in [Conventions for Python test discovery](/python/pytest/explanation/integration_practice#conventions-for-python-test-discovery).
 
 ### Standalone test modules / conftest.py files
 
@@ -93,10 +93,10 @@ pytest will find `foo/bar/tests/test_foo.py` and realize it is NOT part of a pac
 
 For this reason this layout cannot have test modules with the same name, as they all will be imported in the global import namespace.
 
-This is also discussed in details in [Conventions for Python test discovery](https://docs.pytest.org/en/latest/explanation/goodpractices.html#test-discovery).
+This is also discussed in details in [Conventions for Python test discovery](/python/pytest/explanation/integration_practice#conventions-for-python-test-discovery).
 
 ## Invoking pytest versus python -m pytest
 
 Running pytest with `pytest [...]` instead of `python -m pytest [...]` yields nearly equivalent behaviour, except that the latter will add the current directory to `sys.path`, which is standard `python` behavior.
 
-See also [Calling pytest through python -m pytest](https://docs.pytest.org/en/latest/how-to/usage.html#invoke-python).
+See also [Calling pytest through python -m pytest](/python/pytest/how_to_guides/invoke_pytest#calling-pytest-through-python-m-pytest).

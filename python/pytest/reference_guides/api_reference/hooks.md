@@ -1,8 +1,8 @@
 # Hooks
 
-*Tutorial*: [Writing plugins](https://docs.pytest.org/en/latest/how-to/writing_plugins.html#writing-plugins)
+*Tutorial*: [Writing plugins](/python/pytest/how_to_guides/write_plugin#writing-plugins)
 
-Reference to all hooks which can be implemented by [conftest.py files](https://docs.pytest.org/en/latest/how-to/writing_plugins.html#localplugin) and [plugins](https://docs.pytest.org/en/latest/how-to/writing_plugins.html#plugins).
+Reference to all hooks which can be implemented by [conftest.py files](/python/pytest/how_to_guides/write_plugin#conftest-py-local-per-directory-plugins) and [plugins](/python/pytest/how_to_guides/write_plugin#writing-plugins).
 
 ## Bootstrapping hooks
 
@@ -28,7 +28,7 @@ Bootstrapping hooks called for plugins registered early enough (internal and set
 
     *(Deprecated)* modify command line arguments before option parsing.
 
-    This hook is considered deprecated and will be removed in a future pytest version. Consider using [pytest_load_initial_conftests](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_load_initial_conftests) instead.
+    This hook is considered deprecated and will be removed in a future pytest version. Consider using `pytest_load_initial_conftests` instead.
 
     ::: tip Note
     This hook will not be called for `conftest.py` files, only for setuptools plugins.
@@ -42,12 +42,12 @@ Bootstrapping hooks called for plugins registered early enough (internal and set
 
 - **pytest_cmdline_parse**(`pluginmanager, args`)       
 
-    Return an initialized [Config](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Config), parsing the specified args.
+    Return an initialized `Config`, parsing the specified args.
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult).
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
     ::: tip Note
-    This hook will only be called for plugin classes passed to the `plugins` arg when using pytest.main to perform an in-process test run.
+    This hook will only be called for plugin classes passed to the `plugins` arg when using `pytest.main` to perform an in-process test run.
     ::: 
 
     *Parameters*:
@@ -64,7 +64,7 @@ Bootstrapping hooks called for plugins registered early enough (internal and set
 
     Called for performing the main command line action. The default implementation will invoke the configure hooks and runtest_mainloop.
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult).
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
     *Parameters*:
 
@@ -83,16 +83,16 @@ Initialization hooks called for plugins and `conftest.py` files.
     Register argparse-style options and ini-style config values, called once at the beginning of a test run.
 
     ::: tip Note
-    This function should be implemented only in plugins or `conftest.py` files situated at the tests root directory due to how pytest [discovers plugins during startup](https://docs.pytest.org/en/latest/how-to/writing_plugins.html#pluginorder).
+    This function should be implemented only in plugins or `conftest.py` files situated at the tests root directory due to how pytest [discovers plugins during startup](/python/pytest/how_to_guides/write_plugin#plugin-discovery-order-at-tool-startup).
     :::
 
     *Parameters*:
 
-    - `parser (pytest.Parser)` – To add command line options, call [parser.addoption(...)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Parser.addoption). To add ini-file values call [parser.addini(...)](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Parser.addini).
+    - `parser (pytest.Parser)` – To add command line options, call `parser.addoption(...`). To add ini-file values call `parser.addini(...)`.
 
     - `pluginmanager (pytest.PytestPluginManager)` – The pytest plugin manager, which can be used to install `hookspec()`’s or `hookimpl()`’s and allow one plugin to call another plugin’s hooks to change how command line options are added.
 
-    Options can later be accessed through the [config](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Config) object, respectively:
+    Options can later be accessed through the `config` object, respectively:
 
     - `config.getoption(name)` to retrieve the value of a command line option.
 
@@ -130,7 +130,7 @@ Initialization hooks called for plugins and `conftest.py` files.
 
     *Parameters*:
 
-    - `config (pytest.Config)` – The pytest config object.
+    - `config (pytest.Config)` – The pytest `config` object.
 
 - **pytest_unconfigure**(`config`)        
 
@@ -180,7 +180,7 @@ Initialization hooks called for plugins and `conftest.py` files.
 
     Perform the collection phase for the given session.
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult). The return value is not used, but only stops further processing.
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result). The return value is not used, but only stops further processing.
 
     The default collection phase is this (see individual hooks for full details):
 
@@ -222,7 +222,7 @@ Initialization hooks called for plugins and `conftest.py` files.
 
     This hook is consulted for all files and directories prior to calling more specific hooks.
 
-    Stops at first non-None result, see firstresult: stop at first non-None result.
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
     *Parameters*:
 
@@ -232,11 +232,11 @@ Initialization hooks called for plugins and `conftest.py` files.
 
     - `config(Config)` – The pytest config object.
 
-    *Changed in version 7.0.0*: The `collection_path` parameter was added as a [pathlib.Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path) equivalent of the `path` parameter. The `path` parameter has been deprecated.
+    *Changed in version 7.0.0*: The `collection_path` parameter was added as a `pathlib.Path` equivalent of the `path` parameter. The `path` parameter has been deprecated.
 
 - **pytest_collect_file**(`file_path, path, parent`)      
 
-    Create a [Collector](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Collector) for the given path, or None if not relevant.
+    Create a `Collector` for the given path, or None if not relevant.
 
     The new node needs to have the specified `parent` as a parent.
 
@@ -246,15 +246,15 @@ Initialization hooks called for plugins and `conftest.py` files.
 
     - `path (LEGACY_PATH)` – The path to collect (deprecated).
 
-    *Changed in version 7.0.0*: The `file_path` parameter was added as a [pathlib.Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path) equivalent of the `path` parameter. The `path` parameter has been deprecated.
+    *Changed in version 7.0.0*: The `file_path` parameter was added as a `pathlib.Path` equivalent of the `path` parameter. The `path` parameter has been deprecated.
 
 - **pytest_pycollect_makemodule**(`module_path, path, parent`)      
 
-    Return a [pytest.Module](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Module) collector or None for the given path.
+    Return a `pytest.Module` collector or None for the given path.
 
-    This hook will be called for each matching test module path. The [pytest_collect_file](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_collect_file) hook needs to be used if you want to create test modules for files that do not match as a test module.
+    This hook will be called for each matching test module path. The `pytest_collect_file` hook needs to be used if you want to create test modules for files that do not match as a test module.
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult).
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
     *Parameters*:
 
@@ -262,9 +262,9 @@ Initialization hooks called for plugins and `conftest.py` files.
 
     - `path (LEGACY_PATH)` – The path of the module to collect (deprecated).
 
-    *Changed in version 7.0.0*: The `module_path` parameter was added as a [pathlib.Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path) equivalent of the `path` parameter.
+    *Changed in version 7.0.0*: The `module_path` parameter was added as a `pathlib.Path` equivalent of the `path` parameter.
 
-    The path parameter has been deprecated in favor of `fspath`.
+    The `path` parameter has been deprecated in favor of `fspath`.
 
 For influencing the collection of objects in Python modules you can use the following hook:
 
@@ -272,7 +272,7 @@ For influencing the collection of objects in Python modules you can use the foll
 
     Return a custom item/collector for a Python object in a module, or None.
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult).
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
     *Parameters*:
 
@@ -300,7 +300,7 @@ For influencing the collection of objects in Python modules you can use the foll
 
     The parameter name is available as `argname`, if required.
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult).
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
     *Parameters*:
 
@@ -356,7 +356,7 @@ After collection is complete, you can modify the order of items, delete or other
 
 ## Test running (runtest) hooks
 
-All runtest related hooks receive a pytest.Item object.
+All runtest related hooks receive a `pytest.Item` object.
 
 - **pytest_runtestloop**(`session`)       
 
@@ -364,7 +364,7 @@ All runtest related hooks receive a pytest.Item object.
 
     The default hook implementation performs the runtest protocol for all items collected in the session (`session.items`), unless the collection failed or the `collectonly` pytest option is set.
 
-    If at any point [pytest.exit()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.exit) is called, the loop is terminated immediately.
+    If at any point `pytest.exit()` is called, the loop is terminated immediately.
 
     If at any point `session.shouldfail` or `session.shouldstop` are set, the loop is terminated after the runtest protocol for the current item is finished.
 
@@ -372,7 +372,7 @@ All runtest related hooks receive a pytest.Item object.
 
     - `session (Session)` – The pytest session object.
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult). The return value is not used, but only stops further processing.
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result). The return value is not used, but only stops further processing.
 
 - **pytest_runtest_protocol**(`item, nextitem`)     
 
@@ -394,7 +394,7 @@ All runtest related hooks receive a pytest.Item object.
 
     *Call phase*, if the the setup passed and the `setuponly` pytest option is not set:
 
-    - `call = pytest_runtest_call(item)` (wrapped in CallInfo(when="call"))
+    - `call = pytest_runtest_call(item)` (wrapped in `CallInfo(when="call")`)
 
     - `report = pytest_runtest_makereport(item, call)`
 
@@ -420,25 +420,25 @@ All runtest related hooks receive a pytest.Item object.
 
     - `nextitem (Optional[Item])` – The scheduled-to-be-next test item (or None if this is the end my friend).
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult). The return value is not used, but only stops further processing.
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result). The return value is not used, but only stops further processing.
 
 - **pytest_runtest_logstart**(`nodeid, location`)     
 
     Called at the start of running the runtest protocol for a single item.
 
-    See [pytest_runtest_protocol](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_runtest_protocol) for a description of the runtest protocol.
+    See `pytest_runtest_protocol` for a description of the runtest protocol.
 
     *Parameters*:
 
     - `nodeid (str)` – Full node ID of the item.
 
-    - `location (Tuple[str, Optional[int], str])` – A tuple of `(filename, lineno, testname)` where filename is a file path relative to `config.rootpath` and `lineno` is 0-based.
+    - `location (Tuple[str, Optional[int], str])` – A tuple of `(filename, lineno, testname)` where `filename` is a file path relative to `config.rootpath` and `lineno` is 0-based.
 
 - **pytest_runtest_logfinish**(`nodeid, location`)        
 
     Called at the end of running the runtest protocol for a single item.
 
-    See [pytest_runtest_protocol](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_runtest_protocol) for a description of the runtest protocol.
+    See `pytest_runtest_protocol` for a description of the runtest protocol.
 
     *Parameters*:
 
@@ -480,17 +480,17 @@ All runtest related hooks receive a pytest.Item object.
 
 - **pytest_runtest_makereport**(`item, call`)     
 
-    Called to create a [TestReport](https://docs.pytest.org/en/latest/reference/reference.html#pytest.TestReport) for each of the setup, call and teardown runtest phases of a test item.
+    Called to create a `TestReport` for each of the setup, call and teardown runtest phases of a test item.
 
-    See [pytest_runtest_protocol](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_runtest_protocol) for a description of the runtest protocol.
+    See `pytest_runtest_protocol` for a description of the runtest protocol.
 
     *Parameters*:
 
     - `item (Item)` – The item.
 
-    - `call (CallInfo[None])` – The CallInfo for the phase.
+    - `call (CallInfo[None])` – The `CallInfo` for the phase.
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult).
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
     For deeper understanding you may look at the default implementation of these hooks in `_pytest.runner` and maybe also in `_pytest.pdb` which interacts with `_pytest.capture` and its input/output capturing in order to immediately drop into interactive debugging when a test failure occurs.
 
@@ -498,7 +498,7 @@ All runtest related hooks receive a pytest.Item object.
 
     Call underlying test function.
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult).
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
     *Parameters*:
 
@@ -518,9 +518,9 @@ Session related reporting hooks:
 
 - **pytest_make_collect_report**(`collector`)       
 
-    Perform [collector.collect()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.Collector.collect) and return a [**CollectReport**](https://docs.pytest.org/en/latest/reference/reference.html#pytest.CollectReport).
+    Perform `collector.collect()` and return a `CollectReport`.
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult).
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
     *Parameters*:
 
@@ -565,14 +565,14 @@ Session related reporting hooks:
     - `startdir (LEGACY_PATH)` – The starting dir (deprecated).
 
     ::: tip Note
-    Lines returned by a plugin are displayed before those of plugins which ran before it. If you want to have your line(s) displayed first, use [trylast=True](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#plugin-hookorder).
+    Lines returned by a plugin are displayed before those of plugins which ran before it. If you want to have your line(s) displayed first, use [trylast=True](/python/pytest/how_to_guides/hook_func#hook-function-ordering-call-example).
     :::
 
     ::: tip Note
-    This function should be implemented only in plugins or `conftest.py` files situated at the tests root directory due to how pytest [discovers plugins during startup](https://docs.pytest.org/en/latest/how-to/writing_plugins.html#pluginorder).
+    This function should be implemented only in plugins or `conftest.py` files situated at the tests root directory due to how pytest [discovers plugins during startup](/python/pytest/how_to_guides/write_plugin#plugin-discovery-order-at-tool-startup).
     ::: 
 
-    *Changed in version 7.0.0*: The `start_path` parameter was added as a [pathlib.Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path) equivalent of the `startdir` parameter. The `startdir` parameter has been deprecated.
+    *Changed in version 7.0.0*: The `start_path` parameter was added as a `pathlib.Path` equivalent of the `startdir` parameter. The `startdir` parameter has been deprecated.
 
 - **pytest_report_collectionfinish**(`config, start_path, startdir, items`)     
 
@@ -593,10 +593,10 @@ Session related reporting hooks:
     - items (Sequence[Item]) – List of pytest items that are going to be executed; this list should not be modified.
 
     ::: tip Note
-    Lines returned by a plugin are displayed before those of plugins which ran before it. If you want to have your line(s) displayed first, use [trylast=True](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#plugin-hookorder).
+    Lines returned by a plugin are displayed before those of plugins which ran before it. If you want to have your line(s) displayed first, use [trylast=True](/python/pytest/how_to_guides/hook_func#hook-function-ordering-call-example).
     :::
 
-    *Changed in version 7.0.0*: The `start_path` parameter was added as a [pathlib.Path](https://docs.python.org/3/library/pathlib.html#pathlib.Path) equivalent of the `startdir` parameter. The `startdir` parameter has been deprecated.
+    *Changed in version 7.0.0*: The `start_path` parameter was added as a `pathlib.Path` equivalent of the `startdir` parameter. The `startdir` parameter has been deprecated.
 
 - **pytest_report_teststatus**(`report, config`)      
 
@@ -620,7 +620,7 @@ Session related reporting hooks:
 
     *Return type*: `TestShortLogReport | Tuple[str, str, Union[str, Tuple[str, Mapping[str, bool]]]]`
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult).
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
 - **pytest_report_to_serializable**(`config, report`)     
 
@@ -634,7 +634,7 @@ Session related reporting hooks:
 
 - **pytest_report_from_serializable**(`config, data`)     
 
-     Restore a report object previously serialized with [pytest_report_to_serializable](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_report_to_serializable).
+     Restore a report object previously serialized with `pytest_report_to_serializable`.
 
     *Parameters*:
 
@@ -668,10 +668,10 @@ Session related reporting hooks:
 
     *Return type*: `Optional[object]`
 
-    Stops at first non-None result, see [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult).
+    Stops at first non-None result, see [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result).
 
     ::: tip Note
-    If the fixture function returns None, other implementations of this hook function will continue to be called, according to the behavior of the [firstresult: stop at first non-None result](https://docs.pytest.org/en/latest/how-to/writing_hook_functions.html#firstresult) option.
+    If the fixture function returns None, other implementations of this hook function will continue to be called, according to the behavior of the [firstresult: stop at first non-None result](/python/pytest/how_to_guides/hook_func#firstresult-stop-at-first-non-none-result) option.
     :::
 
 - **pytest_fixture_post_finalizer**(`fixturedef, request`)      
@@ -690,7 +690,7 @@ Session related reporting hooks:
 
     *Parameters*:
 
-    - `warning_message (warnings.WarningMessage)` – The captured warning. This is the same object produced by `warnings.catch_warnings()`, and contains the same attributes as the parameters of [warnings.showwarning()](https://docs.python.org/3/library/warnings.html#warnings.showwarning).
+    - `warning_message (warnings.WarningMessage)` – The captured warning. This is the same object produced by `warnings.catch_warnings()`, and contains the same attributes as the parameters of `warnings.showwarning()`.
 
     - `when (Literal['config', 'collect', 'runtest'])` – Indicates when the warning was captured. Possible values:
 
@@ -710,9 +710,9 @@ Session related reporting hooks:
 
 - **pytest_runtest_logreport**(`report`)      
 
-    Process the [TestReport](https://docs.pytest.org/en/latest/reference/reference.html#pytest.TestReport) produced for each of the setup, call and teardown runtest phases of an item.
+    Process the `TestReport` produced for each of the setup, call and teardown runtest phases of an item.
 
-    See [pytest_runtest_protocol](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_runtest_protocol) for a description of the runtest protocol.
+    See `pytest_runtest_protocol` for a description of the runtest protocol.
 
 *Assertion related hooks*:
 
@@ -787,9 +787,9 @@ There are few hooks which can be used for special reporting or interaction with 
 
     Called when an exception was raised which can potentially be interactively handled.
 
-    May be called during collection (see [pytest_make_collect_report](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_make_collect_report)), in which case `report` is a `CollectReport`.
+    May be called during collection (see `pytest_make_collect_report`), in which case `report` is a `CollectReport`.
 
-    May be called during runtest of an item (see [pytest_runtest_protocol](https://docs.pytest.org/en/latest/reference/reference.html#std-hook-pytest_runtest_protocol)), in which case `report` is a `TestReport`.
+    May be called during runtest of an item (see `pytest_runtest_protocol`), in which case `report` is a `TestReport`.
 
     This hook is not called if the exception that was raised is an internal exception like `skip.Exception`.
 
@@ -815,7 +815,7 @@ There are few hooks which can be used for special reporting or interaction with 
 
 - **pytest_leave_pdb**(`config, pdb`)     
 
-    Called when leaving pdb (e.g. with continue after pdb.set_trace()).
+    Called when leaving pdb (e.g. with continue after `pdb.set_trace()`).
 
     Can be used by plugins to take special action just after the python debugger leaves interactive mode.
 

@@ -2,8 +2,6 @@
 
 ::: tip Tip
 flask document version: `2.3.2`. the lastest version is only maintained.
-
-lastest updated: *2023/07/31*
 :::
 
 Welcome to Flask’s documentation. Get started with Installation and then get an overview with the Quickstart. There is also a more detailed Tutorial that shows how to create a small but complete application with Flask. Common patterns are described in the Patterns for Flask section. The rest of the docs describe each component of Flask in detail, with a full reference in the API section.
