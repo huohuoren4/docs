@@ -18,7 +18,7 @@ npm install -g pnpm
 # install the dependencies
 pnpm install
 # run the program
-pnpm run docs:dev --port 8080  --host 0.0.0.0
+pnpm dev
 ```
 
 ## 🌊Deploy
@@ -29,9 +29,9 @@ npm install -g pnpm
 # install the dependencies
 pnpm install
 # compile the codes
-pnpm run docs:build
+pnpm build
 # run the program
-pnpm run docs:preview --port 8080 --host 0.0.0.0
+pnpm preview
 ```
 
 ## 🎥Screenshot
