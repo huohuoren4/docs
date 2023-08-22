@@ -1,4 +1,4 @@
-# How to capture warnings
+# How to capture warnings {#how-to-capture-warnings}
 
 Starting from version `3.1`, pytest now automatically catches warnings during test execution and displays them at the end of the session:
 
@@ -36,7 +36,7 @@ test_show_warnings.py::test_one
 ======================= 1 passed, 1 warning in 0.12s =======================
 ```
 
-## Controlling warnings
+## Controlling warnings {#controlling-warnings}
 
 Similar to Python’s [warning filter](https://docs.python.org/3/library/warnings.html#warning-filter) and [-W option](https://docs.python.org/3/using/cmdline.html#cmdoption-W) flag, pytest provides its own `-W` flag to control which warnings are ignored, displayed, or turned into errors. See the [warning filter](https://docs.python.org/3/library/warnings.html#warning-filter) documentation for more advanced use-cases.
 
@@ -92,7 +92,7 @@ When a warning matches more than one option in the list, the action for the last
 The `-W` flag and the `filterwarnings` ini option use warning filters that are similar in structure, but each configuration option interprets its filter differently. For example, message in `filterwarnings` is a string containing a regular expression that the start of the warning message must match, case-insensitively, while message in `-W` is a literal string that the start of the warning message must contain (case-insensitively), ignoring any whitespace at the start or end of message. Consult the [warning filter](https://docs.python.org/3/library/warnings.html#warning-filter) documentation for more details.
 :::
 
-## `@pytest.mark.filterwarnings`
+## `@pytest.mark.filterwarnings` {#pytest-mark-filterwarnings}
 
 You can use the `@pytest.mark.filterwarnings` to add warning filters to specific test items, allowing you to have finer control of which warnings should be captured at test, class or even module level:
 
@@ -121,11 +121,11 @@ pytestmark = pytest.mark.filterwarnings("error")
 
 *Credits go to Florian Schulze for the reference implementation in the [pytest-warnings](https://github.com/fschulze/pytest-warnings) plugin.*
 
-## Disabling warnings summary
+## Disabling warnings summary {#disabling-warnings-summary}
 
 Although not recommended, you can use the `--disable-warnings` command-line option to suppress the warning summary entirely from the test run output.
 
-## Disabling warning capture entirely
+## Disabling warning capture entirely {#disabling-warning-capture-entirely}
 
 This plugin is enabled by default but can be disabled entirely in your `pytest.ini` file with:
 
@@ -136,7 +136,7 @@ addopts = -p no:warnings
 
 Or passing `-p no:warnings` in the command-line. This might be useful if your test suites handles warnings using an external system.
 
-## DeprecationWarning and PendingDeprecationWarning
+## DeprecationWarning and PendingDeprecationWarning {#deprecationwarning-and-pendingdeprecationwarning}
 
 By default pytest will display `DeprecationWarning` and `PendingDeprecationWarning` warnings from user code and third-party libraries, as recommended by [PEP 565](https://peps.python.org/pep-0565/). This helps users keep their code modern and avoid breakages when deprecated warnings are effectively removed.
 
@@ -162,7 +162,7 @@ If warnings are configured at the interpreter level, using the `PYTHONWARNINGS` 
 Also pytest doesn’t follow [PEP 506](https://peps.python.org/pep-0506/) suggestion of resetting all warning filters because it might break test suites that configure warning filters themselves by calling `warnings.simplefilter()` (see [issue #2430](https://github.com/pytest-dev/pytest/issues/2430) for an example of that).
 :::
 
-## Ensuring code triggers a deprecation warning
+## Ensuring code triggers a deprecation warning {#ensuring-code-triggers-a-deprecation-warning}
 
 You can also use `pytest.deprecated_call()` for checking that a certain function call triggers a `DeprecationWarning` or `PendingDeprecationWarning`:
 
@@ -177,7 +177,7 @@ def test_myfunction_deprecated():
 
 This test will fail if `myfunction` does not issue a deprecation warning when called with a `17` argument.
 
-## Asserting warnings with the warns function
+## Asserting warnings with the warns function {#asserting-warnings-with-the-warns-function}
 
 You can check that code raises a particular warning using `pytest.warns()`, which works in a similar manner to `raises` (except that `raises` does not capture all exceptions, only the `expected_exception`):
 
@@ -239,7 +239,7 @@ Alternatively, you can examine raised warnings in detail using the `recwarn` fix
 
 The `recwarn` fixture automatically ensures to reset the warnings filter at the end of the test, so no global state is leaked.
 
-## Recording warnings
+## Recording warnings {#recording-warnings}
 
 You can record raised warnings either using `pytest.warns()` or with the `recwarn` fixture.
 
@@ -275,7 +275,7 @@ Both `recwarn` and `pytest.warns()` return the same interface for recorded warni
 
 Full API: `WarningsRecorder`.
 
-## Additional use cases of warnings in tests
+## Additional use cases of warnings in tests {#additional-use-cases-of-warnings-in-tests}
 
 Here are some use cases involving warnings that often come up in tests, and suggestions on how to deal with them:
 
@@ -314,7 +314,7 @@ Here are some use cases involving warnings that often come up in tests, and sugg
         ...
     ```
 
-## Custom failure messages
+## Custom failure messages {#custom-failure-messages}
 
 Recording warnings provides an opportunity to produce custom test failure messages for when no warnings are issued or other conditions are met.
 
@@ -328,7 +328,7 @@ def test():
 
 If no warnings are issued when calling f, then `not record` will evaluate to `True`. You can then call `pytest.fail()` with a custom error message.
 
-## Internal pytest warnings
+## Internal pytest warnings {#internal-pytest-warnings}
 
 pytest may generate its own warnings in some situations, such as improper usage or deprecated features.
 
@@ -362,7 +362,7 @@ Please read our [Backwards Compatibility Policy](/python/pytest/further_topics/c
 
 The full list of warnings is listed in [the reference documentation](/python/pytest/reference_guides/api_reference/warnings#warnings).
 
-## Resource Warnings
+## Resource Warnings {#resource-warnings}
 
 Additional information of the source of a `ResourceWarning` can be obtained when captured by pytest if [tracemalloc](https://docs.python.org/3/library/tracemalloc.html#module-tracemalloc) module is enabled.
 

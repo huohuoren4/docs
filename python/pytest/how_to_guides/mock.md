@@ -1,4 +1,4 @@
-# How to monkeypatch/mock modules and environments
+# How to monkeypatch/mock modules and environments {#how-to-monkeypatch-mock-modules-and-environments}
 
 Sometimes tests need to invoke functionality which depends on global settings or which invokes code which cannot be easily tested such as network access. The `monkeypatch` fixture helps you to safely set/delete an attribute, dictionary item or environment variable, or to modify `sys.path` for importing.
 
@@ -38,7 +38,7 @@ Consider the following scenarios:
 
 See the [monkeypatch blog post](https://tetamap.wordpress.com//2009/03/03/monkeypatching-in-unit-tests-done-right/) for some introduction material and a discussion of its motivation.
 
-## Monkeypatching functions
+## Monkeypatching functions {#monkeypatching-functions}
 
 Consider a scenario where you are working with user directories. In the context of testing, you do not want your test to depend on the running user. `monkeypatch` can be used to patch functions dependent on the user to always return a specific value.
 
@@ -70,7 +70,7 @@ def test_getssh(monkeypatch):
     assert x == Path("/abc/.ssh")
 ```
 
-## Monkeypatching returned objects: building mock classes
+## Monkeypatching returned objects: building mock classes {#monkeypatching-returned-objects-building-mock-classes}
 
 `monkeypatch.setattr` can be used in conjunction with classes to mock returned objects from functions instead of values. Imagine a simple function to take an API url and return the json response.
 
@@ -161,7 +161,7 @@ def test_get_json(mock_response):
 
 Furthermore, if the mock was designed to be applied to all tests, the `fixture` could be moved to a `conftest.py` file and use the with `autouse=True` option.
 
-## Global patch example: preventing “requests” from remote operations
+## Global patch example: preventing “requests” from remote operations {#global-patch-example-preventing-requests-from-remote-operations}
 
 If you want to prevent the “requests” library from performing http requests in all your tests, you can do:
 
@@ -197,7 +197,7 @@ def test_partial(monkeypatch):
 See [issue #3290](https://github.com/pytest-dev/pytest/issues/3290) for details.
 :::
 
-## Monkeypatching environment variables
+## Monkeypatching environment variables {#monkeypatching-environment-variables}
 
 If you are working with environment variables you often need to safely change the values or delete them from the system for testing purposes. `monkeypatch` provides a mechanism to do this using the `setenv` and `delenv` method. Our example code to test:
 
@@ -265,7 +265,7 @@ def test_raise_exception(mock_env_missing):
         _ = get_os_user_lower()
 ```
 
-## Monkeypatching dictionaries
+## Monkeypatching dictionaries {#monkeypatching-dictionaries}
 
 `monkeypatch.setitem` can be used to safely set the values of dictionaries to specific values during tests. Take this simplified connection string example:
 
@@ -364,6 +364,6 @@ def test_missing_user(mock_missing_default_user):
         _ = app.create_connection_string()
 ```
 
-## API Reference
+## API Reference {#api-reference}
 
 Consult the docs for the `MonkeyPatch` class.

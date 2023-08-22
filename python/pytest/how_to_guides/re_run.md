@@ -1,6 +1,6 @@
-# How to re-run failed tests and maintain state between test runs
+# How to re-run failed tests and maintain state between test runs {#how-to-re-run-failed-tests-and-maintain-state-between-test-runs}
 
-## Usage
+## Usage {#usage}
 
 The plugin provides two command line options to rerun failures from the last `pytest` invocation:
 
@@ -16,7 +16,7 @@ Other plugins may access the config.cache object to set/get json encodable value
 This plugin is enabled by default, but can be disabled if needed: see [Deactivating / unregistering a plugin by name](/python/pytest/how_to_guides/use_plugin#deactivating-unregistering-a-plugin-by-name) (the internal name for this plugin is `cacheprovider`).
 ::: 
 
-## Rerunning only failures or failures first
+## Rerunning only failures or failures first {#rerunning-only-failures-or-failures-first}
 
 First, let’s create 50 test invocation of which only 2 fail:
 
@@ -151,7 +151,7 @@ FAILED test_50.py::test_num[25] - Failed: bad luck
 
 New `--nf`, `--new-first` options: run new tests first followed by the rest of the tests, in both cases tests are also sorted by the file modified time, with more recent files coming first.
 
-## Behavior when no tests failed in the last run
+## Behavior when no tests failed in the last run {#behavior-when-no-tests-failed-in-the-last-run}
 
 When no tests failed in the last run, or when no cached `lastfailed` data was found, pytest can be configured either to run all of the tests or no tests, using the `--last-failed-no-failures` option, which takes one of the following values:
 
@@ -160,7 +160,7 @@ pytest --last-failed --last-failed-no-failures all    # run all tests (default b
 pytest --last-failed --last-failed-no-failures none   # run no tests and exit
 ```
 
-## The new config.cache object
+## The new config.cache object {#the-new-config-cache-object}
 
 Plugins or `conftest.py` support code can get a cached value using the pytest `config` object. Here is a basic example plugin which implements a fixture which re-uses previously created state across pytest invocations:
 
@@ -231,7 +231,7 @@ FAILED test_caching.py::test_function - assert 42 == 23
 
 See the `config.cache` fixture for more details.
 
-## Inspecting Cache content
+## Inspecting Cache content {#inspecting-cache-content}
 
 You can always peek at the content of the cache using the `--cache-show` command line option:
 
@@ -269,7 +269,7 @@ example/value contains:
 ========================== no tests ran in 0.12s ===========================
 ```
 
-## Clearing Cache content
+## Clearing Cache content {#clearing-cache-content}
 
 You can instruct pytest to clear all cache files and values by adding the `--cache-clear` option like this:
 
@@ -279,6 +279,6 @@ pytest --cache-clear
 
 This is recommended for invocations from Continuous Integration servers where isolation and correctness is more important than speed.
 
-## Stepwise
+## Stepwise {#stepwise}
 
 As an alternative to `--lf -x`, especially for cases where you expect a large part of the test suite will fail, `--sw`, `--stepwise` allows you to fix them one at a time. The test suite will run until the first failure and then stop. At the next invocation, tests will continue from the last failing test and then run until the next failing test. You may use the `--stepwise-skip` option to ignore one failing test and stop the test execution on the second failing test instead. This is useful if you get stuck on a failing test and just want to ignore it until later. Providing `--stepwise-skip` will also enable `--stepwise` implicitly.

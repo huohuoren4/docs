@@ -1,4 +1,4 @@
-# How to install and use plugins
+# How to install and use plugins {#how-to-install-and-use-plugins}
 
 This section talks about installing and using third party plugins. For writing your own plugins, please refer to [Writing plugins](/python/pytest/how_to_guides/write_plugin#writing-plugins).
 
@@ -37,7 +37,7 @@ To see a complete list of all plugins with their latest testing status against d
 
 You may also discover more plugins through a [pytest- pypi.org search](https://pypi.org/search/?q=pytest-).
 
-## Requiring/Loading plugins in a test module or conftest file
+## Requiring/Loading plugins in a test module or conftest file {#requiring-loading-plugins-in-a-test-module-or-conftest-file}
 
 You can require plugins in a test module or a conftest file using `pytest_plugins`:
 
@@ -55,7 +55,7 @@ Requiring plugins using a `pytest_plugins` variable in non-root `conftest.py` fi
 The name `pytest_plugins` is reserved and should not be used as a name for a custom plugin module.
 :::
 
-## Finding out which plugins are active
+## Finding out which plugins are active {#finding-out-which-plugins-are-active}
 
 If you want to find out which plugins are active in your environment you can type:
 
@@ -65,7 +65,7 @@ pytest --trace-config
 
 and will get an extended test header which shows activated plugins and their names. It will also print local plugins aka `conftest.py` files when they are loaded.
 
-## Deactivating / unregistering a plugin by name
+## Deactivating / unregistering a plugin by name {#deactivating-unregistering-a-plugin-by-name}
 
 You can prevent plugins from loading or unregister them:
 

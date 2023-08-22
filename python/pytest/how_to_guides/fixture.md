@@ -1,4 +1,4 @@
-# How to use fixtures
+# How to use fixtures {#how-to-use-fixtures}
 
 ::: tip See also
 [About fixtures](/python/pytest/explanation/about_fixture#about-fixtures)
@@ -8,13 +8,13 @@
 [Fixtures reference](/python/pytest/reference_guides/fixture_reference#fixtures-reference)
 :::
 
-## "Requesting" fixtures
+## "Requesting" fixtures {#requesting-fixtures}
 
 At a basic level, test functions request fixtures they require by declaring them as arguments.
 
 When pytest goes to run a test, it looks at the parameters in that test function’s signature, and then searches for fixtures that have the same names as those parameters. Once pytest finds them, it runs those fixtures, captures what they returned (if anything), and passes those objects into the test function as arguments.
 
-### Quick example
+### Quick example {#quick-example}
 
 ```python
 import pytest
@@ -75,7 +75,8 @@ bowl = fruit_bowl()
 test_fruit_salad(fruit_bowl=bowl)
 ```
 
-### Fixtures can request other fixtures
+### Fixtures can request other fixtures {#fixtures-can-request-other-fixtures}
+
 One of pytest’s greatest strengths is its extremely flexible fixture system. It allows us to boil down complex requirements for tests into more simple and organized functions, where we only need to have each one describe the things they are dependent on. We’ll get more into this further down, but for now, here’s a quick example to demonstrate how fixtures can use other fixtures:
 
 ```python
@@ -127,7 +128,8 @@ the_list = order(first_entry=entry)
 test_string(order=the_list)
 ```
 
-### Fixtures are reusable
+### Fixtures are reusable {#fixtures-are-reusable}
+
 One of the things that makes pytest’s fixture system so powerful, is that it gives us the ability to define a generic setup step that can be reused over and over, just like a normal function would be used. Two different tests can request the same fixture and have pytest give each test their own result from that fixture.
 
 This is extremely useful for making sure tests aren’t affected by each other. We can use this system to make sure each test gets its own fresh batch of data and is starting from a clean state so it can provide consistent, repeatable results.
@@ -203,7 +205,7 @@ the_list = order(first_entry=entry)
 test_int(order=the_list)
 ```
 
-### A test/fixture can request more than one fixture at a time
+### A test/fixture can request more than one fixture at a time {#a-test-fixture-can-request-more-than-one-fixture-at-a-time}
 
 Tests and fixtures aren’t limited to requesting a single fixture at a time. They can request as many as they like. Here’s another quick example to demonstrate:
 
@@ -244,7 +246,7 @@ def test_string(order, expected_list):
     assert order == expected_list
 ```
 
-### Fixtures can be requested more than once per test (return values are cached)
+### Fixtures can be requested more than once per test (return values are cached) {#fixtures-can-be-requested-more-than-once-per-test-return-values-are-cached}
 
 Fixtures can also be requested more than once during the same test, and pytest won’t execute them again for that test. This means we can request fixtures in multiple fixtures that are dependent on them (and even again in the test itself) without those fixtures being executed more than once.
 
@@ -278,7 +280,7 @@ def test_string_only(append_first, order, first_entry):
 
 If a requested fixture was executed once for every time it was requested during a test, then this test would fail because both `append_first` and `test_string_only` would see `order` as an empty list (i.e. `[]`), but since the return value of `order` was cached (along with any side effects executing it may have had) after the first time it was called, both the test and `append_first` were referencing the same object, and the test saw the effect `append_first` had on that object.
 
-## Autouse fixtures (fixtures you don’t have to request)
+## Autouse fixtures (fixtures you don’t have to request) {#autouse-fixtures-fixtures-you-don-t-have-to-request}
 
 Sometimes you may want to have a fixture (or even several) that you know all your tests will depend on. “Autouse” fixtures are a convenient way to make all tests automatically request them. This can cut out a lot of redundant requests, and can even provide more advanced fixture usage (more on that further down).
 
@@ -315,7 +317,7 @@ def test_string_and_int(order, first_entry):
 
 In this example, the `append_first` fixture is an autouse fixture. Because it happens automatically, both tests are affected by it, even though neither test requested it. That doesn’t mean they can’t be requested though; just that it isn’t necessary.
 
-## Scope: sharing fixtures across classes, modules, packages or session
+## Scope: sharing fixtures across classes, modules, packages or session {#scope-sharing-fixtures-across-classes-modules-packages-or-session}
 
 Fixtures requiring network access depend on connectivity and are usually time-expensive to create. Extending the previous example, we can add a `scope="module"` parameter to the `@pytest.fixture` invocation to cause a `smtp_connection` fixture function, responsible to create a connection to a preexisting SMTP server, to only be invoked once per test module (the default is to invoke once per test function). Multiple test functions in a test module will thus each receive the same `smtp_connection` fixture instance, thus saving time. Possible values for `scope` are: `function`, `class`, `module`, `package` or `session`.
 
@@ -403,7 +405,7 @@ def smtp_connection():
     ...
 ```
 
-### Fixture scopes
+### Fixture scopes {#fixture-scopes}
 
 Fixtures are created when first requested by a test, and are destroyed based on their `scope`:
 
@@ -417,7 +419,7 @@ Fixtures are created when first requested by a test, and are destroyed based on 
 Pytest only caches one instance of a fixture at a time, which means that when using a parametrized fixture, pytest may invoke a fixture more than once in the given scope.
 :::
 
-### Dynamic scope
+### Dynamic scope {#dynamic-scope}
 
 *New in version 5.2.*
 
@@ -437,13 +439,13 @@ def docker_container():
     yield spawn_container()
 ```
 
-## Teardown/Cleanup (AKA Fixture finalization)
+## Teardown/Cleanup (AKA Fixture finalization) {#teardown-cleanup-aka-fixture-finalization}
 
 When we run our tests, we’ll want to make sure they clean up after themselves so they don’t mess with any other tests (and also so that we don’t leave behind a mountain of test data to bloat the system). Fixtures in pytest offer a very useful teardown system, which allows us to define the specific steps necessary for each fixture to clean up after itself.
 
 This system can be leveraged in two ways.
 
-### 1. yield fixtures (recommended)
+### 1. yield fixtures (recommended) {#_1-yield-fixtures-recommended}
 
 “Yield” fixtures `yield` instead of `return`. With these fixtures, we can run some code and pass an object back to the requesting fixture/test, just like with the other fixtures. The only differences are:
 
@@ -531,11 +533,11 @@ $ pytest -q test_emaillib.py
 1 passed in 0.12s
 ```
 
-#### Handling errors for yield fixture
+#### Handling errors for yield fixture {#handling-errors-for-yield-fixture}
 
 If a yield fixture raises an exception before yielding, pytest won’t try to run the teardown code after that yield fixture’s yield statement. But, for every fixture that has already run successfully for that test, pytest will still attempt to tear them down as it normally would.
 
-### 2. Adding finalizers directly
+### 2. Adding finalizers directly {#_2-adding-finalizers-directly}
 
 While yield fixtures are considered to be the cleaner and more straightforward option, there is another choice, and that is to add “finalizer” functions directly to the test’s [request-context](/python/pytest/how_to_guides/fixture#fixtures-can-introspect-the-requesting-test-context) object. It brings a similar result as yield fixtures, but requires a bit more verbosity.
 
@@ -599,7 +601,7 @@ $ pytest -q test_emaillib.py
 1 passed in 0.12s
 ```
 
-#### Note on finalizer order
+#### Note on finalizer order {#note-on-finalizer-order}
 
 Finalizers are executed in a first-in-last-out order. For yield fixtures, the first teardown code to run is from the right-most fixture, i.e. the last test parameter.
 
@@ -674,7 +676,7 @@ finalizer_2
 
 This is so because yield fixtures use `addfinalizer` behind the scenes: when the fixture executes, `addfinalizer` registers a function that resumes the generator, which in turn calls the teardown code.
 
-## Safe teardowns
+## Safe teardowns {#safe-teardowns}
 
 The fixture system of pytest is very powerful, but it’s still being run by a computer, so it isn’t able to figure out how to safely teardown everything we throw at it. If we aren’t careful, an error in the wrong spot might leave stuff from our tests behind, and that can cause further issues pretty quickly.
 
@@ -717,7 +719,7 @@ $ pytest -q test_emaillib.py
 1 passed in 0.12s
 ```
 
-### Safe fixture structure
+### Safe fixture structure {#safe-fixture-structure}
 
 The safest and simplest fixture structure requires limiting fixtures to only making one state-changing action each, and then bundling them together with their teardown code, as [the email examples above](/python/pytest/how_to_guides/fixture#_1-yield-fixtures-recommended) showed.
 
@@ -789,7 +791,7 @@ def test_name_on_landing_page_after_login(landing_page, user):
 
 The way the dependencies are laid out means it’s unclear if the `user` fixture would execute before the `driver` fixture. But that’s ok, because those are atomic operations, and so it doesn’t matter which one runs first because the sequence of events for the test is still [linearizable](https://en.wikipedia.org/wiki/Linearizability). But what does matter is that, no matter which one runs first, if the one raises an exception while the other would not have, neither will have left anything behind. If `driver` executes before `user`, and `user` raises an exception, the driver will still quit, and the user was never made. And if `driver` was the one to raise the exception, then the driver would never have been started and the user would never have been made.
 
-## Running multiple assert statements safely
+## Running multiple assert statements safely {#running-multiple-assert-statements-safely}
 
 Sometimes you may want to run multiple asserts after doing all that setup, which makes sense as, in more complex systems, a single action can kick off multiple behaviors. pytest has a convenient way of handling this and it combines a bunch of what we’ve gone over so far.
 
@@ -879,7 +881,7 @@ class TestLandingPageBadCredentials:
             login_page.login(faux_user)
 ```
 
-## Fixtures can introspect the requesting test context
+## Fixtures can introspect the requesting test context {#fixtures-can-introspect-the-requesting-test-context}
 
 Fixture functions can accept the `request` object to introspect the “requesting” test function, class or module context. Further extending the previous `smtp_connection` fixture example, let’s read an optional server URL from the test module which uses our fixture:
 
@@ -942,7 +944,7 @@ FAILED test_anothersmtp.py::test_showhelo - AssertionError: (250, b'mail....
 
 voila! The `smtp_connection` fixture function picked up our mail server name from the module namespace.
 
-## Using markers to pass data to fixtures
+## Using markers to pass data to fixtures {#using-markers-to-pass-data-to-fixtures}
 
 Using the `request` object, a fixture can also access markers which are applied to a test function. This can be useful to pass data into a fixture from a test:
 
@@ -968,7 +970,7 @@ def test_fixt(fixt):
     assert fixt == 42
 ```
 
-## Factories as fixtures
+## Factories as fixtures {#factories-as-fixtures}
 
 The “factory as fixture” pattern can help in situations where the result of a fixture is needed multiple times in a single test. Instead of returning data directly, the fixture instead returns a function which generates the data. This function can then be called multiple times in the test.
 
@@ -1013,7 +1015,7 @@ def test_customer_records(make_customer_record):
     customer_3 = make_customer_record("Meredith")
 ```
 
-## Parametrizing fixtures
+## Parametrizing fixtures {#parametrizing-fixtures}
 
 Fixture functions can be parametrized in which case they will be called multiple times, each time executing the set of dependent tests, i.e. the tests that depend on this fixture. Test functions usually do not need to be aware of their re-running. Fixture parametrization helps to write exhaustive functional tests for components which themselves can be configured in multiple ways.
 
@@ -1165,7 +1167,7 @@ collected 12 items
 ======================= 12 tests collected in 0.12s ========================
 ```
 
-## Using marks with parametrized fixtures
+## Using marks with parametrized fixtures {#using-marks-with-parametrized-fixtures}
 
 `pytest.param()` can be used to apply marks in values sets of parametrized fixtures in the same way that they can be used with `@pytest.mark.parametrize`.
 
@@ -1202,7 +1204,7 @@ test_fixture_marks.py::test_data[2] SKIPPED (unconditional skip)     [100%]
 ======================= 2 passed, 1 skipped in 0.12s =======================
 ```
 
-## Modularity: using fixtures from a fixture function
+## Modularity: using fixtures from a fixture function {#modularity-using-fixtures-from-a-fixture-function}
 
 In addition to using fixtures in test functions, fixture functions can use other fixtures themselves. This contributes to a modular design of your fixtures and allows re-use of framework-specific fixtures across many projects. As a simple example, we can extend the previous example and instantiate an object `app` where we stick the already defined `smtp_connection` resource into it:
 
@@ -1246,7 +1248,7 @@ Due to the parametrization of `smtp_connection`, the test will run twice with tw
 
 Note that the `app` fixture has a scope of `module` and uses a module-scoped `smtp_connection` fixture. The example would still work if `smtp_connection` was cached on a `session` scope: it is fine for fixtures to use “broader” scoped fixtures but not the other way round: A session-scoped fixture could not use a module-scoped one in a meaningful way.
 
-## Automatic grouping of tests by fixture instances
+## Automatic grouping of tests by fixture instances {#automatic-grouping-of-tests-by-fixture-instances}
 
 pytest minimizes the number of active fixtures during test runs. If you have a parametrized fixture, then all the tests using it will first execute with one instance and then finalizers are called before the next fixture instance is created. Among other things, this eases testing of applications which create and use global state.
 
@@ -1336,8 +1338,8 @@ You can see that the parametrized module-scoped `modarg` resource caused an orde
 In particular notice that test_0 is completely independent and finishes first. Then test_1 is executed with `mod1`, then `test_2` with `mod1`, then `test_1` with mod2 and finally `test_2` with `mod2`.
 
 The `otherarg` parametrized resource (having function scope) was set up before and teared down after every test that used it.
-
-## Use fixtures in classes and modules with usefixtures
+ 
+## Use fixtures in classes and modules with usefixtures {#use-fixtures-in-classes-and-modules-with-usefixtures}
 
 Sometimes test functions do not directly need access to a fixture object. For example, tests may require to operate with an empty directory as the current working directory but otherwise do not care for the concrete directory. Here is how you can use the standard [tempfile](https://docs.python.org/3/library/tempfile.html#module-tempfile) and pytest fixtures to achieve it. We separate the creation of the fixture into a `conftest.py` file:
 
@@ -1421,11 +1423,11 @@ def my_fixture_that_sadly_wont_use_my_other_fixture():
 
 Currently this will not generate any error or warning, but this is intended to be handled by issue #3664.
 
-## Overriding fixtures on various levels
+## Overriding fixtures on various levels {#overriding-fixtures-on-various-levels}
 
 In relatively large test suite, you most likely need to `override` a `global` or `root` fixture with a `locally` defined one, keeping the test code readable and maintainable.
 
-### Override a fixture on a folder (conftest) level
+### Override a fixture on a folder (conftest) level {#override-a-fixture-on-a-folder-conftest-level}
 
 Given the tests file structure is:
 
@@ -1461,7 +1463,7 @@ tests/
 
 As you can see, a fixture with the same name can be overridden for certain test folder level. Note that the `base` or `super` fixture can be accessed from the `overriding` fixture easily - used in the example above.
 
-### Override a fixture on a test module level
+### Override a fixture on a test module level {#override-a-fixture-on-a-test-module-level}
 
 Given the tests file structure is:
 
@@ -1500,7 +1502,7 @@ tests/
 
 In the example above, a fixture with the same name can be overridden for certain test module.
 
-### Override a fixture with direct test parametrization
+### Override a fixture with direct test parametrization {#override-a-fixture-with-direct-test-parametrization}
 
 Given the tests file structure is:
 
@@ -1533,7 +1535,7 @@ tests/
 
 In the example above, a fixture value is overridden by the test parameter value. Note that the value of the fixture can be overridden this way even if the test doesn’t use it directly (doesn’t mention it in the function prototype).
 
-### Override a parametrized fixture with non-parametrized one and vice versa
+### Override a parametrized fixture with non-parametrized one and vice versa {#override-a-parametrized-fixture-with-non-parametrized-one-and-vice-versa}
 
 Given the tests file structure is:
 
@@ -1580,7 +1582,7 @@ tests/
 
 In the example above, a parametrized fixture is overridden with a non-parametrized version, and a non-parametrized fixture is overridden with a parametrized version for certain test module. The same applies for the test folder level obviously.
 
-## Using fixtures from other projects
+## Using fixtures from other projects {#using-fixtures-from-other-projects}
 
 Usually projects that provide pytest support will use [entry points](/python/pytest/how_to_guides/write_plugin#making-your-plugin-installable-by-others), so just installing those projects into an environment will make those fixtures available for use.
 

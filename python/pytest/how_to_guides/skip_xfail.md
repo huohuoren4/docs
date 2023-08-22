@@ -1,4 +1,4 @@
-# How to use skip and xfail to deal with tests that cannot succeed
+# How to use skip and xfail to deal with tests that cannot succeed {#how-to-use-skip-and-xfail-to-deal-with-tests-that-cannot-succeed}
 
 You can mark test functions that cannot be run on certain platforms or that you expect to fail so pytest can deal with them accordingly and present a summary of the test session, while keeping the test suite green.
 
@@ -16,7 +16,7 @@ More details on the `-r` option can be found by running `pytest -h`.
 
 (See [Builtin configuration file options](/python/pytest/reference_guides/configuration#builtin-configuration-file-options))
 
-## Skipping test functions
+## Skipping test functions {#skipping-test-functions}
 
 The simplest way to skip a test function is to mark it with the `skip` decorator which may be passed an optional `reason`:
 
@@ -49,7 +49,7 @@ if not sys.platform.startswith("win"):
 
 Reference: `pytest.mark.skip`
 
-### skipif
+### skipif {#skipif}
 
 If you wish to skip something conditionally then you can use `skipif` instead. Here is an example of marking a test function to be skipped when run on an interpreter earlier than Python3.10:
 
@@ -98,7 +98,7 @@ Alternatively, you can use [condition strings](/python/pytest/further_topics/his
 
 **Reference**: `pytest.mark.skipif`
 
-### Skip all test functions of a class or module
+### Skip all test functions of a class or module {#skip-all-test-functions-of-a-class-or-module}
 
 You can use the `skipif` marker (as any other marker) on classes:
 
@@ -120,11 +120,11 @@ pytestmark = pytest.mark.skipif(...)
 
 If multiple `skipif` decorators are applied to a test function, it will be skipped if any of the skip conditions is true.
 
-### Skipping files or directories
+### Skipping files or directories {#skipping-files-or-directories}
 
 Sometimes you may need to skip an entire file or directory, for example if the tests rely on Python version-specific features or contain code that you do not wish pytest to run. In this case, you must exclude the files and directories from collection. Refer to [Customizing test collection](/python/pytest/further_topics/example_trick/test_discovery#customizing-test-collection) for more information.
 
-### Skipping on a missing import dependency
+### Skipping on a missing import dependency {#skipping-on-a-missing-import-dependency}
 
 You can skip tests on a missing import by using `pytest.importorskip` at module level, within a test, or test setup function.
 
@@ -140,7 +140,7 @@ docutils = pytest.importorskip("docutils", minversion="0.3")
 
 The version will be read from the specified module’s `__version__` attribute.
 
-### Summary
+### Summary {#summary}
 
 Here’s a quick guide on how to skip tests in a module in different situations:
 
@@ -162,7 +162,7 @@ pytestmark = pytest.mark.skipif(sys.platform == "win32", reason="tests for linux
 pexpect = pytest.importorskip("pexpect")
 ```
 
-## XFail: mark test functions as expected to fail
+## XFail: mark test functions as expected to fail {#xfail-mark-test-functions-as-expected-to-fail}
 
 You can use the `xfail` marker to indicate that you expect a test to fail:
 
@@ -193,7 +193,7 @@ This will make `test_function` `XFAIL`. Note that no other code is executed afte
 
 **Reference**: `pytest.mark.xfail`
 
-### condition parameter
+### condition parameter {#condition-parameter}
 
 If a test is only expected to fail under a certain condition, you can pass that condition as the first parameter:
 
@@ -205,7 +205,7 @@ def test_function():
 
 Note that you have to pass a reason as well (see the parameter description at `pytest.mark.xfail`).
 
-### reason parameter
+### reason parameter {#reason-parameter}
 
 You can specify the motive of an expected failure with the `reason` parameter:
 
@@ -215,7 +215,7 @@ def test_function():
     ...
 ```
 
-### raises parameter
+### raises parameter {#raises-parameter}
 
 If you want to be more specific as to why the test is failing, you can specify a single exception, or a tuple of exceptions, in the `raises` argument.
 
@@ -227,7 +227,7 @@ def test_function():
 
 Then the test will be reported as a regular failure if it fails with an exception not mentioned in `raises`.
 
-### run parameter
+### run parameter {#run-parameter}
 
 If a test should be marked as xfail and reported as such but should not be even executed, use the run parameter as `False`:
 
@@ -239,7 +239,7 @@ def test_function():
 
 This is specially useful for xfailing tests that are crashing the interpreter and should be investigated later.
 
-### strict parameter
+### strict parameter {#strict-parameter}
 
 Both `XFAIL` and `XPASS` don’t fail the test suite by default. You can change this by setting the `strict` keyword-only parameter to `True`:
 
@@ -258,7 +258,7 @@ You can change the default value of the `strict` parameter using the `xfail_stri
 xfail_strict=true
 ```
 
-### Ignoring xfail
+### Ignoring xfail {#ignoring-xfail}
 
 By specifying on the commandline:
 
@@ -268,7 +268,7 @@ pytest --runxfail
 
 you can force the running and reporting of an `xfail` marked test as if it weren’t marked at all. This also causes `pytest.xfail()` to produce no effect.
 
-### Examples
+### Examples {#examples}
 
 Here is a simple test file with the several usages:
 
@@ -341,7 +341,7 @@ XFAIL xfail_demo.py::test_hello7
 ============================ 7 xfailed in 0.12s ============================
 ```
 
-## Skip/xfail with parametrize
+## Skip/xfail with parametrize {#skip-xfail-with-parametrize}
 
 It is possible to apply markers like skip and xfail to individual test instances when using parametrize:
 

@@ -1,7 +1,7 @@
-# How to use temporary directories and files in tests
+# How to use temporary directories and files in tests {#how-to-use-temporary-directories-and-files-in-tests}
 
-## The `tmp_path` fixture
-
+## The `tmp_path` fixture {#the-tmp-path-fixture}
+ 
 You can use the `tmp_path` fixture which will provide a temporary directory unique to the test invocation, created in the [base temporary directory](/python/pytest/how_to_guides/temp#the-default-base-temporary-directory).
 
 `tmp_path` is a `pathlib.Path` object. Here is an example test usage:
@@ -53,7 +53,7 @@ FAILED test_tmp_path.py::test_create_file - assert 0
 ============================ 1 failed in 0.12s =============================
 ```
 
-## The `tmp_path_factory` fixture
+## The `tmp_path_factory` fixture {#the-tmp-path-factory-fixture}
 
 The `tmp_path_factory` is a session-scoped fixture which can be used to create arbitrary temporary directories from any other fixture or test.
 
@@ -80,7 +80,7 @@ def test_histogram(image_file):
 
 See `tmp_path_factory` API for details.
 
-## The `tmpdir` and `tmpdir_factory` fixtures
+## The `tmpdir` and `tmpdir_factory` fixtures {#the-tmpdir-and-tmpdir-factory-fixtures}
 
 The `tmpdir` and `tmpdir_factory` fixtures are similar to `tmp_path` and `tmp_path_factory`, but use/return legacy py.path.local objects rather than standard `pathlib.Path` objects.
 
@@ -98,7 +98,7 @@ This will trigger errors on tests using the legacy paths. It can also be permane
 
 See `tmpdir` `tmpdir_factory` API for details.
 
-## The default base temporary directory
+## The default base temporary directory {#the-default-base-temporary-directory}
 
 Temporary directories are by default created as sub-directories of the system temporary directory. The base name will be `pytest-NUM` where `NUM` will be incremented with each test run. By default, entries older than 3 temporary directories will be removed. This behavior can be configured with `tmp_path_retention_count` and `tmp_path_retention_policy`.
 

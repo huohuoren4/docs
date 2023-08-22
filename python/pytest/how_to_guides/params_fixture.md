@@ -1,4 +1,4 @@
-# How to parametrize fixtures and test functions
+# How to parametrize fixtures and test functions {#how-to-parametrize-fixtures-and-test-functions}
 
 pytest enables test parametrization at several levels:
 
@@ -6,7 +6,7 @@ pytest enables test parametrization at several levels:
 - [@pytest.mark.parametrize](/python/pytest/how_to_guides/params_fixture#pytest-mark-parametrize-parametrizing-test-functions) allows one to define multiple sets of arguments and fixtures at the test function or class.
 - [pytest_generate_tests](/python/pytest/how_to_guides/params_fixture#basic-pytest-generate-tests-example) allows one to define custom parametrization schemes or extensions.
 
-## `@pytest.mark.parametrize`: parametrizing test functions
+## `@pytest.mark.parametrize`: parametrizing test functions {#pytest-mark-parametrize-parametrizing-test-functions}
 
 The builtin `pytest.mark.parametrize` decorator enables parametrization of arguments for a test function. Here is a typical example of a test function that implements checking that a certain input leads to an expected output:
 
@@ -146,7 +146,7 @@ def test_foo(x, y):
 
 This will run the test with the arguments set to `x=0/y=2`, `x=1/y=2`, `x=0/y=3`, and `x=1/y=3` exhausting parameters in the order of the decorators.
 
-## Basic pytest_generate_tests example
+## Basic pytest_generate_tests example {#basic-pytest-generate-tests-example}
 
 Sometimes you may want to implement your own parametrization scheme or implement some dynamism for determining the parameters or scope of a fixture. For this, you can use the `pytest_generate_tests` hook which is called when collecting a test function. Through the passed in `metafunc` object you can inspect the requesting test context and, most importantly, you can call `metafunc.parametrize()` to cause parametrization.
 
@@ -224,6 +224,6 @@ SKIPPED [1] test_strings.py: got empty parameter set ['stringinput'], function t
 
 Note that when calling `metafunc.parametrize` multiple times with different parameter sets, all parameter names across those sets cannot be duplicated, otherwise an error will be raised.
 
-## More examples
+## More examples {#more-examples}
 
 For further examples, you might want to look at more parametrization examples.

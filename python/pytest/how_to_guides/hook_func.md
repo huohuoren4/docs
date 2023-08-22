@@ -1,6 +1,6 @@
-# Writing hook functions
+# Writing hook functions {#writing-hook-functions}
 
-## hook function validation and execution
+## hook function validation and execution {#hook-function-validation-and-execution}
 
 pytest calls hook functions from registered plugins for any given hook specification. Let’s look at a typical hook function for the `pytest_collection_modifyitems(session, config, items)` hook which pytest calls after collection of all test items is completed.
 
@@ -19,13 +19,13 @@ Here, `pytest` will pass in `config` (the pytest config object) and `items` (the
 
 Note that hook functions other than `pytest_runtest_*` are not allowed to raise exceptions. Doing so will break the pytest run.
 
-## firstresult: stop at first non-None result
+## firstresult: stop at first non-None result {#firstresult-stop-at-first-non-none-result}
 
 Most calls to `pytest` hooks result in a list of results which contains all non-None results of the called hook functions.
 
 Some hook specifications use the `firstresult=True` option so that the hook call only executes until the first of N registered functions returns a non-None result which is then taken as result of the overall hook call. The remaining hook functions will not be called in this case.
 
-## hook wrappers: executing around other hooks
+## hook wrappers: executing around other hooks {#hook-wrappers-executing-around-other-hooks}
 
 pytest plugins can implement hook wrappers which wrap the execution of other hook implementations. A hook wrapper is a generator function which yields exactly once. When pytest invokes hooks it first executes hook wrappers and passes the same arguments as to the regular hooks.
 
@@ -60,7 +60,7 @@ If the hook implementation failed with an exception, the wrapper can handle that
 
 For more information, consult the [pluggy documentation about hook wrappers](https://pluggy.readthedocs.io/en/stable/index.html#hookwrappers).
 
-## Hook function ordering / call example
+## Hook function ordering / call example {#hook-function-ordering-call-example}
 
 For any given hook specification there may be more than one implementation and we thus generally view `hook` execution as a `1:N` function call where N is the number of registered functions. There are ways to influence if a hook implementation comes before or after others, i.e. the position in the `N`-sized list of functions:
 
@@ -102,7 +102,7 @@ Here is the order of execution:
 
 It’s possible to use `tryfirst` and `trylast` also on hook wrappers in which case it will influence the ordering of hook wrappers among each other.
 
-## Declaring new hooks
+## Declaring new hooks {#declaring-new-hooks}
 
 ::: tip Note
 This is a quick overview on how to add new hooks and how they work in general, but a more complete overview can be found in [the pluggy documentation](https://pluggy.readthedocs.io/en/latest/).
@@ -171,7 +171,7 @@ def pytest_my_hook(config):
     print(config.hook)
 ```
 
-## Using hooks in pytest_addoption
+## Using hooks in pytest_addoption {#using-hooks-in-pytest-addoption}
 
 Occasionally, it is necessary to change the way in which command line options are defined by one plugin based on hooks in another plugin. For example, a plugin may expose a command line option for which another plugin needs to define the default value. The pluginmanager can be used to install and use hooks to accomplish this. The plugin would define and add the hooks and use pytest_addoption as follows:
 
@@ -212,7 +212,7 @@ def pytest_config_file_default_value():
     return "config.yaml"
 ```
 
-## Optionally using hooks from 3rd party plugins
+## Optionally using hooks from 3rd party plugins {#optionally-using-hooks-from-3rd-party-plugins}
 
 Using new hooks from plugins as explained above might be a little tricky because of the standard [validation mechanism](/python/pytest/how_to_guides/hook_func#hook-function-validation-and-execution): if you depend on a plugin that is not installed, validation will fail and the error message will not make much sense to your users.
 
@@ -236,7 +236,7 @@ def pytest_configure(config):
 
 This has the added benefit of allowing you to conditionally install hooks depending on which plugins are installed.
 
-## Storing data on items across hook functions
+## Storing data on items across hook functions {#storing-data-on-items-across-hook-functions}
 
 Plugins often need to store data on `Items` in one hook implementation, and access it in another. One common solution is to just assign some private attribute directly on the item, but type-checkers like mypy frown upon this, and it may also cause conflicts with other plugins. So pytest offers a better way to do this, `item.stash`.
 

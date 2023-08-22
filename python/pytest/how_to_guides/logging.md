@@ -1,4 +1,4 @@
-# How to manage logging
+# How to manage logging {#how-to-manage-logging}
 
 pytest captures log messages of level `WARNING` or above automatically and displays them in their own section for each failed test in the same manner as captured stdout and stderr.
 
@@ -58,7 +58,7 @@ Further it is possible to disable reporting of captured content (stdout, stderr 
 pytest --show-capture=no
 ```
 
-## caplog fixture
+## caplog fixture {#caplog-fixture}
 
 Inside tests it is possible to change the log level for the captured log messages. This is supported by the `caplog` fixture:
 
@@ -146,7 +146,7 @@ The full API is available at `pytest.LogCaptureFixture`.
 The `caplog` fixture adds a handler to the root logger to capture logs. If the root logger is modified during a test, for example with `logging.config.dictConfig`, this handler may be removed and cause no logs to be captured. To avoid this, ensure that any root logger configuration only adds to the existing handlers.
 :::
 
-## Live Logs
+## Live Logs {#live-logs}
 By setting the `log_cli` configuration option to `true`, pytest will output logging records as they are emitted directly into the console.
 
 You can specify the logging level for which log records with equal or higher level are printed to the console by passing `--log-cli-level`. This setting accepts the logging level names or numeric values as seen in [logging’s documentation](https://docs.python.org/3/library/logging.html#levels).
@@ -179,7 +179,7 @@ All of the log file options can also be set in the configuration INI file. The o
 
 You can call `set_log_path()` to customize the log_file path dynamically. This functionality is considered experimental.
 
-## Customizing Colors
+## Customizing Colors {#customizing-colors}
 
 Log levels are colored if colored terminal output is enabled. Changing from default colors or putting color on custom log levels is supported through `add_color_level()`. Example:
 
@@ -199,7 +199,7 @@ def pytest_configure(config):
 This feature and its API are considered experimental and might change between releases without a deprecation notice.
 :::
 
-## Release notes
+## Release notes {#release-notes}
 
 This feature was introduced as a drop-in replacement for the `pytest-catchlog` plugin and they conflict with each other. The backward compatibility API with `pytest-capturelog` has been dropped when this feature was introduced, so if for that reason you still need `pytest-catchlog` you can disable the internal feature by adding to your `pytest.ini`:
 
@@ -208,7 +208,7 @@ This feature was introduced as a drop-in replacement for the `pytest-catchlog` p
     addopts=-p no:logging
 ```
 
-## Incompatible changes in pytest 3.4
+## Incompatible changes in pytest 3.4 {#incompatible-changes-in-pytest-3-4}
 
 This feature was introduced in `3.3` and some incompatible changes have been made in `3.4` after community feedback:
 

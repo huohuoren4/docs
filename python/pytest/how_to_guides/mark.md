@@ -1,4 +1,4 @@
-# How to mark test functions with attributes
+# How to mark test functions with attributes {#how-to-mark-test-functions-with-attributes}
 
 By using the `pytest.mark` helper you can easily set metadata on your test functions. You can find the full list of builtin markers in the API Reference. Or you can list all the markers, including builtin and custom, using the CLI - `pytest --markers`.
 
@@ -19,7 +19,7 @@ See Working with custom markers for examples which also serve as documentation.
 Marks can only be applied to tests, having no effect on [fixtures](/python/pytest/reference_guides/fixture_reference#fixtures-reference).
 :::
 
-## Registering marks
+## Registering marks {#registering-marks}
 
 You can register custom marks in your `pytest.ini` file like this:
 
@@ -53,7 +53,7 @@ def pytest_configure(config):
 
 Registered marks appear in pytest’s help text and do not emit warnings (see the next section). It is recommended that third-party plugins always register their markers.
 
-## Raising errors on unknown marks
+## Raising errors on unknown marks {#raising-errors-on-unknown-marks}
 
 Unregistered marks applied with the `@pytest.mark.name_of_the_mark` decorator will always emit a warning in order to avoid silently doing something surprising due to mistyped names. As described in the previous section, you can disable the warning for custom marks by registering them in your `pytest.ini` file or using a custom `pytest_configure` hook.
 

@@ -1,4 +1,4 @@
-# How to run doctests
+# How to run doctests {#how-to-run-doctests}
 
 By default, all files matching the `test*.txt` pattern will be run through the python standard `doctest` module. You can change the pattern by issuing:
 
@@ -68,7 +68,7 @@ You can make these changes permanent in your project by putting them into a pyte
 addopts = --doctest-modules
 ```
 
-## Encoding
+## Encoding {#encoding}
 
 The default encoding is `UTF-8`, but you can specify the encoding that will be used for those doctest files using the `doctest_encoding` ini option:
 
@@ -78,7 +78,7 @@ The default encoding is `UTF-8`, but you can specify the encoding that will be u
 doctest_encoding = latin1
 ```
 
-## Using 'doctest' options
+## Using 'doctest' options {#using-doctest-options}
 
 Python’s standard `doctest` module provides some options to configure the strictness of doctest tests. In pytest, you can enable those flags using the configuration file.
 
@@ -125,7 +125,7 @@ pytest also introduces new options:
 
     *New in version 5.1.*
 
-## Continue on failure
+## Continue on failure {#continue-on-failure}
 
 By default, pytest would report only the first failure for a given doctest. If you want to continue the test even when you have failures, do:
 
@@ -133,7 +133,7 @@ By default, pytest would report only the first failure for a given doctest. If y
 pytest --doctest-modules --doctest-continue-on-failure
 ```
 
-## Output format
+## Output format {#output-format}
 
 You can change the diff output format on failure for your doctests by using one of standard doctest modules format in options (see `doctest.REPORT_UDIFF`, `doctest.REPORT_CDIFF`, `doctest.REPORT_NDIFF`, `doctest.REPORT_ONLY_FIRST_FAILURE`):
 
@@ -145,11 +145,11 @@ pytest --doctest-modules --doctest-report ndiff
 pytest --doctest-modules --doctest-report only_first_failure
 ```
 
-## pytest-specific features
+## pytest-specific features {#pytest-specific-features}
 
 Some features are provided to make writing doctests easier or with better integration with your existing test suite. Keep in mind however that by using those features you will make your doctests incompatible with the standard `doctests` module.
 
-### Using fixtures
+### Using fixtures {#using-fixtures}
 
 It is possible to use fixtures using the `getfixture` helper:
 
@@ -164,7 +164,7 @@ Note that the fixture needs to be defined in a place visible by pytest, for exam
 
 Also, the [usefixtures](/python/pytest/how_to_guides/fixture#use-fixtures-in-classes-and-modules-with-usefixtures) mark and fixtures marked as `autouse` are supported when executing text doctest files.
 
-### 'doctest_namespace' fixture
+### 'doctest_namespace' fixture {#doctest-namespace-fixture}
 
 The `doctest_namespace` fixture can be used to inject items into the namespace in which your doctests run. It is intended to be used within your own fixtures to provide the tests that use them with context.
 
@@ -191,7 +191,7 @@ def arange():
 
 Note that like the normal `conftest.py`, the fixtures are discovered in the directory tree conftest is in. Meaning that if you put your doctest with your source code, the relevant conftest.py needs to be in the same directory tree. Fixtures will not be discovered in a sibling directory tree!
 
-### Skipping tests
+### Skipping tests {#skipping-tests}
 
 For the same reasons one might want to skip normal tests, it is also possible to skip tests inside doctests.
 
@@ -231,7 +231,7 @@ However using those functions is discouraged because it reduces the readability 
 - Text files: the functions will skip/xfail the checks for the rest of the entire file.
 :::
 
-## Alternatives
+## Alternatives {#alternatives}
 
 While the built-in pytest support provides a good set of functionalities for using doctests, if you use them extensively you might be interested in those external packages which add many more features, and include pytest integration:
 

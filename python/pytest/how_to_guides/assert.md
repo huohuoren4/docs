@@ -1,6 +1,6 @@
 # How to write and report assertions in tests {#how-to-write-and-report-assertions-in-tests}
 
-## Asserting with the assert statement
+## Asserting with the assert statement {#asserting-with-the-assert-statement}
 
 `pytest` allows you to use the standard Python `assert` for verifying expectations and values in Python tests. For example, you can write the following:
 
@@ -51,7 +51,7 @@ then no assertion introspection takes places at all and the message will be simp
 
 See [Assertion introspection details](/python/pytest/how_to_guides/assert#assertion-introspection-details) for more information on assertion introspection.
 
-## Assertions about expected exceptions
+## Assertions about expected exceptions {#assertions-about-expected-exceptions}
 
 In order to write assertions about raised exceptions, you can use `pytest.raises()` as a context manager like this:
 
@@ -111,11 +111,11 @@ def test_f():
 
 Using `pytest.raises()` is likely to be better for cases where you are testing exceptions your own code is deliberately raising, whereas using `@pytest.mark.xfail` with a check function is probably better for something like documenting unfixed bugs (where the test describes what “should” happen) or bugs in dependencies.
 
-## Assertions about expected warnings
+## Assertions about expected warnings {#assertions-about-expected-warnings}
 
 You can check that code raises a particular warning using `pytest.warns`.
 
-## Making use of context-sensitive comparisons
+## Making use of context-sensitive comparisons {#making-use-of-context-sensitive-comparisons}
 
 `pytest` has rich support for providing context-sensitive information when it encounters comparisons. For example:
 
@@ -166,7 +166,7 @@ Special comparisons are done for a number of cases:
 
 See the [reporting demo](/python/pytest/further_topics/example_trick/failure_report) for many more examples.
 
-## Defining your own explanation for failed assertions
+## Defining your own explanation for failed assertions {#defining-your-own-explanation-for-failed-assertions}
 
 It is possible to add your own detailed explanations by implementing the `pytest_assertrepr_compare` hook.
 
@@ -240,7 +240,7 @@ It is possible to add your own detailed explanations by implementing the `pytest
     1 failed in 0.12s
     ```
 
-## Assertion introspection details
+## Assertion introspection details {#assertion-introspection-details}
 
 Reporting details about a failing assertion is achieved by rewriting assert statements before they are run. Rewritten assert statements put introspection information into the assertion failure message. pytest only rewrites test modules directly discovered by its test collection process, so **asserts in supporting modules which are not themselves test modules will not be rewritten**.
 
@@ -248,7 +248,7 @@ You can manually enable assertion rewriting for an imported module by calling `r
 
 For further information, Benjamin Peterson wrote up [Behind the scenes of pytest’s new assertion rewriting](http://pybites.blogspot.com/2011/07/behind-scenes-of-pytests-new-assertion.html).
 
-### Assertion rewriting caches files on disk
+### Assertion rewriting caches files on disk {#assertion-rewriting-caches-files-on-disk}
 
 `pytest` will write back the rewritten modules to disk for caching. You can disable this behavior (for example to avoid leaving stale `.pyc` files around in projects that move files around a lot) by adding this to the top of your `conftest.py` file:
 
@@ -262,7 +262,7 @@ Note that you still get the benefits of assertion introspection, the only change
 
 Additionally, rewriting will silently skip caching if it cannot write new `.pyc` files, i.e. in a read-only filesystem or a zipfile.
 
-### Disabling assert rewriting
+### Disabling assert rewriting {#disabling-assert-rewriting}
 
 `pytest` rewrites test modules on import by using an import hook to write new `pyc` files. Most of the time this works transparently. However, if you are working with the import machinery yourself, the import hook may interfere.
 

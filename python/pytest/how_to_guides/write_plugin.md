@@ -1,4 +1,4 @@
-# Writing plugins
+# Writing plugins {#writing-plugins}
 
 It is easy to implement [local conftest plugins](/python/pytest/how_to_guides/write_plugin#conftest-py-local-per-directory-plugins) for your own project or [pip-installable plugins](/python/pytest/how_to_guides/write_plugin#making-your-plugin-installable-by-others) that can be used throughout many projects, including third party projects. Please refer to [How to install and use plugins](/python/pytest/how_to_guides/use_plugin#how-to-install-and-use-plugins) if you only want to use but not write plugins.
 
@@ -12,7 +12,7 @@ A plugin contains one or multiple hook functions. [Writing hooks](/python/pytest
 
 In principle, each hook call is a `1:N` Python function call where N is the number of registered implementation functions for a given specification. All specifications and implementations follow the `pytest_` prefix naming convention, making them easy to distinguish and find.
 
-## Plugin discovery order at tool startup
+## Plugin discovery order at tool startup {#plugin-discovery-order-at-tool-startup}
 
 `pytest` loads plugin modules at tool startup in the following way:
 
@@ -36,7 +36,7 @@ In principle, each hook call is a `1:N` Python function call where N is the numb
 
 7. by recursively loading all plugins specified by the `pytest_plugins` variable in `conftest.py` files.
 
-## conftest.py: local per-directory plugins
+## conftest.py: local per-directory plugins {#conftest-py-local-per-directory-plugins}
 
 Local `conftest.py` plugins contain directory-specific hook implementations. Hook Session and test running activities will invoke all hooks defined in `conftest.py` files closer to the root of the filesystem. Example of implementing the `pytest_runtest_setup` hook so that is called for tests in the a sub directory but not for other directories:
 
@@ -72,7 +72,7 @@ See also: [pytest import mechanisms and sys.path/PYTHONPATH](/python/pytest/expl
 Some hooks should be implemented only in plugins or `conftest.py` files situated at the tests root directory due to how pytest discovers plugins during startup, see the documentation of each hook for details.
 :::
 
-## Writing your own plugin
+## Writing your own plugin {#writing-your-own-plugin}
 
 If you want to write a plugin, there are many real-life examples you can copy from:
 
@@ -92,7 +92,7 @@ The template provides an excellent starting point with a working plugin, tests r
 
 Also consider [contributing your plugin to pytest-dev](/python/pytest/further_topics/contribution#submitting-plugins-to-pytest-dev) once it has some happy users other than yourself.
 
-## Making your plugin installable by others
+## Making your plugin installable by others {#making-your-plugin-installable-by-others}
 
 If you want to make your plugin externally available, you may define a so-called entry point for your distribution so that `pytest` finds your plugin module. Entry points are a feature that is provided by [setuptools](https://setuptools.pypa.io/en/stable/index.html).
 
@@ -120,7 +120,7 @@ If a package is installed this way, `pytest` will load `myproject.pluginmodule` 
 Make sure to include `Framework :: Pytest` in your list of [PyPI classifiers](https://pypi.org/classifiers/) to make it easy for users to find your plugin.
 :::
 
-## Assertion Rewriting
+## Assertion Rewriting {#assertion-rewriting}
 
 One of the main features of `pytest` is the use of plain assert statements and the detailed introspection of expressions upon assertion failures. This is provided by “assertion rewriting” which modifies the parsed AST before it gets compiled to bytecode. This is done via a [PEP 302](https://peps.python.org/pep-0302/) import hook which gets installed early on when `pytest` starts up and will perform this rewriting when modules get imported. However, since we do not want to test different bytecode from what you will run in production, this hook only rewrites test modules themselves (as defined by the `python_files` configuration option), and any modules which are part of plugins. Any other imported module will not be rewritten and normal assertion behaviour will happen.
 
@@ -158,7 +158,7 @@ import pytest
 pytest.register_assert_rewrite("pytest_foo.helper")
 ```
 
-## Requiring/Loading plugins in a test module or conftest file
+## Requiring/Loading plugins in a test module or conftest file {#requiring-loading-plugins-in-a-test-module-or-conftest-file}
 
 You can require plugins in a test module or a `conftest.py` file using `pytest_plugins`:
 
@@ -184,7 +184,7 @@ This mechanism makes it easy to share fixtures within applications or even exter
 
 Plugins imported by `pytest_plugins` will also automatically be marked for assertion rewriting (see `pytest.register_assert_rewrite()`). However for this to have any effect the module must not be imported already; if it was already imported at the time the `pytest_plugins` statement is processed, a warning will result and assertions inside the plugin will not be rewritten. To fix this you can either call `pytest.register_assert_rewrite()` yourself before the module is imported, or you can arrange the code to delay the importing until after the plugin is registered.
 
-## Accessing another plugin by name
+## Accessing another plugin by name {#accessing-another-plugin-by-name}
 
 If a plugin wants to collaborate with code from another plugin it can obtain a reference through the plugin manager like this:
 
@@ -194,7 +194,7 @@ plugin = config.pluginmanager.get_plugin("name_of_plugin")
 
 If you want to look at the names of existing plugins, use the `--trace-config` option.
 
-## Registering custom markers
+## Registering custom markers {#registering-custom-markers}
 
 If your plugin uses any markers, you should register them so that they appear in pytest’s help text and do not cause spurious warnings. For example, the following plugin would register `cool_marker` and `mark_with` for all users:
 
@@ -206,7 +206,7 @@ def pytest_configure(config):
     )
 ```
 
-## Testing plugins
+## Testing plugins {#testing-plugins}
 
 pytest comes with a plugin named `pytester` that helps you write tests for your plugin code. The plugin is disabled by default, so you will have to enable it before you can use it.
 

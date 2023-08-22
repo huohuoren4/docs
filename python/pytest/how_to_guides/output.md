@@ -1,6 +1,6 @@
-# How to capture stdout/stderr output
+# How to capture stdout/stderr output {#how-to-capture-stdout-stderr-output}
 
-## Default stdout/stderr/stdin capturing behaviour
+## Default stdout/stderr/stdin capturing behaviour {#default-stdout-stderr-stdin-capturing-behaviour}
 
 During test execution any output sent to `stdout` and `stderr` is captured. If a test or a setup method fails its according captured output will usually be shown along with the failure traceback. (this behavior can be configured by the `--show-capture` command-line option).
 
@@ -8,7 +8,7 @@ In addition, `stdin` is set to a “null” object which will fail on attempts t
 
 By default capturing is done by intercepting writes to low level file descriptors. This allows to capture output from simple print statements as well as output from a subprocess started by a test.
 
-## Setting capturing methods or disabling capturing
+## Setting capturing methods or disabling capturing {#setting-capturing-methods-or-disabling-capturing}
 
 There are three ways in which `pytest` can perform capturing:
 
@@ -28,7 +28,7 @@ pytest --capture=tee-sys   # combines 'sys' and '-s', capturing sys.stdout/stder
                            # and passing it along to the actual sys.stdout/stderr
 ```
 
-## Using print statements for debugging
+## Using print statements for debugging {#using-print-statements-for-debugging}
 
 One primary benefit of the default capturing of stdout/stderr output is that you can use print statements for debugging:
 
@@ -74,7 +74,7 @@ FAILED test_module.py::test_func2 - assert False
 ======================= 1 failed, 1 passed in 0.12s ========================
 ```
 
-## Accessing captured output from a test function
+## Accessing captured output from a test function {#accessing-captured-output-from-a-test-function}
 
 The `capsys`, `capsysbinary`, `capfd`, and `capfdbinary` fixtures allow access to stdout/stderr output created during test execution. Here is an example test function that performs some output related checks:
 
