@@ -49,7 +49,7 @@ export default defineConfig({
           {
             text: 'Test Automatic',
             items: [
-              { text: 'pytest 🟡', link: '/python/pytest/home', activeMatch: '/python/pytest'},
+              { text: 'pytest 🟢', link: '/python/pytest/home', activeMatch: '/python/pytest'},
               { text: 'allure 🟡', link: '/python/allure/get_start', activeMatch: '/python/allure'},
               { text: 'pluggy', link: 'https://pluggy.readthedocs.io/en/'},
               { text: 'pytest-xdist', link: 'https://pytest-xdist.readthedocs.io/en/'},
@@ -85,7 +85,6 @@ export default defineConfig({
             text: 'Web Framework',
             items: [
               { text: 'gin', link: 'https://gin-gonic.com/docs/'},
-              { text: 'gin-vue-admin 🔴', link: '...'},
             ]
           }
         ]
