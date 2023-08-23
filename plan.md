@@ -9,7 +9,7 @@ Record the doc progress and make monthly plan
 ### pytest doc
 
 - 🟢 copy document: 100% 
-- 🟡 optimized hyperlink: 30% -> 100%, http://localhost:8080/python/pytest/further_topics/deprecation
+- 🟡 optimized hyperlink: 30% -> 100%
 - 🔴 translate in Chinese: 0% 
 
 ###  flask doc
