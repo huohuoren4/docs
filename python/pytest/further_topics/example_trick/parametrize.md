@@ -1,10 +1,10 @@
-# Parametrizing tests
+# Parametrizing tests {#parametrizing-tests}
 
 `pytest` allows to easily parametrize test functions. For basic docs, see [How to parametrize fixtures and test functions](/python/pytest/how_to_guides/params_fixture#how-to-parametrize-fixtures-and-test-functions).
 
 In the following we provide some examples using the builtin mechanisms.
 
-## Generating parameters combinations, depending on command line
+## Generating parameters combinations, depending on command line {#generating-parameters-combinations-depending-on-command-line}
 
 Let’s say we want to execute a test with different computation parameters and the parameter range shall be determined by a command line argument. Let’s first write a simple (do-nothing) computation test:
 
@@ -65,7 +65,7 @@ FAILED test_compute.py::test_compute[4] - assert 4 < 4
 
 As expected when running the full range of `param1` values we’ll get an error on the last one.
 
-## Different options for test IDs
+## Different options for test IDs {#different-options-for-test-ids}
 
 pytest will build a string that is the test ID for each set of values in a parametrized test. These IDs can be used with `-k` to select specific cases to run, and they will also identify the specific case when one is failing. Running pytest with `--collect-only` will show the generated IDs.
 
@@ -152,7 +152,7 @@ collected 8 items
 
 In `test_timedistance_v3`, we used `pytest.param` to specify the test IDs together with the actual data, instead of listing them separately.
 
-## A quick port of “testscenarios”
+## A quick port of “testscenarios” {#a-quick-port-of-testscenarios}
 
 Here is a quick port to run tests configured with [testscenarios](https://pypi.org/project/testscenarios/), an add-on from Robert Collins for the standard unittest framework. We only have to work a bit to construct the correct arguments for pytest’s `Metafunc.parametrize()`:
 
@@ -220,7 +220,7 @@ collected 4 items
 
 Note that we told `metafunc.parametrize()` that your scenario values should be considered class-scoped. With `pytest-2.3` this leads to a resource-based ordering.
 
-## Deferring the setup of parametrized resources
+## Deferring the setup of parametrized resources {#deferring-the-setup-of-parametrized-resources}
 
 The parametrization of test functions happens at collection time. It is a good idea to setup expensive resources like DB connections or subprocess only when the actual test is run. Here is a simple example how you can achieve that. This test requires a `db` object fixture:
 
@@ -306,7 +306,7 @@ FAILED test_backends.py::test_db_initialized[d2] - Failed: deliberately f...
 
 The first invocation with `db == "DB1"` passed while the second with `db == "DB2"` failed. Our db fixture function has instantiated each of the DB values during the setup phase while the `pytest_generate_tests` generated two according calls to the `test_db_initialized` during the collection phase.
 
-## Indirect parametrization
+## Indirect parametrization {#indirect-parametrization}
 
 Using the `indirect=True` parameter when parametrizing a test allows to parametrize a test with a fixture receiving the values before passing them to a test:
 
@@ -326,7 +326,7 @@ def test_indirect(fixt):
 
 This can be used, for example, to do more expensive setup at test run time in the fixture, rather than having to run those setup steps at collection time.
 
-## Apply indirect on particular arguments
+## Apply indirect on particular arguments {#apply-indirect-on-particular-arguments}
 
 Very often parametrization uses more than one argument name. There is opportunity to apply `indirect` parameter on particular arguments. It can be done by passing list or tuple of arguments’ names to `indirect`. In the example below there is a function `test_indirect` which uses two fixtures: `x` and `y`. Here we give to indirect the list, which contains the name of the fixture x. The indirect parameter will be applied to this argument only, and the value a will be passed to respective fixture function:
 
@@ -367,7 +367,7 @@ test_indirect_list.py::test_indirect[a-b] PASSED                     [100%]
 ============================ 1 passed in 0.12s =============================
 ```
 
-## Parametrizing test methods through per-class configuration
+## Parametrizing test methods through per-class configuration {#parametrizing-test-methods-through-per-class-configuration}
 
 Here is an example `pytest_generate_tests` function implementing a parametrization scheme similar to Michael Foord’s [unittest parametrizer](https://github.com/testing-cabal/unittest-ext/blob/master/params.py) but in a lot less code:
 
@@ -420,7 +420,7 @@ FAILED test_parametrize.py::TestClass::test_equals[1-2] - assert 1 == 2
 1 failed, 2 passed in 0.12s
 ```
 
-## Parametrization with multiple fixtures
+## Parametrization with multiple fixtures {#parametrization-with-multiple-fixtures}
 
 Here is a stripped down real-life example of using parametrized testing for testing serialization of objects between different python interpreters. We define a `test_basic_objects` function which is to be run with different sets of arguments for its three arguments:
 
@@ -516,7 +516,7 @@ SKIPPED [9] multipython.py:69: 'python3.7' not found
 27 skipped in 0.12s
 ```
 
-## Parametrization of optional implementations/imports
+## Parametrization of optional implementations/imports {#parametrization-of-optional-implementations-imports}
 
 If you want to compare the outcomes of several implementations of a given API, you can write test functions that receive the already imported implementations and get skipped in case the implementation is not importable/available. Let’s say we have a “base” implementation and the other (possibly optimized ones) need to provide similar results:
 
@@ -586,7 +586,7 @@ You’ll see that we don’t have an `opt2` module and thus the second test run 
 
 - you can put `@pytest.mark.parametrize` style parametrization on the test functions to parametrize input/output values as well.
 
-## Set marks or test ID for individual parametrized test
+## Set marks or test ID for individual parametrized test {#set-marks-or-test-id-for-individual-parametrized-test}
 
 Use `pytest.param` to apply marks or set test ID to individual parametrized test. For example:
 
@@ -643,7 +643,7 @@ As the result:
 
 - The test `test_eval[basic_6*9]` was expected to fail and did fail.
 
-## Parametrizing conditional raising
+## Parametrizing conditional raising {#parametrizing-conditional-raising}
 
 Use `pytest.raises()` with the `pytest.mark.parametrize` decorator to write parametrized tests in which some tests raise exceptions and others do not.
 

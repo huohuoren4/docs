@@ -1,4 +1,4 @@
-# History
+# History {#history}
 
 pytest has a long and interesting history. The [first commit](https://github.com/pytest-dev/pytest/commit/5992a8ef21424d7571305a8d7e2a3431ee7e1e23) in this repository is from January 2007, and even that commit alone already tells a lot: The repository originally was from the py library (later split off to pytest), and it originally was a SVN revision, migrated to Mercurial, and finally migrated to git.
 

@@ -1,4 +1,4 @@
-# How to implement xunit-style set-up
+# How to implement xunit-style set-up {#how-to-implement-xunit-style-set-up}
 
 This section describes a classic and popular way how you can implement fixtures (setup and teardown test state) on a per-module/class/function basis.
 
@@ -6,7 +6,7 @@ This section describes a classic and popular way how you can implement fixtures 
 While these setup/teardown methods are simple and familiar to those coming from a `unittest` or `nose` background, you may also consider using pytest’s more powerful fixture mechanism which leverages the concept of dependency injection, allowing for a more modular and more scalable approach for managing test state, especially for larger projects and for functional testing. You can mix both fixture mechanisms in the same file but test methods of `unittest.TestCase` subclasses cannot receive fixture arguments.
 :::
 
-## Module level setup/teardown
+## Module level setup/teardown {#module-level-setup-teardown}
 
 If you have multiple test functions and test classes in a single module you can optionally implement the following fixture methods which will usually be called once for all the functions:
 
@@ -23,7 +23,7 @@ def teardown_module(module):
 
 As of pytest-3.0, the `module` parameter is optional.
 
-## Class level setup/teardown
+## Class level setup/teardown {#class-level-setup-teardown}
 
 Similarly, the following methods are called at class level before and after all test methods of the class are called:
 
@@ -42,7 +42,7 @@ def teardown_class(cls):
     """
 ```
 
-## Method and function level setup/teardown
+## Method and function level setup/teardown {#method-and-function-level-setup-teardown}
 
 Similarly, the following methods are called around each method invocation:
 

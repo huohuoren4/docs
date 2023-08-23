@@ -1,8 +1,8 @@
-# Objects
+# Objects {#objects}
 
 Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_reference#fixtures-reference) or hooks or importable from `pytest`.
 
-## CallInfo
+## CallInfo {#callinfo}
 
 - ### `final class` **CallInfo**        
 
@@ -46,7 +46,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         - `reraise (Optional[Union[Type[BaseException], Tuple[Type[BaseException], ...]]])` – Exception or - exceptions that shall propagate if raised by the function, instead of being wrapped in the CallInfo.
 
-## CollectReport
+## CollectReport {#collectreport}
 
 - ### `final class` **CollectReport**       
 
@@ -138,7 +138,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         Whether the outcome is skipped.
 
-## Config
+## Config {#config}
 
 - ### `final class` **Config**      
 
@@ -286,7 +286,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         *Deprecated*, use `getoption(skip=True)` instead.
 
-## ExceptionInfo
+## ExceptionInfo {#exceptioninfo}
 
 - ### `final class` **ExceptionInfo**       
 
@@ -396,7 +396,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         If it matches `True` is returned, otherwise an `AssertionError` is raised.
 
-## ExitCode
+## ExitCode {#exitcode}
 
 - ### `final class` **ExitCode**(`value`)     
 
@@ -430,7 +430,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         pytest couldn’t find tests.
 
-## FixtureDef
+## FixtureDef {#fixturedef}
 
 - ### `final class` **FixtureDef**      
 
@@ -444,7 +444,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         Scope string, one of `“function”`, `“class”`,` “module”`, `“package”`, `“session”`.
 
-## MarkDecorator
+## MarkDecorator {#markdecorator}
 
 - ### `class` **MarkDecorator**     
 
@@ -493,7 +493,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         Unlike calling the MarkDecorator, `with_args()` can be used even if the sole argument is a `callable/class`.
 
-## MarkGenerator
+## MarkGenerator {#markgenerator}
 
 - ### `final class` **MarkGenerator**       
 
@@ -511,7 +511,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
     applies a ‘slowtest’ `Mark` on `test_function`.
 
-## Mark
+## Mark {#mark}
 
 - ### `final class` **Mark**        
 
@@ -541,7 +541,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         *Return type*: `Mark`
 
-## Metafunc
+## Metafunc {#metafunc}
 
 - ### `final class` **Metafunc**        
 
@@ -597,7 +597,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         - `scope (Optional[Literal['session', 'package', 'module', 'class', 'function']])` – If specified it denotes the scope of the parameters. The scope is used for grouping tests by parameter instances. It will also override any fixture-function defined scope, allowing to set a dynamic scope using test context or configuration.
 
-## Parser
+## Parser {#parser}
 
 - ### `final class` **Parser**      
 
@@ -683,7 +683,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         The value of ini-variables can be retrieved via a call to `config.getini(name)`.
 
-## OptionGroup
+## OptionGroup {#optiongroup}
 
 - ### `class` **OptionGroup**       
 
@@ -701,7 +701,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         - `attrs (Any)` – Same attributes as the argparse library’s `add_argument()` function accepts.
 
-## PytestPluginManager
+## PytestPluginManager {#pytestpluginmanager}
 
 - ### `final class` **PytestPluginManager**     
 
@@ -835,7 +835,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         The plugin can be specified either by the plugin object or the plugin name. If both are specified, they must agree.
 
-## TestReport
+## TestReport {#testreport}
 
 - ### `final class` **TestReport**      
 
@@ -961,7 +961,7 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         Whether the outcome is skipped.
 
-## TestShortLogReport
+## TestShortLogReport {#testshortlogreport}
 
 - ### `class` **TestShortLogReport**        
 
@@ -987,11 +987,11 @@ Objects accessible from [fixtures](/python/pytest/reference_guides/fixture_refer
 
         Alias for field number 2
 
-## _Result
+## _Result {#result}
 
 Result object used within [hook wrappers](/python/pytest/how_to_guides/hook_func#hook-wrappers-executing-around-other-hooks), see [_Result in the pluggy documentation](https://pluggy.readthedocs.io/en/stable/api_reference.html#pluggy._callers._Result) for more information.
 
-## Stash
+## Stash {#stash}
 
 - ### `class` **Stash**     
 

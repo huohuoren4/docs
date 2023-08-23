@@ -1,10 +1,10 @@
-# Hooks
+# Hooks {#hooks}
 
 *Tutorial*: [Writing plugins](/python/pytest/how_to_guides/write_plugin#writing-plugins)
 
 Reference to all hooks which can be implemented by [conftest.py files](/python/pytest/how_to_guides/write_plugin#conftest-py-local-per-directory-plugins) and [plugins](/python/pytest/how_to_guides/write_plugin#writing-plugins).
 
-## Bootstrapping hooks
+## Bootstrapping hooks {#bootstrapping-hooks}
 
 Bootstrapping hooks called for plugins registered early enough (internal and setuptools plugins).
 
@@ -74,7 +74,7 @@ Bootstrapping hooks called for plugins registered early enough (internal and set
 
     *Return type*: `Optional[Union[ExitCode, int]]`
 
-## Initialization hooks
+## Initialization hooks {#initialization-hooks}
 
 Initialization hooks called for plugins and `conftest.py` files.
 
@@ -172,7 +172,7 @@ Initialization hooks called for plugins and `conftest.py` files.
     This hook is incompatible with hook wrappers.
     ::: 
 
-## Collection hooks
+## Collection hooks {#collection-hooks}
 
 `pytest` calls the following hooks for collecting files and directories:
 
@@ -354,7 +354,7 @@ After collection is complete, you can modify the order of items, delete or other
 
     - `session (Session)` – The pytest session object.
 
-## Test running (runtest) hooks
+## Test running (runtest) hooks {#test-running-runtest-hooks}
 
 All runtest related hooks receive a `pytest.Item` object.
 
@@ -504,7 +504,7 @@ All runtest related hooks receive a `pytest.Item` object.
 
     - `pyfuncitem (Function)` – The function item.
 
-## Reporting hooks
+## Reporting hooks {#reporting-hooks}
 
 Session related reporting hooks:
 
@@ -759,7 +759,7 @@ Session related reporting hooks:
 
     - `expl (str)` – String with the assert explanation.
 
-## Debugging/Interaction hooks
+## Debugging/Interaction hooks {#debugging-interaction-hooks}
 
 There are few hooks which can be used for special reporting or interaction with exceptions:
 

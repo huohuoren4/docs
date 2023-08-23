@@ -1,6 +1,6 @@
-# pytest import mechanisms and `sys.path/PYTHONPATH`
+# pytest import mechanisms and `sys.path/PYTHONPATH` {#pytest-import-mechanisms-and-sys-path-pythonpath}
 
-## Import modes
+## Import modes {#import-modes}
 
 pytest as a testing framework needs to import test modules and `conftest.py` files for execution.
 
@@ -38,11 +38,11 @@ Importing files in Python (at least until recently) is a non-trivial processes, 
 The `pythonpath` configuration variable.
 :::
 
-## prepend and append import modes scenarios
+## prepend and append import modes scenarios {#prepend-and-append-import-modes-scenarios}
 
 Here’s a list of scenarios when using `prepend` or `append` import modes where pytest needs to change `sys.path` in order to import test modules or `conftest.py` files, and the issues users might encounter because of that.
 
-### Test modules / conftest.py files inside packages
+### Test modules / conftest.py files inside packages {#test-modules-conftest-py-files-inside-packages}
 
 Consider this file and directory layout:
 
@@ -70,7 +70,7 @@ The same logic applies to the `conftest.py` file: it will be imported as `foo.co
 
 Preserving the full package name is important when tests live in a package to avoid problems and allow test modules to have duplicated names. This is also discussed in details in [Conventions for Python test discovery](/python/pytest/explanation/integration_practice#conventions-for-python-test-discovery).
 
-### Standalone test modules / conftest.py files
+### Standalone test modules / conftest.py files {#standalone-test-modules-conftest-py-files}
 
 Consider this file and directory layout:
 
@@ -95,7 +95,7 @@ For this reason this layout cannot have test modules with the same name, as they
 
 This is also discussed in details in [Conventions for Python test discovery](/python/pytest/explanation/integration_practice#conventions-for-python-test-discovery).
 
-## Invoking pytest versus python -m pytest
+## Invoking pytest versus python -m pytest {#invoking-pytest-versus-python-m-pytest}
 
 Running pytest with `pytest [...]` instead of `python -m pytest [...]` yields nearly equivalent behaviour, except that the latter will add the current directory to `sys.path`, which is standard `python` behavior.
 

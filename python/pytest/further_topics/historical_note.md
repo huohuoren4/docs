@@ -1,8 +1,8 @@
-# Historical Notes
+# Historical Notes {#historical-notes}
 
 This page lists features or behavior from previous versions of pytest which have changed over the years. They are kept here as a historical note so users looking at old code can find documentation related to them.
 
-## Marker revamp and iteration
+## Marker revamp and iteration {#marker-revamp-and-iteration}
 
 *Changed in version 3.6.*
 
@@ -14,9 +14,9 @@ Depending on how a marker got declared/changed one would get either a `MarkerInf
 
 On top of that markers were not accessible in the same way for modules, classes, and functions/methods. In fact, markers were only accessible in functions, even if they were declared on classes/modules.
 
-A new API to access markers has been introduced in pytest 3.6 in order to solve the problems with the initial design, providing the [_pytest.nodes.Node.iter_markers()](https://docs.pytest.org/en/latest/reference/reference.html#pytest.nodes.Node.iter_markers) method to iterate over markers in a consistent manner and reworking the internals, which solved a great deal of problems with the initial design.
+A new API to access markers has been introduced in pytest 3.6 in order to solve the problems with the initial design, providing the `_pytest.nodes.Node.iter_markers()` method to iterate over markers in a consistent manner and reworking the internals, which solved a great deal of problems with the initial design.
 
-### Updating code
+### Updating code {#updating-code}
 
 The old `Node.get_marker(name)` function is considered deprecated because it returns an internal `MarkerInfo` object which contains the merged name, `*args` and `**kwargs` of all the markers which apply to that node.
 
@@ -58,7 +58,7 @@ In general there are two scenarios on how markers should be handled:
 
 If you are unsure or have any questions, please consider opening [an issue](https://github.com/pytest-dev/pytest/issues/new).
 
-### Related issues
+### Related issues {#related-issues}
 
 Here is a non-exhaustive list of issues fixed by the new implementation:
 
@@ -92,25 +92,25 @@ More details can be found in the [original PR](https://github.com/pytest-dev/pyt
 in a future major release of pytest we will introduce class based markers, at which point markers will no longer be limited to instances of `Mark`.
 :::
 
-## cache plugin integrated into the core
+## cache plugin integrated into the core {#cache-plugin-integrated-into-the-core}
 
-The functionality of the [core cache](https://docs.pytest.org/en/latest/how-to/cache.html#cache) plugin was previously distributed as a third party plugin named `pytest-cache`. The core plugin is compatible regarding command line options and API usage except that you can only store/receive data between test runs that is json-serializable.
+The functionality of the [core cache](/python/pytest/how_to_guides/re_run#how-to-re-run-failed-tests-and-maintain-state-between-test-runs) plugin was previously distributed as a third party plugin named `pytest-cache`. The core plugin is compatible regarding command line options and API usage except that you can only store/receive data between test runs that is json-serializable.
 
-## funcargs and pytest_funcarg__
+## funcargs and `pytest_funcarg__` {#funcargs-and-pytest-funcarg}
 
 In versions prior to 2.3 there was no `@pytest.fixture` marker and you had to use a magic `pytest_funcarg__NAME` prefix for the fixture factory. This remains and will remain supported but is not anymore advertised as the primary means of declaring fixture functions.
 
-## @pytest.yield_fixture decorator
+## `@pytest.yield_fixture` decorator {#pytest-yield-fixture-decorator}
 
 Prior to version 2.10, in order to use a `yield` statement to execute teardown code one had to mark a fixture using the `yield_fixture` marker. From 2.10 onward, normal fixtures can use `yield` directly so the `yield_fixture` decorator is no longer needed and considered deprecated.
 
-## [pytest] header in setup.cfg
+## `[pytest]` header in `setup.cfg` {#pytest-header-in-setup-cfg}
 
 Prior to 3.0, the supported section name was `[pytest]`. Due to how this may collide with some distutils commands, the recommended section name for `setup.cfg` files is now `[tool:pytest]`.
 
 Note that for `pytest.ini` and `tox.ini` files the section name is `[pytest]`.
 
-## Applying marks to @pytest.mark.parametrize parameters
+## Applying marks to `@pytest.mark.parametrize` parameters {#applying-marks-to-pytest-mark-parametrize-parameters}
 
 Prior to version 3.1 the supported mechanism for marking values used the syntax:
 
@@ -129,15 +129,15 @@ This was an initial hack to support the feature but soon was demonstrated to be 
 
 The old syntax is planned to be removed in pytest-4.0.
 
-## @pytest.mark.parametrize argument names as a tuple
+## `@pytest.mark.parametrize` argument names as a tuple {#pytest-mark-parametrize-argument-names-as-a-tuple}
 
 In versions prior to 2.4 one needed to specify the argument names as a tuple. This remains valid but the simpler `"name1,name2,..." `comma-separated-string syntax is now advertised first because it’s easier to write and produces less line noise.
 
-## setup: is now an “autouse fixture”
+## setup: is now an "autouse fixture" {#setup-is-now-an-autouse-fixture}
 
-During development prior to the pytest-2.3 release the name `pytest.setup` was used but before the release it was renamed and moved to become part of the general fixture mechanism, namely [Autouse fixtures (fixtures you don’t have to request)](https://docs.pytest.org/en/latest/how-to/fixtures.html#autouse-fixtures)
+During development prior to the pytest-2.3 release the name `pytest.setup` was used but before the release it was renamed and moved to become part of the general fixture mechanism, namely [Autouse fixtures (fixtures you don't have to request)](/python/pytest/how_to_guides/fixture#autouse-fixtures-fixtures-you-don-t-have-to-request)
 
-## Conditions as strings instead of booleans
+## Conditions as strings instead of booleans {#conditions-as-strings-instead-of-booleans}
 
 Prior to pytest-2.4 the only way to specify skipif/xfail conditions was to use strings:
 
@@ -152,7 +152,7 @@ def test_function():
 
 During test function setup the skipif condition is evaluated by calling `eval('sys.version_info >= (3,0)', namespace)`. The namespace contains all the module globals, and os and sys as a minimum.
 
-Since pytest-2.4 [boolean conditions](https://docs.pytest.org/en/latest/how-to/skipping.html#condition-booleans) are considered preferable because markers can then be freely imported between test modules. With strings you need to import not only the marker but all variables used by the marker, which violates encapsulation.
+Since pytest-2.4 [boolean conditions](/python/pytest/how_to_guides/skip_xfail#skipping-test-functions) are considered preferable because markers can then be freely imported between test modules. With strings you need to import not only the marker but all variables used by the marker, which violates encapsulation.
 
 The reason for specifying the condition as a string was that `pytest` can report a summary of skip conditions based purely on the condition string. With conditions as booleans you are required to specify a `reason` string.
 
@@ -184,7 +184,7 @@ def test_function():
 You cannot use `pytest.config.getvalue()` in code imported before pytest’s argument parsing takes place. For example, `conftest.py` files are imported before command line parsing and thus `config.getvalue()` will not execute correctly.
 :::
 
-## pytest.set_trace()
+## pytest.set_trace() {#pytest-set-trace}
 
 Previous to version 2.4 to set a break point in code one needed to use `pytest.set_trace()`:
 
@@ -201,7 +201,7 @@ This is no longer needed and one can use the native `import pdb;pdb.set_trace()`
 
 For more details see [Setting breakpoints](https://docs.pytest.org/en/latest/how-to/failures.html#breakpoints).
 
-## “compat” properties
+## "compat" properties {#compat-properties}
 
 Access of `Module`, `Function`, `Class`, `Instance`, `File` and `Item` through `Node` instances have long been documented as deprecated, but started to emit warnings from pytest `3.9` and onward.
 

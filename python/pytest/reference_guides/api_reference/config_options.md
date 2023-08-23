@@ -1,4 +1,4 @@
-# Configuration Options
+# Configuration Options {#configuration-options}
 
 Here is a list of builtin configuration options that may be written in a `pytest.ini` (or `.pytest.ini`), `pyproject.toml`, `tox.ini`, or `setup.cfg` file, usually located at the root of your repository.
 

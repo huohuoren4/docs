@@ -1,4 +1,4 @@
-# How to set up bash completion
+# How to set up bash completion {#how-to-set-up-bash-completion}
 
 When using bash as your shell, `pytest` can use argcomplete (<https://kislyuk.github.io/argcomplete/>) for auto-completion. For this `argcomplete` needs to be installed and enabled.
 

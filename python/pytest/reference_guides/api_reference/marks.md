@@ -1,8 +1,8 @@
-# Marks
+# Marks {#marks}
 
 Marks can be used apply meta data to test functions (but not fixtures), which can then be accessed by fixtures or plugins.
 
-## pytest.mark.filterwarnings
+## pytest.mark.filterwarnings {#pytest-mark-filterwarnings}
 
 *Tutorial*: [@pytest.mark.filterwarnings](/python/pytest/how_to_guides/warning#pytest-mark-filterwarnings)
 
@@ -22,13 +22,13 @@ Add warning filters to marked test items.
         ...
     ```
 
-## pytest.mark.parametrize
+## pytest.mark.parametrize {#pytest-mark-parametrize}
 
 *Tutorial*: [How to parametrize fixtures and test functions](/python/pytest/how_to_guides/params_fixture#how-to-parametrize-fixtures-and-test-functions)
 
 This mark has the same signature as `pytest.Metafunc.parametrize()`; see there.
 
-## pytest.mark.skip
+## pytest.mark.skip {#pytest-mark-skip}
 
 *Tutorial*: [Skipping test functions](/python/pytest/how_to_guides/skip_xfail#skipping-test-functions)
 
@@ -40,7 +40,7 @@ Unconditionally skip a test function.
 
     - `reason (str)` – Reason why the test function is being skipped.
 
-## pytest.mark.skipif
+## pytest.mark.skipif {#pytest-mark-skipif}
 
 *Tutorial*: [Skipping test functions](/python/pytest/how_to_guides/skip_xfail#skipping-test-functions)
 
@@ -54,7 +54,7 @@ Skip a test function if a condition is `True`.
 
     - `reason (str)` – Reason why the test function is being skipped.
 
-## pytest.mark.usefixtures
+## pytest.mark.usefixtures {#pytest-mark-usefixtures}
 
 *Tutorial*: [Use fixtures in classes and modules with usefixtures](/python/pytest/how_to_guides/fixture#use-fixtures-in-classes-and-modules-with-usefixtures)
 
@@ -72,7 +72,7 @@ When using `usefixtures` in hooks, it can only load fixtures when applied to a t
 Also note that this mark has no effect when applied to fixtures.
 :::
 
-## pytest.mark.xfail
+## pytest.mark.xfail {#pytest-mark-xfail}
 
 *Tutorial*: [XFail: mark test functions as expected to fail](/python/pytest/how_to_guides/skip_xfail#xfail-mark-test-functions-as-expected-to-fail)
 
@@ -96,7 +96,7 @@ Marks a test function as expected to fail.
 
         - If `True`, the function will be shown in the terminal output as `xfailed` if it fails, but if it unexpectedly passes then it will fail the test suite. This is particularly useful to mark functions that are always failing and there should be a clear indication if they unexpectedly start to pass (for example a new release of a library fixes a known bug).
 
-## Custom marks
+## Custom marks {#custom-marks}
 
 Marks are created dynamically using the factory object `pytest.mark` and applied as a decorator.
 

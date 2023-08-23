@@ -1,6 +1,6 @@
-# Functions
+# Functions {#functions}
 
-## pytest.approx
+## pytest.approx {#pytest-approx}
 
 - **approx**(`expected, rel=None, abs=None, nan_ok=False`)
 
@@ -133,7 +133,7 @@
 
     *Changed in version 6.1.0*: `approx` falls back to strict equality for nonnumeric types instead of raising `TypeError`.
 
-## pytest.fail
+## pytest.fail {#pytest-fail}
 
 *Tutorial*: [How to use skip and xfail to deal with tests that cannot succeed](/python/pytest/how_to_guides/skip_xfail#how-to-use-skip-and-xfail-to-deal-with-tests-that-cannot-succeed)
 
@@ -149,7 +149,7 @@
 
     - `python (Optional[str])` – Same as `reason`, but deprecated. Will be removed in a future version, use `reason` instead.
 
-## pytest.skip
+## pytest.skip {#pytest-skip}
 
 - **skip**(`reason[, allow_module_level=False, msg=None]`)  
 
@@ -169,7 +169,7 @@
     It is better to use the `pytest.mark.skipif`) marker when possible to declare a test to be skipped under certain conditions like mismatching platforms or dependencies. Similarly, use the `# doctest: +SKIP` directive (see `doctest.SKIP`) to skip a doctest statically.
     :::
 
-## pytest.importorskip
+## pytest.importorskip {#pytest-importorskip}
 
 - **importorskip**(`modname, minversion=None, reason=None`)   
 
@@ -193,7 +193,7 @@
     docutils = pytest.importorskip("docutils")
     ```
 
-## pytest.xfail
+## pytest.xfail {#pytest-xfail}
 
 - **xfail**(`reason=''`)    
 
@@ -209,7 +209,7 @@
     It is better to use the `pytest.mark.xfail` marker when possible to declare a test to be xfailed under certain conditions like known bugs or missing features.
     :::
 
-## pytest.exit
+## pytest.exit {#pytest-exit}
 
 - **exit**(`reason[, returncode=False, msg=None]`)  
 
@@ -223,7 +223,7 @@
 
     - `msg (Optional[str])` – Same as `reason`, but deprecated. Will be removed in a future version, use `reason` instead.
 
-## pytest.main
+## pytest.main {#pytest-main}
 
 - **main**(`args=None, plugins=None`)     
 
@@ -239,7 +239,7 @@
 
     *Return type*: `Union[int, ExitCode]`
 
-## pytest.param
+## pytest.param {#pytest-param}
 
 - **param**(`*values[, id][, marks]`)     
 
@@ -265,7 +265,7 @@
 
     - `id (Optional[str])` – The id to attribute to this parameter set.
 
-## pytest.raises
+## pytest.raises {#pytest-raises}
 
 *Tutorial*: [Assertions about expected exceptions](https://docs.pytest.org/en/latest/how-to/assert.html#assertraises)
 
@@ -376,7 +376,7 @@
     Clearing those references breaks a reference cycle (`ExceptionInfo` –> caught exception –> frame stack raising the exception –> current frame stack –> local variables –> `ExceptionInfo`) which makes Python keep all objects referenced from that cycle (including all local variables in the current frame) alive until the next cyclic garbage collection run. More detailed information can be found in the official Python documentation for [the try statement](https://docs.python.org/3/reference/compound_stmts.html#try).
     :::
 
-## pytest.deprecated_call
+## pytest.deprecated_call {#pytest-deprecated-call}
 
 *Tutorial*: [Ensuring code triggers a deprecation warning](/python/pytest/how_to_guides/warning#ensuring-code-triggers-a-deprecation-warning)
 
@@ -405,7 +405,7 @@
 
     The context manager produces a list of `warnings.WarningMessage` objects, one for each warning raised.
 
-## pytest.register_assert_rewrite
+## pytest.register_assert_rewrite {#pytest-register-assert-rewrite}
 
 *Tutorial*: [Assertion Rewriting](/python/pytest/how_to_guides/write_plugin#assertion-rewriting)
 
@@ -419,7 +419,7 @@
 
     - `names (str)` – The module names to register.
 
-## pytest.warns
+## pytest.warns {#pytest-warns}
 
 *Tutorial*: [Asserting warnings with the warns function](/python/pytest/how_to_guides/warning#asserting-warnings-with-the-warns-function)
 
@@ -464,7 +464,7 @@
 
     This could be achieved in the same way as with exceptions, see [Parametrizing conditional raising](/python/pytest/further_topics/example_trick/parametrize#parametrizing-conditional-raising) for an example.
 
-## pytest.freeze_includes
+## pytest.freeze_includes {#pytest-freeze-includes}
 
 *Tutorial*: [Freezing pytest](/python/pytest/further_topics/example_trick/basic_pattern#freezing-pytest)
 

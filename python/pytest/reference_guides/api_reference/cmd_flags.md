@@ -1,4 +1,4 @@
-# Command-line Flags
+# Command-line Flags {#command-line-flags}
 
 All the command-line flags can be obtained by running `pytest --help`:
 

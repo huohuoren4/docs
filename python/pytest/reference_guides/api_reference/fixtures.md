@@ -1,4 +1,4 @@
-# Fixtures
+# Fixtures {#fixtures}
 
 *Tutorial*: [Fixtures reference](/python/pytest/reference_guides/fixture_reference#fixtures-reference)
 
@@ -24,7 +24,7 @@ def db_session(tmp_path):
 
 For more details, consult the full [fixtures docs](/python/pytest/reference_guides/fixture_reference#fixtures-reference).
 
-## @pytest.fixture
+## @pytest.fixture {#pytest-fixture}
 
 - ### @fixture(`fixture_function: FixtureFunction, *, scope: Union[Literal['session', 'package', 'module', 'class', 'function'], Callable[[str, Config], Literal['session', 'package', 'module', 'class', 'function']]] = 'function', params: Optional[Iterable[object]] = None, autouse: bool = False, ids: Optional[Union[Sequence[Optional[object]], Callable[[Any], Optional[object]]]] = None, name: Optional[str] = None`) → `FixtureFunction`  
 
@@ -52,7 +52,7 @@ For more details, consult the full [fixtures docs](/python/pytest/reference_guid
 
     - `name` – The name of the fixture. This defaults to the name of the decorated function. If a fixture is used in the same module in which it is defined, the function name of the fixture will be shadowed by the function arg that requests the fixture; one way to resolve this is to name the decorated function `fixture_<fixturename>` and then use `@pytest.fixture(name='<fixturename>')`.
 
-## capfd
+## capfd {#capfd}
 
 *Tutorial*: [How to capture stdout/stderr output](/python/pytest/how_to_guides/output#how-to-capture-stdout-stderr-output)
 
@@ -73,7 +73,7 @@ For more details, consult the full [fixtures docs](/python/pytest/reference_guid
         assert captured.out == "hello\n"
     ```
 
-## capfdbinary
+## capfdbinary {#capfdbinary}
 
 *Tutorial*: [How to capture stdout/stderr output](/python/pytest/how_to_guides/output#how-to-capture-stdout-stderr-output)
 
@@ -94,7 +94,7 @@ For more details, consult the full [fixtures docs](/python/pytest/reference_guid
         assert captured.out == b"hello\n"
     ```
 
-## caplog
+## caplog {#caplog}
 
 *Tutorial*: [How to manage logging](/python/pytest/how_to_guides/logging#how-to-manage-logging)
 
@@ -194,7 +194,7 @@ For more details, consult the full [fixtures docs](/python/pytest/reference_guid
 
         - `logger (Optional[str])` – The logger to update. If not given, the root logger.
 
-## capsys
+## capsys {#capsys}
 
 *Tutorial*: [How to capture stdout/stderr output](/python/pytest/how_to_guides/output#how-to-capture-stdout-stderr-output)
 
@@ -231,7 +231,7 @@ For more details, consult the full [fixtures docs](/python/pytest/reference_guid
 
         Temporarily disable capturing while inside the `with` block.
 
-## capsysbinary
+## capsysbinary {#capsysbinary}
 
 *Tutorial*: [How to capture stdout/stderr output](/python/pytest/how_to_guides/output#how-to-capture-stdout-stderr-output)
 
@@ -252,7 +252,7 @@ For more details, consult the full [fixtures docs](/python/pytest/reference_guid
         assert captured.out == b"hello\n"
     ```
 
-## config.cache
+## config.cache {#config-cache}
 
 *Tutorial*: [How to re-run failed tests and maintain state between test runs](/python/pytest/how_to_guides/re_run#how-to-re-run-failed-tests-and-maintain-state-between-test-runs)
 
@@ -300,7 +300,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
         - `value (object)` – Must be of any combination of basic python types, including nested types like lists of dictionaries.
 
-## doctest_namespace
+## doctest_namespace {#doctest-namespace}
 
 *Tutorial*: [How to run doctests](/python/pytest/how_to_guides/doctest#how-to-run-doctests)
 
@@ -318,7 +318,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
 
     For more details: [‘doctest_namespace’ fixture](/python/pytest/how_to_guides/doctest#doctest-namespace-fixture).
 
-## monkeypatch
+## monkeypatch {#monkeypatch}
 
 *Tutorial*: [How to monkeypatch/mock modules and environments](/python/pytest/how_to_guides/mock#how-to-monkeypatch-mock-modules-and-environments)
 
@@ -463,7 +463,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
         Prefer to use `context()` instead.
         :::
 
-## pytestconfig
+## pytestconfig {#pytestconfig}
 
 - ### pytestconfig()        
 
@@ -477,7 +477,7 @@ Under the hood, the cache plugin uses the simple `dumps/loads` API of the json s
             ...
     ```
 
-## pytester
+## pytester {#pytester}
 
 *New in version 6.2.*
 
@@ -1046,7 +1046,7 @@ pytest_plugins = "pytester"
     assert calls[0].item is an_item
     ```
 
-## record_property
+## record_property {#record-property}
 
 *Tutorial*: [record_property](https://docs.pytest.org/en/latest/how-to/output.html#record-property-example)
 
@@ -1065,7 +1065,7 @@ pytest_plugins = "pytester"
         record_property("example_key", 1)
     ```
 
-## record_testsuite_property
+## record_testsuite_property {#record-testsuite-property}
 
 *Tutorial*: [record_testsuite_property](https://docs.pytest.org/en/latest/how-to/output.html#record-testsuite-property-example)
 
@@ -1095,7 +1095,7 @@ pytest_plugins = "pytester"
     Currently this fixture does not work with the [pytest-xdist](https://github.com/pytest-dev/pytest-xdist) plugin. See [issue #7767](https://github.com/pytest-dev/pytest/issues/7767) for details.
     :::
 
-## recwarn
+## recwarn {#recwarn}
 
 *Tutorial*: [Asserting warnings with the warns function](/python/pytest/how_to_guides/warning#asserting-warnings-with-the-warns-function)
 
@@ -1129,7 +1129,7 @@ pytest_plugins = "pytester"
 
         Clear the list of recorded warnings.
 
-## request
+## request {#request}
 
 *Example*: [Pass different values to a test function, depending on command line options](/python/pytest/further_topics/example_trick/basic_pattern#pass-different-values-to-a-test-function-depending-on-command-line-options)
 
@@ -1227,7 +1227,7 @@ The `request` fixture is a special fixture providing information of the requesti
 
         - `pytest.FixtureLookupError` – If the given fixture could not be found.
 
-## testdir
+## testdir {#testdir}
 
 Identical to `pytester`, but provides an instance whose methods return legacy `py.path.local` objects instead when applicable.
 
@@ -1389,7 +1389,7 @@ New code should avoid using `testdir` in favor of `pytester`.
 
         See `Pytester.spawn()`.
 
-## tmp_path
+## tmp_path {#tmp-path}
 
 *Tutorial*: [How to use temporary directories and files in tests](/python/pytest/how_to_guides/temp#how-to-use-temporary-directories-and-files-in-tests)
 
@@ -1401,7 +1401,7 @@ New code should avoid using `testdir` in favor of `pytester`.
 
     The returned object is a `pathlib.Path` object.
 
-## tmp_path_factory
+## tmp_path_factory {#tmp-path-factory}
 
 *Tutorial*: [The tmp_path_factory fixture](/python/pytest/how_to_guides/temp#the-tmp-path-factory-fixture)
 
@@ -1435,7 +1435,7 @@ New code should avoid using `testdir` in favor of `pytester`.
 
         *Return type*: `Path`
 
-## tmpdir
+## tmpdir {#tmpdir}
 
 *Tutorial*: [The tmpdir and tmpdir_factory fixtures](/python/pytest/how_to_guides/temp#the-tmpdir-and-tmpdir-factory-fixtures)
 
@@ -1453,7 +1453,7 @@ New code should avoid using `testdir` in favor of `pytester`.
     [About the tmpdir and tmpdir_factory fixtures](/python/pytest/how_to_guides/temp#the-tmpdir-and-tmpdir-factory-fixtures).
     :::
 
-## tmpdir_factory
+## tmpdir_factory {#tmpdir-factory}
 
 *Tutorial*: [The tmpdir and tmpdir_factory fixtures](/python/pytest/how_to_guides/temp#the-tmpdir-and-tmpdir-factory-fixtures)
 

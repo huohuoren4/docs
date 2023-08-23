@@ -1,8 +1,8 @@
-# Working with custom markers
+# Working with custom markers {#working-with-custom-markers}
 
-Here are some examples using the [How to mark test functions with attributes](https://docs.pytest.org/en/latest/how-to/mark.html#mark) mechanism.
+Here are some examples using the [How to mark test functions with attributes](/python/pytest/how_to_guides/mark#how-to-mark-test-functions-with-attributes) mechanism.
 
-## Marking test functions and selecting them for a run
+## Marking test functions and selecting them for a run {#marking-test-functions-and-selecting-them-for-a-run}
 
 You can “mark” a test function with custom metadata like this:
 
@@ -62,7 +62,7 @@ test_server.py::TestClass::test_method PASSED                        [100%]
 ===================== 3 passed, 1 deselected in 0.12s ======================
 ```
 
-## Selecting tests based on their node ID
+## Selecting tests based on their node ID {#selecting-tests-based-on-their-node-id}
 
 You can provide one or more node IDs as positional arguments to select only specified tests. This makes it easy to select tests based on their module, class, method, or function name:
 
@@ -116,7 +116,7 @@ Node IDs are of the form `module.py::class::method` or `module.py::function`. No
 Node IDs for failing tests are displayed in the test summary info when running pytest with the -rf option. You can also construct Node IDs from the output of `pytest --collectonly`.
 :::
 
-## Using `-k expr` to select tests based on their name
+## Using `-k expr` to select tests based on their name {#using-k-expr-to-select-tests-based-on-their-name}
 
 *New in version 2.0/2.3.4.*
 
@@ -176,7 +176,7 @@ You can use `and`, `or`, `not` and parentheses.
 
 In addition to the test’s name, `-k` also matches the names of the test’s parents (usually, the name of the file and class it’s in), attributes set on the test function, markers applied to it or its parents and any extra keywords explicitly added to it or its parents.
 
-## Registering markers
+## Registering markers {#registering-markers}
 
 Registering markers for your test suite is simple:
 
@@ -215,7 +215,7 @@ $ pytest --markers
 @pytest.mark.trylast: mark a hook implementation function such that the plugin machinery will try to call it last/as late as possible. DEPRECATED, use @pytest.hookimpl(trylast=True) instead.
 ```
 
-For an example on how to add and work with markers from a plugin, see [Custom marker and command line option to control test runs](https://docs.pytest.org/en/latest/example/markers.html#adding-a-custom-marker-from-a-plugin).
+For an example on how to add and work with markers from a plugin, see [Custom marker and command line option to control test runs](/python/pytest/further_topics/example_trick/custom_mark#custom-marker-and-command-line-option-to-control-test-runs).
 
 ::: tip Note:
 It is recommended to explicitly register markers so that:
@@ -227,7 +227,7 @@ It is recommended to explicitly register markers so that:
 - Typos in function markers are treated as an error if you use the `--strict-markers` option.
 :::
 
-## Marking whole classes or modules
+## Marking whole classes or modules {#marking-whole-classes-or-modules}
 
 You may use `pytest.mark` decorators with classes to apply markers to all of its test methods:
 
@@ -270,7 +270,7 @@ class TestClass:
     pytestmark = pytest.mark.webtest
 ```
 
-## Marking individual tests when using parametrize
+## Marking individual tests when using parametrize {#marking-individual-tests-when-using-parametrize}
 
 When using parametrize, applying a mark will make it apply to each individual test. However it is also possible to apply a marker to an individual test instance:
 
@@ -286,9 +286,9 @@ def test_increment(n, expected):
     assert n + 1 == expected
 ```
 
-In this example the mark “foo” will apply to each of the three tests, whereas the “bar” mark is only applied to the second test. Skip and xfail marks can also be applied in this way, see [Skip/xfail with parametrize](https://docs.pytest.org/en/latest/how-to/skipping.html#skip-xfail-with-parametrize).
+In this example the mark “foo” will apply to each of the three tests, whereas the “bar” mark is only applied to the second test. Skip and xfail marks can also be applied in this way, see [Skip/xfail with parametrize](/python/pytest/how_to_guides/skip_xfail#skip-xfail-with-parametrize).
 
-## Custom marker and command line option to control test runs
+## Custom marker and command line option to control test runs {#custom-marker-and-command-line-option-to-control-test-runs}
 
 Plugins can provide custom markers and implement specific behaviour based on it. This is a self-contained example which adds a command line option and a parametrized test function marker to run tests specified via named environments:
 
@@ -385,7 +385,7 @@ $ pytest --markers
 @pytest.mark.trylast: mark a hook implementation function such that the plugin machinery will try to call it last/as late as possible. DEPRECATED, use @pytest.hookimpl(trylast=True) instead.
 ```
 
-## Passing a callable to custom markers
+## Passing a callable to custom markers {#passing-a-callable-to-custom-markers}
 
 Below is the config file that will be used in the next examples:
 
@@ -402,7 +402,7 @@ def pytest_runtest_setup(item):
 
 A custom marker can have its argument set, i.e. `args` and `kwargs` properties, defined by either invoking it as a callable or using `pytest.mark.MARKER_NAME.with_args`. These two methods achieve the same effect most of the time.
 
-However, if there is a callable as the single positional argument with no keyword arguments, using the `pytest.mark.MARKER_NAME(c)` will not pass `c` as a positional argument but decorate `c` with the custom marker (see [MarkDecorator](https://docs.pytest.org/en/latest/how-to/mark.html#mark)). Fortunately, `pytest.mark.MARKER_NAME.with_args` comes to the rescue:
+However, if there is a callable as the single positional argument with no keyword arguments, using the `pytest.mark.MARKER_NAME(c)` will not pass `c` as a positional argument but decorate `c` with the custom marker (see [MarkDecorator](/python/pytest/how_to_guides/mark#how-to-mark-test-functions-with-attributes)). Fortunately, `pytest.mark.MARKER_NAME.with_args` comes to the rescue:
 
 ```python
 # content of test_custom_marker.py
@@ -429,7 +429,7 @@ Mark(name='my_marker', args=(<function hello_world at 0xdeadbeef0001>,), kwargs=
 
 We can see that the custom marker has its argument set extended with the function `hello_world`. This is the key difference between creating a custom marker as a callable, which invokes `__call__` behind the scenes, and using `with_args`.
 
-## Reading markers which were set from multiple places
+## Reading markers which were set from multiple places {#reading-markers-which-were-set-from-multiple-places}
 
 If you are heavily using markers in your test suite you may encounter the case where a marker is applied several times to a test function. From plugin code you can read over all such settings. Example:
 
@@ -471,7 +471,7 @@ glob args=('module',) kwargs={'x': 1}
 1 passed in 0.12s
 ```
 
-## Marking platform specific tests with pytest
+## Marking platform specific tests with pytest {#marking-platform-specific-tests-with-pytest}
 
 Consider you have a test suite which marks tests for particular platforms, namely `pytest.mark.darwin`, `pytest.mark.win32` etc. and you also have tests that run on all platforms and have no specific marker. If you now want to have a way to only run the tests for your particular platform, you could use the following plugin:
 
@@ -551,7 +551,7 @@ test_plat.py .                                                       [100%]
 
 then the unmarked-tests will not be run. It is thus a way to restrict the run to the specific tests.
 
-## Automatically adding markers based on test names
+## Automatically adding markers based on test names {#automatically-adding-markers-based-on-test-names}
 
 If you have a test suite where test function names indicate a certain type of test, you can implement a hook that automatically defines markers so that you can use the `-m` option with it. Let’s look at this test module:
 

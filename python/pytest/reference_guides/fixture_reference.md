@@ -1,4 +1,4 @@
-# Fixtures reference
+# Fixtures reference {#fixtures-reference}
 
 ::: tip See also
 [About fixtures](/python/pytest/explanation/about_fixture#about-fixtures)
@@ -8,7 +8,7 @@
 [How to use fixtures](/python/pytest/how_to_guides/fixture#how-to-use-fixtures)
 :::
 
-## Built-in fixtures
+## Built-in fixtures {#built-in-fixtures}
 
 Fixtures are defined using the `@pytest.fixture` decorator. Pytest has several useful built-in fixtures:
 
@@ -84,7 +84,7 @@ Fixtures are defined using the `@pytest.fixture` decorator. Pytest has several u
 
     Make session-scoped temporary directories and return `py.path.local` objects; replaced by `tmp_path_factory`.
 
-## Fixture availability
+## Fixture availability {#fixture-availability}
 
 Fixture availability is determined from the perspective of the test. A fixture is only available for tests to request if they are in the scope that fixture is defined in. If a fixture is defined inside a class, it can only be requested by tests inside that class. But if a fixture is defined inside the global scope of the module, than every test in that module, even if it’s defined inside a class, can request it.
 
@@ -136,7 +136,7 @@ So when they run, `outer` will have no problem finding `inner`, because pytest s
 The scope a fixture is defined in has no bearing on the order it will be instantiated in: the order is mandated by the logic described [here](/python/pytest/reference_guides/fixture_reference#fixture-instantiation-order).
 :::
 
-### conftest.py: sharing fixtures across multiple files
+### conftest.py: sharing fixtures across multiple files {#conftest-py-sharing-fixtures-across-multiple-files}
 
 The `conftest.py` file serves as a means of providing fixtures for an entire directory. Fixtures defined in a `conftest.py` can be used by any test in that package without needing to import them (pytest will automatically discover them).
 
@@ -206,7 +206,7 @@ The first fixture the test finds is the one that will be used, so [fixtures can 
 
 You can also use the `conftest.py` file to implement [local per-directory plugins](/python/pytest/how_to_guides/write_plugin#conftest-py-local-per-directory-plugins).
 
-### Fixtures from third-party plugins
+### Fixtures from third-party plugins {#fixtures-from-third-party-plugins}
 
 Fixtures don’t have to be defined in this structure to be available for tests, though. They can also be provided by third-party plugins that are installed, and this is how many pytest plugins operate. As long as those plugins are installed, the fixtures they provide can be requested from anywhere in your test suite.
 
@@ -255,7 +255,7 @@ If `plugin_a` is installed and provides the fixture `a_fix`, and `plugin_b` is i
 
 pytest will only search for `a_fix` and `b_fix` in the plugins after searching for them first in the scopes inside `tests/`.
 
-## Fixture instantiation order
+## Fixture instantiation order {#fixture-instantiation-order}
 
 When pytest wants to execute a test, once it knows what fixtures will be executed, it has to figure out the order they’ll be executed in. To do this, it considers 3 factors:
 
@@ -265,7 +265,7 @@ When pytest wants to execute a test, once it knows what fixtures will be execute
 
 Names of fixtures or tests, where they’re defined, the order they’re defined in, and the order fixtures are requested in have no bearing on execution order beyond coincidence. While pytest will try to make sure coincidences like these stay consistent from run to run, it’s not something that should be depended on. If you want to control the order, it’s safest to rely on these 3 things and make sure dependencies are clearly established.
 
-### Higher-scoped fixtures are executed first
+### Higher-scoped fixtures are executed first {#higher-scoped-fixtures-are-executed-first}
 
 Within a function request for fixtures, those of higher-scopes (such as `session`) are executed before lower-scoped fixtures (such as `function` or `class`).
 
@@ -316,7 +316,7 @@ The order breaks down to this:
 
 ![test_fixtures_order_scope](/pytest/test_fixtures_order_scope.png)
 
-### Fixtures of the same order execute based on dependencies
+### Fixtures of the same order execute based on dependencies {#fixtures-of-the-same-order-execute-based-on-dependencies}
 
 When a fixture requests another fixture, the other fixture is executed first. So if fixture a requests fixture `b`, fixture `b` will execute first, because `a` depends on `b` and can’t operate without it. Even if `a` doesn’t need the result of `b`, it can still request `b` if it needs to make sure it is executed after `b`.
 
@@ -390,7 +390,7 @@ pytest doesn’t know where `c` should go in the case, so it should be assumed t
 
 This isn’t necessarily bad, but it’s something to keep in mind. If the order they execute in could affect the behavior a test is targeting, or could otherwise influence the result of a test, then the order should be defined explicitly in a way that allows pytest to linearize/”flatten” that order.
 
-### Autouse fixtures are executed first within their scope
+### Autouse fixtures are executed first within their scope {#autouse-fixtures-are-executed-first-within-their-scope}
 
 Autouse fixtures are assumed to apply to every test that could reference them, so they are executed before other fixtures in that scope. Fixtures that are requested by autouse fixtures effectively become autouse fixtures themselves for the tests that the real autouse fixture applies to.
 

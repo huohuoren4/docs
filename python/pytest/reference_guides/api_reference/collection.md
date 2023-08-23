@@ -1,8 +1,8 @@
-# Collection tree objects
+# Collection tree objects {#collection-tree-objects}
 
 These are the collector and item classes (collectively called “nodes”) which make up the collection tree.
 
-## Node
+## Node {#node}
 
 - `class` **Node**      
 
@@ -181,7 +181,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         - `excinfo (ExceptionInfo[BaseException])` – Exception information for the failure.
 
-## Collector
+## Collector {#collector}
 
 - `class` **Collector**     
 
@@ -249,7 +249,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         A place where plugins can store information on the node for their own use.
 
-## Item
+## Item {#item}
 
 - `class` **Item**      
 
@@ -349,7 +349,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         Returns a tuple of `(relfspath, lineno, testname)` for this item where `relfspath` is file path relative to `config.rootpath` and lineno is a 0-based line number.
 
-## File
+## File {#file}
 
 - `class` **File**      
 
@@ -399,7 +399,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         A place where plugins can store information on the node for their own use.
 
-## FSCollector
+## FSCollector {#fscollector}
 
 - `class` **FSCollector**       
 
@@ -451,7 +451,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         A place where plugins can store information on the node for their own use.
 
-## Session
+## Session {#session}
 
 - `final class` `Session`       
 
@@ -513,7 +513,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         Filesystem path where this node was collected from (can be `None`).
 
-## Package
+## Package {#package}
 
 - `class` **Package**       
 
@@ -565,7 +565,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         A place where plugins can store information on the node for their own use.
 
-## Module
+## Module {#module}
 
 - `class` **Module**        
 
@@ -617,7 +617,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         A place where plugins can store information on the node for their own use.
 
-## Class
+## Class {#class}
 
 - `class` **Class**     
 
@@ -673,7 +673,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         A place where plugins can store information on the node for their own use.
 
-## Function
+## Function {#function}
 
 - `class` **Function**      
 
@@ -775,7 +775,7 @@ These are the collector and item classes (collectively called “nodes”) which
 
         A list of tuples (name, value) that holds user defined properties for this test.
 
-## FunctionDefinition
+## FunctionDefinition {#functiondefinition}
 
 - `class` **FunctionDefinition**        
 

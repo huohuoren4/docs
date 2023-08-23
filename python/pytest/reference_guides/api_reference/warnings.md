@@ -1,4 +1,4 @@
-# Warnings
+# Warnings {#warnings}
 
 Custom warnings generated in some situations such as improper usage or deprecated features.
 

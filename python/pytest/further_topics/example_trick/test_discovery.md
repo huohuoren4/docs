@@ -1,6 +1,7 @@
-# Changing standard (Python) test discovery
+# Changing standard (Python) test discovery {#changing-standard-python-test-discovery}
 
-## Ignore paths during test collection
+## Ignore paths during test collection {#ignore-paths-during-test-collection}
+
 You can easily ignore certain test directories and modules during collection by passing the `--ignore=path` option on the cli. `pytest` allows multiple `--ignore` options. Example:
 
 ```
@@ -39,11 +40,11 @@ tests/foobar/test_foobar_02.py .                                     [100%]
 
 The `--ignore-glob` option allows to ignore test file paths based on Unix shell-style wildcards. If you want to exclude test-modules that end with `_01.py`, execute `pytest` with `--ignore-glob='*_01.py'`.
 
-## Deselect tests during test collection
+## Deselect tests during test collection {#deselect-tests-during-test-collection}
 
 Tests can individually be deselected during collection by passing the `--deselect=item` option. For example, say `tests/foobar/test_foobar_01.py` contains `test_a` and `test_b`. You can run all of the tests within `tests/` except for `tests/foobar/test_foobar_01.py::test_a by` invoking pytest with `--deselect tests/foobar/test_foobar_01.py::test_a. pytest` allows multiple `--deselect` options.
 
-## Keeping duplicate paths specified from command line
+## Keeping duplicate paths specified from command line {#keeping-duplicate-paths-specified-from-command-line}
 
 Default behavior of `pytest` is to ignore duplicate paths specified from the command line. Example:
 
@@ -77,7 +78,7 @@ collected 2 items
 ...
 ```
 
-## Changing directory recursion
+## Changing directory recursion {#changing-directory-recursion}
 
 You can set the `norecursedirs` option in an ini-file, for example your `pytest.ini` in the project root directory:
 
@@ -89,7 +90,7 @@ norecursedirs = .svn _build tmp*
 
 This would tell `pytest` to not recurse into typical subversion or sphinx-build directories or into any `tmp` prefixed directory.
 
-## Changing naming conventions
+## Changing naming conventions {#changing-naming-conventions}
 
 You can configure different naming conventions by setting the `python_files`, `python_classes` and `python_functions` in your configuration file. Here is an example:
 
@@ -145,7 +146,7 @@ python_files = test_*.py example_*.py
 the `python_functions` and `python_classes` options has no effect for `unittest.TestCase` test discovery because pytest delegates discovery of test case methods to unittest code.
 :::
 
-## Interpreting cmdline arguments as Python packages
+## Interpreting cmdline arguments as Python packages {#interpreting-cmdline-arguments-as-python-packages}
 
 You can use the `--pyargs` option to make `pytest` try interpreting arguments as python package names, deriving their file system path and then running the test. For example if you have unittest2 installed you can type:
 
@@ -163,7 +164,7 @@ addopts = --pyargs
 
 Now a simple invocation of `pytest NAME` will check if NAME exists as an importable package/module and otherwise treat it as a filesystem path.
 
-## Finding out what is collected
+## Finding out what is collected {#finding-out-what-is-collected}
 
 You can always peek at the collection tree without running tests like this:
 
@@ -184,7 +185,7 @@ collected 3 items
 ======================== 3 tests collected in 0.12s ========================
 ```
 
-## Customizing test collection
+## Customizing test collection {#customizing-test-collection}
 
 You can easily instruct pytest to discover tests from every Python file:
 

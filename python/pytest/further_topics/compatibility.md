@@ -1,4 +1,4 @@
-# Backwards Compatibility Policy
+# Backwards Compatibility Policy {#backwards-compatibility-policy}
 
 pytest is actively evolving and is a project that has been decades in the making, we keep learning about new and better structures to express different details about testing.
 
@@ -44,9 +44,9 @@ As of now, pytest considers multiple types of backward compatibility transitions
 
     For the PR to mature from POC to acceptance, it must contain: * Setup of deprecation errors/warnings that help users fix and port their code. If it is possible to introduce a deprecation period under the current series, before the true breakage, it should be introduced in a separate PR and be part of the current release stream. * Detailed description of the rationale and examples on how to port code in `doc/en/deprecations.rst`.
 
-## History
+## History {#history}
 
-### Focus primary on smooth transition - stance (pre 6.0)
+### Focus primary on smooth transition - stance (pre 6.0) {#focus-primary-on-smooth-transition-stance-pre-6-0}
 
 Keeping backwards compatibility has a very high priority in the pytest project. Although we have deprecated functionality over the years, most of it is still supported. All deprecations in pytest were done because simpler or more efficient ways of accomplishing the same tasks have emerged, making the old way of doing things unnecessary.
 
@@ -58,13 +58,13 @@ We will only start the removal of deprecated functionality in major releases (e.
 
 When the deprecation expires (e.g. 4.0 is released), we won’t remove the deprecated functionality immediately, but will use the standard warning filters to turn them into errors by default. This approach makes it explicit that removal is imminent, and still gives you time to turn the deprecated feature into a warning instead of an error so it can be dealt with in your own time. In the next minor release (e.g. 4.1), the feature will be effectively removed.
 
-### Deprecation Roadmap
+### Deprecation Roadmap {#deprecation-roadmap}
 
 Features currently deprecated and removed in previous releases can be found in [Deprecations and Removals](/python/pytest/further_topics/deprecation#deprecations-and-removals).
 
 We track future deprecation and removal of features using milestones and the [deprecation](https://github.com/pytest-dev/pytest/issues?q=label%3A%22type%3A+deprecation%22) and [removal](https://github.com/pytest-dev/pytest/labels/type%3A%20removal) labels on GitHub.
 
-## Python version support
+## Python version support {#python-version-support}
 
 Released pytest versions support all Python versions that are actively maintained at the time of the release:
 

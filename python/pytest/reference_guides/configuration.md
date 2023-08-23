@@ -1,6 +1,6 @@
-# Configuration
+# Configuration {#configuration}
 
-## Command line options and configuration file settings
+## Command line options and configuration file settings {#command-line-options-and-configuration-file-settings}
 
 You can get help on command line options and values in INI-style configurations files by using the general help option:
 
@@ -10,13 +10,13 @@ pytest -h   # prints options _and_ config file settings
 
 This will display command line and configuration file settings which were registered by installed plugins.
 
-## Configuration file formats
+## Configuration file formats {#configuration-file-formats}
 
 Many [pytest settings](/python/pytest/reference_guides/api_reference/config_options#configuration-options) can be set in a configuration file, which by convention resides in the root directory of your repository.
 
 A quick example of the configuration files supported by pytest:
 
-### pytest.ini
+### pytest.ini {#pytest-ini}
 
 `pytest.ini` files take precedence over other files, even when empty.
 
@@ -32,7 +32,7 @@ testpaths =
     integration
 ```
 
-### pyproject.toml
+### pyproject.toml {#pyproject-toml}
 
 *New in version 6.0.*
 
@@ -55,7 +55,7 @@ One might wonder why `[tool.pytest.ini_options]` instead of `[tool.pytest]` as i
 The reason is that the pytest team intends to fully utilize the rich TOML data format for configuration in the future, reserving the `[tool.pytest]` table for that. The `ini_options` table is being used, for now, as a bridge between the existing `.ini` configuration system and the future configuration format.
 :::
 
-### tox.ini
+### tox.ini {#tox-ini}
 
 `tox.ini` files are the configuration files of the [tox](https://tox.readthedocs.io/) project, and can also be used to hold pytest configuration if they have a `[pytest]` section.
 
@@ -69,7 +69,7 @@ testpaths =
     integration
 ```
 
-### setup.cfg
+### setup.cfg {#setup-cfg}
 
 `setup.cfg` files are general purpose configuration files, used originally by distutils, and can also be used to hold pytest configuration if they have a `[tool:pytest]` section.
 
@@ -87,7 +87,7 @@ testpaths =
 Usage of `setup.cfg` is not recommended unless for very simple use cases. `.cfg` files use a different parser than `pytest.ini` and `tox.ini` which might cause hard to track down problems. When possible, it is recommended to use the latter files, or `pyproject.toml`, to hold your pytest configuration.
 :::
 
-## Initialization: determining rootdir and configfile
+## Initialization: determining rootdir and configfile {#initialization-determining-rootdir-and-configfile}
 
 pytest determines a `rootdir` for each test run which depends on the command line arguments (specified test files, paths) and on the existence of configuration files. The determined `rootdir` and `configfile` are printed as part of the pytest header during startup.
 
@@ -101,7 +101,7 @@ Here’s a summary what `pytest` uses `rootdir` for:
 
 The `--rootdir=path` command-line option can be used to force a specific directory. Note that contrary to other command-line options, `--rootdir` cannot be used with `addopts` inside `pytest.ini` because the `rootdir` is used to find `pytest.ini` already.
 
-### Finding the rootdir
+### Finding the rootdir {#finding-the-rootdir}
 
 Here is the algorithm which finds the rootdir from `args`:
 
@@ -168,11 +168,11 @@ setup.py
 Custom pytest plugin commandline arguments may include a path, as in `pytest --log-output ../../test.log args`. Then `args` is mandatory, otherwise pytest uses the folder of test.log for rootdir determination (see also [issue #1435](https://github.com/pytest-dev/pytest/issues/1435)). A dot `.` for referencing to the current working directory is also possible.
 :::
 
-## Builtin configuration file options
+## Builtin configuration file options {#builtin-configuration-file-options}
 
 For the full list of options consult the [reference documentation](/python/pytest/reference_guides/api_reference/config_options#configuration-options).
 
-## Syntax highlighting theme customization
+## Syntax highlighting theme customization {#syntax-highlighting-theme-customization}
 
 The syntax highlighting themes used by pytest can be customized using two environment variables:
 

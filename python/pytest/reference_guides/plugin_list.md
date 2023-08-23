@@ -1,4 +1,4 @@
-# Plugin List
+# Plugin List {#plugin-list}
 
 PyPI projects that match “pytest-*” are considered plugins and are listed automatically together with a manually-maintained list in the [source code](https://github.com/pytest-dev/pytest/blob/main/scripts/update-plugin-list.py). Packages classified as inactive are excluded.
 

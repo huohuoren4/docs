@@ -1,4 +1,4 @@
-# License
+# License {#license}
 
 Distributed under the terms of the MIT license, pytest is free and open source software.
 

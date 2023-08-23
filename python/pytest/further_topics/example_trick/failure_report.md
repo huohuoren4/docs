@@ -1,4 +1,4 @@
-# Demo of Python failure reports with pytest
+# Demo of Python failure reports with pytest {#demo-of-python-failure-reports-with-pytest}
 
 Here is a nice run of several failures and how `pytest` presents things:
 

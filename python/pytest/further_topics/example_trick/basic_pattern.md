@@ -1,6 +1,6 @@
-# Basic patterns and examples
+# Basic patterns and examples {#basic-patterns-and-examples}
 
-## How to change command line options defaults
+## How to change command line options defaults {#how-to-change-command-line-options-defaults}
 
 It can be tedious to type the same series of command line options every time you use `pytest`. For example, if you always want to see detailed info on skipped and xfailed tests, as well as have terser “dot” progress output, you can write it into a configuration file:
 
@@ -36,7 +36,7 @@ pytest -ra -q -v -m slow
 
 Note that as usual for other command-line applications, in case of conflicting options the last one wins, so the example above will show verbose output because `-v` overwrites `-q`.
 
-## Pass different values to a test function, depending on command line options
+## Pass different values to a test function, depending on command line options {#pass-different-values-to-a-test-function-depending-on-command-line-options}
 
 Suppose we want to write a test that depends on a command line option. Here is a basic pattern to achieve this:
 
@@ -178,7 +178,7 @@ def pytest_addoption(parser):
 
 This completes the basic pattern. However, one often rather wants to process command line options outside of the test and rather pass in different or more complex objects.
 
-## Dynamically adding command line options
+## Dynamically adding command line options {#dynamically-adding-command-line-options}
 
 Through `addopts` you can statically add command line options for your project. You can also dynamically modify the command line arguments before they get processed:
 
@@ -207,7 +207,7 @@ collected 0 items
 ========================== no tests ran in 0.12s ===========================
 ```
 
-## Control skipping of tests according to command line option
+## Control skipping of tests according to command line option {#control-skipping-of-tests-according-to-command-line-option}
 
 Here is a `conftest.py` file adding a `--runslow` command line option to control skipping of `pytest.mark.slow` marked tests:
 
@@ -283,7 +283,7 @@ test_module.py ..                                                    [100%]
 ============================ 2 passed in 0.12s =============================
 ```
 
-## Writing well integrated assertion helpers
+## Writing well integrated assertion helpers {#writing-well-integrated-assertion-helpers}
 
 If you have a test helper function called from a test you can use the `pytest.fail` marker to fail a test with a certain message. The test support function will not show up in the traceback if you set the `__tracebackhide__` option somewhere in the helper function. Example:
 
@@ -344,7 +344,7 @@ def test_something():
 
 This will avoid hiding the exception traceback on unrelated exceptions (i.e. bugs in assertion helpers).
 
-## Detect if running from within a pytest run
+## Detect if running from within a pytest run {#detect-if-running-from-within-a-pytest-run}
 
 Usually it is a bad idea to make application code behave differently if called from a test. But if you absolutely must find out if your application code is running from a test you can do something like this:
 
@@ -376,7 +376,7 @@ else:
 
 accordingly in your application.
 
-## Adding info to test report header
+## Adding info to test report header {#adding-info-to-test-report-header}
 
 It’s easy to present extra information in a `pytest` run:
 
@@ -439,7 +439,7 @@ collected 0 items
 ========================== no tests ran in 0.12s ===========================
 ```
 
-## Profiling test duration
+## Profiling test duration {#profiling-test-duration}
 
 If you have a slow running large test suite you might want to find out which tests are the slowest. Let’s make an artificial test suite:
 
@@ -478,7 +478,7 @@ test_some_are_slow.py ...                                            [100%]
 ============================ 3 passed in 0.12s =============================
 ```
 
-## Incremental testing - test steps
+## Incremental testing - test steps {#incremental-testing-test-steps}
 
 Sometimes you may have a testing situation which consists of a series of test steps. If one step fails it makes no sense to execute further steps as they are all expected to fail anyway and their tracebacks add no insight. Here is a simple `conftest.py` file which introduces an `incremental` marker which is to be used on classes:
 
@@ -585,7 +585,7 @@ XFAIL test_step.py::TestUserHandling::test_deletion - reason: previous test fail
 
 We’ll see that `test_deletion` was not executed because `test_modification` failed. It is reported as an “expected failure”.
 
-## Package/Directory-level fixtures (setups)
+## Package/Directory-level fixtures (setups) {#package-directory-level-fixtures-setups}
 
 If you have nested test directories, you can have per-directory fixture scopes by placing fixture functions in a `conftest.py` file in that directory. You can use all types of fixtures including [autouse fixtures](/python/pytest/how_to_guides/fixture#autouse-fixtures-fixtures-you-don-t-have-to-request) which are the equivalent of xUnit’s setup/teardown concept. It’s however recommended to have explicit fixture references in your tests or test classes rather than relying on implicitly executing setup/teardown functions, especially if they are far away from the actual tests.
 
@@ -692,7 +692,7 @@ ERROR b/test_error.py::test_root
 
 The two test modules in the `a` directory see the same `db` fixture instance while the one test in the sister-directory `b` doesn’t see it. We could of course also define a `db` fixture in that sister directory’s `conftest.py` file. Note that each fixture is only instantiated if there is a test actually needing it (unless you use “autouse” fixture which are always executed ahead of the first test executing).
 
-## Post-process test reports / failures
+## Post-process test reports / failures {#post-process-test-reports-failures}
 
 If you want to postprocess test reports and need access to the executing environment you can implement a hook that gets called when the test “report” object is about to be created. Here we write out all failing test calls and also access a fixture (if it was used by the test) in case you want to query/look at it during your post processing. In our case we just write some information out to a `failures` file:
 
@@ -778,7 +778,7 @@ test_module.py::test_fail1 (PYTEST_TMPDIR/test_fail10)
 test_module.py::test_fail2
 ```
 
-## Making test result information available in fixtures
+## Making test result information available in fixtures {#making-test-result-information-available-in-fixtures}
 
 If you want to make test result reports available in fixture finalizers here is a little example implemented via a local plugin:
 
@@ -888,7 +888,7 @@ ERROR test_module.py::test_setup_fails - assert 0
 
 You’ll see that the fixture finalizers could use the precise reporting information.
 
-## `PYTEST_CURRENT_TEST` environment variable
+## `PYTEST_CURRENT_TEST` environment variable {#pytest-current-test-environment-variable}
 
 Sometimes a test session might get stuck and there might be no easy way to figure out which test got stuck, for example if pytest was run in quiet mode (`-q`) or you don’t have access to the console output. This is particularly a problem if the problem happens only sporadically, the famous “flaky” kind of tests.
 
@@ -919,7 +919,7 @@ In that order.
 The contents of `PYTEST_CURRENT_TEST` is meant to be human readable and the actual format can be changed between releases (even bug fixes) so it shouldn’t be relied on for scripting or automation.
 :::
 
-## Freezing pytest
+## Freezing pytest {#freezing-pytest}
 
 If you freeze your application using a tool like [PyInstaller](https://pyinstaller.readthedocs.io/) in order to distribute it to your end-users, it is a good idea to also package your test runner and run your tests using the frozen application. This way packaging errors such as dependencies not being included into the executable can be detected early while also allowing you to send test files to users so they can run them in their machines, which can be useful to obtain more information about a hard to reproduce bug.
 

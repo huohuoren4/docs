@@ -1,8 +1,8 @@
-# Global Variables
+# Global Variables {#global-variables}
 
 pytest treats some global variables in a special manner when defined in a test module or `conftest.py` files.
 
-## collect_ignore
+## collect_ignore {#collect-ignore}
 
 *Tutorial*: [Customizing test collection](/python/pytest/further_topics/example_trick/test_discovery#customizing-test-collection)
     
@@ -12,7 +12,7 @@ Can be declared in `conftest.py` files to exclude test directories or modules. N
 collect_ignore = ["setup.py"]
 ```
 
-## collect_ignore_glob
+## collect_ignore_glob {#collect-ignore-glob}
 
 *Tutorial*: [Customizing test collection](/python/pytest/further_topics/example_trick/test_discovery#customizing-test-collection)
 
@@ -22,7 +22,7 @@ Can be declared in conftest.py files to exclude test directories or modules with
 collect_ignore_glob = ["*_ignore.py"]
 ```
 
-## pytest_plugins
+## pytest_plugins {#pytest-plugins}
 
 *Tutorial*: [Requiring/Loading plugins in a test module or conftest file](/python/pytest/how_to_guides/use_plugin#requiring-loading-plugins-in-a-test-module-or-conftest-file)
 
@@ -36,7 +36,7 @@ pytest_plugins = "myapp.testsupport.myplugin"
 pytest_plugins = ("myapp.testsupport.tools", "myapp.testsupport.regression")
 ```
 
-## pytestmark
+## pytestmark {#pytestmark}
 
 *Tutorial*: [Marking whole classes or modules](/python/pytest/further_topics/example_trick/custom_mark#marking-whole-classes-or-modules)
 

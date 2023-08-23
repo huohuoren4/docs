@@ -1,4 +1,4 @@
-# About fixtures
+# About fixtures {#about-fixtures}
 
 ::: tip See also
 [How to use fixtures](/python/pytest/how_to_guides/fixture#how-to-use-fixtures)
@@ -10,7 +10,7 @@
 
 pytest fixtures are designed to be explicit, modular and scalable.
 
-## What fixtures are
+## What fixtures are {#what-fixtures-are}
 
 In testing, a [fixture](https://en.wikipedia.org/wiki/Test_fixture#Software) provides a defined, reliable and consistent context for the tests. This could include environment (for example a database configured with known parameters) or content (such as a dataset).
 
@@ -48,7 +48,7 @@ def test_my_fruit_in_basket(my_fruit, fruit_basket):
 
 Tests don’t have to be limited to a single fixture, either. They can depend on as many fixtures as you want, and fixtures can use other fixtures, as well. This is where pytest’s fixture system really shines.
 
-## Improvements over xUnit-style setup/teardown functions
+## Improvements over xUnit-style setup/teardown functions {#improvements-over-xunit-style-setup-teardown-functions}
 
 pytest fixtures offer dramatic improvements over the classic xUnit style of setup/teardown functions:
 
@@ -62,7 +62,7 @@ pytest fixtures offer dramatic improvements over the classic xUnit style of setu
 
 In addition, pytest continues to support [How to implement xunit-style set-up](/python/pytest/how_to_guides/xunit#how-to-implement-xunit-style-set-up). You can mix both styles, moving incrementally from classic to new style, as you prefer. You can also start out from existing [unittest.TestCase style](/python/pytest/how_to_guides/unittest#how-to-use-unittest-based-tests-with-pytest) or [nose based](/python/pytest/how_to_guides/nose_test#how-to-run-tests-written-for-nose) projects.
 
-## Fixture errors
+## Fixture errors {#fixture-errors}
 
 pytest does its best to put all the fixtures for a given test in a linear order so that it can see which fixture happens first, second, third, and so on. If an earlier fixture has a problem, though, and raises an exception, pytest will stop executing fixtures for that test and mark the test as having an error.
 
@@ -102,13 +102,13 @@ def test_order(order):
 
 If, for whatever reason, `order.append(1)` had a bug and it raises an exception, we wouldn’t be able to know if `order.extend([2])` or `order += [3]` would also have problems. After `append_first` throws an exception, pytest won’t run any more fixtures for `test_order`, and it won’t even try to run `test_order` itself. The only things that would’ve run would be `order` and `append_first`.
 
-## Sharing test data
+## Sharing test data {#sharing-test-data}
 
 If you want to make test data from files available to your tests, a good way to do this is by loading these data in a fixture for use by your tests. This makes use of the automatic caching mechanisms of pytest.
 
 Another good approach is by adding the data files in the `tests` folder. There are also community plugins available to help to manage this aspect of testing, e.g. [pytest-datadir](https://pypi.org/project/pytest-datadir/) and [pytest-datafiles](https://pypi.org/project/pytest-datafiles/).
 
-## A note about fixture cleanup
+## A note about fixture cleanup {#a-note-about-fixture-cleanup}
 
 pytest does not do any special processing for `SIGTERM` and `SIGQUIT` signals (`SIGINT` is handled naturally by the Python runtime via `KeyboardInterrupt`), so fixtures that manage external resources which are important to be cleared when the Python process is terminated (by those signals) might leak resources.
 

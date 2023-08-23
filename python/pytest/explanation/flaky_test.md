@@ -1,14 +1,14 @@
-# Flaky tests
+# Flaky tests {#flaky-tests}
 
 A “flaky” test is one that exhibits intermittent or sporadic failure, that seems to have non-deterministic behaviour. Sometimes it passes, sometimes it fails, and it’s not clear why. This page discusses pytest features that can help and other general strategies for identifying, fixing or mitigating them.
 
-## Why flaky tests are a problem
+## Why flaky tests are a problem {#why-flaky-tests-are-a-problem}
 
 Flaky tests are particularly troublesome when a continuous integration (CI) server is being used, so that all tests must pass before a new code change can be merged. If the test result is not a reliable signal – that a test failure means the code change broke the test – developers can become mistrustful of the test results, which can lead to overlooking genuine failures. It is also a source of wasted time as developers must re-run test suites and investigate spurious failures.
 
-## Potential root causes
+## Potential root causes {#potential-root-causes}
 
-### System state
+### System state {#system-state}
 
 Broadly speaking, a flaky test indicates that the test relies on some system state that is not being appropriately controlled - the test environment is not sufficiently isolated. Higher level tests are more likely to be flaky as they rely on more state.
 
@@ -20,21 +20,21 @@ Flaky tests sometimes appear when a test suite is run in parallel (such as use o
 
 - Tests that modify global state typically cannot be run in parallel.
 
-### Overly strict assertion
+### Overly strict assertion {#overly-strict-assertion}
 
 Overly strict assertions can cause problems with floating point comparison as well as timing issues. `pytest.approx()` is useful here.
 
-## Pytest features
+## Pytest features {#pytest-features}
 
-### Xfail strict
+### Xfail strict {#xfail-strict}
 
 `pytest.mark.xfail` with `strict=False` can be used to mark a test so that its failure does not cause the whole build to break. This could be considered like a manual quarantine, and is rather dangerous to use permanently.
 
-### PYTEST_CURRENT_TEST
+### PYTEST_CURRENT_TEST {#pytest-current-test}
 
 `PYTEST_CURRENT_TEST` may be useful for figuring out “which test got stuck”. See [PYTEST_CURRENT_TEST environment variable](/python/pytest/further_topics/example_trick/basic_pattern#pytest-current-test-environment-variable) for more details.
 
-### Plugins
+### Plugins {#plugins}
 
 Rerunning any failed tests can mitigate the negative effects of flaky tests by giving them additional chances to pass, so that the overall build does not fail. Several pytest plugins support this:
 
@@ -52,29 +52,29 @@ Plugins to deliberately randomize tests can help expose tests with state problem
 
 - [pytest-randomly](https://github.com/pytest-dev/pytest-randomly)
 
-## Other general strategies
+## Other general strategies {#other-general-strategies}
 
-### Split up test suites
+### Split up test suites {#split-up-test-suites}
 
 It can be common to split a single test suite into two, such as unit vs integration, and only use the unit test suite as a CI gate. This also helps keep build times manageable as high level tests tend to be slower. However, it means it does become possible for code that breaks the build to be merged, so extra vigilance is needed for monitoring the integration test results.
 
-### Video/screenshot on failure
+### Video/screenshot on failure {#video-screenshot-on-failure}
 
 For UI tests these are important for understanding what the state of the UI was when the test failed. pytest-splinter can be used with plugins like pytest-bdd and can [save a screenshot on test failure](https://pytest-splinter.readthedocs.io/en/latest/#automatic-screenshots-on-test-failure), which can help to isolate the cause.
 
-### Delete or rewrite the test
+### Delete or rewrite the test {#delete-or-rewrite-the-test}
 
 If the functionality is covered by other tests, perhaps the test can be removed. If not, perhaps it can be rewritten at a lower level which will remove the flakiness or make its source more apparent.
 
-### Quarantine
+### Quarantine {#quarantine}
 
 Mark Lapierre discusses the [Pros and Cons of Quarantined Tests](https://dev.to/mlapierre/pros-and-cons-of-quarantined-tests-2emj) in a post from 2018.
 
-### CI tools that rerun on failure
+### CI tools that rerun on failure {#ci-tools-that-rerun-on-failure}
 
 Azure Pipelines (the Azure cloud CI/CD tool, formerly Visual Studio Team Services or VSTS) has a feature to [identify flaky tests](https://docs.microsoft.com/en-us/previous-versions/azure/devops/2017/dec-11-vsts?view=tfs-2017#identify-flaky-tests) and rerun failed tests.
 
-## Research
+## Research {#research}
 
 This is a limited list, please submit an issue or pull request to expand it!
 
@@ -84,7 +84,7 @@ This is a limited list, please submit an issue or pull request to expand it!
 
 - Bell, Jonathan, Owolabi Legunsen, Michael Hilton, Lamyaa Eloussi, Tifany Yung, and Darko Marinov. “DeFlaker: Automatically detecting flaky tests.” In *Proceedings of the 2018 International Conference on Software Engineering*. 2018. [PDF](https://www.jonbell.net/icse18-deflaker.pdf)
 
-## Resources
+## Resources {#resources}
 
 - [Eradicating Non-Determinism in Tests](https://martinfowler.com/articles/nonDeterminism.html) by Martin Fowler, 2011
 

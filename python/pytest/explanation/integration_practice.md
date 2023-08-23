@@ -1,6 +1,6 @@
-# Good Integration Practices
+# Good Integration Practices {#good-integration-practices}
 
-## Install package with pip
+## Install package with pip {#install-package-with-pip}
 
 For development, we recommend you use `venv` for virtual environments and pip for installing your application and any dependencies, as well as the `pytest` package itself. This ensures your code and dependencies are isolated from your system Python installation.
 
@@ -46,11 +46,11 @@ For examples of how to customize your test discovery [Changing standard (Python)
 
 Within Python modules, `pytest` also discovers tests using the standard `unittest.TestCase` subclassing technique.
 
-## Choosing a test layout / import rules
+## Choosing a test layout / import rules {#choosing-a-test-layout-import-rules}
 
 `pytest` supports two common test layouts:
 
-### Tests outside application code
+### Tests outside application code {#tests-outside-application-code}
 
 Putting tests into an extra directory outside your actual application code might be useful if you have many functional tests or for other reasons want to keep tests separate from actual application code (often a good idea):
 
@@ -107,7 +107,7 @@ If you do not use an editable install and not use the `src` layout (`mypkg` dire
 See [Invoking pytest versus python -m pytest](/python/pytest/explanation/import_mechanism#invoking-pytest-versus-python-m-pytest) for more information about the difference between calling `pytest` and `python -m pytest`.
 :::
 
-### Tests as part of application code
+### Tests as part of application code {#tests-as-part-of-application-code}
 
 Inlining test directories into your application package is useful if you have direct relation between tests and application modules and want to distribute them along with your application:
 
@@ -152,7 +152,7 @@ The reason for this somewhat evolved importing technique is that in larger proje
 With `--import-mode=importlib` things are less convoluted because pytest doesn’t need to change `sys.path` or `sys.modules`, making things much less surprising.
 :::
 
-### Choosing an import mode
+### Choosing an import mode {#choosing-an-import-mode}
 
 For historical reasons, pytest defaults to the `prepend` [import mode](/python/pytest/explanation/import_mechanism#import-modes) instead of the `importlib` import mode we recommend for new projects. The reason lies in the way the `prepend` mode works:
 
@@ -182,11 +182,11 @@ This is problematic if you are using a tool like [tox](https://docs.pytest.org/e
 
 The `importlib` import mode does not have any of the drawbacks above, because `sys.path` is not changed when importing test modules.
 
-## tox
-
+## tox {#tox}
+ 
 Once you are done with your work and want to make sure that your actual package passes all tests you may want to look into [tox](https://tox.wiki/en/stable/index.html), the virtualenv test automation tool. `tox` helps you to setup virtualenv environments with pre-defined dependencies and then executing a pre-configured test command with options. It will run tests against the installed package and not against your source code checkout, helping to detect packaging glitches.
 
-## Do not run via setuptools
+## Do not run via setuptools {#do-not-run-via-setuptools}
 
 Integration with setuptools is not recommended, i.e. you should not be using `python setup.py test` or `pytest-runner`, and may stop working in the future.
 
@@ -194,7 +194,7 @@ This is deprecated since it depends on deprecated features of setuptools and rel
 
 setuptools intends to [remove the test command](https://github.com/pypa/setuptools/issues/931).
 
-## Checking with flake8-pytest-style
+## Checking with flake8-pytest-style {#checking-with-flake8-pytest-style}
 
 In order to ensure that pytest is being used correctly in your project, it can be helpful to use the [flake8-pytest-style](https://github.com/m-burst/flake8-pytest-style) flake8 plugin.
 

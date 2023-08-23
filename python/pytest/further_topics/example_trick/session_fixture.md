@@ -1,4 +1,4 @@
-# A session-fixture which can look at all collected tests
+# A session-fixture which can look at all collected tests {#a-session-fixture-which-can-look-at-all-collected-tests}
 
 A session-scoped fixture effectively has access to all collected test items. Here is an example of a fixture function which walks all collected tests and looks if their test class defines a `callme` method and calls it:
 

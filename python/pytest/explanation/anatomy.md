@@ -1,4 +1,4 @@
-# Anatomy of a test
+# Anatomy of a test {#anatomy-of-a-test}
 
 In the simplest terms, a test is meant to look at the result of a particular behavior, and make sure that result aligns with what you would expect. Behavior is not something that can be empirically measured, which is why writing tests can be challenging.
 

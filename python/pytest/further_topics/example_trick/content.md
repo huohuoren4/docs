@@ -1,4 +1,4 @@
-# Examples and customization tricks
+# Examples and customization tricks {#examples-and-customization-tricks}
 
 Here is a (growing) list of examples. Contact us if you need more examples or have questions. Also take a look at the [comprehensive documentation](/python/pytest/home) which contains many example snippets as well. Also, [pytest on stackoverflow.com](http://stackoverflow.com/search?q=pytest) often comes with example answers.
 

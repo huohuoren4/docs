@@ -1,8 +1,8 @@
-# Contribution getting started
+# Contribution getting started {#contribution-getting-started}
 
 Contributions are highly welcomed and appreciated. Every little bit of help counts, so do not hesitate!
 
-## Feature requests and feedback
+## Feature requests and feedback {#feature-requests-and-feedback}
 
 Do you like pytest? Share some love on Twitter or in your blog posts!
 
@@ -12,7 +12,7 @@ We’d also like to hear about your propositions and suggestions. Feel free to [
 
 - Keep the scope as narrow as possible. This will make it easier to implement.
 
-## Report bugs
+## Report bugs {#report-bugs}
 
 Report bugs for pytest in the [issue tracker](https://github.com/pytest-dev/pytest/issues).
 
@@ -26,7 +26,7 @@ If you are reporting a bug, please include:
 
 If you can write a demonstration test that currently fails but should pass (xfail), that is a very useful commit to make as well, even if you cannot fix the bug itself.
 
-## Fix bugs
+## Fix bugs {#fix-bugs}
 
 Look through the GitHub issues for bugs. See also the [“status: easy” issues](https://github.com/pytest-dev/pytest/labels/status%3A%20easy) that are friendly to new contributors.
 
@@ -34,13 +34,13 @@ Talk to developers to find out how you can fix specific bugs. To indicate that y
 
 Don’t forget to check the issue trackers of your favourite plugins, too!
 
-## Implement features
+## Implement features {#implement-features}
 
 Look through the [GitHub issues for enhancements](https://github.com/pytest-dev/pytest/labels/type:%20enhancement).
 
 Talk to developers to find out how you can implement specific features.
 
-## Write documentation
+## Write documentation {#write-documentation}
 
 Pytest could always use more documentation. What exactly is needed?
 
@@ -92,7 +92,7 @@ def my_function(arg: ArgType) -> Foo:
     """
 ```
 
-## Submitting Plugins to pytest-dev
+## Submitting Plugins to pytest-dev {#submitting-plugins-to-pytest-dev}
 
 Pytest development of the core, some plugins and support code happens in repositories living under the `pytest-dev` organisations:
 
@@ -138,9 +138,9 @@ The `pytest-dev/Contributors` team has write access to all projects, and every p
 
 Repository owners can rest assured that no `pytest-dev` administrator will ever make releases of your repository or take ownership in any way, except in rare cases where someone becomes unresponsive after months of contact attempts. As stated, the objective is to share maintenance and avoid “plugin-abandon”.
 
-## Preparing Pull Requests
+## Preparing Pull Requests {#preparing-pull-requests}
 
-### Short version
+### Short version {#short-version}
 
 1. Fork the repository.
 
@@ -160,7 +160,7 @@ Repository owners can rest assured that no `pytest-dev` administrator will ever 
 
 6. Unless your change is a trivial or a documentation fix (e.g., a typo or reword of a small section) please add yourself to the `AUTHORS` file, in alphabetical order.
 
-### Long version
+### Long version {#long-version}
 
 What is a “pull request”? It informs the project’s core developers about the changes you want to review and merge. Pull requests are stored on [GitHub servers](https://github.com/pytest-dev/pytest/pulls). Once you send a pull request, we can discuss its potential modifications and even add more commits to it later on. There’s an excellent tutorial on how Pull Requests work in the [GitHub Help Center](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
 
@@ -270,9 +270,9 @@ Here is a simple overview, with pytest-specific bits:
     base: main
     ```
 
-### Writing Tests
+### Writing Tests {#writing-tests}
 
-Writing tests for plugins or for pytest itself is often done using the [pytester fixture](https://docs.pytest.org/en/stable/reference/reference.html#pytester), as a “black-box” test.
+Writing tests for plugins or for pytest itself is often done using the [pytester fixture](/python/pytest/reference_guides/api_reference/fixtures#pytester), as a “black-box” test.
 
 For example, to ensure a simple test passes you can write:
 
@@ -304,11 +304,11 @@ def test_true_assertion(pytester):
 
 When choosing a file where to write a new test, take a look at the existing files and see if there’s one file which looks like a good fit. For example, a regression test about a bug in the `--lf` option should go into `test_cacheprovider.py`, given that this option is implemented in `cacheprovider.py`. If in doubt, go ahead and open a PR with your best guess and we can discuss this over the code.
 
-## Joining the Development Team
+## Joining the Development Team {#joining-the-development-team}
 
 Anyone who has successfully seen through a pull request which did not require any extra work from the development team to merge will themselves gain commit access if they so wish (if we forget to ask please send a friendly reminder). This does not mean there is any change in your contribution workflow: everyone goes through the same pull-request-and-review process and no-one merges their own pull requests unless already approved. It does however mean you can participate in the development process more fully since you can merge pull requests from other contributors yourself after having reviewed them.
 
-## Backporting bug fixes for the next patch release
+## Backporting bug fixes for the next patch release {#backporting-bug-fixes-for-the-next-patch-release}
 
 Pytest makes a feature release every few weeks or months. In between, patch releases are made to the previous feature release, containing bug fixes only. The bug fixes usually fix regressions, but may be any change that should reach users before the next feature release.
 
@@ -336,7 +336,7 @@ Manual method:
 
    - Delete the PR body, it usually contains a duplicate commit message.
 
-### Who does the backporting
+### Who does the backporting {#who-does-the-backporting}
 
 As mentioned above, bugs should first be fixed on `main` (except in rare occasions that a bug only happens in a previous release). So, who should do the backport procedure described above?
 
@@ -350,7 +350,7 @@ As mentioned above, bugs should first be fixed on `main` (except in rare occasio
 
 All the above are not rules, but merely some guidelines/suggestions on what we should expect about backports.
 
-## Handling stale issues/PRs
+## Handling stale issues/PRs {#handling-stale-issues-prs}
 
 Stale issues/PRs are those where pytest contributors have asked for questions/changes and the authors didn’t get around to answer/implement them yet after a somewhat long time, or the discussion simply died because people seemed to lose interest.
 
@@ -358,7 +358,7 @@ There are many reasons why people don’t answer questions or implement requeste
 
 The pytest team really appreciates every issue and pull request, but being a high-volume project with many issues and pull requests being submitted daily, we try to reduce the number of stale issues and PRs by regularly closing them. When an issue/pull request is closed in this manner, it is by no means a dismissal of the topic being tackled by the issue/pull request, but it is just a way for us to clear up the queue and make the maintainers’ work more manageable. Submitters can always reopen the issue/pull request in their own time later if it makes sense.
 
-### When to close
+### When to close {#when-to-close}
 
 Here are a few general rules the maintainers use deciding when to close issues/PRs because of lack of inactivity:
 
@@ -370,7 +370,7 @@ Here are a few general rules the maintainers use deciding when to close issues/P
 
 The above are not hard rules, but merely guidelines, and can be (and often are!) reviewed on a case-by-case basis.
 
-### Closing pull requests
+### Closing pull requests {#closing-pull-requests}
 
 When closing a Pull Request, it needs to be acknowledging the time, effort, and interest demonstrated by the person which submitted it. As mentioned previously, it is not the intent of the team to dismiss a stalled pull request entirely but to merely to clear up our queue, so a message like the one below is warranted when closing a pull request that went stale:
 
@@ -388,8 +388,8 @@ Again we appreciate your time for working on this, and hope you might get back t
 <bye>
 ```
 
-## Closing Issues
+## Closing Issues {#closing-issues}
 
 When a pull request is submitted to fix an issue, add text like `closes #XYZW` to the PR description and/or commits (where `XYZW` is the issue number). See the [GitHub docs](https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) for more information.
 
-When an issue is due to user error (e.g. misunderstanding of a functionality), please politely explain to the user why the issue raised is really a non-issue and ask them to close the issue if they have no further questions. If the original requestor is unresponsive, the issue will be handled as described in the section [Handling stale issues/PRs](https://docs.pytest.org/en/latest/contributing.html#handling-stale-issues-prs) above.
+When an issue is due to user error (e.g. misunderstanding of a functionality), please politely explain to the user why the issue raised is really a non-issue and ask them to close the issue if they have no further questions. If the original requestor is unresponsive, the issue will be handled as described in the section [Handling stale issues/PRs](/python/pytest/further_topics/contribution#handling-stale-issues-prs) above.

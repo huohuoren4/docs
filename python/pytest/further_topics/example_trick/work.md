@@ -1,6 +1,6 @@
-# Working with non-python tests
+# Working with non-python tests {#working-with-non-python-tests}
 
-## A basic example for specifying tests in Yaml files
+## A basic example for specifying tests in Yaml files {#a-basic-example-for-specifying-tests-in-yaml-files}
 
 Here is an example `conftest.py` (extracted from Ali Afshar’s special purpose [pytest-yamlwsgi](https://pypi.org/project/pytest-yamlwsgi/) plugin). This `conftest.py` will collect `test*.yaml` files and will execute the yaml-formatted content as custom tests:
 
