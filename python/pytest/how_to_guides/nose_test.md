@@ -1,4 +1,4 @@
-# How to run tests written for nose
+# How to run tests written for nose {#how-to-run-tests-written-for-nose}
 
 `pytest` has basic support for running tests written for [nose](https://nose.readthedocs.io/en/latest/).
 
@@ -6,7 +6,7 @@
 This functionality has been deprecated and is likely to be removed in `pytest 8.x`.
 :::
 
-## Usage
+## Usage {#usage}
 After [Install pytest](/python/pytest/get_started#install-pytest) type:
 
 ```shell
@@ -16,7 +16,7 @@ pytest  # instead of 'nosetests'
 
 and you should be able to run your nose style tests and make use of pytest’s capabilities.
 
-## Supported nose Idioms
+## Supported nose Idioms {#supported-nose-idioms}
 
 - `setup()` and `teardown()` at module/class/method level: any function or method called `setup` will be called during the setup phase for each test, same for `teardown`.
 
@@ -28,7 +28,7 @@ and you should be able to run your nose style tests and make use of pytest’s c
 
 - general usage of nose utilities
 
-## Unsupported idioms / known issues
+## Unsupported idioms / known issues {#unsupported-idioms-known-issues}
 
 - unittest-style `setUp, tearDown, setUpClass, tearDownClass` are recognized only on `unittest.TestCase` classes but not on plain classes. `nose` supports these methods also on plain classes but pytest deliberately does not. As `nose` and pytest already both support `setup_class, teardown_class, setup_method, teardown_method` it doesn’t seem useful to duplicate the unittest-API like nose does. If you however rather think pytest should support the unittest-spelling on plain classes please post to [issue #377](https://github.com/pytest-dev/pytest/issues/377).
 
@@ -59,6 +59,6 @@ Here is a table comparing the default supported naming conventions for both nose
 | method | `test_*.py`                 | ✅      |      |
 
 
-## Migrating from nose to pytest
+## Migrating from nose to pytest {#migrating-from-nose-to-pytest}
 
 [nose2pytest](https://github.com/pytest-dev/nose2pytest) is a Python script and pytest plugin to help convert Nose-based tests into pytest-based tests. Specifically, the script transforms `nose.tools.assert_*` function calls into raw assert statements, while preserving format of original arguments as much as possible.

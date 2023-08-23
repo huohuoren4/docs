@@ -1,4 +1,4 @@
-# How to use unittest-based tests with pytest
+# How to use unittest-based tests with pytest {#how-to-use-unittest-based-tests-with-pytest}
 
 `pytest` supports running Python `unittest`-based tests out of the box. It’s meant for leveraging existing `unittest`-based test suites to use pytest as a test runner and also allow to incrementally adapt the test suite to take full advantage of pytest’s features.
 
@@ -26,7 +26,7 @@ Up to this point pytest does not have support for the following features:
 
 - [load_tests protocol](https://docs.python.org/3/library/unittest.html#load-tests-protocol);
 
-## Benefits out of the box
+## Benefits out of the box {#benefits-out-of-the-box}
 
 By running your test suite with pytest you can make use of several features, in most cases without having to modify existing code:
 
@@ -44,7 +44,7 @@ By running your test suite with pytest you can make use of several features, in 
 
 - Use [plain assert-statements](/python/pytest/how_to_guides/assert#how-to-write-and-report-assertions-in-tests) instead of `self.assert*` functions ([unittest2pytest](https://pypi.org/project/unittest2pytest/) is immensely helpful in this);
 
-## pytest features in `unittest.TestCase` subclasses
+## pytest features in `unittest.TestCase` subclasses {#pytest-features-in-unittest-testcase-subclasses}
 
 The following pytest features work in `unittest.TestCase` subclasses:
 
@@ -62,7 +62,7 @@ The following pytest features do not work, and probably never will due to differ
 
 Third party plugins may or may not work well, depending on the plugin and the test suite.
 
-## Mixing pytest fixtures into unittest.TestCase subclasses using marks
+## Mixing pytest fixtures into unittest.TestCase subclasses using marks {#mixing-pytest-fixtures-into-unittest-testcase-subclasses-using-marks}
 
 Running your unittest with `pytest` allows you to use its [fixture mechanism](/python/pytest/reference_guides/fixture_reference#fixtures-reference) with `unittest.TestCase` style tests. Assuming you have at least skimmed the pytest fixture features, let’s jump-start into an example that integrates a pytest `db_class` fixture, setting up a class-cached database object, and then reference it from a unittest-style test:
 
@@ -145,7 +145,7 @@ FAILED test_unittest_db.py::MyTest::test_method2 - AssertionError: <conft...
 
 This default pytest traceback shows that the two test methods share the same `self.db` instance which was our intention when writing the class-scoped fixture function above.
 
-## Using autouse fixtures and accessing other fixtures
+## Using autouse fixtures and accessing other fixtures {#using-autouse-fixtures-and-accessing-other-fixtures}
 
 Although it’s usually better to explicitly declare use of fixtures you need for a given test, you may sometimes want to have fixtures that are automatically used in a given context. After all, the traditional style of unittest-setup mandates the use of this implicit fixture writing and chances are, you are used to it or like it.
 

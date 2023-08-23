@@ -1,10 +1,10 @@
-# How to use pytest with an existing test suite
+# How to use pytest with an existing test suite {#how-to-use-pytest-with-an-existing-test-suite}
 
 Pytest can be used with most existing test suites, but its behavior differs from other test runners such as [nose](/python/pytest/how_to_guides/nose_test#how-to-run-tests-written-for-nose) or Python’s default unittest framework.
 
 Before using this section you will want to [install pytest](/python/pytest/get_started#install-pytest).
 
-## Running an existing test suite with pytest
+## Running an existing test suite with pytest {#running-an-existing-test-suite-with-pytest}
 
 Say you want to contribute to an existing repository somewhere. After pulling the code into your development space using some flavor of version control and (optionally) setting up a virtualenv you will want to run:
 
