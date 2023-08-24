@@ -1,4 +1,4 @@
-# Define and Access the Database
+# Define and Access the Database {#define-and-access-the-database}
 
 The application will use a [SQLite](https://sqlite.org/about.html) database to store users and posts. Python comes with built-in support for SQLite in the [sqlite3](https://docs.python.org/3/library/sqlite3.html#module-sqlite3) module.
 
@@ -6,7 +6,7 @@ SQLite is convenient because it doesn’t require setting up a separate database
 
 The tutorial doesn’t go into detail about SQL. If you are not familiar with it, the SQLite docs describe the [language](https://sqlite.org/lang.html).
 
-## Connect to the Database
+## Connect to the Database {#connect-to-the-database}
 
 The first thing to do when working with a SQLite database (and most other Python database libraries) is to create a connection to it. Any queries and operations are performed using the connection, which is closed after the work is finished.
 
@@ -48,7 +48,7 @@ def close_db(e=None):
 
 `close_db` checks if a connection was created by checking if `g.db` was set. If the connection exists, it is closed. Further down you will tell your application about the `close_db` function in the application factory so that it is called after each request.
 
-## Create the Tables
+## Create the Tables {#create-the-tables}
 
 In SQLite, data is stored in tables and columns. These need to be created before you can store and retrieve data. Flaskr will store users in the `user` table, and posts in the `post` table. Create a file with the SQL commands needed to create empty tables:
 
@@ -95,7 +95,7 @@ def init_db_command():
 
 [click.command()](https://click.palletsprojects.com/en/8.1.x/api/#click.command) defines a command line command called `init-db` that calls the `init_db` function and shows a success message to the user. You can read [Command Line Interface](https://flask.palletsprojects.com/en/2.3.x/cli/) to learn more about writing commands.
 
-## Register with the Application
+## Register with the Application {#register-with-the-application}
 
 The `close_db` and `init_db_command` functions need to be registered with the application instance; otherwise, they won’t be used by the application. However, since you’re using a factory function, that instance isn’t available when writing the functions. Instead, write a function that takes an application and does the registration.
 
@@ -124,7 +124,7 @@ def create_app():
     return app
 ```
 
-## Initialize the Database File
+## Initialize the Database File {#initialize-the-database-file}
 
 Now that `init-db` has been registered with the app, it can be called using the `flask` command, similar to the `run` command from the previous page.
 

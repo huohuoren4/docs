@@ -1,4 +1,4 @@
-# Flask
+# Flask {#flask}
 
 ::: tip Tip
 *flask version*: `2.3.2`. Only the lastest version is maintained.
@@ -6,291 +6,292 @@
 *offical doc*: [Flask](https://flask.palletsprojects.com/)
 :::
 
-Welcome to Flask’s documentation. Get started with Installation and then get an overview with the [Quickstart](https://flask.palletsprojects.com/en/2.3.x/quickstart/). There is also a more detailed [Tutorial](https://flask.palletsprojects.com/en/2.3.x/tutorial/) that shows how to create a small but complete application with Flask. Common patterns are described in the [Patterns for Flask](https://flask.palletsprojects.com/en/2.3.x/patterns/) section. The rest of the docs describe each component of Flask in detail, with a full reference in the [API](https://flask.palletsprojects.com/en/2.3.x/api/) section.
+Welcome to Flask’s documentation. Get started with Installation and then get an overview with the [Quickstart](/python/flask/user_guide/quickstart#quickstart). There is also a more detailed [Tutorial](/python/flask/user_guide/tutorial/introduction#tutorial) that shows how to create a small but complete application with Flask. Common patterns are described in the [Patterns for Flask](/python/flask/user_guide/pattern/#patterns-for-flask) section. The rest of the docs describe each component of Flask in detail, with a full reference in the [API](/python/flask/api_reference/app_obj#api) section.
 
 Flask depends on the [Werkzeug](https://werkzeug.palletsprojects.com/) WSGI toolkit, the [Jinja](https://jinja.palletsprojects.com/) template engine, and the [Click](https://click.palletsprojects.com/) CLI toolkit. Be sure to check their documentation as well as Flask’s when looking for information.
 
-## User's Guide
+## User's Guide {#user-s-guide}
 
 Flask provides configuration and conventions, with sensible defaults, to get started. This section of the documentation explains the different parts of the Flask framework and how they can be used, customized, and extended. Beyond Flask itself, look for community-maintained extensions to add even more functionality.
 
-- [Installation](https://flask.palletsprojects.com/en/2.3.x/installation/)
+- [Installation](/python/flask/user_guide/install#installation)
 
-    - [Python Version](https://flask.palletsprojects.com/en/2.3.x/installation/#python-version)
-    - [Dependencies](https://flask.palletsprojects.com/en/2.3.x/installation/#dependencies)
-    - [Virtual environments](https://flask.palletsprojects.com/en/2.3.x/installation/#virtual-environments)
-    - [Install Flask](https://flask.palletsprojects.com/en/2.3.x/installation/#install-flask)
+    - [Python Version](/python/flask/user_guide/install#python-version)
+    - [Dependencies](/python/flask/user_guide/install#dependencies)
+    - [Virtual environments](/python/flask/user_guide/install#virtual-environments)
+    - [Install Flask](/python/flask/user_guide/install#install-flask)
 
-- [Quickstart](https://flask.palletsprojects.com/en/2.3.x/quickstart/)
+- [Quickstart](/python/flask/user_guide/quickstart#quickstart)
 
-    - [A Minimal Application](https://flask.palletsprojects.com/en/2.3.x/quickstart/#a-minimal-application)
-    - [Debug Mode](https://flask.palletsprojects.com/en/2.3.x/quickstart/#debug-mode)
-    - [HTML Escaping](https://flask.palletsprojects.com/en/2.3.x/quickstart/#html-escaping)
-    - [Routing](https://flask.palletsprojects.com/en/2.3.x/quickstart/#routing)
-    - [Static Files](https://flask.palletsprojects.com/en/2.3.x/quickstart/#static-files)
-    - [Rendering Templates](https://flask.palletsprojects.com/en/2.3.x/quickstart/#rendering-templates)
-    - [Accessing Request Data](https://flask.palletsprojects.com/en/2.3.x/quickstart/#accessing-request-data)
-    - [Redirects and Errors](https://flask.palletsprojects.com/en/2.3.x/quickstart/#redirects-and-errors)
-    - [About Responses](https://flask.palletsprojects.com/en/2.3.x/quickstart/#about-responses)
-    - [Sessions](https://flask.palletsprojects.com/en/2.3.x/quickstart/#sessions)
-    - [Message Flashing](https://flask.palletsprojects.com/en/2.3.x/quickstart/#message-flashing)
-    - [Logging](https://flask.palletsprojects.com/en/2.3.x/quickstart/#logging)
-    - [Hooking in WSGI Middleware](https://flask.palletsprojects.com/en/2.3.x/quickstart/#hooking-in-wsgi-middleware)
-    - [Using Flask Extensions](https://flask.palletsprojects.com/en/2.3.x/quickstart/#using-flask-extensions)
-    - [Deploying to a Web Server](https://flask.palletsprojects.com/en/2.3.x/quickstart/#deploying-to-a-web-server)
+    - [A Minimal Application](/python/flask/user_guide/quickstart#a-minimal-application)
+    - [Debug Mode](/python/flask/user_guide/quickstart#debug-mode)
+    - [HTML Escaping](/python/flask/user_guide/quickstart#html-escaping)
+    - [Routing](/python/flask/user_guide/quickstart#routing)
+    - [Static Files](/python/flask/user_guide/quickstart#static-files)
+    - [Rendering Templates](/python/flask/user_guide/quickstart#rendering-templates)
+    - [Accessing Request Data](/python/flask/user_guide/quickstart#accessing-request-data)
+    - [Redirects and Errors](/python/flask/user_guide/quickstart#redirects-and-errors)
+    - [About Responses](/python/flask/user_guide/quickstart#about-responses)
+    - [Sessions](/python/flask/user_guide/quickstart#sessions)
+    - [Message Flashing](/python/flask/user_guide/quickstart#message-flashing)
+    - [Logging](/python/flask/user_guide/quickstart#logging)
+    - [Hooking in WSGI Middleware](/python/flask/user_guide/quickstart#hooking-in-wsgi-middleware)
+    - [Using Flask Extensions](/python/flask/user_guide/quickstart#using-flask-extensions)
+    - [Deploying to a Web Server](/python/flask/user_guide/quickstart#deploying-to-a-web-server)
 
-- [Tutorial](https://flask.palletsprojects.com/en/2.3.x/tutorial/)
+- [Tutorial](/python/flask/user_guide/tutorial/introduction#tutorial)
 
-    - [Project Layout](https://flask.palletsprojects.com/en/2.3.x/tutorial/layout/)
-    - [Application Setup](https://flask.palletsprojects.com/en/2.3.x/tutorial/factory/)
-    - [Define and Access the Database](https://flask.palletsprojects.com/en/2.3.x/tutorial/database/)
-    - [Blueprints and Views](https://flask.palletsprojects.com/en/2.3.x/tutorial/views/)
-    - [Templates](https://flask.palletsprojects.com/en/2.3.x/tutorial/templates/)
-    - [Static Files](https://flask.palletsprojects.com/en/2.3.x/tutorial/static/)
-    - [Blog Blueprint](https://flask.palletsprojects.com/en/2.3.x/tutorial/blog/)
-    - [Make the Project Installable](https://flask.palletsprojects.com/en/2.3.x/tutorial/install/)
-    - [Test Coverage](https://flask.palletsprojects.com/en/2.3.x/tutorial/tests/)
-    - [Deploy to Production](https://flask.palletsprojects.com/en/2.3.x/tutorial/deploy/)
-    - [Keep Developing!](https://flask.palletsprojects.com/en/2.3.x/tutorial/next/)
+    - [Project Layout](/python/flask/user_guide/tutorial/project_layout#project-layout)
+    - [Application Setup](/python/flask/user_guide/tutorial/app_setup#application-setup)
+    - [Define and Access the Database](/python/flask/user_guide/tutorial/database#define-and-access-the-database)
+    - [Blueprints and Views](/python/flask/user_guide/tutorial/blueprint_view#blueprints-and-views)
+    - [Templates](/python/flask/user_guide/tutorial/template#templates)
+    - [Static Files](/python/flask/user_guide/tutorial/static_file#static-files)
+    - [Blog Blueprint](/python/flask/user_guide/tutorial/blog_blueprint#blog-blueprint)
+    - [Make the Project Installable](/python/flask/user_guide/tutorial/project_install#make-the-project-installable)
+    - [Test Coverage](/python/flask/user_guide/tutorial/test_coverage#test-coverage)
+    - [Deploy to Production](/python/flask/user_guide/tutorial/deploy#deploy-to-production)
+    - [Keep Developing!](/python/flask/user_guide/tutorial/develop#keep-developing)
 
-- [Templates](https://flask.palletsprojects.com/en/2.3.x/templating/)
+- [Templates](/python/flask/user_guide/template#templates)
 
-    - [Jinja Setup](https://flask.palletsprojects.com/en/2.3.x/templating/#jinja-setup)
-    - [Standard Context](https://flask.palletsprojects.com/en/2.3.x/templating/#standard-context)
-    - [Controlling Autoescaping](https://flask.palletsprojects.com/en/2.3.x/templating/#controlling-autoescaping)
-    - [Registering Filters](https://flask.palletsprojects.com/en/2.3.x/templating/#registering-filters)
-    - [Context Processors](https://flask.palletsprojects.com/en/2.3.x/templating/#context-processors)
-    - [Streaming](https://flask.palletsprojects.com/en/2.3.x/templating/#streaming)
+    - [Jinja Setup](/python/flask/user_guide/template#jinja-setup)
+    - [Standard Context](/python/flask/user_guide/template#standard-context)
+    - [Controlling Autoescaping](/python/flask/user_guide/template#controlling-autoescaping)
+    - [Registering Filters](/python/flask/user_guide/template#registering-filters)
+    - [Context Processors](/python/flask/user_guide/template#context-processors)
+    - [Streaming](/python/flask/user_guide/template#streaming)
 
-- [Testing Flask Applications](https://flask.palletsprojects.com/en/2.3.x/testing/)
+- [Testing Flask Applications](/python/flask/user_guide/application#testing-flask-applications)
 
-    - [Identifying Tests](https://flask.palletsprojects.com/en/2.3.x/testing/#identifying-tests)
-    - [Fixtures](https://flask.palletsprojects.com/en/2.3.x/testing/#fixtures)
-    - [Sending Requests with the Test Client](https://flask.palletsprojects.com/en/2.3.x/testing/#sending-requests-with-the-test-client)
-    - [Following Redirects](https://flask.palletsprojects.com/en/2.3.x/testing/#following-redirects)
-    - [Accessing and Modifying the Session](https://flask.palletsprojects.com/en/2.3.x/testing/#accessing-and-modifying-the-session)
-    - [Running Commands with the CLI Runner](https://flask.palletsprojects.com/en/2.3.x/testing/#running-commands-with-the-cli-runner)
-    - [Tests that depend on an Active Context](https://flask.palletsprojects.com/en/2.3.x/testing/#tests-that-depend-on-an-active-context)
+    - [Identifying Tests](/python/flask/user_guide/application#identifying-tests)
+    - [Fixtures](/python/flask/user_guide/application#fixtures)
+    - [Sending Requests with the Test Client](/python/flask/user_guide/application#sending-requests-with-the-test-client)
+    - [Following Redirects](/python/flask/user_guide/application#following-redirects)
+    - [Accessing and Modifying the Session](/python/flask/user_guide/application#accessing-and-modifying-the-session)
+    - [Running Commands with the CLI Runner](/python/flask/user_guide/application#running-commands-with-the-cli-runner)
+    - [Tests that depend on an Active Context](/python/flask/user_guide/application#tests-that-depend-on-an-active-context)
 
-- [Handling Application Errors](https://flask.palletsprojects.com/en/2.3.x/errorhandling/)
+- [Handling Application Errors](/python/flask/user_guide/handle_error#handling-application-errors)
 
-    - [Error Logging Tools](https://flask.palletsprojects.com/en/2.3.x/errorhandling/#error-logging-tools)
-    - [Error Handlers](https://flask.palletsprojects.com/en/2.3.x/errorhandling/#error-handlers)
-    - [Custom Error Pages](https://flask.palletsprojects.com/en/2.3.x/errorhandling/#custom-error-pages)
-    - [Blueprint Error Handlers](https://flask.palletsprojects.com/en/2.3.x/errorhandling/#blueprint-error-handlers)
-    - [Returning API Errors as JSON](https://flask.palletsprojects.com/en/2.3.x/errorhandling/#returning-api-errors-as-json)
-    - [Logging](https://flask.palletsprojects.com/en/2.3.x/errorhandling/#logging)
-    - [Debugging](https://flask.palletsprojects.com/en/2.3.x/errorhandling/#debugging)
+    - [Error Logging Tools](/python/flask/user_guide/handle_error#error-logging-tools)
+    - [Error Handlers](/python/flask/user_guide/handle_error#error-handlers)
+    - [Custom Error Pages](/python/flask/user_guide/handle_error#custom-error-pages)
+    - [Blueprint Error Handlers](/python/flask/user_guide/handle_error#blueprint-error-handlers)
+    - [Returning API Errors as JSON](/python/flask/user_guide/handle_error#returning-api-errors-as-json)
+    - [Logging](/python/flask/user_guide/handle_error#logging)
+    - [Debugging](/python/flask/user_guide/handle_error#debugging)
 
-- [Debugging Application Errors](https://flask.palletsprojects.com/en/2.3.x/debugging/)
+- [Debugging Application Errors](/python/flask/user_guide/debug_error#debugging-application-errors)
 
-    - [In Production](https://flask.palletsprojects.com/en/2.3.x/debugging/#in-production)
-    - [The Built-In Debugger](https://flask.palletsprojects.com/en/2.3.x/debugging/#the-built-in-debugger)
-    - [External Debuggers](https://flask.palletsprojects.com/en/2.3.x/debugging/#external-debuggers)
+    - [In Production](/python/flask/user_guide/debug_error#in-production)
+    - [The Built-In Debugger](/python/flask/user_guide/debug_error#the-built-in-debugger)
+    - [External Debuggers](/python/flask/user_guide/debug_error#external-debuggers)
 
-- [Logging](https://flask.palletsprojects.com/en/2.3.x/logging/)
+- [Logging](/python/flask/user_guide/logging#logging)
 
-    - [Basic Configuration](https://flask.palletsprojects.com/en/2.3.x/logging/#basic-configuration)
-    - [Email Errors to Admins](https://flask.palletsprojects.com/en/2.3.x/logging/#email-errors-to-admins)
-    - [Injecting Request Information](https://flask.palletsprojects.com/en/2.3.x/logging/#injecting-request-information)
-    - [Other Libraries](https://flask.palletsprojects.com/en/2.3.x/logging/#other-libraries)
+    - [Basic Configuration](/python/flask/user_guide/logging#basic-configuration)
+    - [Email Errors to Admins](/python/flask/user_guide/logging#email-errors-to-admins)
+    - [Injecting Request Information](/python/flask/user_guide/logging#injecting-request-information)
+    - [Other Libraries](/python/flask/user_guide/logging#other-libraries)
 
-- [Configuration Handling](https://flask.palletsprojects.com/en/2.3.x/config/)
+- [Configuration Handling](/python/flask/user_guide/configuration#configuration-handling)
 
-    - [Configuration Basics](https://flask.palletsprojects.com/en/2.3.x/config/#configuration-basics)
-    - [Debug Mode](https://flask.palletsprojects.com/en/2.3.x/config/#debug-mode)
-    - [Builtin Configuration Values](https://flask.palletsprojects.com/en/2.3.x/config/#builtin-configuration-values)
-    - [Configuring from Python Files](https://flask.palletsprojects.com/en/2.3.x/config/#configuring-from-python-files)
-    - [Configuring from Data Files](https://flask.palletsprojects.com/en/2.3.x/config/#configuring-from-data-files)
-    - [Configuring from Environment Variables](https://flask.palletsprojects.com/en/2.3.x/config/#configuring-from-environment-variables)
-    - [Configuration Best Practices](https://flask.palletsprojects.com/en/2.3.x/config/#configuration-best-practices)
-    - [Development / Production](https://flask.palletsprojects.com/en/2.3.x/config/#development-production)
-    - [Instance Folders](https://flask.palletsprojects.com/en/2.3.x/config/#instance-folders)
+    - [Configuration Basics](/python/flask/user_guide/configuration#configuration-basics)
+    - [Debug Mode](/python/flask/user_guide/configuration#debug-mode)
+    - [Builtin Configuration Values](/python/flask/user_guide/configuration#builtin-configuration-values)
+    - [Configuring from Python Files](/python/flask/user_guide/configuration#configuring-from-python-files)
+    - [Configuring from Data Files](/python/flask/user_guide/configuration#configuring-from-data-files)
+    - [Configuring from Environment Variables](/python/flask/user_guide/configuration#configuring-from-environment-variables)
+    - [Configuration Best Practices](/python/flask/user_guide/configuration#configuration-best-practices)
+    - [Development / Production](/python/flask/user_guide/configuration#development-production)
+    - [Instance Folders](/python/flask/user_guide/configuration#instance-folders)
 
-- [Signals](https://flask.palletsprojects.com/en/2.3.x/signals/)
+- [Signals](/python/flask/user_guide/signal#signals)
 
-    - [Core Signals](https://flask.palletsprojects.com/en/2.3.x/signals/#core-signals)
-    - [Subscribing to Signals](https://flask.palletsprojects.com/en/2.3.x/signals/#subscribing-to-signals)
-    - [Creating Signals](https://flask.palletsprojects.com/en/2.3.x/signals/#creating-signals)
-    - [Sending Signals](https://flask.palletsprojects.com/en/2.3.x/signals/#sending-signals)
-    - [Signals and Flask’s Request Context](https://flask.palletsprojects.com/en/2.3.x/signals/#signals-and-flask-s-request-context)
-    - [Decorator Based Signal Subscriptions](https://flask.palletsprojects.com/en/2.3.x/signals/#decorator-based-signal-subscriptions)
+    - [Core Signals](/python/flask/user_guide/signal#core-signals)
+    - [Subscribing to Signals](/python/flask/user_guide/signal#subscribing-to-signals)
+    - [Creating Signals](/python/flask/user_guide/signal#creating-signals)
+    - [Sending Signals](/python/flask/user_guide/signal#sending-signals)
+    - [Signals and Flask’s Request Context](/python/flask/user_guide/signal#signals-and-flask-s-request-context)
+    - [Decorator Based Signal Subscriptions](/python/flask/user_guide/signal#decorator-based-signal-subscriptions)
 
-- [Class-based Views](https://flask.palletsprojects.com/en/2.3.x/views/)
+- [Class-based Views](/python/flask/user_guide/view#class-based-views)
 
-    - [Basic Reusable View](https://flask.palletsprojects.com/en/2.3.x/views/#basic-reusable-view)
-    - [URL Variables](https://flask.palletsprojects.com/en/2.3.x/views/#url-variables)
-    - [View Lifetime and self](https://flask.palletsprojects.com/en/2.3.x/views/#view-lifetime-and-self)
-    - [View Decorators](https://flask.palletsprojects.com/en/2.3.x/views/#view-decorators)
-    - [Method Hints](https://flask.palletsprojects.com/en/2.3.x/views/#method-hints)
-    - [Method Dispatching and APIs](https://flask.palletsprojects.com/en/2.3.x/views/#method-dispatching-and-apis)
+    - [Basic Reusable View](/python/flask/user_guide/view#basic-reusable-view)
+    - [URL Variables](/python/flask/user_guide/view#url-variables)
+    - [View Lifetime and self](/python/flask/user_guide/view#view-lifetime-and-self)
+    - [View Decorators](/python/flask/user_guide/view#view-decorators)
+    - [Method Hints](/python/flask/user_guide/view#method-hints)
+    - [Method Dispatching and APIs](/python/flask/user_guide/view#method-dispatching-and-apis)
 
-- [Application Structure and Lifecycle](https://flask.palletsprojects.com/en/2.3.x/lifecycle/)
+- [Application Structure and Lifecycle](/python/flask/user_guide/app_structure#application-structure-and-lifecycle)
 
-    - [Application Setup](https://flask.palletsprojects.com/en/2.3.x/lifecycle/#application-setup)
-    - [Serving the Application](https://flask.palletsprojects.com/en/2.3.x/lifecycle/#serving-the-application)
-    - [How a Request is Handled](https://flask.palletsprojects.com/en/2.3.x/lifecycle/#how-a-request-is-handled)
+    - [Application Setup](/python/flask/user_guide/app_structure#application-setup)
+    - [Serving the Application](/python/flask/user_guide/app_structure#serving-the-application)
+    - [How a Request is Handled](/python/flask/user_guide/app_structure#how-a-request-is-handled)
 
-- [The Application Context](https://flask.palletsprojects.com/en/2.3.x/appcontext/)
+- [The Application Context](/python/flask/user_guide/app_context#the-application-context)
 
-    - [Purpose of the Context](https://flask.palletsprojects.com/en/2.3.x/appcontext/#purpose-of-the-context)
-    - [Lifetime of the Context](https://flask.palletsprojects.com/en/2.3.x/appcontext/#lifetime-of-the-context)
-    - [Manually Push a Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#manually-push-a-context)
-    - [Storing Data](https://flask.palletsprojects.com/en/2.3.x/appcontext/#storing-data)
-    - [Events and Signals](https://flask.palletsprojects.com/en/2.3.x/appcontext/#events-and-signals)
+    - [Purpose of the Context](/python/flask/user_guide/app_context#purpose-of-the-context)
+    - [Lifetime of the Context](/python/flask/user_guide/app_context#lifetime-of-the-context)
+    - [Manually Push a Context](/python/flask/user_guide/app_context#manually-push-a-context)
+    - [Storing Data](/python/flask/user_guide/app_context#storing-data)
+    - [Events and Signals](/python/flask/user_guide/app_context#events-and-signals)
 
-- [The Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/)
+- [The Request Context](/python/flask/user_guide/request_context#the-request-context)
 
-    - [Purpose of the Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#purpose-of-the-context)
-    - [Lifetime of the Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#lifetime-of-the-context)
-    - [Manually Push a Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#manually-push-a-context)
-    - [How the Context Works](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#how-the-context-works)
-    - [Callbacks and Errors](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#callbacks-and-errors)
-    - [Notes On Proxies](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#notes-on-proxies)
+    - [Purpose of the Context](/python/flask/user_guide/request_context#purpose-of-the-context)
+    - [Lifetime of the Context](/python/flask/user_guide/request_context#lifetime-of-the-context)
+    - [Manually Push a Context](/python/flask/user_guide/request_context#manually-push-a-context)
+    - [How the Context Works](/python/flask/user_guide/request_context#how-the-context-works)
+    - [Callbacks and Errors](/python/flask/user_guide/request_context#callbacks-and-errors)
+    - [Notes On Proxies](/python/flask/user_guide/request_context#notes-on-proxies)
 
-- [Modular Applications with Blueprints](https://flask.palletsprojects.com/en/2.3.x/blueprints/)
+- [Modular Applications with Blueprints](/python/flask/user_guide/blueprint#modular-applications-with-blueprints)
 
-    - [Why Blueprints?](https://flask.palletsprojects.com/en/2.3.x/blueprints/#why-blueprints)
-    - [The Concept of Blueprints](https://flask.palletsprojects.com/en/2.3.x/blueprints/#the-concept-of-blueprints)
-    - [My First Blueprint](https://flask.palletsprojects.com/en/2.3.x/blueprints/#my-first-blueprint)
-    - [Registering Blueprints](https://flask.palletsprojects.com/en/2.3.x/blueprints/#registering-blueprints)
-    - [Nesting Blueprints](https://flask.palletsprojects.com/en/2.3.x/blueprints/#nesting-blueprints)
-    - [Blueprint Resources](https://flask.palletsprojects.com/en/2.3.x/blueprints/#blueprint-resources)
-    - [Building URLs](https://flask.palletsprojects.com/en/2.3.x/blueprints/#building-urls)
-    - [Blueprint Error Handlers](https://flask.palletsprojects.com/en/2.3.x/blueprints/#blueprint-error-handlers)
+    - [Why Blueprints?](/python/flask/user_guide/blueprint#why-blueprints)
+    - [The Concept of Blueprints](/python/flask/user_guide/blueprint#the-concept-of-blueprints)
+    - [My First Blueprint](/python/flask/user_guide/blueprint#my-first-blueprint)
+    - [Registering Blueprints](/python/flask/user_guide/blueprint#registering-blueprints)
+    - [Nesting Blueprints](/python/flask/user_guide/blueprint#nesting-blueprints)
+    - [Blueprint Resources](/python/flask/user_guide/blueprint#blueprint-resources)
+    - [Building URLs](/python/flask/user_guide/blueprint#building-urls)
+    - [Blueprint Error Handlers](/python/flask/user_guide/blueprint#blueprint-error-handlers)
 
-- [Extensions](https://flask.palletsprojects.com/en/2.3.x/extensions/)
+- [Extensions](/python/flask/user_guide/extension#extensions)
 
-    - [Finding Extensions](https://flask.palletsprojects.com/en/2.3.x/extensions/#finding-extensions)
-    - [Using Extensions](https://flask.palletsprojects.com/en/2.3.x/extensions/#using-extensions)
-    - [Building Extensions](https://flask.palletsprojects.com/en/2.3.x/extensions/#building-extensions)
+    - [Finding Extensions](/python/flask/user_guide/extension#finding-extensions)
+    - [Using Extensions](/python/flask/user_guide/extension#using-extensions)
+    - [Building Extensions](/python/flask/user_guide/extension#building-extensions)
 
-- [Command Line Interface](https://flask.palletsprojects.com/en/2.3.x/cli/)
+- [Command Line Interface](/python/flask/user_guide/cmd_interface#command-line-interface)
 
-    - [Application Discovery](https://flask.palletsprojects.com/en/2.3.x/cli/#application-discovery)
-    - [Run the Development Server](https://flask.palletsprojects.com/en/2.3.x/cli/#run-the-development-server)
-    - [Open a Shell](https://flask.palletsprojects.com/en/2.3.x/cli/#open-a-shell)
-    - [Environment Variables From dotenv](https://flask.palletsprojects.com/en/2.3.x/cli/#environment-variables-from-dotenv)
-    - [Environment Variables From virtualenv](https://flask.palletsprojects.com/en/2.3.x/cli/#environment-variables-from-virtualenv)
-    - [Custom Commands](https://flask.palletsprojects.com/en/2.3.x/cli/#custom-commands)
-    - [Plugins](https://flask.palletsprojects.com/en/2.3.x/cli/#plugins)
-    - [Custom Scripts](https://flask.palletsprojects.com/en/2.3.x/cli/#custom-scripts)
-    - [PyCharm Integration](https://flask.palletsprojects.com/en/2.3.x/cli/#pycharm-integration)
+    - [Application Discovery](/python/flask/user_guide/cmd_interface#application-discovery)
+    - [Run the Development Server](/python/flask/user_guide/cmd_interface#run-the-development-server)
+    - [Open a Shell](/python/flask/user_guide/cmd_interface#open-a-shell)
+    - [Environment Variables From dotenv](/python/flask/user_guide/cmd_interface#environment-variables-from-dotenv)
+    - [Environment Variables From virtualenv](/python/flask/user_guide/cmd_interface#environment-variables-from-virtualenv)
+    - [Custom Commands](/python/flask/user_guide/cmd_interface#custom-commands)
+    - [Plugins](/python/flask/user_guide/cmd_interface#plugins)
+    - [Custom Scripts](/python/flask/user_guide/cmd_interface#custom-scripts)
+    - [PyCharm Integration](/python/flask/user_guide/cmd_interface#pycharm-integration)
 
-- [Development Server](https://flask.palletsprojects.com/en/2.3.x/server/)
+- [Development Server](/python/flask/user_guide/develop_server#development-server)
 
-    - [Command Line](https://flask.palletsprojects.com/en/2.3.x/server/#command-line)
-    - [In Code](https://flask.palletsprojects.com/en/2.3.x/server/#in-code)
+    - [Command Line](/python/flask/user_guide/develop_server#command-line)
+    - [In Code](/python/flask/user_guide/develop_server#in-code)
 
-- [Working with the Shell](https://flask.palletsprojects.com/en/2.3.x/shell/)
+- [Working with the Shell](/python/flask/user_guide/shell#working-with-the-shell)
 
-    - [Command Line Interface](https://flask.palletsprojects.com/en/2.3.x/shell/#command-line-interface)
-    - [Creating a Request Context](https://flask.palletsprojects.com/en/2.3.x/shell/#creating-a-request-context)
-    - [Firing Before/After Request](https://flask.palletsprojects.com/en/2.3.x/shell/#firing-before-after-request)
-    - [Further Improving the Shell Experience](https://flask.palletsprojects.com/en/2.3.x/shell/#further-improving-the-shell-experience)
+    - [Command Line Interface](/python/flask/user_guide/shell#command-line-interface)
+    - [Creating a Request Context](/python/flask/user_guide/shell#creating-a-request-context)
+    - [Firing Before/After Request](/python/flask/user_guide/shell#firing-before-after-request)
+    - [Further Improving the Shell Experience](/python/flask/user_guide/shell#further-improving-the-shell-experience)
 
-- [Patterns for Flask](https://flask.palletsprojects.com/en/2.3.x/patterns/)
+- [Patterns for Flask](/python/flask/user_guide/pattern/#patterns-for-flask)
 
-    - [Large Applications as Packages](https://flask.palletsprojects.com/en/2.3.x/patterns/packages/)
-    - [Application Factories](https://flask.palletsprojects.com/en/2.3.x/patterns/appfactories/)
-    - [Application Dispatching](https://flask.palletsprojects.com/en/2.3.x/patterns/appdispatch/)
-    - [Using URL Processors](https://flask.palletsprojects.com/en/2.3.x/patterns/urlprocessors/)
-    - [Using SQLite 3 with Flask](https://flask.palletsprojects.com/en/2.3.x/patterns/sqlite3/)
-    - [SQLAlchemy in Flask](https://flask.palletsprojects.com/en/2.3.x/patterns/sqlalchemy/)
-    - [Uploading Files](https://flask.palletsprojects.com/en/2.3.x/patterns/fileuploads/)
-    - [Caching](https://flask.palletsprojects.com/en/2.3.x/patterns/caching/)
-    - [View Decorators](https://flask.palletsprojects.com/en/2.3.x/patterns/viewdecorators/)
-    - [Form Validation with WTForms](https://flask.palletsprojects.com/en/2.3.x/patterns/wtforms/)
-    - [Template Inheritance](https://flask.palletsprojects.com/en/2.3.x/patterns/templateinheritance/)
-    - [Message Flashing](https://flask.palletsprojects.com/en/2.3.x/patterns/flashing/)
-    - [JavaScript, fetch, and JSON](https://flask.palletsprojects.com/en/2.3.x/patterns/javascript/)
-    - [Lazily Loading Views](https://flask.palletsprojects.com/en/2.3.x/patterns/lazyloading/)
-    - [MongoDB with MongoEngine](https://flask.palletsprojects.com/en/2.3.x/patterns/mongoengine/)
-    - [Adding a favicon](https://flask.palletsprojects.com/en/2.3.x/patterns/favicon/)
-    - [Streaming Contents](https://flask.palletsprojects.com/en/2.3.x/patterns/streaming/)
-    - [Deferred Request Callbacks](https://flask.palletsprojects.com/en/2.3.x/patterns/deferredcallbacks/)
-    - [Adding HTTP Method Overrides](https://flask.palletsprojects.com/en/2.3.x/patterns/methodoverrides/)
-    - [Request Content Checksums](https://flask.palletsprojects.com/en/2.3.x/patterns/requestchecksum/)
-    - [Background Tasks with Celery](https://flask.palletsprojects.com/en/2.3.x/patterns/celery/)
-    - [Subclassing Flask](https://flask.palletsprojects.com/en/2.3.x/patterns/subclassing/)
-    - [Single-Page Applications](https://flask.palletsprojects.com/en/2.3.x/patterns/singlepageapplications/)
+    - [Large Applications as Packages](/python/flask/user_guide/pattern/large_app#large-applications-as-packages)
+    - [Application Factories](/python/flask/user_guide/pattern/app_factories#application-factories)
+    - [Application Dispatching](/python/flask/user_guide/pattern/app_dispatch#application-dispatching)
+    - [Using URL Processors](/python/flask/user_guide/pattern/use_url#using-url-processors)
+    - [Using SQLite 3 with Flask](/python/flask/user_guide/pattern/sqlite3#using-sqlite-3-with-flask)
+    - [SQLAlchemy in Flask](/python/flask/user_guide/pattern/sqlalchemy#sqlalchemy-in-flask)
+    - [Uploading Files](/python/flask/user_guide/pattern/upload_file#uploading-files)
+    - [Caching](/python/flask/user_guide/pattern/caching#caching)
+    - [View Decorators](/python/flask/user_guide/pattern/view_decorator#view-decorators)
+    - [Form Validation with WTForms](/python/flask/user_guide/pattern/wtform#form-validation-with-wtforms)
+    - [Template Inheritance](/python/flask/user_guide/pattern/template_inheritance#template-inheritance)
+    - [Message Flashing](/python/flask/user_guide/pattern/flash#message-flashing)
+    - [JavaScript, fetch, and JSON](/python/flask/user_guide/pattern/javascript#javascript-fetch-and-json)
+    - [Lazily Loading Views](/python/flask/user_guide/pattern/load_view#lazily-loading-views)
+    - [MongoDB with MongoEngine](/python/flask/user_guide/pattern/mongdb#mongodb-with-mongoengine)
+    - [Adding a favicon](/python/flask/user_guide/pattern/favicon#adding-a-favicon)
+    - [Streaming Contents](/python/flask/user_guide/pattern/stream_content#streaming-contents)
+    - [Deferred Request Callbacks](/python/flask/user_guide/pattern/request_callback#deferred-request-callbacks)
+    - [Adding HTTP Method Overrides](/python/flask/user_guide/pattern/add_http#adding-http-method-overrides)
+    - [Request Content Checksums](/python/flask/user_guide/pattern/checksum#request-content-checksums)
+    - [Background Tasks with Celery](/python/flask/user_guide/pattern/celery#background-tasks-with-celery)
+    - [Subclassing Flask](/python/flask/user_guide/pattern/subclass_flask#subclassing-flask)
+    - [Single-Page Applications](/python/flask/user_guide/pattern/single_page#single-page-applications)
 
-- [Security Considerations](https://flask.palletsprojects.com/en/2.3.x/security/)
+- [Security Considerations](/python/flask/user_guide/security#security-considerations)
 
-    - [Cross-Site Scripting (XSS)](https://flask.palletsprojects.com/en/2.3.x/security/#cross-site-scripting-xss)
-    - [Cross-Site Request Forgery (CSRF)](https://flask.palletsprojects.com/en/2.3.x/security/#cross-site-request-forgery-csrf)
-    - [JSON Security](https://flask.palletsprojects.com/en/2.3.x/security/#json-security)
-    - [Security Headers](https://flask.palletsprojects.com/en/2.3.x/security/#security-headers)
-    - [Copy/Paste to Terminal](https://flask.palletsprojects.com/en/2.3.x/security/#copy-paste-to-terminal)
+    - [Cross-Site Scripting (XSS)](/python/flask/user_guide/security#cross-site-scripting-xss)
+    - [Cross-Site Request Forgery (CSRF)](/python/flask/user_guide/security#cross-site-request-forgery-csrf)
+    - [JSON Security](/python/flask/user_guide/security#json-security)
+    - [Security Headers](/python/flask/user_guide/security#security-headers)
+    - [Copy/Paste to Terminal](/python/flask/user_guide/security#copy-paste-to-terminal)
 
-- [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/)
+- [Deploying to Production](/python/flask/user_guide/deploy#deploying-to-production)
 
-    - [Self-Hosted Options](https://flask.palletsprojects.com/en/2.3.x/deploying/#self-hosted-options)
-    - [Hosting Platforms](https://flask.palletsprojects.com/en/2.3.x/deploying/#hosting-platforms)
+    - [Self-Hosted Options](/python/flask/user_guide/deploy#self-hosted-options)
+    - [Hosting Platforms](/python/flask/user_guide/deploy#hosting-platforms)
 
-- [Using async and await](https://flask.palletsprojects.com/en/2.3.x/async-await/)
+- [Using async and await](/python/flask/user_guide/async#using-async-and-await)
 
-    - [Performance](https://flask.palletsprojects.com/en/2.3.x/async-await/#performance)
-    - [Background tasks](https://flask.palletsprojects.com/en/2.3.x/async-await/#background-tasks)
-    - [When to use Quart instead](https://flask.palletsprojects.com/en/2.3.x/async-await/#when-to-use-quart-instead)
-    - [Extensions](https://flask.palletsprojects.com/en/2.3.x/async-await/#extensions)
-    - [Other event loops](https://flask.palletsprojects.com/en/2.3.x/async-await/#other-event-loops)
+    - [Performance](/python/flask/user_guide/async#performance)
+    - [Background tasks](/python/flask/user_guide/async#background-tasks)
+    - [When to use Quart instead](/python/flask/user_guide/async#when-to-use-quart-instead)
+    - [Extensions](/python/flask/user_guide/async#extensions)
+    - [Other event loops](/python/flask/user_guide/async#other-event-loops)
 
-## API Reference
+## API Reference {#api-reference}
 
 If you are looking for information on a specific function, class or method, this part of the documentation is for you.
 
-- API
+- [API](/python/flask/api_reference/app_obj#api)
 
-    - Application Object
-    - Blueprint Objects
-    - Incoming Request Data
-    - Response Objects
-    - Sessions
-    - Session Interface
-    - Test Client
-    - Test CLI Runner
-    - Application Globals
-    - Useful Functions and Classes
-    - Message Flashing
-    - JSON Support
-    - Template Rendering
-    - Configuration
-    - Stream Helpers
-    - Useful Internals
-    - Signals
-    - Class-Based Views
-    - URL Route Registrations
-    - View Function Options
-    - Command Line Interface
+    - [Application Object](/python/flask/api_reference/app_obj#application-object)
+    - [Blueprint Objects](/python/flask/api_reference/blueprint_obj#blueprint-objects)
+    - [Incoming Request Data](/python/flask/api_reference/request_data#incoming-request-data)
+    - [Response Objects](/python/flask/api_reference/response_obj#response-objects)
+    - [Sessions](/python/flask/api_reference/session#session‘？)
+    - [Session Interface](/python/flask/api_reference/session_interface#session-interface)
+    - [Test Client](/python/flask/api_reference/test_client#test-client)
+    - [Test CLI Runner](/python/flask/api_reference/test_cli#test-cli-runner)
+    - [Application Globals](/python/flask/api_reference/app_global#application-globals)
+    - [Useful Functions and Classes](/python/flask/api_reference/function_class#useful-functions-and-classes)
+    - [Message Flashing](/python/flask/api_reference/message_flash#message-flashing)
+    - [JSON Support](/python/flask/api_reference/json_support#json-support)
+    - [Template Rendering](/python/flask/api_reference/template_render#template-rendering)
+    - [Configuration](/python/flask/api_reference/config#configuration)
+    - [Stream Helpers](/python/flask/api_reference/stream_help#stream-helpers)
+    - [Useful Internals](/python/flask/api_reference/useful_internal#useful-internals)
+    - [Signals](/python/flask/api_reference/signal#signals)
+    - [Class-Based Views](/python/flask/api_reference/view#class-based-views)
+    - [URL Route Registrations](/python/flask/api_reference/url_route#url-route-registrations)
+    - [View Function Options](/python/flask/api_reference/view_function#view-function-options)
+    - [Command Line Interface](/python/flask/api_reference/cmd_line#command-line-interface)
 
-## Additional Notes
+## Additional Notes {#additional-notes}
 
-- Design Decisions in Flask
+- [Design Decisions in Flask](/python/flask/additional_note/design_decision#design-decisions-in-flask)
 
-    - The Explicit Application Object
-    - The Routing System
-    - One Template Engine
-    - What does “micro” mean?
-    - Thread Locals
-    - Async/await and ASGI support
-    - What Flask is, What Flask is Not
+    - [The Explicit Application Object](/python/flask/additional_note/design_decision#the-explicit-application-object)
+    - [The Routing System](/python/flask/additional_note/design_decision#the-routing-system)
+    - [One Template Engine](/python/flask/additional_note/design_decision#one-template-engine)
+    - [What does “micro” mean?](/python/flask/additional_note/design_decision#what-does-micro-mean)
+    - [Thread Locals](/python/flask/additional_note/design_decision#thread-locals)
+    - [Async/await and ASGI support](/python/flask/additional_note/design_decision#async-await-and-asgi-support)
+    - [What Flask is, What Flask is Not](/python/flask/additional_note/design_decision#what-flask-is-what-flask-is-not)
 
-- Flask Extension Development
+- [Flask Extension Development](/python/flask/additional_note/flask_extension#flask-extension-development)
 
-    - Naming
-    - The Extension Class and Initialization
-    - Adding Behavior
-    - Configuration Techniques
-    - Data During a Request
-    - Views and Models
-    - Recommended Extension Guidelines
+    - [Naming](/python/flask/additional_note/flask_extension#naming)
+    - [The Extension Class and Initialization](/python/flask/additional_note/flask_extension#the-extension-class-and-initialization)
+    - [Adding Behavior](/python/flask/additional_note/flask_extension#adding-behavior)
+    - [Configuration Techniques](/python/flask/additional_note/flask_extension#configuration-techniques)
+    - [Data During a Request](/python/flask/additional_note/flask_extension#data-during-a-request)
+    - [Views and Models](/python/flask/additional_note/flask_extension#views-and-models)
+    - [Recommended Extension Guidelines](/python/flask/additional_note/flask_extension#recommended-extension-guidelines)
 
-- How to contribute to Flask
+- [How to contribute to Flask](/python/flask/additional_note/contribute#how-to-contribute-to-flask)
 
-    - Support questions
-    - Reporting issues
-    - Submitting patches
-    - BSD-3-Clause License
+    - [Support questions](/python/flask/additional_note/contribute#support-questions)
+    - [Reporting issues](/python/flask/additional_note/contribute#reporting-issues)
+    - [Submitting patches](/python/flask/additional_note/contribute#submitting-patches)
 
-- Changes
+- [BSD-3-Clause License](/python/flask/additional_note/license#bsd-3-clause-license)
+
+- [Changes](/python/flask/additional_note/change#changes)

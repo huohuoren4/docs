@@ -1,10 +1,10 @@
-# Templates
+# Templates {#templates}
 
 Flask leverages Jinja2 as its template engine. You are obviously free to use a different template engine, but you still have to install Jinja2 to run Flask itself. This requirement is necessary to enable rich extensions. An extension can depend on Jinja2 being present.
 
 This section only gives a very quick introduction into how Jinja2 is integrated into Flask. If you want information on the template engine’s syntax itself, head over to the [official Jinja2 Template Documentation](https://jinja.palletsprojects.com/templates/) for more information.
 
-## Jinja Setup
+## Jinja Setup {#jinja-setup}
 
 Unless customized, Jinja2 is configured by Flask as follows:
 
@@ -16,11 +16,11 @@ Unless customized, Jinja2 is configured by Flask as follows:
 
 - Flask inserts a couple of global functions and helpers into the Jinja2 context, additionally to the values that are present by default.
 
-## Standard Context
+## Standard Context {#standard-context}
 
 The following global variables are available within Jinja2 templates by default:
 
-### config
+### config {#config}
 
 The current configuration object ([flask.Flask.config](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.config))
 
@@ -30,23 +30,23 @@ Changed in version 0.10: This is now always available, even in imported template
 New in version 0.6.
 :::
 
-### request
+### request {#request}
 
 The current request object ([flask.request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request)). This variable is unavailable if the template was rendered without an active request context.
 
-### session
+### session {#session}
 
 The current session object ([flask.session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session)). This variable is unavailable if the template was rendered without an active request context.
 
-### g
+### g {#g}
 
 The request-bound object for global variables ([flask.g](https://flask.palletsprojects.com/en/2.3.x/api/#flask.g)). This variable is unavailable if the template was rendered without an active request context.
 
-### url_for()
+### url_for() {#url-for}
 
 The [flask.url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for) function.
 
-### get_flashed_messages()
+### get_flashed_messages() {#get-flashed-messages}
 
 The [flask.get_flashed_messages()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.get_flashed_messages) function.
 
@@ -66,7 +66,7 @@ Importing with context looks like this:
 ```
 :::
 
-## Controlling Autoescaping
+## Controlling Autoescaping {#controlling-autoescaping}
 
 Autoescaping is the concept of automatically escaping special characters for you. Special characters in the sense of HTML (or XML, and thus XHTML) are `&`, `>`, `<`, `"` as well as `'`. Because these characters carry specific meanings in documents on their own you have to replace them by so called “entities” if you want to use them for text. Not doing so would not only cause user frustration by the inability to use these characters in text, but can also lead to security problems. (see [Cross-Site Scripting (XSS)](https://flask.palletsprojects.com/en/2.3.x/security/#security-xss))
 
@@ -91,7 +91,7 @@ To disable the autoescape system in templates, you can use the `{% autoescape %}
 
 Whenever you do this, please be very cautious about the variables you are using in this block.
 
-## Registering Filters
+## Registering Filters {#registering-filters}
 
 If you want to register your own filters in Jinja2 you have two ways to do that. You can either put them by hand into the [jinja_env](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.jinja_env) of the application or use the [template_filter()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.template_filter) decorator.
 
@@ -114,7 +114,7 @@ In case of the decorator the argument is optional if you want to use the functio
 {% endfor %}
 ```
 
-## Context Processors
+## Context Processors {#context-processors}
 
 To inject new variables automatically into the context of a template, context processors exist in Flask. Context processors run before the template is rendered and have the ability to inject new values into the template context. A context processor is a function that returns a dictionary. The keys and values of this dictionary are then merged with the template context, for all templates in the app:
 
@@ -144,7 +144,7 @@ The context processor above makes the `format_price` function available to all t
 
 You could also build `format_price` as a template filter (see [Registering Filters](https://flask.palletsprojects.com/en/2.3.x/templating/#registering-filters)), but this demonstrates how to pass functions in a context processor.
 
-## Streaming
+## Streaming {#streaming}
 
 It can be useful to not render the whole template as one complete string, instead render it as a stream, yielding smaller incremental strings. This can be used for streaming HTML in chunks to speed up initial page load, or to save memory when rendering a very large template.
 

@@ -105,7 +105,7 @@ Try to always pick a good sender. If you have a class that is emitting a signal,
 Never pass [current_app](https://flask.palletsprojects.com/en/2.3.x/api/#flask.current_app) as sender to a signal. Use `current_app._get_current_object()` instead. The reason for this is that [current_app](https://flask.palletsprojects.com/en/2.3.x/api/#flask.current_app) is a proxy and not the real application object.
 :::
 
-## Signals and Flask’s Request Context
+## Signals and Flask's Request Context
 
 Signals fully support [The Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/) when receiving signals. Context-local variables are consistently available between [request_started](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_started) and [request_finished](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_finished), so you can rely on [flask.g](https://flask.palletsprojects.com/en/2.3.x/api/#flask.g) and others as needed. Note the limitations described in [Sending Signals](https://flask.palletsprojects.com/en/2.3.x/signals/#signals-sending) and the [request_tearing_down](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_tearing_down) signal.
 

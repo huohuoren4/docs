@@ -1,8 +1,8 @@
-# Blueprints and Views
+# Blueprints and Views {#blueprints-and-views}
 
 A view function is the code you write to respond to requests to your application. Flask uses patterns to match the incoming request URL to the view that should handle it. The view returns data that Flask turns into an outgoing response. Flask can also go the other direction and generate a URL to a view based on its name and arguments.
 
-## Create a Blueprint
+## Create a Blueprint {#create-a-blueprint}
 
 A [Blueprint](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint) is a way to organize a group of related views and other code. Rather than registering views and other code directly with an application, they are registered with a blueprint. Then the blueprint is registered with the application when it is available in the factory function.
 
@@ -40,7 +40,7 @@ def create_app():
 
 The authentication blueprint will have views to register new users and to log in and log out.
 
-## The First View: Register
+## The First View: Register {#the-first-view-register}
 
 When the user visits the `/auth/register` URL, the `register` view will return [HTML](https://developer.mozilla.org/docs/Web/HTML) with a form for them to fill out. When they submit the form, it will validate their input and either show the form again with an error message or create the new user and go to the login page.
 
@@ -103,7 +103,7 @@ Here’s what the `register` view function is doing:
 8. When the user initially navigates to `auth/register`, or there was a validation error, an HTML page with the registration form should be shown. [render_template()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.render_template) will render a template containing the HTML, which you’ll write in the next step of the tutorial.
 
 
-## Login
+## Login {#login}
 
 This view follows the same pattern as the `register` view above.
 
@@ -161,7 +161,7 @@ def load_logged_in_user():
 
 [bp.before_app_request()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint.before_app_request) registers a function that runs before the view function, no matter what URL is requested. `load_logged_in_user` checks if a user id is stored in the [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session) and gets that user’s data from the database, storing it on [g.user](https://flask.palletsprojects.com/en/2.3.x/api/#flask.g), which lasts for the length of the request. If there is no user id, or if the id doesn’t exist, `g.user` will be `None`.
 
-## Logout
+## Logout {#logout}
 
 To log out, you need to remove the user id from the [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session). Then `load_logged_in_user` won’t load a user on subsequent requests.
 
@@ -173,7 +173,7 @@ def logout():
     return redirect(url_for('index'))
 ```
 
-## Require Authentication in Other Views
+## Require Authentication in Other Views {#require-authentication-in-other-views}
 
 Creating, editing, and deleting blog posts will require a user to be logged in. A decorator can be used to check this for each view it’s applied to.
 
@@ -192,7 +192,7 @@ def login_required(view):
 
 This decorator returns a new view function that wraps the original view it’s applied to. The new function checks if a user is loaded and redirects to the login page otherwise. If a user is loaded the original view is called and continues normally. You’ll use this decorator when writing the blog views.
 
-## Endpoints and URLs
+## Endpoints and URLs {#endpoints-and-urls}
 
 The [url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for) function generates the URL to a view based on a name and arguments. The name associated with a view is also called the endpoint, and by default it’s the same as the name of the view function.
 

@@ -1,10 +1,10 @@
-# Blog Blueprint
+# Blog Blueprint {#blog-blueprint}
 
 You’ll use the same techniques you learned about when writing the authentication blueprint to write the blog blueprint. The blog should list all posts, allow logged in users to create posts, and allow the author of a post to edit or delete it.
 
 As you implement each view, keep the development server running. As you save your changes, try going to the URL in your browser and testing them out.
 
-## The Blueprint
+## The Blueprint {#the-blueprint}
 
 Define the blueprint and register it in the application factory.
 
@@ -42,7 +42,7 @@ However, the endpoint for the `index` view defined below will be `blog.index`. S
 
 In another application you might give the blog blueprint a `url_prefix` and define a separate `index` view in the application factory, similar to the `hello` view. Then the index and `blog.index` endpoints and URLs would be different.
 
-## Index
+## Index {#index}
 
 The index will show all of the posts, most recent first. A `JOIN` is used so that the author information from the `user` table is available in the result.
 
@@ -93,7 +93,7 @@ def index():
 
 When a user is logged in, the `header` block adds a link to the `create` view. When the user is the author of a post, they’ll see an “Edit” link to the `update` view for that post. `loop.last` is a special variable available inside [Jinja for loops](https://jinja.palletsprojects.com/templates/#for). It’s used to display a line after each post except the last one, to visually separate them.
 
-## Create
+## Create {#create}
 
 The `create` view works the same as the auth `register` view. Either the form is displayed, or the posted data is validated and the post is added to the database or an error is shown.
 
@@ -146,7 +146,7 @@ def create():
 {% endblock %}
 ```
 
-## Update
+## Update {#update}
 
 Both the `update` and `delete` views will need to fetch a `post` by id and check if the author matches the logged in user. To avoid duplicating code, you can write a function to get the `post` and call it from each view.
 
@@ -235,7 +235,7 @@ This template has two forms. The first posts the edited data to the current page
 
 The pattern `\{\{ request.form['title'] or post['title'] \}\}` is used to choose what data appears in the form. When the form hasn’t been submitted, the original `post` data appears, but if invalid form data was posted you want to display that so the user can fix the error, so `request.form` is used instead. [request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request) is another variable that’s automatically available in templates.
 
-## Delete
+## Delete {#delete}
 
 The delete view doesn’t have its own template, the delete button is part of `update.html` and posts to the `/<id>/delete` URL. Since there is no template, it will only handle the `POST` method and then redirect to the `index` view.
 

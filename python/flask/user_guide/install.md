@@ -1,10 +1,10 @@
-# Installation
+# Installation {#installation}
 
-## Python Version
+## Python Version {#python-version}
 
 We recommend using the latest version of Python. Flask supports Python 3.8 and newer.
 
-## Dependencies
+## Dependencies {/python/flask/user_guide/install#dependencies}
 
 These distributions will be installed automatically when installing Flask.
 
@@ -18,23 +18,23 @@ These distributions will be installed automatically when installing Flask.
 
 - [Click](https://palletsprojects.com/p/click/) is a framework for writing command line applications. It provides the `flask` command and allows adding custom management commands.
 
-- [Blinker](https://blinker.readthedocs.io/) provides support for [Signals](https://flask.palletsprojects.com/en/2.3.x/signals/).
+- [Blinker](https://blinker.readthedocs.io/) provides support for [Signals](/python/flask/user_guide/signal#signals).
 
-### Optional dependencies
+### Optional dependencies {#optional-dependencies}
 
 These distributions will not be installed automatically. Flask will detect and use them if you install them.
 
-- [python-dotenv](https://github.com/theskumar/python-dotenv#readme) enables support for [Environment Variables From dotenv](https://flask.palletsprojects.com/en/2.3.x/cli/#dotenv) when running `flask` commands.
+- [python-dotenv](https://github.com/theskumar/python-dotenv#readme) enables support for [Environment Variables From dotenv](/python/flask/user_guide/cmd_interface#environment-variables-from-dotenv) when running `flask` commands.
 
 - [Watchdog](https://pythonhosted.org/watchdog/) provides a faster, more efficient reloader for the development server.
 
-### greenlet
+### greenlet {#greenlet}
 
 You may choose to use gevent or eventlet with your application. In this case, greenlet>=1.0 is required. When using PyPy, PyPy>=7.3.7 is required.
 
 These are not minimum supported versions, they only indicate the first versions that added necessary features. You should use the latest versions of each.
 
-## Virtual environments
+## Virtual environments {#virtual-environments}
 
 Use a virtual environment to manage the dependencies for your project, both in development and in production.
 
@@ -44,7 +44,7 @@ Virtual environments are independent groups of Python libraries, one for each pr
 
 Python comes bundled with the [venv](https://docs.python.org/3/library/venv.html#module-venv) module to create virtual environments.
 
-### Create an environment
+### Create an environment {#create-an-environment}
 
 Create a project folder and a `.venv` folder within:
 
@@ -62,7 +62,7 @@ $ python3 -m venv .venv
 ```
 ::::
 
-### Activate the environment
+### Activate the environment {#activate-the-environment}
 
 Before you work on your project, activate the corresponding environment:
 
@@ -78,7 +78,7 @@ $ . .venv/bin/activate
 
 Your shell prompt will change to show the name of the activated environment.
 
-## Install Flask
+## Install Flask {#install-flask}
 
 Within the activated environment, use the following command to install Flask:
 
@@ -86,4 +86,4 @@ Within the activated environment, use the following command to install Flask:
 $ pip install Flask
 ```
 
-Flask is now installed. Check out the [Quickstart](https://flask.palletsprojects.com/en/2.3.x/quickstart/) or go to the [Documentation Overview](https://flask.palletsprojects.com/en/2.3.x/).
+Flask is now installed. Check out the [Quickstart](/python/flask/user_guide/quickstart#quickstart) or go to the [Documentation Overview](/python/flask/home#flask).

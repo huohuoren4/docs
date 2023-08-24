@@ -1,4 +1,4 @@
-# Testing Flask Applications
+# Testing Flask Applications {#testing-flask-applications}
 
 Flask provides utilities for testing an application. This documentation goes over techniques for working with different parts of the application in tests.
 
@@ -10,13 +10,13 @@ $ pip install pytest
 
 The [tutorial](https://flask.palletsprojects.com/en/2.3.x/tutorial/) goes over how to write tests for 100% coverage of the sample Flaskr blog application. See [the tutorial on tests](https://flask.palletsprojects.com/en/2.3.x/tutorial/tests/) for a detailed explanation of specific tests for an application.
 
-## Identifying Tests
+## Identifying Tests {#identifying-tests}
 
 Tests are typically located in the `tests` folder. Tests are functions that start with `test_`, in Python modules that start with `test_`. Tests can also be further grouped in classes that start with `Test`.
 
 It can be difficult to know what to test. Generally, try to test the code that you write, not the code of libraries that you use, since they are already tested. Try to extract complex behaviors as separate functions to test individually.
 
-## Fixtures
+## Fixtures {#fixtures}
 
 Pytest `fixtures` allow writing pieces of code that are reusable across tests. A simple fixture returns a value, but a fixture can also do setup, yield a value, then do teardown. Fixtures for the application, test client, and CLI runner are shown below, they can be placed in `tests/conftest.py`.
 
@@ -52,7 +52,7 @@ def runner(app):
     return app.test_cli_runner()
 ```
 
-## Sending Requests with the Test Client
+## Sending Requests with the Test Client {#sending-requests-with-the-test-client}
 
 The test client makes requests to the application without running a live server. Flask’s client extends [Werkzeug’s client](https://werkzeug.palletsprojects.com/en/2.3.x/test/), see those docs for additional information.
 
@@ -70,7 +70,7 @@ Pass a dict `query_string={"key": "value", ...}` to set arguments in the query s
 
 To send a request body in a POST or PUT request, pass a value to `data`. If raw bytes are passed, that exact body is used. Usually, you’ll pass a dict to set form data.
 
-### Form Data
+### Form Data {#form-data}
 
 To send form data, pass a dict to `data`. The `Content-Type` header will be set to `multipart/form-data` or `application/x-www-form-urlencoded` automatically.
 
@@ -93,7 +93,7 @@ def test_edit_user(client):
     assert response.status_code == 200
 ```
 
-### JSON Data
+### JSON Data {#json-data}
 
 To send JSON data, pass an object to `json`. The `Content-Type` header will be set to `application/json` automatically.
 
@@ -116,7 +116,7 @@ def test_json_data(client):
     assert response.json["data"]["user"]["name"] == "Flask"
 ```
 
-## Following Redirects
+## Following Redirects {#following-redirects}
 
 By default, the client does not make additional requests if the response is a redirect. By passing `follow_redirects=True` to a request method, the client will continue to make requests until a non-redirect response is returned.
 
@@ -131,7 +131,7 @@ def test_logout_redirect(client):
     assert response.request.path == "/index"
 ```
 
-## Accessing and Modifying the Session
+## Accessing and Modifying the Session {#accessing-and-modifying-the-session}
 
 To access Flask’s context variables, mainly [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session), use the client in a `with` statement. The app and request context will remain active after making a request, until the `with` block ends.
 
@@ -163,7 +163,7 @@ def test_modify_session(client):
     assert response.json["username"] == "flask"
 ```
 
-## Running Commands with the CLI Runner
+## Running Commands with the CLI Runner {#running-commands-with-the-cli-runner}
 
 Flask provides [test_cli_runner()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.test_cli_runner) to create a [FlaskCliRunner](https://flask.palletsprojects.com/en/2.3.x/api/#flask.testing.FlaskCliRunner), which runs CLI commands in isolation and captures the output in a [Result](https://click.palletsprojects.com/en/8.1.x/api/#click.testing.Result) object. Flask’s runner extends [Click’s runner](https://click.palletsprojects.com/en/8.1.x/testing/), see those docs for additional information.
 
@@ -185,7 +185,7 @@ def test_hello_command(runner):
     assert "Flask" in result.output
 ```
 
-## Tests that depend on an Active Context
+## Tests that depend on an Active Context {#tests-that-depend-on-an-active-context}
 
 You may have functions that are called from views or commands, that expect an active [application context](https://flask.palletsprojects.com/en/2.3.x/appcontext/) or [request context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/) because they access `request`, `session`, or `current_app`. Rather than testing them by making a request or invoking the command, you can create and activate a context directly.
 

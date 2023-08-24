@@ -1,4 +1,4 @@
-# Test Coverage
+# Test Coverage {#test-coverage}
 
 Writing unit tests for your application lets you check that the code you wrote works the way you expect. Flask provides a test client that simulates requests to the application and returns the response data.
 
@@ -16,7 +16,7 @@ You’ll use [pytest](https://pytest.readthedocs.io/) and [coverage](https://cov
 $ pip install pytest coverage
 ```
 
-## Setup and Fixtures
+## Setup and Fixtures {#setup-and-fixtures}
 
 The test code is located in the `tests` directory. This directory is next to the `flaskr` package, not inside it. The `tests/conftest.py` file contains setup functions called fixtures that each test will use. Tests are in Python modules that start with `test_`, and each test function in those modules also starts with `test_`.
 
@@ -88,7 +88,7 @@ The `runner` fixture is similar to client. [app.test_cli_runner()](https://flask
 
 Pytest uses fixtures by matching their function names with the names of arguments in the test functions. For example, the `test_hello` function you’ll write next takes a `client` argument. Pytest matches that with the `client` fixture function, calls it, and passes the returned value to the test function.
 
-## Factory
+## Factory {#factory}
 
 There’s not much to test about the factory itself. Most of the code will be executed for each test already, so if something fails the other tests will notice.
 
@@ -111,7 +111,7 @@ def test_hello(client):
 
 You added the `hello` route as an example when writing the factory at the beginning of the tutorial. It returns “Hello, World!”, so the test checks that the response data matches.
 
-## Database
+## Database {#database}
 
 Within an application context, `get_db` should return the same connection each time it’s called. After the context, the connection should be closed.
 
@@ -153,7 +153,7 @@ def test_init_db_command(runner, monkeypatch):
 
 This test uses Pytest’s `monkeypatch` fixture to replace the `init_db` function with one that records that it’s been called. The `runner` fixture you wrote above is used to call the `init-db` command by name.
 
-## Authentication
+## Authentication {#authentication}
 
 For most of the views, a user needs to be logged in. The easiest way to do this in tests is to make a `POST` request to the `login` view with the client. Rather than writing that out every time, you can write a class with methods to do that, and use a fixture to pass it the client for each test.
 
@@ -263,7 +263,7 @@ def test_logout(client, auth):
         assert 'user_id' not in session
 ```
 
-## Blog
+## Blog {#blog}
 
 All the blog views use the `auth` fixture you wrote earlier. Call `auth.login()` and subsequent requests from the client will be logged in as the `test` user.
 
@@ -380,7 +380,7 @@ def test_delete(client, auth, app):
         assert post is None
 ```
 
-### Running the Tests
+### Running the Tests {#running-the-tests}
 
 Some extra configuration, which is not required but makes running tests with coverage less verbose, can be added to the project’s `pyproject.toml` file.
 

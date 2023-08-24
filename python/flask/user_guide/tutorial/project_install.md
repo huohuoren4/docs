@@ -1,4 +1,4 @@
-## Make the Project Installable
+# Make the Project Installable {#make-the-project-installable}
 
 Making your project installable means that you can build a wheel file and install that in another environment, just like you installed Flask in your project’s environment. This makes deploying your project the same as installing any other library, so you’re using all the standard Python tools to manage everything.
 
@@ -14,7 +14,7 @@ Installing also comes with other benefits that might not be obvious from the tut
 This is being introduced late in the tutorial, but in your future projects you should always start with this.
 :::
 
-## Describe the Project
+## Describe the Project {#describe-the-project}
 
 The `pyproject.toml` file describes your project and how to build it.
 
@@ -35,7 +35,7 @@ build-backend = "flit_core.buildapi"
 
 See the official [Packaging tutorial](https://packaging.python.org/tutorials/packaging-projects/) for more explanation of the files and options used.
 
-## Install the Project
+## Install the Project {#install-the-project}
 
 Use `pip` to install your project in the virtual environment.
 

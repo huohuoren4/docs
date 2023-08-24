@@ -1,4 +1,4 @@
-# Project Layout
+# Project Layout {#project-layout}
 
 Create a project directory and enter it:
 

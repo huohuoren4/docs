@@ -1,4 +1,4 @@
-# Static Files
+# Static Files {#static-files}
 
 The authentication views and templates work, but they look very plain right now. Some CSS can be added to add style to the HTML layout you constructed. The style won’t change, so it’s a static file rather than a template.
 

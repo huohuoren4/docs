@@ -1,8 +1,8 @@
-# Deploy to Production
+# Deploy to Production {#deploy-to-production}
 
 This part of the tutorial assumes you have a server that you want to deploy your application to. It gives an overview of how to create the distribution file and install it, but won’t go into specifics about what server or software to use. You can set up a new environment on your development computer to try out the instructions below, but probably shouldn’t use it for hosting a real public application. See [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/) for a list of many different ways to host your application.
 
-## Build and Install
+## Build and Install {#build-and-install}
 
 When you want to deploy your application elsewhere, you build a wheel (`.whl`) file. Install and use the `build` tool to do this.
 
@@ -29,7 +29,7 @@ $ flask --app flaskr init-db
 
 When Flask detects that it’s installed (not in editable mode), it uses a different directory for the instance folder. You can find it at `.venv/var/flaskr-instance` instead.
 
-## Configure the Secret Key
+## Configure the Secret Key {#configure-the-secret-key}
 
 In the beginning of the tutorial that you gave a default value for [SECRET_KEY](https://flask.palletsprojects.com/en/2.3.x/config/#SECRET_KEY). This should be changed to some random bytes in production. Otherwise, attackers could use the public `'dev'` key to modify the session cookie, or anything else that uses the secret key.
 
@@ -50,7 +50,7 @@ SECRET_KEY = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 
 You can also set any other necessary configuration here, although `SECRET_KEY` is the only one needed for Flaskr.
 
-## Run with a Production Server
+## Run with a Production Server {#run-with-a-production-server}
 
 When running publicly rather than in development, you should not use the built-in development server (`flask run`). The development server is provided by Werkzeug for convenience, but is not designed to be particularly efficient, stable, or secure.
 

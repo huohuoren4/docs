@@ -1,4 +1,4 @@
-# Templates
+# Templates {#templates}
 
 You’ve written the authentication views for your application, but if you’re running the server and try to go to any of the URLs, you’ll see a `TemplateNotFound` error. That’s because the views are calling [render_template()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.render_template), but you haven’t written the templates yet. The template files will be stored in the `templates` directory inside the `flaskr` package.
 
@@ -8,7 +8,7 @@ In your application, you will use templates to render `HTML` which will display 
 
 Jinja looks and behaves mostly like Python. Special delimiters are used to distinguish Jinja syntax from the static data in the template. Anything between `\{\{` and `\}\}` is an expression that will be output to the final document. `{%` and `%}` denotes a control flow statement like `if` and `for`. Unlike Python, blocks are denoted by start and end tags rather than indentation since static text within a block could change indentation.
 
-## The Base Layout
+## The Base Layout {#the-base-layout}
 
 Each page in the application will have the same basic layout around a different body. Instead of writing the entire HTML structure in each template, each template will extend a base template and override specific sections.
 
@@ -55,7 +55,7 @@ There are three blocks defined here that will be overridden in the other templat
 The base template is directly in the `templates` directory. To keep the others organized, the templates for a blueprint will be placed in a directory with the same name as the blueprint.
 
 
-## Register
+## Register {#register}
 
 ```html
 <!-- flaskr/templates/auth/register.html -->
@@ -82,7 +82,7 @@ A useful pattern used here is to place `{% block title %}` inside `{% block head
 
 The `input` tags are using the `required` attribute here. This tells the browser not to submit the form until those fields are filled in. If the user is using an older browser that doesn’t support that attribute, or if they are using something besides a browser to make requests, you still want to validate the data in the Flask view. It’s important to always fully validate the data on the server, even if the client does some validation as well.
 
-## Log In
+## Log In {#log-in}
 
 This is identical to the register template except for the title and submit button.
 
@@ -105,7 +105,7 @@ This is identical to the register template except for the title and submit butto
 {% endblock %}
 ```
 
-## Register A User
+## Register A User {#register-a-user}
 
 Now that the authentication templates are written, you can register a user. Make sure the server is still running (`flask run` if it’s not), then go to `http://127.0.0.1:5000/auth/register`.
 
