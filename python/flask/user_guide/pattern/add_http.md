@@ -1,4 +1,4 @@
-# Adding HTTP Method Overrides
+# Adding HTTP Method Overrides {#adding-http-method-overrides}
 
 Some HTTP proxies do not support arbitrary HTTP methods or newer HTTP methods (such as PATCH). In that case it’s possible to “proxy” HTTP methods through another HTTP method in total violation of the protocol.
 

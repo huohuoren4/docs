@@ -1,4 +1,4 @@
-# View Function Options
+# View Function Options {#view-function-options}
 
 For internal usage the view functions can have some attributes attached to customize behavior the view function would normally not have control over. The following attributes can be provided optionally to either override some defaults to `add_url_rule()` or general behavior:
 

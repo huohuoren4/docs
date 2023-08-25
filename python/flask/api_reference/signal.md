@@ -1,4 +1,4 @@
-# Signals
+# Signals {#signals}
 
 Signals are provided by the Blinker library. See [Signals](https://flask.palletsprojects.com/en/2.3.x/signals/) for an introduction.
 

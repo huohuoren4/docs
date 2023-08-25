@@ -1,16 +1,16 @@
-# The Request Context
+# The Request Context {#the-request-context}
 
 The request context keeps track of the request-level data during a request. Rather than passing the request object to each function that runs during a request, the [request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request) and [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session) proxies are accessed instead.
 
 This is similar to [The Application Context](https://flask.palletsprojects.com/en/2.3.x/appcontext/), which keeps track of the application-level data independent of a request. A corresponding application context is pushed when a request context is pushed.
 
-## Purpose of the Context
+## Purpose of the Context {#purpose-of-the-context}
 
 When the [Flask](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask) application handles a request, it creates a [Request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Request) object based on the environment it received from the WSGI server. Because a worker (thread, process, or coroutine depending on the server) handles only one request at a time, the request data can be considered global to that worker during that request. Flask uses the term `context local` for this.
 
 Flask automatically pushes a request context when handling a request. View functions, error handlers, and other functions that run during a request will have access to the [request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request) proxy, which points to the request object for the current request.
 
-## Lifetime of the Context
+## Lifetime of the Context {#lifetime-of-the-context}
 
 When a Flask application begins handling a request, it pushes a request context, which also pushes an [app context](https://flask.palletsprojects.com/en/2.3.x/appcontext/). When the request ends it pops the request context then the application context.
 
@@ -18,7 +18,7 @@ The context is unique to each thread (or other worker type). [request](https://f
 
 Context locals are implemented using Python’s [contextvars](https://docs.python.org/3/library/contextvars.html#module-contextvars) and Werkzeug’s [LocalProxy](https://werkzeug.palletsprojects.com/en/2.3.x/local/#werkzeug.local.LocalProxy). Python manages the lifetime of context vars automatically, and local proxy wraps that low-level interface to make the data easier to work with.
 
-## Manually Push a Context
+## Manually Push a Context {#manually-push-a-context}
 
 If you try to access [request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request), or anything that uses it, outside a request context, you’ll get this error message:
 
@@ -47,7 +47,7 @@ If you see that error somewhere else in your code not related to testing, it mos
 
 For information on how to use the request context from the interactive Python shell, see [Working with the Shell](https://flask.palletsprojects.com/en/2.3.x/shell/).
 
-## How the Context Works
+## How the Context Works {#how-the-context-works}
 
 The [Flask.wsgi_app()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.wsgi_app) method is called to handle each request. It manages the contexts during the request. Internally, the request and application contexts work like stacks. When contexts are pushed, the proxies that depend on them are available and point at information from the top item.
 
@@ -57,7 +57,7 @@ Other contexts may be pushed to change the proxies during a request. While this 
 
 After the request is dispatched and a response is generated and sent, the request context is popped, which then pops the application context. Immediately before they are popped, the [teardown_request()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.teardown_request) and [teardown_appcontext()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.teardown_appcontext) functions are executed. These execute even if an unhandled exception occurred during dispatch.
 
-## Callbacks and Errors
+## Callbacks and Errors {#callbacks-and-errors}
 
 Flask dispatches a request in multiple stages which can affect the request, response, and how errors are handled. The contexts are active during all of these stages.
 
@@ -75,7 +75,7 @@ If an exception is raised before the teardown functions, Flask tries to match it
 
 If debug mode is enabled, unhandled exceptions are not converted to a `500` response and instead are propagated to the WSGI server. This allows the development server to present the interactive debugger with the traceback.
 
-### Teardown Callbacks
+### Teardown Callbacks {#teardown-callbacks}
 
 The teardown callbacks are independent of the request dispatch, and are instead called by the contexts when they are popped. The functions are called even if there is an unhandled exception during dispatch, and for manually pushed contexts. This means there is no guarantee that any other parts of the request dispatch have run first. Be sure to write these functions in a way that does not depend on other callbacks and will not fail.
 
@@ -109,7 +109,7 @@ with app.test_client() as client:
 # the client with block exits
 ```
 
-### Signals
+### Signals {#signals}
 
 The following signals are sent:
 
@@ -121,7 +121,7 @@ The following signals are sent:
 
 4. [request_tearing_down](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_tearing_down) is sent after the [teardown_request()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.teardown_request) functions are called.
 
-## Notes On Proxies
+## Notes On Proxies {#notes-on-proxies}
 
 Some of the objects provided by Flask are proxies to other objects. The proxies are accessed in the same way for each worker thread, but point to the unique object bound to each worker behind the scenes as described on this page.
 

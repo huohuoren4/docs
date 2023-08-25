@@ -1,8 +1,8 @@
-# Design Decisions in Flask
+# Design Decisions in Flask {#design-decisions-in-flask}
 
 If you are curious why Flask does certain things the way it does and not differently, this section is for you. This should give you an idea about some of the design decisions that may appear arbitrary and surprising at first, especially in direct comparison with other frameworks.
 
-## The Explicit Application Object
+## The Explicit Application Object {#the-explicit-application-object}
 
 A Python web application based on `WSGI` has to have one central callable object that implements the actual application. In Flask this is an instance of the `Flask` class. Each `Flask` application has to create an instance of this class itself and pass it the name of the module, but why can’t `Flask` do that itself?
 
@@ -37,13 +37,13 @@ The third reason is “explicit is better than implicit”. That object is your 
 
 Furthermore this design makes it possible to use a factory function to create the application which is very helpful for unit testing and similar things ([Application Factories](https://flask.palletsprojects.com/en/2.3.x/patterns/appfactories/)).
 
-## The Routing System
+## The Routing System {#the-routing-system}
 
 Flask uses the Werkzeug routing system which was designed to automatically order routes by complexity. This means that you can declare routes in arbitrary order and they will still work as expected. This is a requirement if you want to properly implement decorator based routing since decorators could be fired in undefined order when the application is split into multiple modules.
 
 Another design decision with the Werkzeug routing system is that routes in `Werkzeug` try to ensure that URLs are unique. `Werkzeug` will go quite far with that in that it will automatically redirect to a canonical URL if a route is ambiguous.
 
-## One Template Engine
+## One Template Engine {#one-template-engine}
 
 Flask decides on one template engine: `Jinja2`. Why doesn’t Flask have a pluggable template engine interface? You can obviously use a different template engine, but Flask will still configure `Jinja2` for you. While that limitation that `Jinja2` is always configured will probably go away, the decision to bundle one template engine and use that will not.
 
@@ -57,7 +57,7 @@ A template abstraction layer that would not take the unique features of the temp
 
 Furthermore extensions can then easily depend on one template language being present. You can easily use your own templating language, but an extension could still depend on Jinja itself.
 
-## What does “micro” mean?
+## What does “micro” mean? {#what-does-micro-mean}
 
 “Micro” does not mean that your whole web application has to fit into a single Python file (although it certainly can), nor does it mean that Flask is lacking in functionality. The “micro” in microframework means Flask aims to keep the core simple but extensible. Flask won’t make many decisions for you, such as what database to use. Those decisions that it does make, such as what templating engine to use, are easy to change. Everything else is up to you, so that Flask can be everything you need and nothing you don’t.
 
@@ -67,13 +67,13 @@ Why does Flask call itself a microframework and yet it depends on two libraries 
 
 Flask is a framework that takes advantage of the work already done by Werkzeug to properly interface WSGI (which can be a complex task at times). Thanks to recent developments in the Python package infrastructure, packages with dependencies are no longer an issue and there are very few reasons against having libraries that depend on others.
 
-## Thread Locals
+## Thread Locals {#thread-locals}
 
 Flask uses thread local objects (context local objects in fact, they support greenlet contexts as well) for request, session and an extra object you can put your own things on (g). Why is that and isn’t that a bad idea?
 
 Yes it is usually not such a bright idea to use thread locals. They cause troubles for servers that are not based on the concept of threads and make large applications harder to maintain. However Flask is just not designed for large applications or asynchronous servers. Flask wants to make it quick and easy to write a traditional web application.
 
-## Async/await and ASGI support
+## Async/await and ASGI support {#async-await-and-asgi-support}
 
 Flask supports `async` coroutines for view functions by executing the coroutine on a separate thread instead of using an event loop on the main thread as an async-first (ASGI) framework would. This is necessary for Flask to remain backwards compatible with extensions and code built before `async` was introduced into Python. This compromise introduces a performance cost compared with the ASGI frameworks, due to the overhead of the threads.
 
@@ -81,7 +81,7 @@ Due to how tied to WSGI Flask’s code is, it’s not clear if it’s possible t
 
 See [Using async and await](https://flask.palletsprojects.com/en/2.3.x/async-await/) for more discussion.
 
-## What Flask is, What Flask is Not
+## What Flask is, What Flask is Not {#what-flask-is-what-flask-is-not}
 
 Flask will never have a database layer. It will not have a form library or anything else in that direction. Flask itself just bridges to Werkzeug to implement a proper WSGI application and to Jinja2 to handle templating. It also binds to a few common standard library packages such as logging. Everything else is up for extensions.
 

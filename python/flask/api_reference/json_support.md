@@ -1,4 +1,4 @@
-# JSON Support
+# JSON Support {#json-support}
 
 Flask uses Python’s built-in `json` module for handling JSON by default. The JSON implementation can be changed by assigning a different provider to `flask.Flask.json_provider_class` or `flask.Flask.json`. The functions provided by `flask.json` will use methods on `app.json` if an app context is active.
 

@@ -1,4 +1,4 @@
-# Form Validation with WTForms
+# Form Validation with WTForms {#form-validation-with-wtforms}
 
 When you have to work with form data submitted by a browser view, code quickly becomes very hard to read. There are libraries out there designed to make this process easier to manage. One of them is [WTForms](https://wtforms.readthedocs.io/) which we will handle here. If you find yourself in the situation of having many forms, you might want to give it a try.
 
@@ -8,7 +8,7 @@ When you are working with WTForms you have to define your forms as classes first
 The [Flask-WTF](https://flask-wtf.readthedocs.io/) extension expands on this pattern and adds a few little helpers that make working with forms and Flask more fun. You can get it from [PyPI](https://pypi.org/project/Flask-WTF/).
 :::
 
-## The Forms
+## The Forms {#the-forms}
 
 This is an example form for a typical registration page:
 
@@ -26,7 +26,7 @@ class RegistrationForm(Form):
     accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
 ```
 
-## In the View'
+## In the View {#in-the-view}
 
 In the view function, the usage of this form looks like this:
 
@@ -53,7 +53,7 @@ Things to remember:
 
 3. to access individual values from the form, access `form.<NAME>.data`.
 
-## Forms in Templates
+## Forms in Templates {#forms-in-templates}
 
 Now to the template side. When you pass the form to the templates, you can easily render them there. Look at the following example template to see how easy this is. WTForms does half the form generation for us already. To make it even nicer, we can write a macro that renders a field with label and a list of errors if there are any.
 

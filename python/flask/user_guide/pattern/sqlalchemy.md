@@ -1,16 +1,16 @@
-# SQLAlchemy in Flask
+# SQLAlchemy in Flask {#sqlalchemy-in-flask}
 
 Many people prefer [SQLAlchemy](https://www.sqlalchemy.org/) for database access. In this case it’s encouraged to use a package instead of a module for your flask application and drop the models into a separate module ([Large Applications as Packages](https://flask.palletsprojects.com/en/2.3.x/patterns/packages/)). While that is not necessary, it makes a lot of sense.
 
 There are four very common ways to use SQLAlchemy. I will outline each of them here:
 
-## Flask-SQLAlchemy Extension
+## Flask-SQLAlchemy Extension {#flask-sqlalchemy-extension}
 
 Because SQLAlchemy is a common database abstraction layer and object relational mapper that requires a little bit of configuration effort, there is a Flask extension that handles that for you. This is recommended if you want to get started quickly.
 
 You can download [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/) from [PyPI](https://pypi.org/project/Flask-SQLAlchemy/).
 
-## Declarative
+## Declarative {#declarative}
 
 The declarative extension in SQLAlchemy is the most recent method of using SQLAlchemy. It allows you to define tables and models in one go, similar to how Django works. In addition to the following text I recommend the official documentation on the [declarative](https://docs.sqlalchemy.org/en/latest/orm/extensions/declarative/) extension.
 
@@ -93,7 +93,7 @@ Querying is simple as well:
 <User 'admin'>
 ```
 
-## Manual Object Relational Mapping
+## Manual Object Relational Mapping {#manual-object-relational-mapping}
 
 Manual object relational mapping has a few upsides and a few downsides versus the declarative approach from above. The main difference is that you define tables and classes separately and map them together. It’s more flexible but a little more to type. In general it works like the declarative approach, so make sure to also split up your application into multiple modules in a package.
 
@@ -149,7 +149,7 @@ mapper(User, users)
 
 Querying and inserting works exactly the same as in the example above.
 
-## SQL Abstraction Layer
+## SQL Abstraction Layer {#sql-abstraction-layer}
 
 If you just want to use the database system (and SQL) abstraction layer you basically only need the engine:
 

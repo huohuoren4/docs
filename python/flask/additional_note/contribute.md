@@ -1,8 +1,8 @@
-# How to contribute to Flask
+# How to contribute to Flask {#how-to-contribute-to-flask}
 
 Thank you for considering contributing to Flask!
 
-## Support questions
+## Support questions {#support-questions}
 
 Please don’t use the issue tracker for this. The issue tracker is a tool to address bugs and feature requests in Flask itself. Use one of the following resources for questions about using Flask or issues with your own code:
 
@@ -12,7 +12,7 @@ Please don’t use the issue tracker for this. The issue tracker is a tool to ad
 
 - Ask on our [GitHub Discussions](https://github.com/pallets/flask/discussions) for long term discussion or larger questions.
 
-## Reporting issues
+## Reporting issues {#reporting-issues}
 
 Include the following information in your post:
 
@@ -24,7 +24,7 @@ Include the following information in your post:
 
 - List your Python and Flask versions. If possible, check if this issue is already fixed in the latest releases or the latest code in the repository.
 
-## Submitting patches
+## Submitting patches {#submitting-patches}
 
 If there is not an open issue for what you want to submit, prefer opening one for discussion before working on a PR. You can work on any issue that doesn’t have an open PR linked to it or a maintainer assigned to it. These show up in the sidebar. No need to ask if you can work on an issue that interests you.
 
@@ -38,7 +38,7 @@ Include the following in your patch:
 
 - Add an entry in `CHANGES.rst`. Use the same style as other entries. Also include `.. versionchanged::` inline changelogs in relevant docstrings.
 
-### First time setup using GitHub Codespaces
+### First time setup using GitHub Codespaces {#first-time-setup-using-github-codespaces}
 
 [GitHub Codespaces](https://docs.github.com/en/codespaces) creates a development environment that is already set up for the project. By default it opens in Visual Studio Code for the Web, but this can be changed in your GitHub profile settings to use Visual Studio Code or JetBrains PyCharm on your local computer.
 
@@ -50,7 +50,7 @@ Include the following in your patch:
 
 - Check out a branch and [start coding](https://flask.palletsprojects.com/en/2.3.x/contributing/#start-coding).
 
-### First time setup in your local environment
+### First time setup in your local environment {#first-time-setup-in-your-local-environment}
 
 - Make sure you have a [GitHub account](https://github.com/join).
 
@@ -101,7 +101,7 @@ Include the following in your patch:
     $ pre-commit install --install-hooks
     ```
 
-### Start coding
+### Start coding {#start-coding}
 
 - Create a branch to identify the issue you would like to work on. If you’re submitting a bug or documentation fix, branch off of the latest `“.x”` branch.
 
@@ -128,7 +128,7 @@ Include the following in your patch:
     $ git push --set-upstream origin your-branch-name
     ```
 
-### Running the tests
+### Running the tests {#running-the-tests}
 
 Run the basic test suite with pytest.
 
@@ -142,7 +142,7 @@ This runs the tests for the current environment, which is usually sufficient. CI
 $ tox
 ```
 
-### Running test coverage
+### Running test coverage {#running-test-coverage}
 
 Generating a report of lines that do not have test coverage can indicate where to start contributing. Run `pytest` using `coverage` and generate a report.
 
@@ -158,7 +158,7 @@ Open `htmlcov/index.html` in your browser to explore the report.
 
 Read more about [coverage](https://coverage.readthedocs.io/).
 
-### Building the docs
+### Building the docs {#building-the-docs}
 
 Build the docs in the `docs` directory using `Sphinx`.
 

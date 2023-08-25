@@ -1,4 +1,4 @@
-# Application Globals
+# Application Globals {#application-globals}
 
 To share data that is valid for one request only from one function to another, a global variable is not good enough because it would break in threaded environments. Flask provides you with a special object that ensures it is only valid for the active request and that will return different values for each request. In a nutshell: it does the right thing, like it does for `request` and `session`.
 

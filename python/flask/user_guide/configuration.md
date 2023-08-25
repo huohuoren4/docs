@@ -1,4 +1,4 @@
-# Configuration Handling
+# Configuration Handling {#configuration-handling}
 
 Applications need some kind of configuration. There are different settings you might want to change depending on the application environment like toggling the debug mode, setting the secret key, and other such environment-specific things.
 
@@ -6,7 +6,7 @@ The way Flask is designed usually requires the configuration to be available whe
 
 Independent of how you load your config, there is a config object available which holds the loaded configuration values: The [config](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.config) attribute of the [Flask](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask) object. This is the place where Flask itself puts certain configuration values and also where extensions can put their configuration values. But this is also where you can have your own configuration.
 
-## Configuration Basics
+## Configuration Basics {#configuration-basics}
 
 The config is actually a subclass of a dictionary and can be modified just like any dictionary:
 
@@ -30,7 +30,7 @@ app.config.update(
 )
 ```
 
-## Debug Mode
+## Debug Mode {#debug-mode}
 
 The [DEBUG](https://flask.palletsprojects.com/en/2.3.x/config/#DEBUG) config value is special because it may behave inconsistently if changed after the app has begun setting up. In order to set debug mode reliably, use the `--debug` option on the `flask` or `flask run` command. `flask run` will use the interactive debugger and reloader by default in debug mode.
 
@@ -40,7 +40,7 @@ $ flask --app hello run --debug
 
 Using the option is recommended. While it is possible to set [DEBUG](https://flask.palletsprojects.com/en/2.3.x/config/#DEBUG) in your config or code, this is strongly discouraged. It can’t be read early by the `flask run` command, and some systems or extensions may have already configured themselves based on a previous value.
 
-## Builtin Configuration Values
+## Builtin Configuration Values {#builtin-configuration-values}
 
 The following configuration values are used internally by Flask:
 
@@ -239,7 +239,7 @@ Added [MAX_COOKIE_SIZE](https://flask.palletsprojects.com/en/2.3.x/config/#MAX_C
 *New in version 0.4*: `LOGGER_NAME`
 :::
 
-## Configuring from Python Files
+## Configuring from Python Files {#configuring-from-python-files}
 
 Configuration becomes more useful if you can store it in a separate file, ideally located outside the actual application package. You can deploy your application, then separately configure it for the specific deployment.
 
@@ -290,7 +290,7 @@ SECRET_KEY = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 
 Make sure to load the configuration very early on, so that extensions have the ability to access the configuration when starting up. There are other methods on the config object as well to load from individual files. For a complete reference, read the [Config](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config) object’s documentation.
 
-## Configuring from Data Files
+## Configuring from Data Files {#configuring-from-data-files}
 
 It is also possible to load configuration from a file in a format of your choice using [from_file()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config.from_file). For example to load from a TOML file:
 
@@ -306,7 +306,7 @@ import json
 app.config.from_file("config.json", load=json.load)
 ```
 
-## Configuring from Environment Variables
+## Configuring from Environment Variables {#configuring-from-environment-variables}
 
 In addition to pointing to configuration files using environment variables, you may find it useful (or necessary) to control your configuration values directly from the environment. Flask can be instructed to load all environment variables starting with a specific prefix into the config using [from_prefixed_env()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config.from_prefixed_env).
 
@@ -369,7 +369,7 @@ On Windows, environment variable keys are always uppercase, therefore the above 
 
 For even more config loading features, including merging and case-insensitive Windows support, try a dedicated library such as [Dynaconf](https://www.dynaconf.com/), which includes integration with Flask.
 
-## Configuration Best Practices
+## Configuration Best Practices {#configuration-best-practices}
 
 The downside with the approach mentioned earlier is that it makes testing a little harder. There is no single 100% solution for this problem in general, but there are a couple of things you can keep in mind to improve that experience:
 
@@ -379,7 +379,7 @@ The downside with the approach mentioned earlier is that it makes testing a litt
 
 3. Make sure to load the configuration very early on, so that extensions can access the configuration when calling `init_app`.
 
-## Development / Production
+## Development / Production {#development-production}
 
 Most applications need more than one configuration. There should be at least separate configurations for the production server and the one used during development. The easiest way to handle this is to use a default configuration that is always loaded and part of the version control, and a separate configuration that overrides the values as necessary as mentioned in the example above:
 
@@ -460,7 +460,7 @@ There are many different ways and it’s up to you how you want to manage your c
 
 - Use a tool like fabric to push code and configuration separately to the production server(s).
 
-## Instance Folders
+## Instance Folders {#instance-folders}
 
 ::: details Changelog
 *New in version 0.8.*

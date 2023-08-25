@@ -1,4 +1,4 @@
-# Command Line Interface
+# Command Line Interface {#command-line-interface}
 
 ## `class` flask.cli.FlaskGroup(`add_default_commands=True, create_app=None, add_version_option=True, load_dotenv=True, set_debug_flag=True, **extra`)
 

@@ -1,10 +1,10 @@
-# Application Dispatching
+# Application Dispatching {#application-dispatching}
 
 Application dispatching is the process of combining multiple Flask applications on the WSGI level. You can combine not only Flask applications but any WSGI application. This would allow you to run a Django and a Flask application in the same interpreter side by side if you want. The usefulness of this depends on how the applications work internally.
 
 The fundamental difference from [Large Applications as Packages](https://flask.palletsprojects.com/en/2.3.x/patterns/packages/) is that in this case you are running the same or different Flask applications that are entirely isolated from each other. They run different configurations and are dispatched on the WSGI level.
 
-## Working with this Document
+## Working with this Document {#working-with-this-document}
 
 Each of the techniques and examples below results in an `application` object that can be run with any WSGI server. For production, see [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/). For development, Werkzeug provides a server through [werkzeug.serving.run_simple()](https://werkzeug.palletsprojects.com/en/2.3.x/serving/#werkzeug.serving.run_simple):
 
@@ -33,7 +33,7 @@ if __name__ == '__main__':
                use_reloader=True, use_debugger=True, use_evalex=True)
 ```
 
-## Combining Applications
+## Combining Applications {#combining-applications}
 
 If you have entirely separated applications and you want them to work next to each other in the same Python interpreter process you can take advantage of the `werkzeug.wsgi.DispatcherMiddleware`. The idea here is that each Flask application is a valid WSGI application and they are combined by the dispatcher middleware into a larger one that is dispatched based on prefix.
 
@@ -49,7 +49,7 @@ application = DispatcherMiddleware(frontend, {
 })
 ```
 
-## Dispatch by Subdomain
+## Dispatch by Subdomain {#dispatch-by-subdomain}
 
 Sometimes you might want to use multiple instances of the same application with different configurations. Assuming the application is created inside a function and you can call that function to instantiate it, that is really easy to implement. In order to develop your application to support creating new instances in functions have a look at the [Application Factories](https://flask.palletsprojects.com/en/2.3.x/patterns/appfactories/) pattern.
 
@@ -106,7 +106,7 @@ def make_app(subdomain):
 application = SubdomainDispatcher('example.com', make_app)
 ```
 
-## Dispatch by Path
+## Dispatch by Path {#dispatch-by-path}
 
 Dispatching by a path on the URL is very similar. Instead of looking at the `Host` header to figure out the subdomain one simply looks at the request path up to the first slash:
 

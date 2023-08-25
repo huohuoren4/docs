@@ -1,4 +1,4 @@
-# Class-based Views
+# Class-based Views {#class-based-views}
 
 This page introduces using the [View](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View) and [MethodView](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.MethodView) classes to write class-based views.
 
@@ -8,7 +8,7 @@ An example of where this is useful is defining a class that creates an API based
 
 For more complex API behavior and customization, look into the various API extensions for Flask.
 
-## Basic Reusable View
+## Basic Reusable View {#basic-reusable-view}
 
 Let’s walk through an example converting a view function to a view class. We start with a view function that queries a list of users then renders a template to show the list.
 
@@ -66,7 +66,7 @@ app.add_url_rule(
 )
 ```
 
-## URL Variables
+## URL Variables {#url-variables}
 
 Any variables captured by the URL are passed as keyword arguments to the `dispatch_request` method, as they would be for a regular view function.
 
@@ -86,7 +86,7 @@ app.add_url_rule(
 )
 ```
 
-## View Lifetime and self
+## View Lifetime and self {#view-lifetime-and-self}
 
 By default, a new instance of the view class is created every time a request is handled. This means that it is safe to write other data to `self` during the request, since the next request will not see it, unlike other forms of global state.
 
@@ -109,7 +109,7 @@ class ListView(View):
 
 Different instances will still be created each for each `as_view` call, but not for each request to those views.
 
-## View Decorators
+## View Decorators {#view-decorators}
 
 The view class itself is not the view function. View decorators need to be applied to the view function returned by `as_view`, not the class itself. Set [View.decorators](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View.decorators) to a list of decorators to apply.
 
@@ -139,7 +139,7 @@ def user_list():
     ...
 ```
 
-## Method Hints
+## Method Hints {#method-hints}
 
 A common pattern is to register a view with `methods=["GET", "POST"]`, then check `request.method == "POST"` to decide what to do. Setting [View.methods](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View.methods) is equivalent to passing the list of methods to `add_url_rule` or `route`.
 
@@ -165,7 +165,7 @@ app.add_url_rule(
 )
 ```
 
-## Method Dispatching and APIs
+## Method Dispatching and APIs {#method-dispatching-and-apis}
 
 For APIs it can be helpful to use a different function for each HTTP method. [MethodView](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.MethodView) extends the basic [View](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View) to dispatch to different methods of the class based on the request method. Each HTTP method maps to a method of the class with the same (lowercase) name.
 

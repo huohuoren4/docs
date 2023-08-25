@@ -1,4 +1,4 @@
-# Using SQLite 3 with Flask
+# Using SQLite 3 with Flask {#using-sqlite-3-with-flask}
 
 In Flask you can easily implement the opening of database connections on demand and closing them when the context dies (usually at the end of the request).
 
@@ -38,7 +38,7 @@ def index():
 Please keep in mind that the teardown request and appcontext functions are always executed, even if a before-request handler failed or was never executed. Because of this we have to make sure here that the database is there before we close it.
 :::
 
-## Connect on Demand
+## Connect on Demand {#connect-on-demand}
 
 The upside of this approach (connecting on first use) is that this will only open the connection if truly necessary. If you want to use this code outside a request context you can use it in a Python shell by opening the application context by hand:
 
@@ -47,7 +47,7 @@ with app.app_context():
     # now you can use get_db()
 ```
 
-## Easy Querying
+## Easy Querying {#easy-querying}
 
 Now in each request handling function you can access `get_db()` to get the current open database connection. To simplify working with SQLite, a row factory function is useful. It is executed for every result returned from the database to convert the result. For instance, in order to get dictionaries instead of tuples, this could be inserted into the `get_db` function we created above:
 
@@ -115,7 +115,7 @@ else:
 
 To pass variable parts to the SQL statement, use a question mark in the statement and pass in the arguments as a list. Never directly add them to the SQL statement with string formatting because this makes it possible to attack the application using [SQL Injections](https://en.wikipedia.org/wiki/SQL_injection).
 
-## Initial Schemas
+## Initial Schemas {#initial-schemas}
 
 Relational databases need schemas, so applications often ship a `schema.sql` file that creates the database. It’s a good idea to provide a function that creates the database based on that schema. This function can do that for you:
 

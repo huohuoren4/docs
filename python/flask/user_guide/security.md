@@ -1,8 +1,8 @@
-# Security Considerations
+# Security Considerations {#security-considerations}
 
 Web applications usually face all kinds of security problems and it’s very hard to get everything right. Flask tries to solve a few of these things for you, but there are a couple more you have to take care of yourself.
 
-## Cross-Site Scripting (XSS)
+## Cross-Site Scripting (XSS) {#cross-site-scripting-xss}
 
 Cross site scripting is the concept of injecting arbitrary HTML (and with it JavaScript) into the context of a website. To remedy this, developers have to properly escape text so that it cannot include arbitrary HTML tags. For more information on that have a look at the Wikipedia article on [Cross-Site Scripting](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
@@ -39,7 +39,7 @@ There is one class of XSS issues that Jinja’s escaping does not protect agains
 
 To prevent this, you’ll need to set the [Content Security Policy (CSP)](https://flask.palletsprojects.com/en/2.3.x/security/#security-csp) response header.
 
-## Cross-Site Request Forgery (CSRF)
+## Cross-Site Request Forgery (CSRF) {#cross-site-request-forgery-csrf}
 
 Another big problem is CSRF. This is a very complex topic and I won’t outline it here in detail just mention what it is and how to theoretically prevent it.
 
@@ -53,17 +53,17 @@ How can you prevent that? Basically for each request that modifies content on th
 
 Why does Flask not do that for you? The ideal place for this to happen is the form validation framework, which does not exist in Flask.
 
-## JSON Security
+## JSON Security {#json-security}
 
 In Flask 0.10 and lower, `jsonify()` did not serialize top-level arrays to JSON. This was because of a security vulnerability in ECMAScript 4.
 
 ECMAScript 5 closed this vulnerability, so only extremely old browsers are still vulnerable. All of these browsers have [other more serious vulnerabilities](https://github.com/pallets/flask/issues/248#issuecomment-59934857), so this behavior was changed and `jsonify()` now supports serializing arrays.
 
-## Security Headers
+## Security Headers {#security-headers}
 
 Browsers recognize various response headers in order to control security. We recommend reviewing each of the headers below for use in your application. The [Flask-Talisman](https://github.com/GoogleCloudPlatform/flask-talisman) extension can be used to manage HTTPS and the security headers for you.
 
-### HTTP Strict Transport Security (HSTS)
+### HTTP Strict Transport Security (HSTS) {#http-strict-transport-security-hsts}
 
 Tells the browser to convert all HTTP requests to HTTPS, preventing man-in-the-middle (MITM) attacks.
 
@@ -73,7 +73,7 @@ response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDom
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security>
 
-### Content Security Policy (CSP)
+### Content Security Policy (CSP) {#content-security-policy-csp}
 
 Tell the browser where it can load various types of resource from. This header should be used whenever possible, but requires some work to define the correct policy for your site. A very strict policy would be:
 
@@ -85,7 +85,7 @@ response.headers['Content-Security-Policy'] = "default-src 'self'"
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy>
 
-### X-Content-Type-Options
+### X-Content-Type-Options {#x-content-type-options}
 
 Forces the browser to honor the response content type instead of trying to detect it, which can be abused to generate a cross-site scripting (XSS) attack.
 
@@ -95,7 +95,7 @@ response.headers['X-Content-Type-Options'] = 'nosniff'
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options>
 
-### X-Frame-Options
+### X-Frame-Options {#x-frame-options}
 
 Prevents external sites from embedding your site in an `iframe`. This prevents a class of attacks where clicks in the outer frame can be translated invisibly to clicks on your page’s elements. This is also known as “clickjacking”.
 
@@ -105,7 +105,7 @@ response.headers['X-Frame-Options'] = 'SAMEORIGIN'
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options>
 
-### Set-Cookie options
+### Set-Cookie options {#set-cookie-options}
 
 These options can be added to a `Set-Cookie` header to improve their security. Flask has configuration options to set these on the session cookie. They can be set on other cookies too.
 
@@ -154,7 +154,7 @@ Use `itsdangerous.TimedSerializer` to sign and validate other cookie values (or 
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie>
 
-### HTTP Public Key Pinning (HPKP)
+### HTTP Public Key Pinning (HPKP) {#http-public-key-pinning-hpkp}
 
 This tells the browser to authenticate with the server using only the specific certificate key to prevent MITM attacks.
 
@@ -164,7 +164,7 @@ Be careful when enabling this, as it is very difficult to undo if you set up or 
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/Public_Key_Pinning>
 
-## Copy/Paste to Terminal
+## Copy/Paste to Terminal {#copy-paste-to-terminal}
 
 Hidden characters such as the backspace character (`\b`, `^H`) can cause text to render differently in HTML than how it is interpreted if [pasted into a terminal](https://security.stackexchange.com/q/39118).
 

@@ -1,6 +1,6 @@
-# Debugging Application Errors
+# Debugging Application Errors {#debugging-application-errors}
 
-## In Production
+## In Production {#in-production}
 
 Do not run the development server, or enable the built-in debugger, in a production environment. The debugger allows executing arbitrary Python code from the browser. It’s protected by a pin, but that should not be relied on for security.
 
@@ -8,7 +8,7 @@ Use an error logging tool, such as Sentry, as described in [Error Logging Tools]
 
 If you have access to the server, you could add some code to start an external debugger if `request.remote_addr` matches your IP. Some IDE debuggers also have a remote mode so breakpoints on the server can be interacted with locally. Only enable a debugger temporarily.
 
-## The Built-In Debugger
+## The Built-In Debugger {#the-built-in-debugger}
 
 The built-in Werkzeug development server provides a debugger which shows an interactive traceback in the browser when an unhandled error occurs during a request. This debugger should only be used during development.
 
@@ -32,7 +32,7 @@ app.run(debug=True)
 
 [Development Server](https://flask.palletsprojects.com/en/2.3.x/server/) and [Command Line Interface](https://flask.palletsprojects.com/en/2.3.x/cli/) have more information about running the debugger and debug mode. More information about the debugger can be found in the [Werkzeug documentation](https://werkzeug.palletsprojects.com/debug/).
 
-## External Debuggers
+## External Debuggers {#external-debuggers}
 
 External debuggers, such as those provided by IDEs, can offer a more powerful debugging experience than the built-in debugger. They can also be used to step through code during a request before an error is raised, or if no error is raised. Some even have a remote mode so you can debug code running on another machine.
 

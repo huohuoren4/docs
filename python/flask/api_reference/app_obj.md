@@ -1,8 +1,8 @@
-# API
+# API {#api}
 
 This part of the documentation covers all the interfaces of Flask. For parts where Flask depends on external libraries, we document the most important right here and provide links to the canonical documentation.
 
-## Application Object
+## Application Object {#application-object}
 
 - ### `class` flask.Flask(`import_name, static_url_path=None, static_folder='static', static_host=None, host_matching=False, subdomain_matching=False, template_folder='templates', instance_path=None, instance_relative_config=False, root_path=None`)
 

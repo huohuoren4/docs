@@ -1,8 +1,8 @@
-# Message Flashing
+# Message Flashing {#message-flashing}
 
 Good applications and user interfaces are all about feedback. If the user does not get enough feedback they will probably end up hating the application. Flask provides a really simple way to give feedback to a user with the flashing system. The flashing system basically makes it possible to record a message at the end of a request and access it next request and only next request. This is usually combined with a layout template that does this. Note that browsers and sometimes web servers enforce a limit on cookie sizes. This means that flashing messages that are too large for session cookies causes message flashing to fail silently.
 
-## Simple Flashing
+## Simple Flashing {#simple-flashing}
 
 So here is a full example:
 
@@ -79,7 +79,7 @@ And here is the `login.html` template which also inherits from `layout.html`:
 {% endblock %}
 ```
 
-## Flashing With Categories
+## Flashing With Categories {#flashing-with-categories}
 
 ::: details Changelog
 *New in version 0.3.*
@@ -109,7 +109,7 @@ Inside the template you then have to tell the [get_flashed_messages()](https://f
 
 This is just one example of how to render these flashed messages. One might also use the category to add a prefix such as `<strong>Error:</strong>` to the message.
 
-## Filtering Flash Messages
+## Filtering Flash Messages {#filtering-flash-messages}
 
 ::: details Changelog
 *New in version 0.9.*

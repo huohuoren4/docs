@@ -1,4 +1,4 @@
-# Large Applications as Packages
+# Large Applications as Packages {#large-applications-as-packages}
 
 Imagine a simple flask application structure that looks like this:
 
@@ -16,7 +16,7 @@ Imagine a simple flask application structure that looks like this:
 
 While this is fine for small applications, for larger applications it’s a good idea to use a package instead of a module. The [Tutorial](https://flask.palletsprojects.com/en/2.3.x/tutorial/) is structured to use the package pattern, see the [example code](https://github.com/pallets/flask/tree/main/examples/tutorial).
 
-## Simple Packages
+## Simple Packages {#simple-packages}
 
 To convert that into a larger one, just create a new folder `yourapplication` inside the existing one and move everything below it. Then rename `yourapplication.py` to `__init__.py`. (Make sure to delete all `.pyc` files first, otherwise things would most likely break)
 
@@ -107,6 +107,6 @@ You should then end up with something like that:
 Every Python programmer hates them, and yet we just added some: circular imports (That’s when two modules depend on each other. In this case `views.py` depends on `__init__.py`). Be advised that this is a bad idea in general but here it is actually fine. The reason for this is that we are not actually using the views in `__init__.py` and just ensuring the module is imported and we are doing that at the bottom of the file.
 :::
 
-## Working with Blueprints
+## Working with Blueprints {#working-with-blueprints}
 
 If you have larger applications it’s recommended to divide them into smaller groups where each group is implemented with the help of a blueprint. For a gentle introduction into this topic refer to the [Modular Applications with Blueprints](https://flask.palletsprojects.com/en/2.3.x/blueprints/) chapter of the documentation.

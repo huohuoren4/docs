@@ -1,4 +1,4 @@
-# Single-Page Applications
+# Single-Page Applications {#single-page-applications}
 
 Flask can be used to serve Single-Page Applications (SPA) by placing static files produced by your frontend framework in a subfolder inside of your project. You will also need to create a catch-all endpoint that routes all requests to your SPA.
 

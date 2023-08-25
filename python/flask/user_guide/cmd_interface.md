@@ -1,8 +1,8 @@
-# Command Line Interface
+# Command Line Interface {#command-line-interface}
 
 Installing Flask installs the `flask` script, a [Click](https://click.palletsprojects.com/) command line interface, in your virtualenv. Executed from the terminal, this script gives access to built-in, extension, and application-defined commands. The `--help` option will give more information about any commands and options.
 
-## Application Discovery
+## Application Discovery {#application-discovery}
 
 The `flask` command is installed by Flask, not your application; it must be told where to find your application in order to use it. The `--app` option is used to specify how to load the application.
 
@@ -40,7 +40,7 @@ Within the given import, the command looks for an application instance named `ap
 
 If parentheses follow the factory name, their contents are parsed as Python literals and passed as arguments and keyword arguments to the function. This means that strings must still be in quotes.
 
-## Run the Development Server
+## Run the Development Server {#run-the-development-server}
 
 The [run](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.run_command) command will start the development server. It replaces the [Flask.run()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.run) method in most cases.
 
@@ -56,7 +56,7 @@ Do not use this command to run your application in production. Only use the deve
 
 If another program is already using port 5000, you’ll see `OSError: [Errno 98]` or `OSError: [WinError 10013]` when the server tries to start. See [Address already in use](https://flask.palletsprojects.com/en/2.3.x/server/#address-already-in-use) for how to handle that.
 
-### Debug Mode
+### Debug Mode {#debug-mode}
 
 In debug mode, the `flask run` command will enable the interactive debugger and the reloader by default, and make errors easier to see and debug. To enable debug mode, use the `--debug` option.
 
@@ -77,7 +77,7 @@ flask --app hello --debug run
 flask --app hello run --debug
 ```
 
-### Watch and Ignore Files with the Reloader
+### Watch and Ignore Files with the Reloader {#watch-and-ignore-files-with-the-reloader}
 
 When using debug mode, the reloader will trigger whenever your Python code or imported modules change. The reloader can watch additional files with the `--extra-files` option. Multiple paths are separated with `:`, or `;` on Windows.
 
@@ -89,7 +89,7 @@ $ flask run --extra-files file1:dirA/file2:dirB/
 
 The reloader can also ignore files using [fnmatch](https://docs.python.org/3/library/fnmatch.html#module-fnmatch) patterns with the `--exclude-patterns` option. Multiple patterns are separated with `:`, or `;` on Windows.
 
-## Open a Shell
+## Open a Shell {#open-a-shell}
 
 To explore the data in your application, you can start an interactive Python shell with the [shell](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.shell_command) command. An application context will be active, and the app instance will be imported.
 
@@ -103,7 +103,7 @@ Instance: /home/david/Projects/pallets/flask/instance
 
 Use [shell_context_processor()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.shell_context_processor) to add other automatic imports.
 
-## Environment Variables From dotenv
+## Environment Variables From dotenv {#environment-variables-from-dotenv}
 
 The `flask` command supports setting any option for any command with environment variables. The variables are named like `FLASK_OPTION` or `FLASK_COMMAND_OPTION`, for example `FLASK_APP` or `FLASK_RUN_PORT`.
 
@@ -117,7 +117,7 @@ Directories are scanned upwards from the directory you call `flask` from to loca
 
 The files are only loaded by the `flask` command or calling [run()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.run). If you would like to load these files when running in production, you should call [load_dotenv()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.load_dotenv) manually.
 
-### Setting Command Options
+### Setting Command Options {#setting-command-options}
 
 Click is configured to load default values for command options from environment variables. The variables use the pattern `FLASK_COMMAND_OPTION`. For example, to set the port for the run command, instead of `flask run --port 8000`:
 
@@ -149,7 +149,7 @@ $ flask run
 
 These can be added to the `.flaskenv` file just like `FLASK_APP` to control default command options.
 
-### Disable dotenv
+### Disable dotenv {#disable-dotenv}
 
 The `flask` command will show a message if it detects dotenv files but python-dotenv is not installed.
 
@@ -182,7 +182,7 @@ $ flask run
 ```
 :::
 
-## Environment Variables From virtualenv
+## Environment Variables From virtualenv {#environment-variables-from-virtualenv}
 
 If you do not want to install dotenv support, you can still set environment variables by adding them to the end of the virtualenv’s `activate` script. Activating the virtualenv will set the variables.
 
@@ -213,7 +213,7 @@ Windows Powershell, `.venv\Scripts\activate.ps1`:
 :::
 It is preferred to use dotenv support over this, since `.flaskenv` can be committed to the repository so that it works automatically wherever the project is checked out.
 
-## Custom Commands
+## Custom Commands {#custom-commands}
 
 The `flask` command is implemented using [Click](https://click.palletsprojects.com/). See that project’s documentation for full information about writing commands.
 
@@ -259,7 +259,7 @@ $ flask user create demo
 
 See [Running Commands with the CLI Runner](https://flask.palletsprojects.com/en/2.3.x/testing/#testing-cli) for an overview of how to test your custom commands.
 
-### Registering Commands with Blueprints
+### Registering Commands with Blueprints {#registering-commands-with-blueprints}
 
 If your application uses blueprints, you can optionally register CLI commands directly onto them. When your blueprint is registered onto your application, the associated commands will be available to the `flask` command. By default, those commands will be nested in a group matching the name of the blueprint.
 
@@ -304,7 +304,7 @@ app.register_blueprint(bp, cli_group=None)
 $ flask create alice
 ```
 
-### Application Context
+### Application Context {#application-context}
 
 Commands added using the Flask app’s [cli](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.cli) or [FlaskGroup](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.FlaskGroup) [command()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.AppGroup.command) decorator will be executed with an application context pushed, so your custom commands and parameters have access to the app and its configuration. The [with_appcontext()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.with_appcontext) decorator can be used to get the same behavior, but is not needed in most cases.
 
@@ -320,7 +320,7 @@ def do_work():
 app.cli.add_command(do_work)
 ```
 
-## Plugins
+## Plugins {#plugins}
 
 Flask will automatically load commands specified in the `flask.commands` entry point. This is useful for extensions that want to add commands when they are installed. Entry points are specified in `pyproject.toml`:
 
@@ -341,7 +341,7 @@ def cli():
 
 Once that package is installed in the same virtualenv as your Flask project, you can run `flask my-command` to invoke the command.
 
-## Custom Scripts
+## Custom Scripts {#custom-scripts}
 
 When you are using the app factory pattern, it may be more convenient to define your own Click script. Instead of using `--app` and letting Flask load your application, you can create your own Click object and export it as a [console script](https://packaging.python.org/tutorials/packaging-projects/#console-scripts) entry point.
 
@@ -382,7 +382,7 @@ When using a custom script, if you introduce an error in your module-level code,
 The `flask` command, being separate from your code, does not have this issue and is recommended in most cases.
 :::
 
-## PyCharm Integration
+## PyCharm Integration {#pycharm-integration}
 
 PyCharm Professional provides a special Flask run configuration to run the development server. For the Community Edition, and for other commands besides `run`, you need to create a custom run configuration. These instructions should be similar for any other IDE you use.
 

@@ -1,4 +1,4 @@
-# URL Route Registrations
+# URL Route Registrations {#url-route-registrations}
 
 Generally there are three ways to define rules for the routing system:
 

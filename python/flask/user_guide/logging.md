@@ -1,4 +1,4 @@
-# Logging
+# Logging {#logging}
 
 Flask uses standard Python [logging](https://docs.python.org/3/library/logging.html#module-logging). Messages about your Flask application are logged with [app.logger](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.logger), which takes the same name as [app.name](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.name). This logger can also be used to log your own messages.
 
@@ -18,7 +18,7 @@ def login():
 
 If you don’t configure logging, Python’s default log level is usually ‘warning’. Nothing below the configured level will be visible.
 
-## Basic Configuration
+## Basic Configuration {#basic-configuration}
 
 When you want to configure logging for your project, you should do it as soon as possible when the program starts. If [app.logger](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.logger) is accessed before logging is configured, it will add a default handler. If possible, configure logging before creating the application object.
 
@@ -46,11 +46,11 @@ dictConfig({
 app = Flask(__name__)
 ```
 
-### Default Configuration
+### Default Configuration {#default-configuration}
 
 If you do not configure logging yourself, Flask will add a [StreamHandler](https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler) to [app.logger](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.logger) automatically. During requests, it will write to the stream specified by the WSGI server in `environ['wsgi.errors']` (which is usually [sys.stderr](https://docs.python.org/3/library/sys.html#sys.stderr)). Outside a request, it will log to [sys.stderr](https://docs.python.org/3/library/sys.html#sys.stderr).
 
-### Removing the Default Handler
+### Removing the Default Handler {#removing-the-default-handler}
 
 If you configured logging after accessing [app.logger](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.logger), and need to remove the default handler, you can import and remove it:
 
@@ -60,7 +60,7 @@ from flask.logging import default_handler
 app.logger.removeHandler(default_handler)
 ```
 
-## Email Errors to Admins
+## Email Errors to Admins {#email-errors-to-admins}
 
 When running the application on a remote server for production, you probably won’t be looking at the log messages very often. The WSGI server will probably send log messages to a file, and you’ll only check that file if a user tells you something went wrong.
 
@@ -87,7 +87,7 @@ if not app.debug:
 
 This requires that you have an SMTP server set up on the same server. See the Python docs for more information about configuring the handler.
 
-## Injecting Request Information
+## Injecting Request Information {#injecting-request-information}
 
 Seeing more information about the request, such as the IP address, may help debugging some errors. You can subclass [logging.Formatter](https://docs.python.org/3/library/logging.html#logging.Formatter) to inject your own fields that can be used in messages. You can change the formatter for Flask’s default handler, the mail handler defined above, or any other handler.
 
@@ -114,7 +114,7 @@ default_handler.setFormatter(formatter)
 mail_handler.setFormatter(formatter)
 ```
 
-## Other Libraries
+## Other Libraries {#other-libraries}
 
 Other libraries may use logging extensively, and you want to see relevant messages from those logs too. The simplest way to do this is to add handlers to the root logger instead of only the app logger.
 
@@ -138,10 +138,10 @@ for logger in (
     logger.addHandler(mail_handler)
 ```
 
-### Werkzeug
+### Werkzeug {#werkzeug}
 
 Werkzeug logs basic request/response information to the `'werkzeug'` logger. If the root logger has no handlers configured, Werkzeug adds a [StreamHandler](https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler) to its logger.
 
-### Flask Extensions
+### Flask Extensions {#flask-extensions}
 
 Depending on the situation, an extension may choose to log to [app.logger](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.logger) or its own named logger. Consult each extension’s documentation for details.

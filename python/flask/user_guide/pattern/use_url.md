@@ -1,4 +1,4 @@
-# Using URL Processors
+# Using URL Processors {#using-url-processors}
 
 ::: tip Changelog
 *New in version 0.7.*
@@ -8,7 +8,7 @@ Flask 0.7 introduces the concept of URL processors. The idea is that you might h
 
 URL processors are especially helpful when combined with blueprints. We will handle both application specific URL processors here as well as blueprint specifics.
 
-## Internationalized Application URLs
+## Internationalized Application URLs {#internationalized-application-urls}
 
 Consider an application like this:
 
@@ -78,7 +78,7 @@ def about():
     ...
 ```
 
-## Internationalized Blueprint URLs
+## Internationalized Blueprint URLs {#internationalized-blueprint-urls}
 
 Because blueprints can automatically prefix all URLs with a common string it’s easy to automatically do that for every function. Furthermore blueprints can have per-blueprint URL processors which removes a whole lot of logic from the [url_defaults()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.url_defaults) function because it no longer has to check if the URL is really interested in a `'lang_code'` parameter:
 

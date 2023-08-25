@@ -1,4 +1,4 @@
-# Signals
+# Signals {#signals}
 
 Signals are a lightweight way to notify subscribers of certain events during the lifecycle of the application and each request. When an event occurs, it emits the signal, which calls each subscriber.
 
@@ -6,11 +6,11 @@ Signals are implemented by the Blinker library. See its documentation for detail
 
 Many signals mirror Flask’s decorator-based callbacks with similar names. For example, the [request_started](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_started) signal is similar to the [before_request()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.before_request) decorator. The advantage of signals over handlers is that they can be subscribed to temporarily, and can’t directly affect the application. This is useful for testing, metrics, auditing, and more. For example, if you want to know what templates were rendered at what parts of what requests, there is a signal that will notify you of that information.
 
-## Core Signals
+## Core Signals {#core-signals}
 
 See [Signals](https://flask.palletsprojects.com/en/2.3.x/api/#core-signals-list) for a list of all built-in signals. The [Application Structure and Lifecycle](https://flask.palletsprojects.com/en/2.3.x/lifecycle/) page also describes the order that signals and decorators execute.
 
-## Subscribing to Signals
+## Subscribing to Signals {#subscribing-to-signals}
 
 To subscribe to a signal, you can use the [connect()](https://blinker.readthedocs.io/en/stable/#blinker.base.Signal.connect) method of a signal. The first argument is the function that should be called when the signal is emitted, the optional second argument specifies a sender. To unsubscribe from a signal, you can use the [disconnect()](https://blinker.readthedocs.io/en/stable/#blinker.base.Signal.disconnect) method.
 
@@ -70,7 +70,7 @@ with captured_templates(app, templates, **extra):
     template, context = templates[0]
 ```
 
-## Creating Signals
+## Creating Signals {#creating-signals}
 
 If you want to use signals in your own application, you can use the blinker library directly. The most common use case are named signals in a custom [Namespace](https://blinker.readthedocs.io/en/stable/#blinker.base.Namespace). This is what is recommended most of the time:
 
@@ -87,7 +87,7 @@ model_saved = my_signals.signal('model-saved')
 
 The name for the signal here makes it unique and also simplifies debugging. You can access the name of the signal with the [name](https://blinker.readthedocs.io/en/stable/#blinker.base.NamedSignal.name) attribute.
 
-## Sending Signals
+## Sending Signals {#sending-signals}
 
 If you want to emit a signal, you can do so by calling the [send()](https://blinker.readthedocs.io/en/stable/#blinker.base.Signal.send) method. It accepts a sender as first argument and optionally some keyword arguments that are forwarded to the signal subscribers:
 
@@ -105,11 +105,11 @@ Try to always pick a good sender. If you have a class that is emitting a signal,
 Never pass [current_app](https://flask.palletsprojects.com/en/2.3.x/api/#flask.current_app) as sender to a signal. Use `current_app._get_current_object()` instead. The reason for this is that [current_app](https://flask.palletsprojects.com/en/2.3.x/api/#flask.current_app) is a proxy and not the real application object.
 :::
 
-## Signals and Flask's Request Context
+## Signals and Flask's Request Context {#signals-and-flask-s-request-context}
 
 Signals fully support [The Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/) when receiving signals. Context-local variables are consistently available between [request_started](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_started) and [request_finished](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_finished), so you can rely on [flask.g](https://flask.palletsprojects.com/en/2.3.x/api/#flask.g) and others as needed. Note the limitations described in [Sending Signals](https://flask.palletsprojects.com/en/2.3.x/signals/#signals-sending) and the [request_tearing_down](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_tearing_down) signal.
 
-## Decorator Based Signal Subscriptions
+## Decorator Based Signal Subscriptions {#decorator-based-signal-subscriptions}
 
 You can also easily subscribe to signals by using the `connect_via()` decorator:
 

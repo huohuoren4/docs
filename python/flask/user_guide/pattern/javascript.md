@@ -1,10 +1,10 @@
-# JavaScript, fetch, and JSON
+# JavaScript, fetch, and JSON {#javascript-fetch-and-json}
 
 You may want to make your HTML page dynamic, by changing data without reloading the entire page. Instead of submitting an HTML `<form>` and performing a redirect to re-render the template, you can add [JavaScript](https://developer.mozilla.org/Web/JavaScript) that calls [fetch()](https://developer.mozilla.org/Web/API/Fetch_API) and replaces content on the page.
 
 [fetch()](https://developer.mozilla.org/Web/API/Fetch_API) is the modern, built-in JavaScript solution to making requests from a page. You may have heard of other “AJAX” methods and libraries, such as [XMLHttpRequest()](https://developer.mozilla.org/Web/API/XMLHttpRequest) or [jQuery](https://jquery.com/). These are no longer needed in modern browsers, although you may choose to use them or another library depending on your application’s requirements. These docs will only focus on built-in JavaScript features.
 
-## Rendering Templates
+## Rendering Templates {#rendering-templates}
 
 It is important to understand the difference between templates and JavaScript. Templates are rendered on the server, before the response is sent to the user’s browser. JavaScript runs in the user’s browser, after the template is rendered and sent. Therefore, it is impossible to use JavaScript to affect how the Jinja template is rendered, but it is possible to render data into the JavaScript that will run.
 
@@ -28,7 +28,7 @@ A less common pattern is to add the data to a `data-` attribute on an HTML tag. 
 <div data-chart='{{ chart_data|tojson }}'></div>
 ```
 
-## Generating URLs
+## Generating URLs {#generating-urls}
 
 The other way to get data from the server to JavaScript is to make a request for it. First, you need to know the URL to request.
 
@@ -52,7 +52,7 @@ let user_url = `${SCRIPT_ROOT}/user/${user_id}`
 fetch(user_url).then(...)
 ```
 
-## Making a Request with fetch
+## Making a Request with fetch {#making-a-request-with-fetch}
 
 [fetch()](https://developer.mozilla.org/Web/API/Fetch_API) takes two arguments, a URL and an object with other options, and returns a [Promise](https://developer.mozilla.org/Web/JavaScript/Reference/Global_Objects/Promise). We won’t cover all the available options, and will only use `then()` on the promise, not other callbacks or `await` syntax. Read the linked MDN docs for more information about those features.
 
@@ -95,7 +95,7 @@ fetch(room_url, {
 }).then(...)
 ```
 
-## Following Redirects
+## Following Redirects {#following-redirects}
 
 A response might be a redirect, for example if you logged in with JavaScript instead of a traditional HTML form, and your view returned a redirect instead of JSON. JavaScript requests do follow redirects, but they don’t change the page. If you want to make the page change you can inspect the response and apply the redirect manually.
 
@@ -111,7 +111,7 @@ fetch("/login", {"body": ...}).then(
 )
 ```
 
-## Replacing Content
+## Replacing Content {#replacing-content}
 
 A response might be new HTML, either a new section of the page to add or replace, or an entirely new page. In general, if you’re returning the entire page, it would be better to handle that with a redirect as shown in the previous section. The following example shows how to replace a `<div>` with the HTML returned by a request.
 
@@ -128,7 +128,7 @@ A response might be new HTML, either a new section of the page to add or replace
 </script>
 ```
 
-## Return JSON from Views
+## Return JSON from Views {#return-json-from-views}
 
 To return a JSON object from your API view, you can directly return a dict from the view. It will be serialized to JSON automatically.
 
@@ -156,7 +156,7 @@ def user_list():
 
 It is usually not a good idea to return file data in a JSON response. JSON cannot represent binary data directly, so it must be base64 encoded, which can be slow, takes more bandwidth to send, and is not as easy to cache. Instead, serve files using one view, and generate a URL to the desired file to include in the JSON. Then the client can make a separate request to get the linked resource after getting the JSON.
 
-## Receiving JSON in Views
+## Receiving JSON in Views {#receiving-json-in-views}
 
 Use the [json](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Request.json) property of the [request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request) object to decode the request’s body as JSON. If the body is not valid JSON, or the `Content-Type` header is not set to `application/json`, a `400` Bad Request error will be raised.
 

@@ -1,10 +1,10 @@
-# The Application Context
+# The Application Context {#the-application-context}
 
 The application context keeps track of the application-level data during a request, CLI command, or other activity. Rather than passing the application around to each function, the [current_app](https://flask.palletsprojects.com/en/2.3.x/api/#flask.current_app) and g proxies are accessed instead.
 
 This is similar to [The Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/), which keeps track of request-level data during a request. A corresponding application context is pushed when a request context is pushed.
 
-## Purpose of the Context
+## Purpose of the Context {#purpose-of-the-context}
 
 The [Flask](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask) application object has attributes, such as [config](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.config), that are useful to access within views and [CLI commands](https://flask.palletsprojects.com/en/2.3.x/cli/). However, importing the `app` instance within the modules in your project is prone to circular import issues. When using the [app factory pattern](https://flask.palletsprojects.com/en/2.3.x/patterns/appfactories/)or writing reusable [blueprints](https://flask.palletsprojects.com/en/2.3.x/blueprints/) or [extensions](https://flask.palletsprojects.com/en/2.3.x/extensions/) there won’t be an `app` instance to import at all.
 
@@ -14,13 +14,13 @@ Flask automatically pushes an application context when handling a request. View 
 
 Flask will also automatically push an app context when running CLI commands registered with [Flask.cli](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.cli) using `@app.cli.command()`.
 
-## Lifetime of the Context
+## Lifetime of the Context {#lifetime-of-the-context}
 
 The application context is created and destroyed as necessary. When a Flask application begins handling a request, it pushes an application context and a [request context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/). When the request ends it pops the request context then the application context. Typically, an application context will have the same lifetime as a request.
 
 See [The Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/) for more information about how the contexts work and the full life cycle of a request.
 
-## Manually Push a Context
+## Manually Push a Context {#manually-push-a-context}
 
 If you try to access [current_app](https://flask.palletsprojects.com/en/2.3.x/api/#flask.current_app), or anything that uses it, outside an application context, you’ll get this error message:
 
@@ -46,7 +46,7 @@ def create_app():
 
 If you see that error somewhere else in your code not related to configuring the application, it most likely indicates that you should move that code into a view function or CLI command.
 
-## Storing Data
+## Storing Data {#storing-data}
 
 The application context is a good place to store common data during a request or CLI command. Flask provides the [g object](https://flask.palletsprojects.com/en/2.3.x/api/#flask.g) for this purpose. It is a simple namespace object that has the same lifetime as an application context.
 
@@ -90,7 +90,7 @@ db = LocalProxy(get_db)
 
 Accessing `db` will call `get_db` internally, in the same way that [current_app](https://flask.palletsprojects.com/en/2.3.x/api/#flask.current_app) works.
 
-## Events and Signals
+## Events and Signals {#events-and-signals}
 
 The application will call functions registered with [teardown_appcontext()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.teardown_appcontext) when the application context is popped.
 

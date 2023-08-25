@@ -1,4 +1,4 @@
-# Development Server
+# Development Server {#development-server}
 
 Flask provides a `run` command to run the application with a development server. In debug mode, this server provides an interactive debugger and will reload when code is changed.
 
@@ -8,7 +8,7 @@ Do not use the development server when deploying to production. It is intended f
 See [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/) for deployment options.
 :::
 
-## Command Line
+## Command Line {#command-line}
 
 The `flask run` CLI command is the recommended way to run the development server. Use the `--app` option to point to your application, and the `--debug` option to enable debug mode.
 
@@ -18,7 +18,7 @@ $ flask --app hello run --debug
 
 This enables debug mode, including the interactive debugger and reloader, and then starts the server on `http://localhost:5000/`. Use `flask run --help` to see the available options, and [Command Line Interface](https://flask.palletsprojects.com/en/2.3.x/cli/) for detailed instructions about configuring and using the CLI.
 
-### Address already in use
+### Address already in use {#address-already-in-use}
 
 If another program is already using port 5000, you’ll see an `OSError` when the server tries to start. It may have one of the following messages:
 
@@ -50,13 +50,13 @@ TCP 127.0.0.1:5000 0.0.0.0:0 LISTENING 6847
 
 macOS Monterey and later automatically starts a service that uses port 5000. To disable the service, go to System Preferences, Sharing, and disable “AirPlay Receiver”.
 
-### Deferred Errors on Reload
+### Deferred Errors on Reload {#deferred-errors-on-reload}
 
 When using the `flask run` command with the reloader, the server will continue to run even if you introduce syntax errors or other initialization errors into the code. Accessing the site will show the interactive debugger for the error, rather than crashing the server.
 
 If a syntax error is already present when calling `flask run`, it will fail immediately and show the traceback rather than waiting until the site is accessed. This is intended to make errors more visible initially while still allowing the server to handle errors on reload.
 
-## In Code
+## In Code {#in-code}
 
 The development server can also be started from Python with the [Flask.run()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.run) method. This method takes arguments similar to the CLI options to control the server. The main difference from the CLI command is that the server will crash if there are errors when reloading. `debug=True` can be passed to enable debug mode.
 

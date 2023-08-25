@@ -1,4 +1,4 @@
-# Application Factories
+# Application Factories {#application-factories}
 
 If you are already using packages and blueprints for your application ([Modular Applications with Blueprints](https://flask.palletsprojects.com/en/2.3.x/blueprints/)) there are a couple of really nice ways to further improve the experience. A common pattern is creating the application object when the blueprint is imported. But if you move the creation of this object into a function, you can then create multiple instances of this app later.
 
@@ -10,7 +10,7 @@ So why would you want to do this?
 
 So how would you then actually implement that?
 
-## Basic Factories
+## Basic Factories {#basic-factories}
 
 The idea is to set up the application in a function. Like this:
 
@@ -43,7 +43,7 @@ def index():
 
 Here we look up the name of a template in the config.
 
-## Factories & Extensions
+## Factories & Extensions {#factories-extensions}
 
 It’s preferable to create your extensions and app factories so that the extension object does not initially get bound to the application.
 
@@ -76,7 +76,7 @@ def create_app(config_filename):
 
 Using this design pattern, no application-specific state is stored on the extension object, so one extension object can be used for multiple apps. For more information about the design of extensions refer to [Flask Extension Development](https://flask.palletsprojects.com/en/2.3.x/extensiondev/).
 
-## Using Applications
+## Using Applications {#using-applications}
 
 To run such an application, you can use the flask command:
 
@@ -92,7 +92,7 @@ $ flask --app hello:create_app(local_auth=True) run
 
 Then the `create_app` factory in `myapp` is called with the keyword argument `local_auth=True`. See [Command Line Interface](https://flask.palletsprojects.com/en/2.3.x/cli/) for more detail.
 
-## Factory Improvements
+## Factory Improvements {#factory-improvements}
 
 The factory function above is not very clever, but you can improve it. The following changes are straightforward to implement:
 

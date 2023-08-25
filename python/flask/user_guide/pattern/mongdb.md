@@ -1,4 +1,4 @@
-# MongoDB with MongoEngine
+# MongoDB with MongoEngine {#mongodb-with-mongoengine}
 
 Using a document database like MongoDB is a common alternative to relational SQL databases. This pattern shows how to use [MongoEngine](http://mongoengine.org/), a document mapper library, to integrate with MongoDB.
 
@@ -8,7 +8,7 @@ A running MongoDB server and [Flask-MongoEngine](https://flask-mongoengine.readt
 pip install flask-mongoengine
 ```
 
-## Configuration
+## Configuration {#configuration}
 
 Basic setup can be done by defining `MONGODB_SETTINGS` on `app.config` and creating a `MongoEngine` instance.
 
@@ -23,7 +23,7 @@ app.config['MONGODB_SETTINGS'] = {
 db = MongoEngine(app)
 ```
 
-## Mapping Documents
+## Mapping Documents {#mapping-documents}
 
 To declare a model that represents a Mongo document, create a class that inherits from `Document` and declare each of the fields.
 
@@ -51,7 +51,7 @@ class Movie(me.Document):
     imdb = me.EmbeddedDocumentField(Imdb)
 ```
 
-## Creating Data
+## Creating Data {#creating-data}
 
 Instantiate your document class with keyword arguments for the fields. You can also assign values to the field attributes after instantiation. Then call `doc.save()`.
 
@@ -65,7 +65,7 @@ bttf.imdb = Imdb(imdb_id="tt0088763", rating=8.5)
 bttf.save()
 ```
 
-## Queries
+## Queries {#queries}
 
 Use the class `objects` attribute to make queries. A keyword argument looks for an equal value on the field.
 
@@ -82,7 +82,7 @@ for recents in Movie.objects(year__gte=2017):
     print(recents.title)
 ```
 
-## Documentation
+## Documentation {#documentation}
 
 There are many more ways to define and query documents with `MongoEngine`. For more information, check out the [official documentation](http://mongoengine.org/).
 

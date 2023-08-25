@@ -1,10 +1,10 @@
-# Deploying to Production
+# Deploying to Production {#deploying-to-production}
 
 After developing your application, you’ll want to make it available publicly to other users. When you’re developing locally, you’re probably using the built-in development server, debugger, and reloader. These should not be used in production. Instead, you should use a dedicated WSGI server or hosting platform, some of which will be described here.
 
 “Production” means “not development”, which applies whether you’re serving your application publicly to millions of users or privately / locally to a single user. Do not use the development server when deploying to production. It is intended for use only during local development. It is not designed to be particularly secure, stable, or efficient.
 
-## Self-Hosted Options
+## Self-Hosted Options {#self-hosted-options}
 
 Flask is a WSGI application. A WSGI server is used to run the application, converting incoming HTTP requests to the standard WSGI environ, and converting outgoing WSGI responses to HTTP responses.
 
@@ -25,7 +25,7 @@ WSGI servers have HTTP servers built-in. However, a dedicated HTTP server may be
 - [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/)
 This list is not exhaustive, and you should evaluate these and other servers based on your application’s needs. Different servers will have different capabilities, configuration, and support.
 
-## Hosting Platforms
+## Hosting Platforms {#hosting-platforms}
 
 There are many services available for hosting web applications without needing to maintain your own server, networking, domain, etc. Some services may have a free tier up to a certain time or bandwidth. Many of these services use one of the WSGI servers described above, or a similar interface. The links below are for some of the most common platforms, which have instructions for Flask, WSGI, or Python.
 
@@ -43,7 +43,7 @@ This list is not exhaustive, and you should evaluate these and other services ba
 
 You’ll probably need to [Tell Flask it is Behind a Proxy](https://flask.palletsprojects.com/en/2.3.x/deploying/proxy_fix/) when using most hosting platforms.
 
-## Gunicorn
+## Gunicorn {#gunicorn}
 
 [Gunicorn](https://gunicorn.org/) is a pure Python WSGI server with simple configuration and multiple worker implementations for performance tuning.
 
@@ -57,7 +57,7 @@ You’ll probably need to [Tell Flask it is Behind a Proxy](https://flask.pallet
 
 This page outlines the basics of running Gunicorn. Be sure to read its [documentation](https://docs.gunicorn.org/) and use `gunicorn --help` to understand what features are available.
 
-### Installing
+### Installing {#installing}
 
 Gunicorn is easy to install, as it does not require external dependencies or compilation. It runs on Windows only under WSL.
 
@@ -71,7 +71,7 @@ $ pip install .  # install your application
 $ pip install gunicorn
 ```
 
-### Running
+### Running {#running}
 
 The only required argument to Gunicorn tells it how to load your Flask application. The syntax is `{module_import}:{app_variable}`. module_import is the dotted import name to the module with your application. `app_variable` is the variable with the application. It can also be a function call (with any arguments) if you’re using the app factory pattern.
 
@@ -95,7 +95,7 @@ The `-w` option specifies the number of processes to run; a starting value could
 
 Logs for each request aren’t shown by default, only worker info and errors are shown. To show access logs on stdout, use the `--access-logfile=-` option.
 
-### Binding Externally
+### Binding Externally {#binding-externally}
 
 Gunicorn should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/) or [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/) should be used in front of Gunicorn.
 
@@ -108,7 +108,7 @@ Listening at: http://0.0.0.0:8000 (x)
 
 `0.0.0.0` is not a valid address to navigate to, you’d use a specific IP address in your browser.
 
-### Async with gevent or eventlet
+### Async with gevent or eventlet {#async-with-gevent-or-eventlet}
 
 The default sync worker is appropriate for many use cases. If you need asynchronous support, Gunicorn provides workers using either [gevent](https://www.gevent.org/) or [eventlet](https://eventlet.net/). This is not the same as Python’s `async/await`, or the ASGI server spec. You must actually use `gevent/eventlet` in your own code to see any benefit to using the workers.
 
@@ -134,7 +134,7 @@ Using worker: eventlet
 Booting worker with pid: x
 ```
 
-## Waitress
+## Waitress {#waitress}
 
 [Waitress](https://docs.pylonsproject.org/projects/waitress/) is a pure Python WSGI server.
 
@@ -150,7 +150,7 @@ Booting worker with pid: x
 
 This page outlines the basics of running Waitress. Be sure to read its documentation and `waitress-serve --help` to understand what features are available.
 
-### Installing
+### Installing {#installing-1}
 
 Create a virtualenv, install your application, then install `waitress`.
 
@@ -162,7 +162,7 @@ $ pip install .  # install your application
 $ pip install waitress
 ```
 
-### Running
+### Running {#running-2}
 
 The only required argument to `waitress-serve` tells it how to load your Flask application. The syntax is `{module}:{app}`. module is the dotted import name to the module with your application. `app` is the variable with the application. If you’re using the app factory pattern, use `--call {module}:{factory}` instead.
 
@@ -180,7 +180,7 @@ The `--host` option binds the server to local `127.0.0.1` only.
 
 Logs for each request aren’t shown, only errors are shown. Logging can be configured through the Python interface instead of the command line.
 
-### Binding Externally
+### Binding Externally {#binding-externally-1}
 
 Waitress should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/) or [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/) should be used in front of Waitress.
 
@@ -188,7 +188,7 @@ You can bind to all external IPs on a non-privileged port by not specifying the 
 
 `0.0.0.0` is not a valid address to navigate to, you’d use a specific IP address in your browser.
 
-## mod_wsgi
+## mod_wsgi {#mod-wsgi}
 
 [mod_wsgi](https://modwsgi.readthedocs.io/) is a WSGI server integrated with the [Apache httpd](https://httpd.apache.org/) server. The modern [mod_wsgi-express](https://pypi.org/project/mod-wsgi/) command makes it easy to configure and start the server without needing to write Apache httpd configuration.
 
@@ -202,7 +202,7 @@ You can bind to all external IPs on a non-privileged port by not specifying the 
 
 This page outlines the basics of running mod_wsgi-express, not the more complex installation and configuration with httpd. Be sure to read the [mod_wsgi-express](https://pypi.org/project/mod-wsgi/), [mod_wsgi](https://modwsgi.readthedocs.io/), and [Apache httpd](https://httpd.apache.org/) documentation to understand what features are available.
 
-### Installing
+### Installing {#installing-2}
 
 Installing mod_wsgi requires a compiler and the Apache server and development headers installed. You will get an error if they are not. How to install them depends on the OS and package manager that you use.
 
@@ -216,7 +216,7 @@ $ pip install .  # install your application
 $ pip install mod_wsgi
 ```
 
-### Running
+### Running {#running-1}
 
 The only argument to `mod_wsgi-express` specifies a script containing your Flask application, which must be called `application`. You can write a small script to import your app with this name, or to create it if using the app factory pattern.
 
@@ -244,7 +244,7 @@ The `--processes` option specifies the number of worker processes to run; a star
 
 Logs for each request aren’t show in the terminal. If an error occurs, its information is written to the error log file shown when starting the server.
 
-### Binding Externally
+### Binding Externally {#binding-externally-3}
 
 Unlike the other WSGI servers in these docs, mod_wsgi can be run as root to bind to privileged ports like 80 and 443. However, it must be configured to drop permissions to a different user and group for the worker processes.
 
@@ -256,7 +256,7 @@ $ sudo /home/hello/.venv/bin/mod_wsgi-express start-server \
     --user hello --group hello --port 80 --processes 4
 ```
 
-## uWSGI
+## uWSGI {#uwsgi}
 
 [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/) is a fast, compiled server suite with extensive configuration and capabilities beyond a basic server.
 
@@ -270,7 +270,7 @@ $ sudo /home/hello/.venv/bin/mod_wsgi-express start-server \
 
 This page outlines the basics of running uWSGI. Be sure to read its documentation to understand what features are available.
 
-### Installing
+### Installing {#installing-3}
 
 uWSGI has multiple ways to install it. The most straightforward is to install the `pyuwsgi` package, which provides precompiled wheels for common platforms. However, it does not provide SSL support, which can be provided with a reverse proxy instead.
 
@@ -293,7 +293,7 @@ $ pip install uwsgi
 $ pip install --no-binary pyuwsgi pyuwsgi
 ```
 
-### Running
+### Running {#running-4}
 
 The most basic way to run uWSGI is to tell it to start an HTTP server and import your application.
 
@@ -326,7 +326,7 @@ $ uwsgi --http 127.0.0.1:8000 --master -p 4 -w wsgi:app
 
 The `--http` option starts an HTTP server at 127.0.0.1 port 8000. The `--master` option specifies the standard worker manager. The `-p` option starts 4 worker processes; a starting value could be `CPU * 2`. The `-w` option tells uWSGI how to import your application
 
-### Binding Externally
+### Binding Externally {#binding-externally-2}
 
 uWSGI should not be run as root with the configuration shown in this doc because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/) or [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/) should be used in front of uWSGI. It is possible to run uWSGI as root securely, but that is beyond the scope of this doc.
 
@@ -340,7 +340,7 @@ $ uwsgi --http 0.0.0.0:8000 --master -p 4 -w wsgi:app
 
 `0.0.0.0` is not a valid address to navigate to, you’d use a specific IP address in your browser.
 
-### Async with gevent
+### Async with gevent {#async-with-gevent}
 
 The default sync worker is appropriate for many use cases. If you need asynchronous support, uWSGI provides a gevent worker. This is not the same as Python’s `async/await`, or the ASGI server spec. You must actually use gevent in your own code to see any benefit to using the worker.
 
@@ -358,7 +358,7 @@ spawned uWSGI http 1 (pid: x)
 *** running gevent loop engine [addr:x] ***
 ```
 
-## gevent
+## gevent {#gevent}
 
 Prefer using [Gunicorn](https://flask.palletsprojects.com/en/2.3.x/deploying/gunicorn/) or [uWSGI](https://flask.palletsprojects.com/en/2.3.x/deploying/uwsgi/) with gevent workers rather than using [gevent](https://www.gevent.org/) directly. Gunicorn and uWSGI provide much more configurable and production-tested servers.
 
@@ -368,7 +368,7 @@ Prefer using [Gunicorn](https://flask.palletsprojects.com/en/2.3.x/deploying/gun
 
 gevent provides a WSGI server that can handle many connections at once instead of one per worker process. You must actually use gevent in your own code to see any benefit to using the server.
 
-### Installing
+### Installing {#installing-4}
 
 When using gevent, greenlet>=1.0 is required, otherwise context locals such as `request` will not work as expected. When using PyPy, PyPy>=7.3.7 is required.
 
@@ -382,7 +382,7 @@ $ pip install .  # install your application
 $ pip install gevent
 ```
 
-### Running
+### Running {#running-3}
 
 To use `gevent` to serve your application, write a script that imports its `WSGIServer`, as well as your app or app factory.
 
@@ -402,7 +402,7 @@ $ python wsgi.py
 
 No output is shown when the server starts.
 
-### Binding Externally
+### Binding Externally {#binding-externally-4}
 
 gevent should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/) or [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/) should be used in front of gevent.
 
@@ -410,7 +410,7 @@ You can bind to all external IPs on a non-privileged port by using `0.0.0.0` in 
 
 `0.0.0.0` is not a valid address to navigate to, you’d use a specific IP address in your browser.
 
-## eventlet
+## eventlet {#eventlet}
 
 Prefer using [Gunicorn](https://flask.palletsprojects.com/en/2.3.x/deploying/gunicorn/) with eventlet workers rather than using [eventlet](https://eventlet.net/) directly. Gunicorn provides a much more configurable and production-tested server.
 
@@ -420,7 +420,7 @@ Prefer using [Gunicorn](https://flask.palletsprojects.com/en/2.3.x/deploying/gun
 
 eventlet provides a WSGI server that can handle many connections at once instead of one per worker process. You must actually use eventlet in your own code to see any benefit to using the server.
 
-### Installing
+### Installing {#installing-5}
 
 When using `eventlet`, `greenlet`>=1.0 is required, otherwise context locals such as `request` will not work as expected. When using PyPy, PyPy>=7.3.7 is required.
 
@@ -434,7 +434,7 @@ $ pip install .  # install your application
 $ pip install eventlet
 ```
 
-### Running
+### Running {#running-5}
 
 To use eventlet to serve your application, write a script that imports its `wsgi.server`, as well as your app or app factory.
 
@@ -453,7 +453,7 @@ $ python wsgi.py
 (x) wsgi starting up on http://127.0.0.1:8000
 ```
 
-### Binding Externally
+### Binding Externally {#binding-externally-5}
 
 eventlet should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/) or [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/) should be used in front of eventlet.
 
@@ -461,7 +461,7 @@ You can bind to all external IPs on a non-privileged port by using `0.0.0.0` in 
 
 `0.0.0.0` is not a valid address to navigate to, you’d use a specific IP address in your browser.
 
-## ASGI
+## ASGI {#asgi}
 
 If you’d like to use an ASGI server you will need to utilise WSGI to ASGI middleware. The asgiref [WsgiToAsgi](https://github.com/django/asgiref#wsgi-to-asgi-adapter) adapter is recommended as it integrates with the event loop used for Flask’s [Using async and await](https://flask.palletsprojects.com/en/2.3.x/async-await/#async-await) support. You can use the adapter by wrapping the Flask app,
 
@@ -482,7 +482,7 @@ and then serving the `asgi_app` with the ASGI server, e.g. using [Hypercorn](htt
 $ hypercorn module:asgi_app
 ```
 
-## Tell Flask it is Behind a Proxy
+## Tell Flask it is Behind a Proxy {#tell-flask-it-is-behind-a-proxy}
 
 When using a reverse proxy, or many Python hosting platforms, the proxy will intercept and forward all external requests to the local WSGI server.
 
@@ -502,13 +502,13 @@ app.wsgi_app = ProxyFix(
 
 Remember, only apply this middleware if you are behind a proxy, and set the correct number of proxies that set each header. It can be a security issue if you get this configuration wrong.
 
-## nginx
+## nginx {#nginx}
 
 [nginx](https://nginx.org/) is a fast, production level HTTP server. When serving your application with one of the WSGI servers listed in [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/), it is often good or necessary to put a dedicated HTTP server in front of it. This “reverse proxy” can handle incoming requests, TLS, and other security and performance concerns better than the WSGI server.
 
 Nginx can be installed using your system package manager, or a pre-built executable for Windows. Installing and running Nginx itself is outside the scope of this doc. This page outlines the basics of configuring Nginx to proxy your application. Be sure to read its documentation to understand what features are available.
 
-### Domain Name
+### Domain Name {#domain-name}
 
 Acquiring and configuring a domain name is outside the scope of this doc. In general, you will buy a domain name from a registrar, pay for server space with a hosting provider, and then point your registrar at the hosting provider’s name servers.
 
@@ -544,13 +544,13 @@ server {
 
 Then [Tell Flask it is Behind a Proxy](https://flask.palletsprojects.com/en/2.3.x/deploying/proxy_fix/) so that your application uses these headers.
 
-## Apache httpd
+## Apache httpd {#apache-httpd}
 
 [Apache httpd](https://httpd.apache.org/) is a fast, production level HTTP server. When serving your application with one of the WSGI servers listed in [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/), it is often good or necessary to put a dedicated HTTP server in front of it. This “reverse proxy” can handle incoming requests, TLS, and other security and performance concerns better than the WSGI server.
 
 httpd can be installed using your system package manager, or a pre-built executable for Windows. Installing and running httpd itself is outside the scope of this doc. This page outlines the basics of configuring httpd to proxy your application. Be sure to read its documentation to understand what features are available.
 
-### Domain Name
+### Domain Name {#domain-name-1}
 
 Acquiring and configuring a domain name is outside the scope of this doc. In general, you will buy a domain name from a registrar, pay for server space with a hosting provider, and then point your registrar at the hosting provider’s name servers.
 
@@ -563,7 +563,7 @@ Modern Linux systems may be configured to treat any domain name that ends with `
 127.0.0.1 hello.localhost
 ```
 
-### Configuration
+### Configuration {#configuration}
 
 The httpd configuration is located at `/etc/httpd/conf/httpd.conf` on Linux. It may be different depending on your operating system. Check the docs and look for `httpd.conf`.
 

@@ -1,4 +1,4 @@
-# Useful Functions and Classes
+# Useful Functions and Classes {#useful-functions-and-classes}
 
 ## flask.current_app
 

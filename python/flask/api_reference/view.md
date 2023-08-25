@@ -1,4 +1,4 @@
-# Class-Based Views
+# Class-Based Views {#class-based-views}
 
 ::: details Changelog
 *New in version 0.7.*

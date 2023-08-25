@@ -1,4 +1,4 @@
-# Uploading Files
+# Uploading Files {#uploading-files}
 
 Ah yes, the good old problem of file uploads. The basic idea of file uploads is actually quite simple. It basically works like this:
 
@@ -8,7 +8,7 @@ Ah yes, the good old problem of file uploads. The basic idea of file uploads is 
 
 3. use the [save()](https://werkzeug.palletsprojects.com/en/2.3.x/datastructures/#werkzeug.datastructures.FileStorage.save) method of the file to save the file permanently somewhere on the filesystem.
 
-## A Gentle Introduction
+## A Gentle Introduction {#a-gentle-introduction}
 
 Let’s start with a very basic application that uploads a file to a specific upload folder and displays a file to the user. Let’s look at the bootstrapping code for our application:
 
@@ -100,7 +100,7 @@ app.add_url_rule(
 )
 ```
 
-## Improving Uploads
+## Improving Uploads {#improving-uploads}
 
 ::: details Changelog
 *New in version 0.6.*
@@ -123,11 +123,11 @@ When using the local development server, you may get a connection reset error in
 
 This feature was added in Flask 0.6 but can be achieved in older versions as well by subclassing the request object. For more information on that consult the Werkzeug documentation on file handling.
 
-## Upload Progress Bars
+## Upload Progress Bars {#upload-progress-bars}
 
 A while ago many developers had the idea to read the incoming file in small chunks and store the upload progress in the database to be able to poll the progress with JavaScript from the client. The client asks the server every 5 seconds how much it has transmitted, but this is something it should already know.
 
-## An Easier Solution
+## An Easier Solution {#an-easier-solution}
 
 Now there are better solutions that work faster and are more reliable. There are JavaScript libraries like [jQuery](https://jquery.com/) that have form plugins to ease the construction of progress bar.
 

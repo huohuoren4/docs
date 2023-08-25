@@ -1,4 +1,4 @@
-# Working with the Shell
+# Working with the Shell {#working-with-the-shell}
 
 ::: tip Changelog
 *New in version 0.3.*
@@ -12,13 +12,13 @@ This is where some helper functions come in handy. Keep in mind however that the
 
 Generally it’s recommended that you read The [Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/) first.
 
-## Command Line Interface
+## Command Line Interface {#command-line-interface}
 
 Starting with Flask 0.11 the recommended way to work with the shell is the `flask shell` command which does a lot of this automatically for you. For instance the shell is automatically initialized with a loaded application context.
 
 For more information see [Command Line Interface](https://flask.palletsprojects.com/en/2.3.x/cli/).
 
-## Creating a Request Context
+## Creating a Request Context {#creating-a-request-context}
 
 The easiest way to create a proper request context from the shell is by using the [test_request_context](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.test_request_context) method which creates us a [RequestContext](https://flask.palletsprojects.com/en/2.3.x/api/#flask.ctx.RequestContext):
 
@@ -38,7 +38,7 @@ From that point onwards you can work with the request object until you call `pop
 >>> ctx.pop()
 ```
 
-## Firing Before/After Request
+## Firing Before/After Request {#firing-before-after-request}
 
 By just creating a request context, you still don’t have run the code that is normally run before a request. This might result in your database being unavailable if you are connecting to the database in a before-request callback or the current user not being stored on the `g` object etc.
 
@@ -62,7 +62,7 @@ To shutdown a request, you need to trick a bit before the after request function
 
 The functions registered as [teardown_request()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.teardown_request) are automatically called when the context is popped. So this is the perfect place to automatically tear down resources that were needed by the request context (such as database connections).
 
-## Further Improving the Shell Experience
+## Further Improving the Shell Experience {#further-improving-the-shell-experience}
 
 If you like the idea of experimenting in a shell, create yourself a module with stuff you want to star import into your interactive session. There you could also define some more helper methods for common things such as initializing the database, dropping tables etc.
 

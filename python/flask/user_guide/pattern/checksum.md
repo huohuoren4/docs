@@ -1,4 +1,4 @@
-# Request Content Checksums
+# Request Content Checksums {#request-content-checksums}
 
 Various pieces of code can consume the request data and preprocess it. For instance JSON data ends up on the request object already read and processed, form data ends up there as well but goes through a different code path. This seems inconvenient when you want to calculate the checksum of the incoming request data. This is necessary sometimes for some APIs.
 

@@ -1,4 +1,4 @@
-# Configuration
+# Configuration {#configuration}
 
 ## `class` flask.Config(`root_path, defaults=None`)
 

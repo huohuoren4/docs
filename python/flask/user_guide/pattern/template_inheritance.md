@@ -1,10 +1,10 @@
-# Template Inheritance
+# Template Inheritance {#template-inheritance}
 
 The most powerful part of Jinja is template inheritance. Template inheritance allows you to build a base “skeleton” template that contains all the common elements of your site and defines `blocks` that child templates can override.
 
 Sounds complicated but is very basic. It’s easiest to understand it by starting with an example.
 
-## Base Template
+## Base Template {#base-template}
 
 This template, which we’ll call `layout.html`, defines a simple HTML skeleton document that you might use for a simple two-column page. It’s the job of “child” templates to fill the empty blocks with content:
 
@@ -30,7 +30,7 @@ This template, which we’ll call `layout.html`, defines a simple HTML skeleton 
 
 In this example, the `{% block %}` tags define four blocks that child templates can fill in. All the block tag does is tell the template engine that a child template may override those portions of the template.
 
-## Child Template
+## Child Template {#child-template}
 
 A child template might look like this:
 

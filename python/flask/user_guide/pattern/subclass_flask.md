@@ -1,4 +1,4 @@
-# Subclassing Flask
+# Subclassing Flask {#subclassing-flask}
 
 The [Flask](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask) class is designed for subclassing.
 

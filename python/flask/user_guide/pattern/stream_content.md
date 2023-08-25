@@ -1,10 +1,10 @@
-# Streaming Contents
+# Streaming Contents {#streaming-contents}
 
 Sometimes you want to send an enormous amount of data to the client, much more than you want to keep in memory. When you are generating the data on the fly though, how do you send that back to the client without the roundtrip to the filesystem?
 
 The answer is by using generators and direct responses.
 
-## Basic Usage
+## Basic Usage {#basic-usage}
 
 This is a basic view function that generates a lot of CSV data on the fly. The trick is to have an inner function that uses a generator to generate data and to then invoke that function and pass it to a response object:
 
@@ -19,7 +19,7 @@ def generate_large_csv():
 
 Each `yield` expression is directly sent to the browser. Note though that some WSGI middlewares might break streaming, so be careful there in debug environments with profilers and other things you might have enabled.
 
-## Streaming from Templates
+## Streaming from Templates {#streaming-from-templates}
 
 The `Jinja2` template engine supports rendering a template piece by piece, returning an iterator of strings. Flask provides the [stream_template()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_template) and [stream_template_string()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_template_string) functions to make this easier to use.
 
@@ -33,7 +33,7 @@ def timeline():
 
 The parts yielded by the render stream tend to match statement blocks in the template.
 
-## Streaming with Context
+## Streaming with Context {#streaming-with-context}
 
 The [request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request) will not be active while the generator is running, because the view has already returned at that point. If you try to access `request`, you’ll get a `RuntimeError`.
 

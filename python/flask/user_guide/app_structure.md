@@ -1,8 +1,8 @@
-# Application Structure and Lifecycle
+# Application Structure and Lifecycle {#application-structure-and-lifecycle}
 
 Flask makes it pretty easy to write a web application. But there are quite a few different parts to an application and to each request it handles. Knowing what happens during application setup, serving, and handling requests will help you know what’s possible in Flask and how to structure your application.
 
-## Application Setup
+## Application Setup {#application-setup}
 
 The first step in creating a Flask application is creating the application object. Each Flask application is an instance of the [Flask](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask) class, which collects all configuration, extensions, and views.
 
@@ -44,7 +44,7 @@ However, it is not possible for Flask to detect all cases of out-of-order setup.
 
 - Creating and initializing Flask extensions.
 
-## Serving the Application
+## Serving the Application {#serving-the-application}
 
 Flask is a WSGI application framework. The other half of WSGI is the WSGI server. During development, Flask, through Werkzeug, provides a development WSGI server with the `flask run` CLI command. When you are done with development, use a production server to serve your application, see [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/).
 
@@ -66,7 +66,7 @@ Regardless of what server you’re using, it will follow the [PEP 3333](https://
 
 8. Client receives the HTTP response.
 
-### Middleware
+### Middleware {#middleware}
 
 The WSGI application above is a callable that behaves in a certain way. Middleware is a WSGI application that wraps another WSGI application. It’s a similar concept to Python decorators. The outermost middleware will be called by the server. It can modify the data passed to it, then call the WSGI application (or further middleware) that it wraps, and so on. And it can take the return value of that call and modify it further.
 
@@ -74,7 +74,7 @@ From the WSGI server’s perspective, there is one WSGI application, the one it 
 
 A common middleware you’ll see used with Flask is Werkzeug’s [ProxyFix](https://werkzeug.palletsprojects.com/en/2.3.x/middleware/proxy_fix/#werkzeug.middleware.proxy_fix.ProxyFix), which modifies the request to look like it came directly from a client even if it passed through HTTP proxies on the way. There are other middleware that can handle serving static files, authentication, etc.
 
-## How a Request is Handled
+## How a Request is Handled {#how-a-request-is-handled}
 
 For us, the interesting part of the steps above is when Flask gets called by the WSGI server (or middleware). At that point, it will do quite a lot to handle the request and generate the response. At the most basic, it will match the URL to a view function, call the view function, and pass the return value back to the server. But there are many more parts that you can use to customize its behavior.
 

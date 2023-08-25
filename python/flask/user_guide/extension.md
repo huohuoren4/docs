@@ -1,12 +1,12 @@
-# Extensions
+# Extensions {#extensions}
 
 Extensions are extra packages that add functionality to a Flask application. For example, an extension might add support for sending email or connecting to a database. Some extensions add entire new frameworks to help build certain types of applications, like a REST API.
 
-## Finding Extensions
+## Finding Extensions {#finding-extensions}
 
 Flask extensions are usually named “Flask-Foo” or “Foo-Flask”. You can search PyPI for packages tagged with [Framework :: Flask](https://pypi.org/search/?c=Framework+%3A%3A+Flask).
 
-## Using Extensions
+## Using Extensions {#using-extensions}
 
 Consult each extension’s documentation for installation, configuration, and usage instructions. Generally, extensions pull their own configuration from [app.config](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.config) and are passed an application instance during initialization. For example, an extension called “Flask-Foo” might be used like this:
 
@@ -24,6 +24,6 @@ app.config.update(
 foo.init_app(app)
 ```
 
-## Building Extensions
+## Building Extensions {#building-extensions}
 
 While PyPI contains many Flask extensions, you may not find an extension that fits your need. If this is the case, you can create your own, and publish it for others to use as well. Read [Flask Extension Development](https://flask.palletsprojects.com/en/2.3.x/extensiondev/) to develop your own Flask extension.

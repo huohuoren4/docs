@@ -1,4 +1,4 @@
-# Message Flashing
+# Message Flashing {#message-flashing}
 
 ## flask.flash(`message, category='message'`)
 

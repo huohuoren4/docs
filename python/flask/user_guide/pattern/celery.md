@@ -1,4 +1,4 @@
-# Background Tasks with Celery
+# Background Tasks with Celery {#background-tasks-with-celery}
 
 If your application has a long running task, such as processing some uploaded data or sending email, you don’t want to wait for it to finish during a request. Instead, use a task queue to send the necessary data to another process that will run the task in the background while the request returns immediately.
 
@@ -6,7 +6,7 @@ Celery is a powerful task queue that can be used for simple background tasks as 
 
 The Flask repository contains [an example](https://github.com/pallets/flask/tree/main/examples/celery) based on the information on this page, which also shows how to use JavaScript to submit tasks and poll for progress and results.
 
-## Install
+## Install {#install}
 
 Install Celery from PyPI, for example using pip:
 
@@ -14,7 +14,7 @@ Install Celery from PyPI, for example using pip:
 $ pip install celery
 ```
 
-## Integrate Celery with Flask
+## Integrate Celery with Flask {#integrate-celery-with-flask}
 
 You can use Celery without any integration with Flask, but it’s convenient to configure it through Flask’s config, and to let tasks access the Flask application.
 
@@ -66,7 +66,7 @@ You can also run the `celery beat` command to run tasks on a schedule. See Celer
 $ celery -A example beat --loglevel INFO
 ```
 
-## Application Factory
+## Application Factory {#application-factory}
 
 When using the Flask application factory pattern, call the `celery_init_app` function inside the factory. It sets `app.extensions["celery"]` to the Celery app object, which can be used to get the Celery app from the Flask app returned by the factory.
 
@@ -101,7 +101,7 @@ $ celery -A make_celery worker --loglevel INFO
 $ celery -A make_celery beat --loglevel INFO
 ```
 
-## Defining Tasks
+## Defining Tasks {#defining-tasks}
 
 Using `@celery_app.task` to decorate task functions requires access to the `celery_app` object, which won’t be available when using the factory pattern. It also means that the decorated tasks are tied to the specific Flask and Celery app instances, which could be an issue during testing if you change configuration for a test.
 
@@ -119,7 +119,7 @@ def add_together(a: int, b: int) -> int:
 
 Earlier, we configured Celery to ignore task results by default. Since we want to know the return value of this task, we set `ignore_result=False`. On the other hand, a task that didn’t need a result, such as sending an email, wouldn’t set this.
 
-## Calling Tasks
+## Calling Tasks {#calling-tasks}
 
 The decorated function becomes a task object with methods to call it in the background. The simplest way is to use the `delay(*args, **kwargs)` method. See Celery’s docs for more methods.
 
@@ -138,7 +138,7 @@ def start_add() -> dict[str, object]:
 
 The route doesn’t get the task’s result immediately. That would defeat the purpose by blocking the response. Instead, we return the running task’s result id, which we can use later to get the result.
 
-## Getting Results
+## Getting Results {#getting-results}
 
 To fetch the result of the task we started above, we’ll add another route that takes the result id we returned before. We return whether the task is finished (ready), whether it finished successfully, and what the return value (or error) was if it is finished.
 
@@ -159,7 +159,7 @@ Now you can start the task using the first route, then poll for the result using
 
 The Flask repository contains [an example](https://github.com/pallets/flask/tree/main/examples/celery) using JavaScript to submit tasks and poll for progress and results.
 
-## Passing Data to Tasks
+## Passing Data to Tasks {#passing-data-to-tasks}
 
 The “add” task above took two integers as arguments. To pass arguments to tasks, Celery has to serialize them to a format that it can pass to other processes. Therefore, passing complex objects is not recommended. For example, it would be impossible to pass a SQLAlchemy model object, since that object is probably not serializable and is tied to the session that queried it.
 

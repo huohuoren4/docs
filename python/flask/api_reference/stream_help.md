@@ -1,4 +1,4 @@
-# Stream Helpers
+# Stream Helpers {#stream-helpers}
 
 ## flask.stream_with_context(`generator_or_function`)
 

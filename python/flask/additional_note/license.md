@@ -1,4 +1,4 @@
-# BSD-3-Clause License
+# BSD-3-Clause License {#bsd-3-clause-license}
 
 Copyright 2010 Pallets
 

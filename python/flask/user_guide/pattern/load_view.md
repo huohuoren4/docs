@@ -1,4 +1,4 @@
-# Lazily Loading Views
+# Lazily Loading Views {#lazily-loading-views}
 
 Flask is usually used with the decorators. Decorators are simple and you have the URL right next to the function that is called for that specific URL. However there is a downside to this approach: it means all your code that uses decorators has to be imported upfront or Flask will never actually find your function.
 
@@ -6,7 +6,7 @@ This can be a problem if your application has to import quick. It might have to 
 
 The system that enables having a central URL map is the [add_url_rule()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.add_url_rule) function. Instead of using decorators, you have a file that sets up the application with all URLs.
 
-## Converting to Centralized URL Map
+## Converting to Centralized URL Map {#converting-to-centralized-url-map}
 
 Imagine the current application looks somewhat like this:
 
@@ -43,7 +43,7 @@ app.add_url_rule('/', view_func=views.index)
 app.add_url_rule('/user/<username>', view_func=views.user)
 ```
 
-## Loading Late
+## Loading Late {#loading-late}
 
 So far we only split up the views and the routing, but the module is still loaded upfront. The trick is to actually load the view function as needed. This can be accomplished with a helper class that behaves just like a function but internally imports the real function on first use:
 

@@ -1,4 +1,4 @@
-# Template Rendering
+# Template Rendering {#template-rendering}
 
 ## flask.render_template(`template_name_or_list, **context`)
 

@@ -1,8 +1,8 @@
-# View Decorators
+# View Decorators {#view-decorators}
 
 Python has a really interesting feature called function decorators. This allows some really neat things for web applications. Because each view in Flask is a function, decorators can be used to inject additional functionality to one or more functions. The [route()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.route) decorator is the one you probably used already. But there are use cases for implementing your own decorator. For instance, imagine you have a view that should only be used by people that are logged in. If a user goes to the site and is not logged in, they should be redirected to the login page. This is a good example of a use case where a decorator is an excellent solution.
 
-## Login Required Decorator
+## Login Required Decorator {#login-required-decorator}
 
 So let’s implement such a decorator. A decorator is a function that wraps and replaces another function. Since the original function is replaced, you need to remember to copy the original function’s information to the new function. Use [functools.wraps()](https://docs.python.org/3/library/functools.html#functools.wraps) to handle this for you.
 
@@ -38,7 +38,7 @@ The next value will exist in `request.args` after a `GET` request for the login 
 ```
 :::
 
-## Caching Decorator
+## Caching Decorator {#caching-decorator}
 
 Imagine you have a view function that does an expensive calculation and because of that you would like to cache the generated results for a certain amount of time. A decorator would be nice for that. We’re assuming you have set up a cache like mentioned in [Caching](https://flask.palletsprojects.com/en/2.3.x/patterns/caching/).
 
@@ -75,7 +75,7 @@ def cached(timeout=5 * 60, key='view/{}'):
 
 Notice that this assumes an instantiated `cache` object is available, see [Caching](https://flask.palletsprojects.com/en/2.3.x/patterns/caching/).
 
-## Templating Decorator
+## Templating Decorator {#templating-decorator}
 
 A common pattern invented by the TurboGears guys a while back is a templating decorator. The idea of that decorator is that you return a dictionary with the values passed to the template from the view function and the template is automatically rendered. With that, the following three examples do exactly the same:
 
@@ -120,7 +120,7 @@ def templated(template=None):
     return decorator
 ```
 
-## Endpoint Decorator
+## Endpoint Decorator {#endpoint-decorator}
 
 When you want to use the werkzeug routing system for more flexibility you need to map the endpoint as defined in the [Rule](https://werkzeug.palletsprojects.com/en/2.3.x/routing/#werkzeug.routing.Rule) to a view function. This is possible with this decorator. For example:
 

@@ -4,7 +4,7 @@
 
 We recommend using the latest version of Python. Flask supports Python 3.8 and newer.
 
-## Dependencies {/python/flask/user_guide/install#dependencies}
+## Dependencies {#dependencies}
 
 These distributions will be installed automatically when installing Flask.
 
@@ -67,7 +67,7 @@ $ python3 -m venv .venv
 Before you work on your project, activate the corresponding environment:
 
 ::: code-group
-```shell [macOS/LinuxWindows]
+```shell [macOS/Linux]
 $ . .venv/bin/activate
 ```
 

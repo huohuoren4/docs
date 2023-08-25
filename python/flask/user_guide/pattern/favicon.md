@@ -1,4 +1,4 @@
-# Adding a favicon
+# Adding a favicon {#adding-a-favicon}
 
 A “favicon” is an icon used by browsers for tabs and bookmarks. This helps to distinguish your website and to give it a unique brand.
 
@@ -33,6 +33,6 @@ We can leave out the explicit mimetype and it will be guessed, but we may as wel
 
 The above will serve the icon via your application and if possible it’s better to configure your dedicated web server to serve it; refer to the web server’s documentation.
 
-## See also
+## See also {#see-also}
 
 - The [Favicon](https://en.wikipedia.org/wiki/Favicon) article on Wikipedia

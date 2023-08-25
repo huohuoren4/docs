@@ -1,4 +1,4 @@
-# Flask Extension Development
+# Flask Extension Development {#flask-extension-development}
 
 Extensions are extra packages that add functionality to a Flask application. While [PyPI](https://pypi.org/search/?c=Framework+%3A%3A+Flask) contains many Flask extensions, you may not find one that fits your need. If this is the case, you can create your own, and publish it for others to use as well.
 
@@ -8,7 +8,7 @@ The best ways to learn about extensions are to look at how other extensions you 
 
 The best extensions share common patterns, so that anyone familiar with using one extension won’t feel completely lost with another. This can only work if collaboration happens early.
 
-## Naming
+## Naming {#naming}
 
 A Flask extension typically has `flask` in its name as a prefix or suffix. If it wraps another library, it should include the library name as well. This makes it easy to search for extensions, and makes their purpose clearer.
 
@@ -24,7 +24,7 @@ Here are some example install and import names:
 
 - `Name-Flask` imported as `name_flask`
 
-## The Extension Class and Initialization
+## The Extension Class and Initialization {#the-extension-class-and-initialization}
 
 All extensions will need some entry point that initializes the extension with the application. The most common pattern is to create a class that represents the extension’s configuration and behavior, with an `init_app` method to apply the extension instance to the given application instance.
 
@@ -55,7 +55,7 @@ Above, the `hello` extension instance exists independently of the application. T
 
 The `Flask.extensions` dict can be used to store a reference to the extension on the application, or some other state specific to the application. Be aware that this is a single namespace, so use a name unique to your extension, such as the extension’s name without the “flask” prefix.
 
-## Adding Behavior
+## Adding Behavior {#adding-behavior}
 
 There are many ways that an extension can add behavior. Any setup methods that are available on the `Flask` object can be used during an extension’s `init_app` method.
 
@@ -65,7 +65,7 @@ A more lazy approach is to provide a method that initializes and caches the data
 
 Besides doing something before and after every view, your extension might want to add some specific views as well. In this case, you could define a `Blueprint`, then call `register_blueprint()` during `init_app` to add the blueprint to the app.
 
-## Configuration Techniques
+## Configuration Techniques {#configuration-techniques}
 
 There can be multiple levels and sources of configuration for an extension. You should consider what parts of your extension fall into each one.
 
@@ -85,7 +85,7 @@ It’s up to you to decide what configuration is appropriate for your extension,
 
 Configuration should not be changed after the application setup phase is complete and the server begins handling requests. Configuration is global, any changes to it are not guaranteed to be visible to other workers.
 
-## Data During a Request
+## Data During a Request {#data-during-a-request}
 
 When writing a `Flask` application, the `g` object is used to store information during a request. For example the [tutorial](https://flask.palletsprojects.com/en/2.3.x/tutorial/database/) stores a connection to a SQLite database as `g.db`. Extensions can also use this, with some care. Since `g` is a single global namespace, extensions must use unique names that won’t collide with user data. For example, use the extension name as a prefix, or as a namespace.
 
@@ -101,7 +101,7 @@ g._hello.user_id = 2
 
 The data in g lasts for an application context. An application context is active when a request context is, or when a CLI command is run. If you’re storing something that should be closed, use `teardown_appcontext()` to ensure that it gets closed when the application context ends. If it should only be valid during a request, or would not be used in the CLI outside a request, use `teardown_request()`.
 
-## Views and Models
+## Views and Models {#views-and-models}
 
 Your extension views might want to interact with specific models in your database, or some other extension or data connected to your application. For example, let’s consider a `Flask-SimpleBlog` extension that works with `Flask-SQLAlchemy` to provide a Post model and views to write and read posts.
 
@@ -141,7 +141,7 @@ You may also want to provide base classes so that users can provide their own `P
 
 As you can see, this can get a bit complex. Unfortunately, there’s no perfect solution here, only different strategies and tradeoffs depending on your needs and how much customization you want to offer. Luckily, this sort of resource dependency is not a common need for most extensions. Remember, if you need help with design, ask on our [Discord Chat](https://discord.gg/pallets) or [GitHub Discussions](https://github.com/pallets/flask/discussions).
 
-## Recommended Extension Guidelines
+## Recommended Extension Guidelines {#recommended-extension-guidelines}
 
 Flask previously had the concept of “approved extensions”, where the Flask maintainers evaluated the quality, support, and compatibility of the extensions before listing them. While the list became too difficult to maintain over time, the guidelines are still relevant to all extensions maintained and developed today, as they help the Flask ecosystem remain consistent and compatible.
 

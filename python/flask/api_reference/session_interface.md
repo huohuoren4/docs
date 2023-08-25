@@ -1,4 +1,4 @@
-# Session Interface
+# Session Interface {#session-interface}
 
 ::: details Changelog
 *New in version 0.8.*
