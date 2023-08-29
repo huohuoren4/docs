@@ -2,13 +2,13 @@
 
 Flask provides utilities for testing an application. This documentation goes over techniques for working with different parts of the application in tests.
 
-We will use the [pytest](https://docs.pytest.org/) framework to set up and run our tests.
+We will use the [pytest](/python/pytest/home#pytest-helps-you-write-better-programs) framework to set up and run our tests.
 
 ```shell
 $ pip install pytest
 ```
 
-The [tutorial](https://flask.palletsprojects.com/en/2.3.x/tutorial/) goes over how to write tests for 100% coverage of the sample Flaskr blog application. See [the tutorial on tests](https://flask.palletsprojects.com/en/2.3.x/tutorial/tests/) for a detailed explanation of specific tests for an application.
+The [tutorial](/python/flask/user_guide/tutorial/introduction#tutorial) goes over how to write tests for 100% coverage of the sample Flaskr blog application. See [the tutorial on tests](/python/flask/user_guide/tutorial/test_coverage#test-coverage) for a detailed explanation of specific tests for an application.
 
 ## Identifying Tests {#identifying-tests}
 
@@ -20,7 +20,7 @@ It can be difficult to know what to test. Generally, try to test the code that y
 
 Pytest `fixtures` allow writing pieces of code that are reusable across tests. A simple fixture returns a value, but a fixture can also do setup, yield a value, then do teardown. Fixtures for the application, test client, and CLI runner are shown below, they can be placed in `tests/conftest.py`.
 
-If you’re using an [application factory](https://flask.palletsprojects.com/en/2.3.x/patterns/appfactories/), define an `app` fixture to create and configure an app instance. You can add code before and after the `yield` to set up and tear down other resources, such as creating and clearing a database.
+If you’re using an [application factory](/python/flask/user_guide/pattern/app_factories#application-factories), define an `app` fixture to create and configure an app instance. You can add code before and after the `yield` to set up and tear down other resources, such as creating and clearing a database.
 
 If you’re not using a factory, you already have an app object you can import and configure directly. You can still use an `app` fixture to set up and tear down resources.
 
@@ -54,11 +54,11 @@ def runner(app):
 
 ## Sending Requests with the Test Client {#sending-requests-with-the-test-client}
 
-The test client makes requests to the application without running a live server. Flask’s client extends [Werkzeug’s client](https://werkzeug.palletsprojects.com/en/2.3.x/test/), see those docs for additional information.
+The test client makes requests to the application without running a live server. Flask’s client extends [Werkzeug's client](https://werkzeug.palletsprojects.com/en/2.3.x/test/), see those docs for additional information.
 
-The `client` has methods that match the common HTTP request methods, such as `client.get()` and `client.post()`. They take many arguments for building the request; you can find the full documentation in [EnvironBuilder](https://werkzeug.palletsprojects.com/en/2.3.x/test/#werkzeug.test.EnvironBuilder). Typically you’ll use `path`, `query_string`, `headers`, and `data` or `json`.
+The `client` has methods that match the common HTTP request methods, such as `client.get()` and `client.post()`. They take many arguments for building the request; you can find the full documentation in `EnvironBuilder`. Typically you’ll use `path`, `query_string`, `headers`, and `data` or `json`.
 
-To make a request, call the method the request should use with the path to the route to test. A [TestResponse](https://werkzeug.palletsprojects.com/en/2.3.x/test/#werkzeug.test.TestResponse) is returned to examine the response data. It has all the usual properties of a response object. You’ll usually look at `response.data`, which is the bytes returned by the view. If you want to use text, Werkzeug 2.1 provides `response.text`, or use `response.get_data(as_text=True)`.
+To make a request, call the method the request should use with the path to the route to test. A `TestResponse` is returned to examine the response data. It has all the usual properties of a response object. You’ll usually look at `response.data`, which is the bytes returned by the view. If you want to use text, Werkzeug 2.1 provides `response.text`, or use `response.get_data(as_text=True)`.
 
 ```python
 def test_request_example(client):
@@ -120,7 +120,7 @@ def test_json_data(client):
 
 By default, the client does not make additional requests if the response is a redirect. By passing `follow_redirects=True` to a request method, the client will continue to make requests until a non-redirect response is returned.
 
-[TestResponse.history](https://werkzeug.palletsprojects.com/en/2.3.x/test/#werkzeug.test.TestResponse.history) is a tuple of the responses that led up to the final response. Each response has a [request](https://werkzeug.palletsprojects.com/en/2.3.x/test/#werkzeug.test.TestResponse.request) attribute which records the request that produced that response.
+`TestResponse.history` is a tuple of the responses that led up to the final response. Each response has a `request` attribute which records the request that produced that response.
 
 ```python
 def test_logout_redirect(client):
@@ -133,7 +133,7 @@ def test_logout_redirect(client):
 
 ## Accessing and Modifying the Session {#accessing-and-modifying-the-session}
 
-To access Flask’s context variables, mainly [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session), use the client in a `with` statement. The app and request context will remain active after making a request, until the `with` block ends.
+To access Flask’s context variables, mainly `session`, use the client in a `with` statement. The app and request context will remain active after making a request, until the `with` block ends.
 
 ```python
 from flask import session
@@ -147,7 +147,7 @@ def test_access_session(client):
     # session is no longer accessible
 ```
 
-If you want to access or set a value in the session before making a request, use the client’s [session_transaction()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.testing.FlaskClient.session_transaction) method in a `with` statement. It returns a session object, and will save the session once the block ends.
+If you want to access or set a value in the session before making a request, use the client’s `session_transaction()` method in a `with` statement. It returns a session object, and will save the session once the block ends.
 
 ```python
 from flask import session
@@ -165,9 +165,9 @@ def test_modify_session(client):
 
 ## Running Commands with the CLI Runner {#running-commands-with-the-cli-runner}
 
-Flask provides [test_cli_runner()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.test_cli_runner) to create a [FlaskCliRunner](https://flask.palletsprojects.com/en/2.3.x/api/#flask.testing.FlaskCliRunner), which runs CLI commands in isolation and captures the output in a [Result](https://click.palletsprojects.com/en/8.1.x/api/#click.testing.Result) object. Flask’s runner extends [Click’s runner](https://click.palletsprojects.com/en/8.1.x/testing/), see those docs for additional information.
+Flask provides `test_cli_runner()` to create a `FlaskCliRunner`, which runs CLI commands in isolation and captures the output in a `Result` object. Flask’s runner extends [Click's runner](https://click.palletsprojects.com/en/8.1.x/testing/), see those docs for additional information.
 
-Use the runner’s [invoke()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.testing.FlaskCliRunner.invoke) method to call commands in the same way they would be called with the `flask` command from the command line.
+Use the runner’s `invoke()` method to call commands in the same way they would be called with the `flask` command from the command line.
 
 ```python
 import click
@@ -187,7 +187,7 @@ def test_hello_command(runner):
 
 ## Tests that depend on an Active Context {#tests-that-depend-on-an-active-context}
 
-You may have functions that are called from views or commands, that expect an active [application context](https://flask.palletsprojects.com/en/2.3.x/appcontext/) or [request context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/) because they access `request`, `session`, or `current_app`. Rather than testing them by making a request or invoking the command, you can create and activate a context directly.
+You may have functions that are called from views or commands, that expect an active [application context](/python/flask/user_guide/app_context#the-application-context) or [request context](/python/flask/user_guide/request_context#the-request-context) because they access `request`, `session`, or `current_app`. Rather than testing them by making a request or invoking the command, you can create and activate a context directly.
 
 Use `with app.app_context()` to push an application context. For example, database extensions usually require an active app context to make queries.
 

@@ -42,7 +42,7 @@ If parentheses follow the factory name, their contents are parsed as Python lite
 
 ## Run the Development Server {#run-the-development-server}
 
-The [run](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.run_command) command will start the development server. It replaces the [Flask.run()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.run) method in most cases.
+The `run` command will start the development server. It replaces the `Flask.run()` method in most cases.
 
 ```shell
 $ flask --app hello run
@@ -54,7 +54,7 @@ $ flask --app hello run
 Do not use this command to run your application in production. Only use the development server during development. The development server is provided for convenience, but is not designed to be particularly secure, stable, or efficient. See Deploying to Production for how to run in production.
 :::
 
-If another program is already using port 5000, you’ll see `OSError: [Errno 98]` or `OSError: [WinError 10013]` when the server tries to start. See [Address already in use](https://flask.palletsprojects.com/en/2.3.x/server/#address-already-in-use) for how to handle that.
+If another program is already using port 5000, you’ll see `OSError: [Errno 98]` or `OSError: [WinError 10013]` when the server tries to start. See [Address already in use](/python/flask/user_guide/develop_server#address-already-in-use) for how to handle that.
 
 ### Debug Mode {#debug-mode}
 
@@ -91,7 +91,7 @@ The reloader can also ignore files using [fnmatch](https://docs.python.org/3/lib
 
 ## Open a Shell {#open-a-shell}
 
-To explore the data in your application, you can start an interactive Python shell with the [shell](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.shell_command) command. An application context will be active, and the app instance will be imported.
+To explore the data in your application, you can start an interactive Python shell with the `shell` command. An application context will be active, and the app instance will be imported.
 
 ```shell
 $ flask shell
@@ -101,7 +101,7 @@ Instance: /home/david/Projects/pallets/flask/instance
 >>>
 ```
 
-Use [shell_context_processor()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.shell_context_processor) to add other automatic imports.
+Use `shell_context_processor()` to add other automatic imports.
 
 ## Environment Variables From dotenv {#environment-variables-from-dotenv}
 
@@ -115,7 +115,7 @@ Variables set on the command line are used over those set in `.env`, which are u
 
 Directories are scanned upwards from the directory you call `flask` from to locate the files.
 
-The files are only loaded by the `flask` command or calling [run()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.run). If you would like to load these files when running in production, you should call [load_dotenv()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.load_dotenv) manually.
+The files are only loaded by the `flask` command or calling `run()`. If you would like to load these files when running in production, you should call `load_dotenv()` manually.
 
 ### Setting Command Options {#setting-command-options}
 
@@ -257,7 +257,7 @@ app.cli.add_command(user_cli)
 $ flask user create demo
 ```
 
-See [Running Commands with the CLI Runner](https://flask.palletsprojects.com/en/2.3.x/testing/#testing-cli) for an overview of how to test your custom commands.
+See [Running Commands with the CLI Runner](/python/flask/user_guide/application#running-commands-with-the-cli-runner) for an overview of how to test your custom commands.
 
 ### Registering Commands with Blueprints {#registering-commands-with-blueprints}
 
@@ -280,7 +280,7 @@ app.register_blueprint(bp)
 $ flask students create alice
 ```
 
-You can alter the group name by specifying the `cli_group` parameter when creating the [Blueprint](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint) object, or later with [app.register_blueprint(bp, cli_group='...')](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.register_blueprint). The following are equivalent:
+You can alter the group name by specifying the `cli_group` parameter when creating the `Blueprint` object, or later with `app.register_blueprint(bp, cli_group='...')`. The following are equivalent:
 
 ```python
 bp = Blueprint('students', __name__, cli_group='other')
@@ -306,7 +306,7 @@ $ flask create alice
 
 ### Application Context {#application-context}
 
-Commands added using the Flask app’s [cli](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.cli) or [FlaskGroup](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.FlaskGroup) [command()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.AppGroup.command) decorator will be executed with an application context pushed, so your custom commands and parameters have access to the app and its configuration. The [with_appcontext()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.with_appcontext) decorator can be used to get the same behavior, but is not needed in most cases.
+Commands added using the Flask app’s `cli` or `FlaskGroup` `command()` decorator will be executed with an application context pushed, so your custom commands and parameters have access to the app and its configuration. The `with_appcontext()` decorator can be used to get the same behavior, but is not needed in most cases.
 
 ```python
 import click
@@ -345,7 +345,7 @@ Once that package is installed in the same virtualenv as your Flask project, you
 
 When you are using the app factory pattern, it may be more convenient to define your own Click script. Instead of using `--app` and letting Flask load your application, you can create your own Click object and export it as a [console script](https://packaging.python.org/tutorials/packaging-projects/#console-scripts) entry point.
 
-Create an instance of [FlaskGroup](https://flask.palletsprojects.com/en/2.3.x/api/#flask.cli.FlaskGroup) and pass it the factory:
+Create an instance of `FlaskGroup` and pass it the factory:
 
 ```python
 import click

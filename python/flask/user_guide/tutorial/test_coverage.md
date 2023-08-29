@@ -10,7 +10,7 @@ The closer you get to 100% coverage, the more comfortable you can be that making
 This is being introduced late in the tutorial, but in your future projects you should test as you develop.
 :::
 
-You’ll use [pytest](https://pytest.readthedocs.io/) and [coverage](https://coverage.readthedocs.io/) to test and measure your code. Install them both:
+You’ll use [pytest](/python/pytest/home#pytest-helps-you-write-better-programs) and [coverage](https://coverage.readthedocs.io/) to test and measure your code. Install them both:
 
 ```shell
 $ pip install pytest coverage
@@ -78,13 +78,13 @@ def runner(app):
     return app.test_cli_runner()
 ```
 
-[tempfile.mkstemp()](https://docs.python.org/3/library/tempfile.html#tempfile.mkstemp) creates and opens a temporary file, returning the file descriptor and the path to it. The `DATABASE` path is overridden so it points to this temporary path instead of the instance folder. After setting the path, the database tables are created and the test data is inserted. After the test is over, the temporary file is closed and removed.
+`tempfile.mkstemp()` creates and opens a temporary file, returning the file descriptor and the path to it. The `DATABASE` path is overridden so it points to this temporary path instead of the instance folder. After setting the path, the database tables are created and the test data is inserted. After the test is over, the temporary file is closed and removed.
 
-[TESTING](https://flask.palletsprojects.com/en/2.3.x/config/#TESTING) tells Flask that the app is in test mode. Flask changes some internal behavior so it’s easier to test, and other extensions can also use the flag to make testing them easier.
+`TESTING` tells Flask that the app is in test mode. Flask changes some internal behavior so it’s easier to test, and other extensions can also use the flag to make testing them easier.
 
-The `client` fixture calls [app.test_client()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.test_client) with the application object created by the `app` fixture. Tests will use the client to make requests to the application without running the server.
+The `client` fixture calls `app.test_client()` with the application object created by the `app` fixture. Tests will use the client to make requests to the application without running the server.
 
-The `runner` fixture is similar to client. [app.test_cli_runner()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.test_cli_runner) creates a runner that can call the Click commands registered with the application.
+The `runner` fixture is similar to client. `app.test_cli_runner()` creates a runner that can call the Click commands registered with the application.
 
 Pytest uses fixtures by matching their function names with the names of arguments in the test functions. For example, the `test_hello` function you’ll write next takes a `client` argument. Pytest matches that with the `client` fixture function, calls it, and passes the returned value to the test function.
 
@@ -215,17 +215,17 @@ def test_register_validate_input(client, username, password, message):
     assert message in response.data
 ```
 
-[client.get()](https://werkzeug.palletsprojects.com/en/2.3.x/test/#werkzeug.test.Client.get) makes a `GET` request and returns the [Response](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Response) object returned by Flask. Similarly, [client.post()](https://werkzeug.palletsprojects.com/en/2.3.x/test/#werkzeug.test.Client.post) makes a `POST` request, converting the `data` dict into form data.
+`client.get()` makes a `GET` request and returns the `Response` object returned by Flask. Similarly, `client.post()` makes a `POST` request, converting the `data` dict into form data.
 
-To test that the page renders successfully, a simple request is made and checked for a `200 OK` [status_code](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Response.status_code). If rendering failed, Flask would return a `500 Internal Server Error` code.
+To test that the page renders successfully, a simple request is made and checked for a `200 OK status_code`. If rendering failed, Flask would return a `500 Internal Server Error` code.
 
 headers will have a `Location` header with the login URL when the register view redirects to the login view.
 
-[data](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Response.data) contains the body of the response as bytes. If you expect a certain value to render on the page, check that it’s in `data`. Bytes must be compared to bytes. If you want to compare text, use [get_data(as_text=True)](https://werkzeug.palletsprojects.com/en/2.3.x/wrappers/#werkzeug.wrappers.Response.get_data) instead.
+`data` contains the body of the response as bytes. If you expect a certain value to render on the page, check that it’s in `data`. Bytes must be compared to bytes. If you want to compare text, use `get_data(as_text=True)` instead.
 
 `pytest.mark.parametrize` tells Pytest to run the same test function with different arguments. You use it here to test different invalid input and error messages without writing the same code three times.
 
-The tests for the `login` view are very similar to those for `register`. Rather than testing the data in the database, [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session) should have `user_id` set after logging in.
+The tests for the `login` view are very similar to those for `register`. Rather than testing the data in the database, `session` should have `user_id` set after logging in.
 
 ```python
 # tests/test_auth.py
@@ -249,9 +249,9 @@ def test_login_validate_input(auth, username, password, message):
     assert message in response.data
 ```
 
-Using `client` in a `with` block allows accessing context variables such as [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session) after the response is returned. Normally, accessing `session` outside of a request would raise an error.
+Using `client` in a `with` block allows accessing context variables such as `session` after the response is returned. Normally, accessing `session` outside of a request would raise an error.
 
-Testing `logout` is the opposite of `login`. [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session) should not contain `user_id` after logging out.
+Testing `logout` is the opposite of `login`. `session` should not contain `user_id` after logging out.
 
 ```python
 # tests/test_auth.py
@@ -443,4 +443,4 @@ $ coverage html
 
 This generates files in the `htmlcov` directory. Open `htmlcov/index.html` in your browser to see the report.
 
-Continue to [Deploy to Production](https://flask.palletsprojects.com/en/2.3.x/tutorial/deploy/).
+Continue to [Deploy to Production](/python/flask/user_guide/tutorial/deploy#deploy-to-production).

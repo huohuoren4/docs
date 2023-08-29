@@ -4,15 +4,15 @@ Signals are a lightweight way to notify subscribers of certain events during the
 
 Signals are implemented by the Blinker library. See its documentation for detailed information. Flask provides some built-in signals. Extensions may provide their own.
 
-Many signals mirror Flask’s decorator-based callbacks with similar names. For example, the [request_started](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_started) signal is similar to the [before_request()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.before_request) decorator. The advantage of signals over handlers is that they can be subscribed to temporarily, and can’t directly affect the application. This is useful for testing, metrics, auditing, and more. For example, if you want to know what templates were rendered at what parts of what requests, there is a signal that will notify you of that information.
+Many signals mirror Flask’s decorator-based callbacks with similar names. For example, the `request_started` signal is similar to the `before_request()` decorator. The advantage of signals over handlers is that they can be subscribed to temporarily, and can’t directly affect the application. This is useful for testing, metrics, auditing, and more. For example, if you want to know what templates were rendered at what parts of what requests, there is a signal that will notify you of that information.
 
 ## Core Signals {#core-signals}
 
-See [Signals](https://flask.palletsprojects.com/en/2.3.x/api/#core-signals-list) for a list of all built-in signals. The [Application Structure and Lifecycle](https://flask.palletsprojects.com/en/2.3.x/lifecycle/) page also describes the order that signals and decorators execute.
+See [Signals](/python/flask/api_reference/signal#signals) for a list of all built-in signals. The [Application Structure and Lifecycle](/python/flask/user_guide/app_structure#application-structure-and-lifecycle) page also describes the order that signals and decorators execute.
 
 ## Subscribing to Signals {#subscribing-to-signals}
 
-To subscribe to a signal, you can use the [connect()](https://blinker.readthedocs.io/en/stable/#blinker.base.Signal.connect) method of a signal. The first argument is the function that should be called when the signal is emitted, the optional second argument specifies a sender. To unsubscribe from a signal, you can use the [disconnect()](https://blinker.readthedocs.io/en/stable/#blinker.base.Signal.disconnect) method.
+To subscribe to a signal, you can use the `connect()` method of a signal. The first argument is the function that should be called when the signal is emitted, the optional second argument specifies a sender. To unsubscribe from a signal, you can use the `disconnect()` method.
 
 For all core Flask signals, the sender is the application that issued the signal. When you subscribe to a signal, be sure to also provide a sender unless you really want to listen for signals from all applications. This is especially true if you are developing an extension.
 
@@ -50,7 +50,7 @@ Make sure to subscribe with an extra `**extra` argument so that your calls don�
 
 All the template rendering in the code issued by the application app in the body of the `with` block will now be recorded in the templates variable. Whenever a template is rendered, the template object as well as context are appended to it.
 
-Additionally there is a convenient helper method ([connected_to()](https://blinker.readthedocs.io/en/stable/#blinker.base.Signal.connected_to)) that allows you to temporarily subscribe a function to a signal with a context manager on its own. Because the return value of the context manager cannot be specified that way, you have to pass the list in as an argument:
+Additionally there is a convenient helper method (`connected_to()`) that allows you to temporarily subscribe a function to a signal with a context manager on its own. Because the return value of the context manager cannot be specified that way, you have to pass the list in as an argument:
 
 ```python
 from flask import template_rendered
@@ -72,7 +72,7 @@ with captured_templates(app, templates, **extra):
 
 ## Creating Signals {#creating-signals}
 
-If you want to use signals in your own application, you can use the blinker library directly. The most common use case are named signals in a custom [Namespace](https://blinker.readthedocs.io/en/stable/#blinker.base.Namespace). This is what is recommended most of the time:
+If you want to use signals in your own application, you can use the blinker library directly. The most common use case are named signals in a custom `Namespace`. This is what is recommended most of the time:
 
 ```python
 from blinker import Namespace
@@ -85,11 +85,11 @@ Now you can create new signals like this:
 model_saved = my_signals.signal('model-saved')
 ```
 
-The name for the signal here makes it unique and also simplifies debugging. You can access the name of the signal with the [name](https://blinker.readthedocs.io/en/stable/#blinker.base.NamedSignal.name) attribute.
+The name for the signal here makes it unique and also simplifies debugging. You can access the name of the signal with the `name` attribute.
 
 ## Sending Signals {#sending-signals}
 
-If you want to emit a signal, you can do so by calling the [send()](https://blinker.readthedocs.io/en/stable/#blinker.base.Signal.send) method. It accepts a sender as first argument and optionally some keyword arguments that are forwarded to the signal subscribers:
+If you want to emit a signal, you can do so by calling the `send()` method. It accepts a sender as first argument and optionally some keyword arguments that are forwarded to the signal subscribers:
 
 ```python
 class Model(object):
@@ -102,12 +102,12 @@ class Model(object):
 Try to always pick a good sender. If you have a class that is emitting a signal, pass `self` as sender. If you are emitting a signal from a random function, you can pass `current_app._get_current_object()` as sender.
 
 ::: tip Passing Proxies as Senders
-Never pass [current_app](https://flask.palletsprojects.com/en/2.3.x/api/#flask.current_app) as sender to a signal. Use `current_app._get_current_object()` instead. The reason for this is that [current_app](https://flask.palletsprojects.com/en/2.3.x/api/#flask.current_app) is a proxy and not the real application object.
+Never pass `current_app` as sender to a signal. Use `current_app._get_current_object()` instead. The reason for this is that `current_app` is a proxy and not the real application object.
 :::
 
 ## Signals and Flask's Request Context {#signals-and-flask-s-request-context}
 
-Signals fully support [The Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/) when receiving signals. Context-local variables are consistently available between [request_started](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_started) and [request_finished](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_finished), so you can rely on [flask.g](https://flask.palletsprojects.com/en/2.3.x/api/#flask.g) and others as needed. Note the limitations described in [Sending Signals](https://flask.palletsprojects.com/en/2.3.x/signals/#signals-sending) and the [request_tearing_down](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request_tearing_down) signal.
+Signals fully support [The Request Context](/python/flask/user_guide/request_context#the-request-context) when receiving signals. Context-local variables are consistently available between `request_started` and `request_finished`, so you can rely on `flask.g` and others as needed. Note the limitations described in [Sending Signals](/python/flask/user_guide/signal#sending-signals) and the `request_tearing_down` signal.
 
 ## Decorator Based Signal Subscriptions {#decorator-based-signal-subscriptions}
 

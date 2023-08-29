@@ -1,6 +1,6 @@
 # Templates {#templates}
 
-You’ve written the authentication views for your application, but if you’re running the server and try to go to any of the URLs, you’ll see a `TemplateNotFound` error. That’s because the views are calling [render_template()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.render_template), but you haven’t written the templates yet. The template files will be stored in the `templates` directory inside the `flaskr` package.
+You’ve written the authentication views for your application, but if you’re running the server and try to go to any of the URLs, you’ll see a `TemplateNotFound` error. That’s because the views are calling `render_template()`, but you haven’t written the templates yet. The template files will be stored in the `templates` directory inside the `flaskr` package.
 
 Templates are files that contain static data as well as placeholders for dynamic data. A template is rendered with specific data to produce a final document. Flask uses the [Jinja](https://jinja.palletsprojects.com/templates/) template library to render templates.
 
@@ -40,9 +40,9 @@ Each page in the application will have the same basic layout around a different 
 </section>
 ```
 
-`g` is automatically available in templates. Based on if `g.user` is set (from `load_logged_in_user`), either the username and a log out link are displayed, or links to register and log in are displayed. [url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for) is also automatically available, and is used to generate URLs to views instead of writing them out manually.
+`g` is automatically available in templates. Based on if `g.user` is set (from `load_logged_in_user`), either the username and a log out link are displayed, or links to register and log in are displayed. `url_for()` is also automatically available, and is used to generate URLs to views instead of writing them out manually.
 
-After the page title, and before the content, the template loops over each message returned by [get_flashed_messages()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.get_flashed_messages). You used [flash()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.flash) in the views to show error messages, and this is the code that will display them.
+After the page title, and before the content, the template loops over each message returned by `get_flashed_messages()`. You used `flash()` in the views to show error messages, and this is the code that will display them.
 
 There are three blocks defined here that will be overridden in the other templates:
 
@@ -109,8 +109,8 @@ This is identical to the register template except for the title and submit butto
 
 Now that the authentication templates are written, you can register a user. Make sure the server is still running (`flask run` if it’s not), then go to `http://127.0.0.1:5000/auth/register`.
 
-Try clicking the “Register” button without filling out the form and see that the browser shows an error message. Try removing the `required` attributes from the `register.html` template and click “Register” again. Instead of the browser showing an error, the page will reload and the error from [flash()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.flash) in the view will be shown.
+Try clicking the “Register” button without filling out the form and see that the browser shows an error message. Try removing the `required` attributes from the `register.html` template and click “Register” again. Instead of the browser showing an error, the page will reload and the error from `flash()` in the view will be shown.
 
 Fill out a username and password and you’ll be redirected to the login page. Try entering an incorrect username, or the correct username and incorrect password. If you log in you’ll get an error because there’s no `index` view to redirect to yet.
 
-Continue to [Static Files](https://flask.palletsprojects.com/en/2.3.x/tutorial/static/).
+Continue to [Static Files](/python/flask/user_guide/tutorial/static_file#static-files).

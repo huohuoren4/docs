@@ -1,6 +1,6 @@
 # Class-based Views {#class-based-views}
 
-This page introduces using the [View](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View) and [MethodView](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.MethodView) classes to write class-based views.
+This page introduces using the `View` and `MethodView` classes to write class-based views.
 
 A class-based view is a class that acts as a view function. Because it is a class, different instances of the class can be created with different arguments, to change the behavior of the view. This is also known as generic, reusable, or pluggable views.
 
@@ -21,7 +21,7 @@ def user_list():
 
 This works for the user model, but let’s say you also had more models that needed list pages. You’d need to write another view function for each model, even though the only thing that would change is the model and template name.
 
-Instead, you can write a [View](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View) subclass that will query a model and render a template. As the first step, we’ll convert the view to a class without any customization.
+Instead, you can write a `View` subclass that will query a model and render a template. As the first step, we’ll convert the view to a class without any customization.
 
 ```python
 from flask.views import View
@@ -34,7 +34,7 @@ class UserList(View):
 app.add_url_rule("/users/", view_func=UserList.as_view("user_list"))
 ```
 
-The [View.dispatch_request()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View.dispatch_request) method is the equivalent of the view function. Calling [View.as_view()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View.as_view) method will create a view function that can be registered on the app with its [add_url_rule()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.add_url_rule) method. The first argument to `as_view` is the name to use to refer to the view with [url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for).
+The `View.dispatch_request()` method is the equivalent of the view function. Calling `View.as_view()` method will create a view function that can be registered on the app with its `add_url_rule()` method. The first argument to `as_view` is the name to use to refer to the view with `url_for()`.
 
 ::: tip Note
 You can’t decorate the class with `@app.route()` the way you’d do with a basic view function.
@@ -90,7 +90,7 @@ app.add_url_rule(
 
 By default, a new instance of the view class is created every time a request is handled. This means that it is safe to write other data to `self` during the request, since the next request will not see it, unlike other forms of global state.
 
-However, if your view class needs to do a lot of complex initialization, doing it for every request is unnecessary and can be inefficient. To avoid this, set [View.init_every_request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View.init_every_request) to `False`, which will only create one instance of the class and use it for every request. In this case, writing to `self` is not safe. If you need to store data during the request, use `g` instead.
+However, if your view class needs to do a lot of complex initialization, doing it for every request is unnecessary and can be inefficient. To avoid this, set `View.init_every_request` to `False`, which will only create one instance of the class and use it for every request. In this case, writing to `self` is not safe. If you need to store data during the request, use `g` instead.
 
 In the `ListView` example, nothing writes to `self` during the request, so it is more efficient to create a single instance.
 
@@ -111,7 +111,7 @@ Different instances will still be created each for each `as_view` call, but not 
 
 ## View Decorators {#view-decorators}
 
-The view class itself is not the view function. View decorators need to be applied to the view function returned by `as_view`, not the class itself. Set [View.decorators](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View.decorators) to a list of decorators to apply.
+The view class itself is not the view function. View decorators need to be applied to the view function returned by `as_view`, not the class itself. Set `View.decorators` to a list of decorators to apply.
 
 ```python
 class UserList(View):
@@ -141,7 +141,7 @@ def user_list():
 
 ## Method Hints {#method-hints}
 
-A common pattern is to register a view with `methods=["GET", "POST"]`, then check `request.method == "POST"` to decide what to do. Setting [View.methods](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View.methods) is equivalent to passing the list of methods to `add_url_rule` or `route`.
+A common pattern is to register a view with `methods=["GET", "POST"]`, then check `request.method == "POST"` to decide what to do. Setting `View.methods` is equivalent to passing the list of methods to `add_url_rule` or `route`.
 
 ```python
 class MyView(View):
@@ -167,9 +167,9 @@ app.add_url_rule(
 
 ## Method Dispatching and APIs {#method-dispatching-and-apis}
 
-For APIs it can be helpful to use a different function for each HTTP method. [MethodView](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.MethodView) extends the basic [View](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View) to dispatch to different methods of the class based on the request method. Each HTTP method maps to a method of the class with the same (lowercase) name.
+For APIs it can be helpful to use a different function for each HTTP method. `MethodView` extends the basic `View` to dispatch to different methods of the class based on the request method. Each HTTP method maps to a method of the class with the same (lowercase) name.
 
-[MethodView](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.MethodView) automatically sets [View.methods](https://flask.palletsprojects.com/en/2.3.x/api/#flask.views.View.methods) based on the methods defined by the class. It even knows how to handle subclasses that override or define other methods.
+`MethodView` automatically sets `View.methods` based on the methods defined by the class. It even knows how to handle subclasses that override or define other methods.
 
 We can make a generic `ItemAPI` class that provides get (detail), patch (edit), and delete methods for a given model. A `GroupAPI` can provide get (list) and post (create) methods.
 

@@ -8,7 +8,7 @@ Flask extensions are usually named “Flask-Foo” or “Foo-Flask”. You can s
 
 ## Using Extensions {#using-extensions}
 
-Consult each extension’s documentation for installation, configuration, and usage instructions. Generally, extensions pull their own configuration from [app.config](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.config) and are passed an application instance during initialization. For example, an extension called “Flask-Foo” might be used like this:
+Consult each extension’s documentation for installation, configuration, and usage instructions. Generally, extensions pull their own configuration from `app.config` and are passed an application instance during initialization. For example, an extension called “Flask-Foo” might be used like this:
 
 ```python
 from flask_foo import Foo
@@ -26,4 +26,4 @@ foo.init_app(app)
 
 ## Building Extensions {#building-extensions}
 
-While PyPI contains many Flask extensions, you may not find an extension that fits your need. If this is the case, you can create your own, and publish it for others to use as well. Read [Flask Extension Development](https://flask.palletsprojects.com/en/2.3.x/extensiondev/) to develop your own Flask extension.
+While PyPI contains many Flask extensions, you may not find an extension that fits your need. If this is the case, you can create your own, and publish it for others to use as well. Read [Flask Extension Development](/python/flask/additional_note/flask_extension#flask-extension-development) to develop your own Flask extension.

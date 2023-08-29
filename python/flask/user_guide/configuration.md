@@ -4,7 +4,7 @@ Applications need some kind of configuration. There are different settings you m
 
 The way Flask is designed usually requires the configuration to be available when the application starts up. You can hard code the configuration in the code, which for many small applications is not actually that bad, but there are better ways.
 
-Independent of how you load your config, there is a config object available which holds the loaded configuration values: The [config](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.config) attribute of the [Flask](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask) object. This is the place where Flask itself puts certain configuration values and also where extensions can put their configuration values. But this is also where you can have your own configuration.
+Independent of how you load your config, there is a config object available which holds the loaded configuration values: The `config` attribute of the `Flask` object. This is the place where Flask itself puts certain configuration values and also where extensions can put their configuration values. But this is also where you can have your own configuration.
 
 ## Configuration Basics {#configuration-basics}
 
@@ -15,13 +15,13 @@ app = Flask(__name__)
 app.config['TESTING'] = True
 ```
 
-Certain configuration values are also forwarded to the [Flask](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask) object so you can read and write them from there:
+Certain configuration values are also forwarded to the `Flask` object so you can read and write them from there:
 
 ```python
 app.testing = True
 ```
 
-To update multiple keys at once you can use the [dict.update()](https://docs.python.org/3/library/stdtypes.html#dict.update) method:
+To update multiple keys at once you can use the `dict.update()` method:
 
 ```python
 app.config.update(
@@ -32,13 +32,13 @@ app.config.update(
 
 ## Debug Mode {#debug-mode}
 
-The [DEBUG](https://flask.palletsprojects.com/en/2.3.x/config/#DEBUG) config value is special because it may behave inconsistently if changed after the app has begun setting up. In order to set debug mode reliably, use the `--debug` option on the `flask` or `flask run` command. `flask run` will use the interactive debugger and reloader by default in debug mode.
+The `DEBUG` config value is special because it may behave inconsistently if changed after the app has begun setting up. In order to set debug mode reliably, use the `--debug` option on the `flask` or `flask run` command. `flask run` will use the interactive debugger and reloader by default in debug mode.
 
 ```shell
 $ flask --app hello run --debug
 ```
 
-Using the option is recommended. While it is possible to set [DEBUG](https://flask.palletsprojects.com/en/2.3.x/config/#DEBUG) in your config or code, this is strongly discouraged. It can’t be read early by the `flask run` command, and some systems or extensions may have already configured themselves based on a previous value.
+Using the option is recommended. While it is possible to set `DEBUG` in your config or code, this is strongly discouraged. It can’t be read early by the `flask run` command, and some systems or extensions may have already configured themselves based on a previous value.
 
 ## Builtin Configuration Values {#builtin-configuration-values}
 
@@ -46,7 +46,7 @@ The following configuration values are used internally by Flask:
 
 ### DEBUG
 
-Whether debug mode is enabled. When using `flask run` to start the development server, an interactive debugger will be shown for unhandled exceptions, and the server will be reloaded when code changes. The [debug](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.debug) attribute maps to this config key. This is set with the `FLASK_DEBUG` environment variable. It may not behave as expected if set in code.
+Whether debug mode is enabled. When using `flask run` to start the development server, an interactive debugger will be shown for unhandled exceptions, and the server will be reloaded when code changes. The `debug` attribute maps to this config key. This is set with the `FLASK_DEBUG` environment variable. It may not behave as expected if set in code.
 
 Do not enable debug mode when deploying in production.
 
@@ -135,7 +135,7 @@ New in version 1.0.
 
 ### PERMANENT_SESSION_LIFETIME
 
-If `session.permanent` is true, the cookie’s expiration will be set this number of seconds in the future. Can either be a [datetime.timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta) or an `int`.
+If `session.permanent` is true, the cookie’s expiration will be set this number of seconds in the future. Can either be a `datetime.timedelta` or an `int`.
 
 Flask’s default cookie implementation validates that the cryptographic signature is not older than this value.
 
@@ -155,7 +155,7 @@ Default: `False`
 
 ### SEND_FILE_MAX_AGE_DEFAULT
 
-When serving files, set the cache control max age to this number of seconds. Can be a [datetime.timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta) or an `int`. Override this value on a per-file basis using [get_send_file_max_age()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.get_send_file_max_age) on the application or blueprint.
+When serving files, set the cache control max age to this number of seconds. Can be a `datetime.timedelta` or an `int`. Override this value on a per-file basis using `get_send_file_max_age()` on the application or blueprint.
 
 If `None`, `send_file` tells the browser to use conditional requests will be used instead of a timed cache, which is usually preferable.
 
@@ -173,7 +173,7 @@ Default: `None`
 
 ### APPLICATION_ROOT
 
-Inform the application what path it is mounted under by the application / web server. This is used for generating URLs outside the context of a request (inside a request, the dispatcher is responsible for setting `SCRIPT_NAME` instead; see [Application Dispatching](https://flask.palletsprojects.com/en/2.3.x/patterns/appdispatch/) for examples of dispatch configuration).
+Inform the application what path it is mounted under by the application / web server. This is used for generating URLs outside the context of a request (inside a request, the dispatcher is responsible for setting `SCRIPT_NAME` instead; see [Application Dispatching](/python/flask/user_guide/pattern/app_dispatch#application-**dispatching**) for examples of dispatch configuration).
 
 Will be used for the session cookie path if `SESSION_COOKIE_PATH` is not set.
 
@@ -214,13 +214,13 @@ Warn if cookie headers are larger than this many bytes. Defaults to `4093`. Larg
 ::: details Changelog
 *Changed in version 2.2*: Removed `PRESERVE_CONTEXT_ON_EXCEPTION`.
 
-*Changed in version 1.0*: `LOGGER_NAME` and `LOGGER_HANDLER_POLICY` were removed. See [Logging](https://flask.palletsprojects.com/en/2.3.x/logging/) for information about configuration.
+*Changed in version 1.0*: `LOGGER_NAME` and `LOGGER_HANDLER_POLICY` were removed. See [Logging](/python/flask/user_guide/logging#logging) for information about configuration.
 
 Added `ENV` to reflect the `FLASK_ENV` environment variable.
 
-Added [SESSION_COOKIE_SAMESITE](https://flask.palletsprojects.com/en/2.3.x/config/#SESSION_COOKIE_SAMESITE) to control the session cookie’s `SameSite` option.
+Added `SESSION_COOKIE_SAMESITE` to control the session cookie’s `SameSite` option.
 
-Added [MAX_COOKIE_SIZE](https://flask.palletsprojects.com/en/2.3.x/config/#MAX_COOKIE_SIZE) to control a warning from Werkzeug.
+Added `MAX_COOKIE_SIZE` to control a warning from Werkzeug.
 
 *New in version 0.11*: `SESSION_REFRESH_EACH_REQUEST`, `TEMPLATES_AUTO_RELOAD`, `LOGGER_HANDLER_POLICY`, `EXPLAIN_TEMPLATE_LOADING`
 
@@ -288,11 +288,11 @@ Here is an example of a configuration file:
 SECRET_KEY = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 ```
 
-Make sure to load the configuration very early on, so that extensions have the ability to access the configuration when starting up. There are other methods on the config object as well to load from individual files. For a complete reference, read the [Config](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config) object’s documentation.
+Make sure to load the configuration very early on, so that extensions have the ability to access the configuration when starting up. There are other methods on the config object as well to load from individual files. For a complete reference, read the `Config` object’s documentation.
 
 ## Configuring from Data Files {#configuring-from-data-files}
 
-It is also possible to load configuration from a file in a format of your choice using [from_file()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config.from_file). For example to load from a TOML file:
+It is also possible to load configuration from a file in a format of your choice using `from_file()`. For example to load from a TOML file:
 
 ```python
 import tomllib
@@ -308,7 +308,7 @@ app.config.from_file("config.json", load=json.load)
 
 ## Configuring from Environment Variables {#configuring-from-environment-variables}
 
-In addition to pointing to configuration files using environment variables, you may find it useful (or necessary) to control your configuration values directly from the environment. Flask can be instructed to load all environment variables starting with a specific prefix into the config using [from_prefixed_env()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config.from_prefixed_env).
+In addition to pointing to configuration files using environment variables, you may find it useful (or necessary) to control your configuration values directly from the environment. Flask can be instructed to load all environment variables starting with a specific prefix into the config using `from_prefixed_env()`.
 
 Environment variables can be set in the shell before starting the server:
 
@@ -349,9 +349,9 @@ app.config.from_prefixed_env()
 app.config["SECRET_KEY"]  # Is "5f352379324c22463451387a0aec5d2f"
 ```
 
-The prefix is `FLASK_` by default. This is configurable via the `prefix` argument of [from_prefixed_env()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config.from_prefixed_env).
+The prefix is `FLASK_` by default. This is configurable via the `prefix` argument of `from_prefixed_env()`.
 
-Values will be parsed to attempt to convert them to a more specific type than strings. By default [json.loads()](https://docs.python.org/3/library/json.html#json.loads) is used, so any valid JSON value is possible, including lists and dicts. This is configurable via the `loads` argument of [from_prefixed_env()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config.from_prefixed_env).
+Values will be parsed to attempt to convert them to a more specific type than strings. By default `json.loads()` is used, so any valid JSON value is possible, including lists and dicts. This is configurable via the `loads` argument of `from_prefixed_env()`.
 
 When adding a boolean value with the default JSON parsing, only “true” and “false”, lowercase, are valid values. Keep in mind that any non-empty string is considered `True` by Python.
 
@@ -410,13 +410,13 @@ class TestingConfig(Config):
     TESTING = True
 ```
 
-To enable such a config you just have to call into [from_object()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config.from_object):
+To enable such a config you just have to call into `from_object()`:
 
 ```python
 app.config.from_object('configmodule.ProductionConfig')
 ```
 
-Note that [from_object()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config.from_object) does not instantiate the class object. If you need to instantiate the class, such as to access a property, then you must do so before calling [from_object()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Config.from_object):
+Note that `from_object()` does not instantiate the class object. If you need to instantiate the class, such as to access a property, then you must do so before calling `from_object()`:
 
 ```python
 from configmodule import ProductionConfig

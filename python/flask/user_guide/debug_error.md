@@ -4,7 +4,7 @@
 
 Do not run the development server, or enable the built-in debugger, in a production environment. The debugger allows executing arbitrary Python code from the browser. It’s protected by a pin, but that should not be relied on for security.
 
-Use an error logging tool, such as Sentry, as described in [Error Logging Tools](https://flask.palletsprojects.com/en/2.3.x/errorhandling/#error-logging-tools), or enable logging and notifications as described in [Logging](https://flask.palletsprojects.com/en/2.3.x/logging/).
+Use an error logging tool, such as Sentry, as described in [Error Logging Tools](/python/flask/user_guide/handle_error#error-logging-tools), or enable logging and notifications as described in [Logging](/python/flask/user_guide/logging#logging).
 
 If you have access to the server, you could add some code to start an external debugger if `request.remote_addr` matches your IP. Some IDE debuggers also have a remote mode so breakpoints on the server can be interacted with locally. Only enable a debugger temporarily.
 
@@ -30,7 +30,7 @@ When running from Python code, passing `debug=True` enables debug mode, which is
 app.run(debug=True)
 ```
 
-[Development Server](https://flask.palletsprojects.com/en/2.3.x/server/) and [Command Line Interface](https://flask.palletsprojects.com/en/2.3.x/cli/) have more information about running the debugger and debug mode. More information about the debugger can be found in the [Werkzeug documentation](https://werkzeug.palletsprojects.com/debug/).
+[Development Server](/python/flask/user_guide/develop_server#development-server) and [Command Line Interface](/python/flask/user_guide/cmd_interface#command-line-interface) have more information about running the debugger and debug mode. More information about the debugger can be found in the [Werkzeug documentation](https://werkzeug.palletsprojects.com/debug/).
 
 ## External Debuggers {#external-debuggers}
 

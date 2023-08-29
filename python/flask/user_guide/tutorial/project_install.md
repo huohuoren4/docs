@@ -64,4 +64,4 @@ Werkzeug       0.14.1
 
 Nothing changes from how you’ve been running your project so far. `--app` is still set to `flaskr` and `flask run` still runs the application, but you can call it from anywhere, not just the `flask-tutorial` directory.
 
-Continue to [Test Coverage](https://flask.palletsprojects.com/en/2.3.x/tutorial/tests/).
+Continue to [Test Coverage](/python/flask/user_guide/tutorial/test_coverage#test-coverage).

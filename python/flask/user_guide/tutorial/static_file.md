@@ -48,6 +48,6 @@ Go to `http://127.0.0.1:5000/auth/login` and the page should look like the scree
 
 ![tutorial_login_page](/flask/tutorial_login_page.png)
 
-You can read more about CSS from [Mozilla’s documentation](https://developer.mozilla.org/docs/Web/CSS). If you change a static file, refresh the browser page. If the change doesn’t show up, try clearing your browser’s cache.
+You can read more about CSS from [Mozilla's documentation](https://developer.mozilla.org/docs/Web/CSS). If you change a static file, refresh the browser page. If the change doesn’t show up, try clearing your browser’s cache.
 
-Continue to [Blog Blueprint](https://flask.palletsprojects.com/en/2.3.x/tutorial/blog/).
+Continue to [Blog Blueprint](/python/flask/user_guide/tutorial/blog_blueprint#blog-blueprint).

@@ -22,7 +22,7 @@ The following global variables are available within Jinja2 templates by default:
 
 ### config {#config}
 
-The current configuration object ([flask.Flask.config](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.config))
+The current configuration object (`flask.Flask.config`)
 
 ::: details Changelog
 Changed in version 0.10: This is now always available, even in imported templates.
@@ -32,23 +32,23 @@ New in version 0.6.
 
 ### request {#request}
 
-The current request object ([flask.request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request)). This variable is unavailable if the template was rendered without an active request context.
+The current request object (`flask.request`). This variable is unavailable if the template was rendered without an active request context.
 
 ### session {#session}
 
-The current session object ([flask.session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session)). This variable is unavailable if the template was rendered without an active request context.
+The current session object (`flask.session`). This variable is unavailable if the template was rendered without an active request context.
 
 ### g {#g}
 
-The request-bound object for global variables ([flask.g](https://flask.palletsprojects.com/en/2.3.x/api/#flask.g)). This variable is unavailable if the template was rendered without an active request context.
+The request-bound object for global variables (`flask.g`). This variable is unavailable if the template was rendered without an active request context.
 
 ### url_for() {#url-for}
 
-The [flask.url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for) function.
+The `flask.url_for()` function.
 
 ### get_flashed_messages() {#get-flashed-messages}
 
-The [flask.get_flashed_messages()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.get_flashed_messages) function.
+The `flask.get_flashed_messages()` function.
 
 ::: tip The Jinja Context Behavior
 These variables are added to the context of variables, they are not global variables. The difference is that by default these will not show up in the context of imported templates. This is partially caused by performance considerations, partially to keep things explicit.
@@ -68,7 +68,7 @@ Importing with context looks like this:
 
 ## Controlling Autoescaping {#controlling-autoescaping}
 
-Autoescaping is the concept of automatically escaping special characters for you. Special characters in the sense of HTML (or XML, and thus XHTML) are `&`, `>`, `<`, `"` as well as `'`. Because these characters carry specific meanings in documents on their own you have to replace them by so called “entities” if you want to use them for text. Not doing so would not only cause user frustration by the inability to use these characters in text, but can also lead to security problems. (see [Cross-Site Scripting (XSS)](https://flask.palletsprojects.com/en/2.3.x/security/#security-xss))
+Autoescaping is the concept of automatically escaping special characters for you. Special characters in the sense of HTML (or XML, and thus XHTML) are `&`, `>`, `<`, `"` as well as `'`. Because these characters carry specific meanings in documents on their own you have to replace them by so called “entities” if you want to use them for text. Not doing so would not only cause user frustration by the inability to use these characters in text, but can also lead to security problems. (see [Cross-Site Scripting (XSS)](/python/flask/user_guide/security#cross-site-scripting-xss)
 
 Sometimes however you will need to disable autoescaping in templates. This can be the case if you want to explicitly inject HTML into pages, for example if they come from a system that generates secure HTML like a markdown to HTML converter.
 
@@ -93,7 +93,7 @@ Whenever you do this, please be very cautious about the variables you are using 
 
 ## Registering Filters {#registering-filters}
 
-If you want to register your own filters in Jinja2 you have two ways to do that. You can either put them by hand into the [jinja_env](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.jinja_env) of the application or use the [template_filter()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.template_filter) decorator.
+If you want to register your own filters in Jinja2 you have two ways to do that. You can either put them by hand into the `jinja_env` of the application or use the `template_filter()` decorator.
 
 The two following examples work the same and both reverse an object:
 
@@ -142,13 +142,13 @@ The context processor above makes the `format_price` function available to all t
 {{ format_price(0.33) }}
 ```
 
-You could also build `format_price` as a template filter (see [Registering Filters](https://flask.palletsprojects.com/en/2.3.x/templating/#registering-filters)), but this demonstrates how to pass functions in a context processor.
+You could also build `format_price` as a template filter (see [Registering Filters](/python/flask/user_guide/template#registering-filters), but this demonstrates how to pass functions in a context processor.
 
 ## Streaming {#streaming}
 
 It can be useful to not render the whole template as one complete string, instead render it as a stream, yielding smaller incremental strings. This can be used for streaming HTML in chunks to speed up initial page load, or to save memory when rendering a very large template.
 
-The Jinja2 template engine supports rendering a template piece by piece, returning an iterator of strings. Flask provides the [stream_template()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_template) and [stream_template_string()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_template_string) functions to make this easier to use.
+The Jinja2 template engine supports rendering a template piece by piece, returning an iterator of strings. Flask provides the `stream_template()` and `stream_template_string()` functions to make this easier to use.
 
 ```python
 from flask import stream_template
@@ -158,4 +158,4 @@ def timeline():
     return stream_template("timeline.html")
 ```
 
-These functions automatically apply the [stream_with_context()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_with_context) wrapper if a request is active, so that it remains available in the template.
+These functions automatically apply the `stream_with_context()` wrapper if a request is active, so that it remains available in the template.

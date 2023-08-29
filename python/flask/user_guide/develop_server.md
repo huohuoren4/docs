@@ -5,7 +5,7 @@ Flask provides a `run` command to run the application with a development server.
 ::: warning Warning:
 Do not use the development server when deploying to production. It is intended for use only during local development. It is not designed to be particularly efficient, stable, or secure.
 
-See [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/) for deployment options.
+See [Deploying to Production](/python/flask/user_guide/deploy#deploying-to-production) for deployment options.
 :::
 
 ## Command Line {#command-line}
@@ -16,7 +16,7 @@ The `flask run` CLI command is the recommended way to run the development server
 $ flask --app hello run --debug
 ```
 
-This enables debug mode, including the interactive debugger and reloader, and then starts the server on `http://localhost:5000/`. Use `flask run --help` to see the available options, and [Command Line Interface](https://flask.palletsprojects.com/en/2.3.x/cli/) for detailed instructions about configuring and using the CLI.
+This enables debug mode, including the interactive debugger and reloader, and then starts the server on `http://localhost:5000/`. Use `flask run --help` to see the available options, and [Command Line Interface](/python/flask/user_guide/cmd_interface#command-line-interface) for detailed instructions about configuring and using the CLI.
 
 ### Address already in use {#address-already-in-use}
 
@@ -58,7 +58,7 @@ If a syntax error is already present when calling `flask run`, it will fail imme
 
 ## In Code {#in-code}
 
-The development server can also be started from Python with the [Flask.run()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.run) method. This method takes arguments similar to the CLI options to control the server. The main difference from the CLI command is that the server will crash if there are errors when reloading. `debug=True` can be passed to enable debug mode.
+The development server can also be started from Python with the `Flask.run()` method. This method takes arguments similar to the CLI options to control the server. The main difference from the CLI command is that the server will crash if there are errors when reloading. `debug=True` can be passed to enable debug mode.
 
 Place the call in a main block, otherwise it will interfere when trying to import and run the application with a production server later.
 

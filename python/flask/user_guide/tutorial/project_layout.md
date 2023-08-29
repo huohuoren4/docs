@@ -7,7 +7,7 @@ $ mkdir flask-tutorial
 $ cd flask-tutorial
 ```
 
-Then follow the [installation instructions](https://flask.palletsprojects.com/en/2.3.x/installation/) to set up a Python virtual environment and install Flask for your project.
+Then follow the [installation instructions](/python/flask/user_guide/install#installation) to set up a Python virtual environment and install Flask for your project.
 
 The tutorial will assume you’re working from the `flask-tutorial` directory from now on. The file names at the top of each code block are relative to this directory.
 
@@ -94,4 +94,4 @@ build/
 *.egg-info/
 ```
 
-Continue to [Application Setup](https://flask.palletsprojects.com/en/2.3.x/tutorial/factory/).
+Continue to [Application Setup](/python/flask/user_guide/tutorial/app_setup#application-setup).

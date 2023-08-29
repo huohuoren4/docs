@@ -21,7 +21,7 @@ from flaskr.db import get_db
 bp = Blueprint('blog', __name__)
 ```
 
-Import and register the blueprint from the factory using [app.register_blueprint()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.register_blueprint). Place the new code at the end of the factory function before returning the app.
+Import and register the blueprint from the factory using `app.register_blueprint()`. Place the new code at the end of the factory function before returning the app.
 
 ```python
 # flaskr/__init__.py
@@ -38,7 +38,7 @@ def create_app():
 
 Unlike the auth blueprint, the blog blueprint does not have a `url_prefix`. So the `index` view will be at `/`, the `create` view at `/create`, and so on. The blog is the main feature of Flaskr, so it makes sense that the blog index will be the main index.
 
-However, the endpoint for the `index` view defined below will be `blog.index`. Some of the authentication views referred to a plain `index` endpoint. [app.add_url_rule()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.add_url_rule) associates the endpoint name `'index'` with the `/` url so that `url_for('index')` or `url_for('blog.index')` will both work, generating the same `/` URL either way.
+However, the endpoint for the `index` view defined below will be `blog.index`. Some of the authentication views referred to a plain `index` endpoint. `app.add_url_rule()` associates the endpoint name `'index'` with the `/` url so that `url_for('index')` or `url_for('blog.index')` will both work, generating the same `/` URL either way.
 
 In another application you might give the blog blueprint a `url_prefix` and define a separate `index` view in the application factory, similar to the `hello` view. Then the index and `blog.index` endpoints and URLs would be different.
 
@@ -169,7 +169,7 @@ def get_post(id, check_author=True):
     return post
 ```
 
-[abort()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.abort) will raise a special exception that returns an HTTP status code. It takes an optional message to show with the error, otherwise a default message is used. `404` means “Not Found”, and `403` means “Forbidden”. (`401` means “Unauthorized”, but you redirect to the login page instead of returning that status.)
+`abort()` will raise a special exception that returns an HTTP status code. It takes an optional message to show with the error, otherwise a default message is used. `404` means “Not Found”, and `403` means “Forbidden”. (`401` means “Unauthorized”, but you redirect to the login page instead of returning that status.)
 
 The `check_author` argument is defined so that the function can be used to get a `post` without checking the author. This would be useful if you wrote a view to show an individual post on a page, where the user doesn’t matter because they’re not modifying the post.
 
@@ -203,7 +203,7 @@ def update(id):
     return render_template('blog/update.html', post=post)
 ```
 
-Unlike the views you’ve written so far, the `update` function takes an argument, `id`. That corresponds to the `<int:id>` in the route. A real URL will look like `/1/update`. Flask will capture the `1`, ensure it’s an `int`, and pass it as the id argument. If you don’t specify `int`: and instead do `<id>`, it will be a string. To generate a URL to the update page, [url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for) needs to be passed the id so it knows what to fill in: `url_for('blog.update', id=post['id'])`. This is also in the `index.html` file above.
+Unlike the views you’ve written so far, the `update` function takes an argument, `id`. That corresponds to the `<int:id>` in the route. A real URL will look like `/1/update`. Flask will capture the `1`, ensure it’s an `int`, and pass it as the id argument. If you don’t specify `int`: and instead do `<id>`, it will be a string. To generate a URL to the update page, `url_for()` needs to be passed the id so it knows what to fill in: `url_for('blog.update', id=post['id'])`. This is also in the `index.html` file above.
 
 The `create` and `update` views look very similar. The main difference is that the `update` view uses a `post` object and an `UPDATE` query instead of an `INSERT`. With some clever refactoring, you could use one view and template for both actions, but for the tutorial it’s clearer to keep them separate.
 
@@ -233,7 +233,7 @@ The `create` and `update` views look very similar. The main difference is that t
 
 This template has two forms. The first posts the edited data to the current page (`/<id>/update`). The other form contains only a button and specifies an `action` attribute that posts to the delete view instead. The button uses some JavaScript to show a confirmation dialog before submitting.
 
-The pattern `\{\{ request.form['title'] or post['title'] \}\}` is used to choose what data appears in the form. When the form hasn’t been submitted, the original `post` data appears, but if invalid form data was posted you want to display that so the user can fix the error, so `request.form` is used instead. [request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request) is another variable that’s automatically available in templates.
+The pattern `\{\{ request.form['title'] or post['title'] \}\}` is used to choose what data appears in the form. When the form hasn’t been submitted, the original `post` data appears, but if invalid form data was posted you want to display that so the user can fix the error, so `request.form` is used instead. `request` is another variable that’s automatically available in templates.
 
 ## Delete {#delete}
 
@@ -253,4 +253,4 @@ def delete(id):
 
 Congratulations, you’ve now finished writing your application! Take some time to try out everything in the browser. However, there’s still more to do before the project is complete.
 
-Continue to [Make the Project Installable](https://flask.palletsprojects.com/en/2.3.x/tutorial/install/).
+Continue to [Make the Project Installable](/python/flask/user_guide/tutorial/project_install#make-the-project-installable).

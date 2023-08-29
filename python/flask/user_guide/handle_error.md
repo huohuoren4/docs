@@ -16,13 +16,13 @@ Applications fail, servers fail. Sooner or later you will see an exception in pr
 
 - network connection of the server to another system failed
 
-And that’s just a small sample of issues you could be facing. So how do we deal with that sort of problem? By default if your application runs in production mode, and an exception is raised Flask will display a very simple page for you and log the exception to the [logger](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.logger).
+And that’s just a small sample of issues you could be facing. So how do we deal with that sort of problem? By default if your application runs in production mode, and an exception is raised Flask will display a very simple page for you and log the exception to the `logger`.
 
 But there is more you can do, and we will cover some better setups to deal with errors including custom exceptions and 3rd party tools.
 
 ## Error Logging Tools {#error-logging-tools}
 
-Sending error mails, even if just for critical ones, can become overwhelming if enough users are hitting the error and log files are typically never looked at. This is why we recommend using [Sentry](https://sentry.io/) for dealing with application errors. It’s available as a source-available project [on GitHub](https://github.com/getsentry/sentry) and is also available as a [hosted version](https://sentry.io/signup/) which you can try for free. Sentry aggregates duplicate errors, captures the full stack trace and local variables for debugging, and sends you mails based on new errors or frequency thresholds.
+Sending error mails, even if just for critical ones, can become overwhelming if enough users are hitting the error and log files are typically never looked at. This is why we recommend using [Sentry](https://sentry.io/) for dealing with application errors. It’s available as a source-available project [on GitHub](https://github.com/getsentry/sentry) and is also available as a hosted version which you can try for free. Sentry aggregates duplicate errors, captures the full stack trace and local variables for debugging, and sends you mails based on new errors or frequency thresholds.
 
 To use Sentry you need to install the `sentry-sdk` client with extra `flask` dependencies.
 
@@ -55,13 +55,13 @@ When an error occurs in Flask, an appropriate [HTTP status code](https://develop
 
 You might want to show custom error pages to the user when an error occurs. This can be done by registering error handlers.
 
-An error handler is a function that returns a response when a type of error is raised, similar to how a view is a function that returns a response when a request URL is matched. It is passed the instance of the error being handled, which is most likely a [HTTPException](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.HTTPException).
+An error handler is a function that returns a response when a type of error is raised, similar to how a view is a function that returns a response when a request URL is matched. It is passed the instance of the error being handled, which is most likely a `HTTPException`.
 
 The status code of the response will not be set to the handler’s code. Make sure to provide the appropriate HTTP status code when returning a response from a handler.
 
 ### Registering {#registering}
 
-Register handlers by decorating a function with [errorhandler()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.errorhandler). Or use [register_error_handler()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.register_error_handler) to register the function later. Remember to set the error code when returning the response.
+Register handlers by decorating a function with `errorhandler()`. Or use `register_error_handler()` to register the function later. Remember to set the error code when returning the response.
 
 ```python
 @app.errorhandler(werkzeug.exceptions.BadRequest)
@@ -72,9 +72,9 @@ def handle_bad_request(e):
 app.register_error_handler(400, handle_bad_request)
 ```
 
-[werkzeug.exceptions.HTTPException](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.HTTPException) subclasses like [BadRequest](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.BadRequest) and their HTTP codes are interchangeable when registering handlers. (`BadRequest.code == 400`)
+`werkzeug.exceptions.HTTPException` subclasses like `BadRequest` and their HTTP codes are interchangeable when registering handlers. (`BadRequest.code == 400`)
 
-Non-standard HTTP codes cannot be registered by code because they are not known by Werkzeug. Instead, define a subclass of [HTTPException](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.HTTPException) with the appropriate code and register and raise that exception class.
+Non-standard HTTP codes cannot be registered by code because they are not known by Werkzeug. Instead, define a subclass of `HTTPException` with the appropriate code and register and raise that exception class.
 
 ```python
 class InsufficientStorage(werkzeug.exceptions.HTTPException):
@@ -86,17 +86,17 @@ app.register_error_handler(InsufficientStorage, handle_507)
 raise InsufficientStorage()
 ```
 
-Handlers can be registered for any exception class, not just [HTTPException](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.HTTPException) subclasses or HTTP status codes. Handlers can be registered for a specific class, or for all subclasses of a parent class.
+Handlers can be registered for any exception class, not just [`HTTPException`](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.HTTPException) subclasses or HTTP status codes. Handlers can be registered for a specific class, or for all subclasses of a parent class.
 
 ### Handling {#handling}
 
-When building a Flask application you will run into exceptions. If some part of your code breaks while handling a request (and you have no error handlers registered), a “500 Internal Server Error” ([InternalServerError](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.InternalServerError)) will be returned by default. Similarly, “404 Not Found” ([NotFound](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.NotFound)) error will occur if a request is sent to an unregistered route. If a route receives an unallowed request method, a “405 Method Not Allowed” ([MethodNotAllowed](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.MethodNotAllowed)) will be raised. These are all subclasses of [HTTPException](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.HTTPException) and are provided by default in Flask.
+When building a Flask application you will run into exceptions. If some part of your code breaks while handling a request (and you have no error handlers registered), a “500 Internal Server Error” (`InternalServerError`) will be returned by default. Similarly, “404 Not Found” (`NotFound`) error will occur if a request is sent to an unregistered route. If a route receives an unallowed request method, a “405 Method Not Allowed” (`MethodNotAllowed`) will be raised. These are all subclasses of `HTTPException` and are provided by default in Flask.
 
 Flask gives you the ability to raise any HTTP exception registered by Werkzeug. However, the default HTTP exceptions return simple exception pages. You might want to show custom error pages to the user when an error occurs. This can be done by registering error handlers.
 
-When Flask catches an exception while handling a request, it is first looked up by code. If no handler is registered for the code, Flask looks up the error by its class hierarchy; the most specific handler is chosen. If no handler is registered, [HTTPException](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.HTTPException) subclasses show a generic message about their code, while other exceptions are converted to a generic “500 Internal Server Error”.
+When Flask catches an exception while handling a request, it is first looked up by code. If no handler is registered for the code, Flask looks up the error by its class hierarchy; the most specific handler is chosen. If no handler is registered, `HTTPException` subclasses show a generic message about their code, while other exceptions are converted to a generic “500 Internal Server Error”.
 
-For example, if an instance of [ConnectionRefusedError](https://docs.python.org/3/library/exceptions.html#ConnectionRefusedError) is raised, and a handler is registered for [ConnectionError](https://docs.python.org/3/library/exceptions.html#ConnectionError) and [ConnectionRefusedError](https://docs.python.org/3/library/exceptions.html#ConnectionRefusedError), the more specific [ConnectionRefusedError](https://docs.python.org/3/library/exceptions.html#ConnectionRefusedError) handler is called with the exception instance to generate the response.
+For example, if an instance of `ConnectionRefusedError` is raised, and a handler is registered for `ConnectionError` and `ConnectionRefusedError`, the more specific `ConnectionRefusedError` handler is called with the exception instance to generate the response.
 
 Handlers registered on the blueprint take precedence over those registered globally on the application, assuming a blueprint is handling the request that raises the exception. However, the blueprint cannot handle 404 routing errors because the 404 occurs at the routing level before the blueprint can be determined.
 
@@ -146,7 +146,7 @@ Error handlers still respect the exception class hierarchy. If you register hand
 
 ### Unhandled Exceptions {#unhandled-exceptions}
 
-When there is no error handler registered for an exception, a 500 Internal Server Error will be returned instead. See [flask.Flask.handle_exception()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.handle_exception) for information about this behavior.
+When there is no error handler registered for an exception, a 500 Internal Server Error will be returned instead. See `flask.Flask.handle_exception()` for information about this behavior.
 
 If there is an error handler registered for `InternalServerError`, this will be invoked. As of Flask 1.1.0, this error handler will always be passed an instance of `InternalServerError`, not the original unhandled error.
 
@@ -156,7 +156,7 @@ An error handler for “500 Internal Server Error” will be passed uncaught exc
 
 ## Custom Error Pages {#custom-error-pages}
 
-Sometimes when building a Flask application, you might want to raise a [HTTPException](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.HTTPException) to signal to the user that something is wrong with the request. Fortunately, Flask comes with a handy [abort()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.abort) function that aborts a request with a HTTP error from werkzeug as desired. It will also provide a plain black and white error page for you with a basic description, but nothing fancy.
+Sometimes when building a Flask application, you might want to raise a `HTTPException` to signal to the user that something is wrong with the request. Fortunately, Flask comes with a handy `abort()` function that aborts a request with a HTTP error from werkzeug as desired. It will also provide a plain black and white error page for you with a basic description, but nothing fancy.
 
 Depending on the error code it is less or more likely for the user to actually see such an error.
 
@@ -276,7 +276,7 @@ blog.register_error_handler(500, internal_server_error)
 
 ## Blueprint Error Handlers {#blueprint-error-handlers}
 
-In [Modular Applications with Blueprints](https://flask.palletsprojects.com/en/2.3.x/blueprints/), most error handlers will work as expected. However, there is a caveat concerning handlers for 404 and 405 exceptions. These error handlers are only invoked from an appropriate `raise` statement or a call to `abort` in another of the blueprint’s view functions; they are not invoked by, e.g., an invalid URL access.
+In [Modular Applications with Blueprints](/python/flask/user_guide/blueprint#modular-applications-with-blueprints), most error handlers will work as expected. However, there is a caveat concerning handlers for `404` and `405` exceptions. These error handlers are only invoked from an appropriate `raise` statement or a call to `abort` in another of the blueprint’s view functions; they are not invoked by, e.g., an invalid URL access.
 
 This is because the blueprint does not “own” a certain URL space, so the application instance has no way of knowing which blueprint error handler it should run if given an invalid URL. If you would like to execute different handling strategies for these errors based on URL prefixes, they may be defined at the application level using the `request` proxy object.
 
@@ -310,7 +310,7 @@ def method_not_allowed(e):
 
 When building APIs in Flask, some developers realise that the built-in exceptions are not expressive enough for APIs and that the content type of `text/html` they are emitting is not very useful for API consumers.
 
-Using the same techniques as above and [jsonify()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.json.jsonify) we can return JSON responses to API errors. [abort()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.abort) is called with a `description` parameter. The error handler will use that as the JSON error message, and set the status code to 404.
+Using the same techniques as above and `jsonify()` we can return JSON responses to API errors. `abort()` is called with a `description` parameter. The error handler will use that as the JSON error message, and set the status code to 404.
 
 ```python
 from flask import abort, jsonify
@@ -374,8 +374,8 @@ A view can now raise that exception with an error message. Additionally some ext
 
 ## Logging {#logging}
 
-See [Logging](https://flask.palletsprojects.com/en/2.3.x/logging/) for information about how to log exceptions, such as by emailing them to admins.
+See [Logging](/python/flask/user_guide/logging#logging) for information about how to log exceptions, such as by emailing them to admins.
 
 ## Debugging {#debugging}
 
-See [Debugging Application Errors](https://flask.palletsprojects.com/en/2.3.x/debugging/) for information about how to debug errors in development and production.
+See [Debugging Application Errors](/python/flask/user_guide/debug_error#debugging-application-errors) for information about how to debug errors in development and production.

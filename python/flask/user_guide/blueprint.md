@@ -4,7 +4,7 @@
 *New in version 0.7.*
 :::
 
-Flask uses a concept of `blueprints` for making application components and supporting common patterns within an application or across applications. Blueprints can greatly simplify how large applications work and provide a central means for Flask extensions to register operations on applications. A [Blueprint](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint) object works similarly to a [Flask](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask) application object, but it is not actually an application. Rather it is a blueprint of how to construct or extend an application.
+Flask uses a concept of `blueprints` for making application components and supporting common patterns within an application or across applications. Blueprints can greatly simplify how large applications work and provide a central means for Flask extensions to register operations on applications. A `Blueprint` object works similarly to a `Flask` application object, but it is not actually an application. Rather it is a blueprint of how to construct or extend an application.
 
 ## Why Blueprints? {#why-blueprints}
 
@@ -20,7 +20,7 @@ Blueprints in Flask are intended for these cases:
 
 - Register a blueprint on an application for any of these cases when initializing a Flask extension.
 
-A blueprint in Flask is not a pluggable app because it is not actually an application – it’s a set of operations which can be registered on an application, even multiple times. Why not have multiple application objects? You can do that (see [Application Dispatching](https://flask.palletsprojects.com/en/2.3.x/patterns/appdispatch/)), but your applications will have separate configs and will be managed at the WSGI layer.
+A blueprint in Flask is not a pluggable app because it is not actually an application – it’s a set of operations which can be registered on an application, even multiple times. Why not have multiple application objects? You can do that (see [Application Dispatching](/python/flask/user_guide/pattern/app_dispatch#application-dispatching)), but your applications will have separate configs and will be managed at the WSGI layer.
 
 Blueprints instead provide separation at the Flask level, share application config, and can change an application object as necessary with being registered. The downside is that you cannot unregister a blueprint once an application was created without having to destroy the whole application object.
 
@@ -48,7 +48,7 @@ def show(page):
         abort(404)
 ```
 
-When you bind a function with the help of the `@simple_page.route` decorator, the blueprint will record the intention of registering the function `show` on the application when it’s later registered. Additionally it will prefix the endpoint of the function with the name of the blueprint which was given to the [Blueprint](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint) constructor (in this case also `simple_page`). The blueprint’s name does not modify the URL, only the endpoint.
+When you bind a function with the help of the `@simple_page.route` decorator, the blueprint will record the intention of registering the function `show` on the application when it’s later registered. Additionally it will prefix the endpoint of the function with the name of the blueprint which was given to the `Blueprint` constructor (in this case also `simple_page`). The blueprint’s name does not modify the URL, only the endpoint.
 
 ## Registering Blueprints {#registering-blueprints}
 
@@ -130,14 +130,14 @@ Blueprints can provide resources as well. Sometimes you might want to introduce 
 
 Like for regular applications, blueprints are considered to be contained in a folder. While multiple blueprints can originate from the same folder, it does not have to be the case and it’s usually not recommended.
 
-The folder is inferred from the second argument to [Blueprint](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint) which is usually `__name__`. This argument specifies what logical Python module or package corresponds to the blueprint. If it points to an actual Python package that package (which is a folder on the filesystem) is the resource folder. If it’s a module, the package the module is contained in will be the resource folder. You can access the [Blueprint.root_path](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint.root_path) property to see what the resource folder is:
+The folder is inferred from the second argument to `Blueprint` which is usually `__name__`. This argument specifies what logical Python module or package corresponds to the blueprint. If it points to an actual Python package that package (which is a folder on the filesystem) is the resource folder. If it’s a module, the package the module is contained in will be the resource folder. You can access the `Blueprint.root_path` property to see what the resource folder is:
 
 ```python
 >>> simple_page.root_path
 '/Users/username/TestProject/yourapplication'
 ```
 
-To quickly open sources from this folder you can use the [open_resource()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint.open_resource) function:
+To quickly open sources from this folder you can use the `open_resource()` function:
 
 ```python
 with simple_page.open_resource('static/style.css') as f:
@@ -154,7 +154,7 @@ admin = Blueprint('admin', __name__, static_folder='static')
 
 By default the rightmost part of the path is where it is exposed on the web. This can be changed with the `static_url_path` argument. Because the folder is called `static` here it will be available at the `url_prefix` of the blueprint + `/static`. If the blueprint has the prefix `/admin`, the static URL will be `/admin/static`.
 
-The endpoint is named `blueprint_name.static`. You can generate URLs to it with [url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for) like you would with the static folder of the application:
+The endpoint is named `blueprint_name.static`. You can generate URLs to it with `url_for()` like you would with the static folder of the application:
 
 ```python
 url_for('admin.static', filename='style.css')
@@ -192,7 +192,7 @@ And then when you want to render the template, use `admin/index.html` as the nam
 
 ## Building URLs {#building-urls}
 
-If you want to link from one page to another you can use the [url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for) function just like you normally would do just that you prefix the URL endpoint with the name of the blueprint and a dot (.):
+If you want to link from one page to another you can use the `url_for()` function just like you normally would do just that you prefix the URL endpoint with the name of the blueprint and a dot (.):
 
 ```python
 url_for('admin.index')
@@ -208,7 +208,7 @@ This will link to `admin.index` for instance in case the current request was dis
 
 ## Blueprint Error Handlers {#blueprint-error-handlers}
 
-Blueprints support the `errorhandler` decorator just like the [Flask](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask) application object, so it is easy to make Blueprint-specific custom error pages.
+Blueprints support the `errorhandler` decorator just like the `Flask` application object, so it is easy to make Blueprint-specific custom error pages.
 
 Here is an example for a “404 Page Not Found” exception:
 
@@ -230,4 +230,4 @@ def _handle_api_error(ex):
         return ex
 ```
 
-See [Handling Application Errors](https://flask.palletsprojects.com/en/2.3.x/errorhandling/).
+See [Handling Application Errors](/python/flask/user_guide/handle_error#handling-application-errors).

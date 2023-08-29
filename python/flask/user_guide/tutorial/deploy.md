@@ -1,6 +1,6 @@
 # Deploy to Production {#deploy-to-production}
 
-This part of the tutorial assumes you have a server that you want to deploy your application to. It gives an overview of how to create the distribution file and install it, but won’t go into specifics about what server or software to use. You can set up a new environment on your development computer to try out the instructions below, but probably shouldn’t use it for hosting a real public application. See [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/) for a list of many different ways to host your application.
+This part of the tutorial assumes you have a server that you want to deploy your application to. It gives an overview of how to create the distribution file and install it, but won’t go into specifics about what server or software to use. You can set up a new environment on your development computer to try out the instructions below, but probably shouldn’t use it for hosting a real public application. See [Deploying to Production](/python/flask/user_guide/deploy#deploying-to-production) for a list of many different ways to host your application.
 
 ## Build and Install {#build-and-install}
 
@@ -31,7 +31,7 @@ When Flask detects that it’s installed (not in editable mode), it uses a diffe
 
 ## Configure the Secret Key {#configure-the-secret-key}
 
-In the beginning of the tutorial that you gave a default value for [SECRET_KEY](https://flask.palletsprojects.com/en/2.3.x/config/#SECRET_KEY). This should be changed to some random bytes in production. Otherwise, attackers could use the public `'dev'` key to modify the session cookie, or anything else that uses the secret key.
+In the beginning of the tutorial that you gave a default value for `SECRET_KEY`. This should be changed to some random bytes in production. Otherwise, attackers could use the public `'dev'` key to modify the session cookie, or anything else that uses the secret key.
 
 You can use the following command to output a random secret key:
 
@@ -68,6 +68,6 @@ $ waitress-serve --call 'flaskr:create_app'
 Serving on http://0.0.0.0:8080
 ```
 
-See [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/) for a list of many different ways to host your application. Waitress is just an example, chosen for the tutorial because it supports both Windows and Linux. There are many more WSGI servers and deployment options that you may choose for your project.
+See [Deploying to Production](/python/flask/user_guide/deploy#deploying-to-production) for a list of many different ways to host your application. Waitress is just an example, chosen for the tutorial because it supports both Windows and Linux. There are many more WSGI servers and deployment options that you may choose for your project.
 
-Continue to [Keep Developing!](https://flask.palletsprojects.com/en/2.3.x/tutorial/next/).
+Continue to [Keep Developing!](/python/flask/user_guide/tutorial/develop#keep-developing).

@@ -4,7 +4,7 @@ A view function is the code you write to respond to requests to your application
 
 ## Create a Blueprint {#create-a-blueprint}
 
-A [Blueprint](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint) is a way to organize a group of related views and other code. Rather than registering views and other code directly with an application, they are registered with a blueprint. Then the blueprint is registered with the application when it is available in the factory function.
+A `Blueprint` is a way to organize a group of related views and other code. Rather than registering views and other code directly with an application, they are registered with a blueprint. Then the blueprint is registered with the application when it is available in the factory function.
 
 Flaskr will have two blueprints, one for authentication functions and one for the blog posts functions. The code for each blueprint will go in a separate module. Since the blog needs to know about authentication, you’ll write the authentication one first.
 
@@ -22,9 +22,9 @@ from flaskr.db import get_db
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 ```
 
-This creates a [Blueprint](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint) named `'auth'`. Like the application object, the blueprint needs to know where it’s defined, so `__name__` is passed as the second argument. The `url_prefix` will be prepended to all the URLs associated with the blueprint.
+This creates a `Blueprint` named `'auth'`. Like the application object, the blueprint needs to know where it’s defined, so `__name__` is passed as the second argument. The `url_prefix` will be prepended to all the URLs associated with the blueprint.
 
-Import and register the blueprint from the factory using [app.register_blueprint()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.register_blueprint). Place the new code at the end of the factory function before returning the app.
+Import and register the blueprint from the factory using `app.register_blueprint()`. Place the new code at the end of the factory function before returning the app.
 
 ```python
 # flaskr/__init__.py
@@ -80,27 +80,27 @@ def register():
 
 Here’s what the `register` view function is doing:
 
-1. [@bp.route](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint.route) associates the URL `/register` with the `register` view function. When Flask receives a request to `/auth/register`, it will call the `register` view and use the return value as the response.
+1. `@bp.route` associates the URL `/register` with the `register` view function. When Flask receives a request to `/auth/register`, it will call the `register` view and use the return value as the response.
 
-2. If the user submitted the form, [request.method](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Request.method) will be `'POST'`. In this case, start validating the input.
+2. If the user submitted the form, `request.method` will be `'POST'`. In this case, start validating the input.
 
-3. [request.form](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Request.form) is a special type of [dict](https://docs.python.org/3/library/stdtypes.html#dict) mapping submitted form keys and values. The user will input their `username` and `password`.
+3. `request.form` is a special type of `dict` mapping submitted form keys and values. The user will input their `username` and `password`.
 
 4. Validate that `username` and `password` are not empty.
 
 5. If validation succeeds, insert the new user data into the database.
 
-   - [db.execute](https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.execute) takes a SQL query with `?` placeholders for any user input, and a tuple of values to replace the placeholders with. The database library will take care of escaping the values so you are not vulnerable to a `SQL injection attack`.
+   - `db.execute` takes a SQL query with `?` placeholders for any user input, and a tuple of values to replace the placeholders with. The database library will take care of escaping the values so you are not vulnerable to a `SQL injection attack`.
 
-   - For security, passwords should never be stored in the database directly. Instead, [generate_password_hash()](https://werkzeug.palletsprojects.com/en/2.3.x/utils/#werkzeug.security.generate_password_hash) is used to securely hash the password, and that hash is stored. Since this query modifies data, [db.commit()](https://docs.python.org/3/library/sqlite3.html#sqlite3.Connection.commit) needs to be called afterwards to save the changes.
+   - For security, passwords should never be stored in the database directly. Instead, `generate_password_hash()` is used to securely hash the password, and that hash is stored. Since this query modifies data, `db.commit()` needs to be called afterwards to save the changes.
 
-   - An [sqlite3.IntegrityError](https://docs.python.org/3/library/sqlite3.html#sqlite3.IntegrityError) will occur if the username already exists, which should be shown to the user as another validation error.
+   - An `sqlite3.IntegrityError` will occur if the username already exists, which should be shown to the user as another validation error.
 
-6. After storing the user, they are redirected to the login page. [url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for) generates the URL for the login view based on its name. This is preferable to writing the URL directly as it allows you to change the URL later without changing all code that links to it. [redirect()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.redirect) generates a redirect response to the generated URL.
+6. After storing the user, they are redirected to the login page. `url_for()` generates the URL for the login view based on its name. This is preferable to writing the URL directly as it allows you to change the URL later without changing all code that links to it. `redirect()` generates a redirect response to the generated URL.
 
-7. If validation fails, the error is shown to the user. [flash()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.flash) stores messages that can be retrieved when rendering the template.
+7. If validation fails, the error is shown to the user. `flash()` stores messages that can be retrieved when rendering the template.
 
-8. When the user initially navigates to `auth/register`, or there was a validation error, an HTML page with the registration form should be shown. [render_template()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.render_template) will render a template containing the HTML, which you’ll write in the next step of the tutorial.
+8. When the user initially navigates to `auth/register`, or there was a validation error, an HTML page with the registration form should be shown. `render_template()` will render a template containing the HTML, which you’ll write in the next step of the tutorial.
 
 
 ## Login {#login}
@@ -137,13 +137,13 @@ def login():
 
 There are a few differences from the `register` view:
 
-1. The user is queried first and stored in a variable for later use. [fetchone()](https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.fetchone) returns one row from the query. If the query returned no results, it returns `None`. Later, [fetchall()](https://docs.python.org/3/library/sqlite3.html#sqlite3.Cursor.fetchall) will be used, which returns a list of all results.
+1. The user is queried first and stored in a variable for later use. `fetchone()` returns one row from the query. If the query returned no results, it returns `None`. Later, `fetchall()` will be used, which returns a list of all results.
 
-2. [check_password_hash()](https://werkzeug.palletsprojects.com/en/2.3.x/utils/#werkzeug.security.check_password_hash) hashes the submitted password in the same way as the stored hash and securely compares them. If they match, the password is valid.
+2. `check_password_hash()` hashes the submitted password in the same way as the stored hash and securely compares them. If they match, the password is valid.
 
-3. [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session) is a `dict` that stores data across requests. When validation succeeds, the user’s id is stored in a new session. The data is stored in a cookie that is sent to the browser, and the browser then sends it back with subsequent requests. Flask securely signs the data so that it can’t be tampered with.
+3. `session` is a `dict` that stores data across requests. When validation succeeds, the user’s id is stored in a new session. The data is stored in a cookie that is sent to the browser, and the browser then sends it back with subsequent requests. Flask securely signs the data so that it can’t be tampered with.
 
-Now that the user’s `id` is stored in the [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session), it will be available on subsequent requests. At the beginning of each request, if a user is logged in their information should be loaded and made available to other views.
+Now that the user’s `id` is stored in the `session`, it will be available on subsequent requests. At the beginning of each request, if a user is logged in their information should be loaded and made available to other views.
 
 ```python
 # flaskr/auth.py
@@ -159,11 +159,11 @@ def load_logged_in_user():
         ).fetchone()
 ```
 
-[bp.before_app_request()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Blueprint.before_app_request) registers a function that runs before the view function, no matter what URL is requested. `load_logged_in_user` checks if a user id is stored in the [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session) and gets that user’s data from the database, storing it on [g.user](https://flask.palletsprojects.com/en/2.3.x/api/#flask.g), which lasts for the length of the request. If there is no user id, or if the id doesn’t exist, `g.user` will be `None`.
+`bp.before_app_request()` registers a function that runs before the view function, no matter what URL is requested. `load_logged_in_user` checks if a user id is stored in the `session` and gets that user’s data from the database, storing it on `g.user`, which lasts for the length of the request. If there is no user id, or if the id doesn’t exist, `g.user` will be `None`.
 
 ## Logout {#logout}
 
-To log out, you need to remove the user id from the [session](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session). Then `load_logged_in_user` won’t load a user on subsequent requests.
+To log out, you need to remove the user id from the `session`. Then `load_logged_in_user` won’t load a user on subsequent requests.
 
 ```python
 # flaskr/auth.py
@@ -194,10 +194,10 @@ This decorator returns a new view function that wraps the original view it’s a
 
 ## Endpoints and URLs {#endpoints-and-urls}
 
-The [url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for) function generates the URL to a view based on a name and arguments. The name associated with a view is also called the endpoint, and by default it’s the same as the name of the view function.
+The `url_for()` function generates the URL to a view based on a name and arguments. The name associated with a view is also called the endpoint, and by default it’s the same as the name of the view function.
 
 For example, the `hello()` view that was added to the app factory earlier in the tutorial has the name `'hello'` and can be linked to with `url_for('hello')`. If it took an argument, which you’ll see later, it would be linked to using `url_for('hello', who='World')`.
 
 When using a blueprint, the name of the blueprint is prepended to the name of the function, so the endpoint for the `login` function you wrote above is `'auth.login'` because you added it to the `'auth'` blueprint.
 
-Continue to [Templates](https://flask.palletsprojects.com/en/2.3.x/tutorial/templates/).
+Continue to [Templates](/python/flask/user_guide/tutorial/template#templates).
