@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
 
 var chinese_website = 'https://huohuoren4.github.io/docs/'
-var github_website = 'https://github.com/huohuoren4/docs.git'
-var edit_link = 'https://github.com/huohuoren4/docs/tree/main/:path'
+var github_website = 'https://github.com/huohuoren4/docs'
+var edit_link = github_website + '/tree/main/:path'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -45,7 +45,12 @@ export default defineConfig({
       {
         text: 'Python',
         items: [
-          {text: 'doc', link: 'https://docs.python.org/3.7/'},
+          {
+            text: 'Offical Resource',
+            items: [
+              {text: 'doc', link: 'https://docs.python.org/3.7/'},
+            ]
+          },
           {
             text: 'Test Automatic',
             items: [
@@ -80,11 +85,23 @@ export default defineConfig({
       {
         text: 'Golang',
         items: [
-          { text: 'doc', link: 'https://golang.google.cn/doc/'},
+          {
+            text: 'Offical Resource',
+            items: [
+              { text: 'doc', link: 'https://golang.google.cn/doc/'},
+            ]
+          },
           {
             text: 'Web Framework',
             items: [
               { text: 'gin', link: 'https://gin-gonic.com/docs/'},
+            ]
+          },
+          {
+            text: 'Container Ecosystem',
+            items: [
+              { text: 'docker', link: 'https://docs.docker.com/'},
+              { text: 'kubernetes', link: 'https://kubernetes.io/docs/home/'},
             ]
           }
         ]
@@ -92,7 +109,12 @@ export default defineConfig({
       {
         text: 'Vue',
         items: [
-          { text: 'doc', link: 'https://vuejs.org/'},
+          {
+            text: 'Offical Resource',
+            items: [
+              { text: 'doc', link: 'https://vuejs.org/'},
+            ]
+          },
           {
             text: 'Awesome Vue',
             items: [
@@ -108,7 +130,7 @@ export default defineConfig({
         items: [
           { text: 'Team', link: '...'},
           { text: 'Releases', link: '...'},
-          { text: 'Contribution', link: '...'},
+          { text: 'Contribution', link: github_website + '/issues' },
           { text: 'Help Us Translate😄', link: github_website},
         ]
       },
@@ -195,7 +217,7 @@ export default defineConfig({
                   { text: 'Examples and customization tricks', 
                     collapsed: true,
                     items: [
-                      {text: 'Contents', link: '/python/pytest/further_topics/example_trick/content' },
+                      {text: 'Overview', link: '/python/pytest/further_topics/example_trick/content' },
                       {text: 'Demo of Python failure reports with pytest', link: '/python/pytest/further_topics/example_trick/failure_report' },
                       {text: 'Basic patterns and examples', link: '/python/pytest/further_topics/example_trick/basic_pattern' },
                       {text: 'Parametrizing tests', link: '/python/pytest/further_topics/example_trick/parametrize' },
@@ -245,7 +267,7 @@ export default defineConfig({
                   { text: 'Tutorial', 
                     collapsed: true,
                     items: [
-                      { text: 'Introduction', link: '/python/flask/user_guide/tutorial/introduction' },
+                      { text: 'Overview', link: '/python/flask/user_guide/tutorial/introduction' },
                       { text: 'Project Layout', link: '/python/flask/user_guide/tutorial/project_layout' },
                       { text: 'Application Setup', link: '/python/flask/user_guide/tutorial/app_setup' },
                       { text: 'Define and Access the Database', link: '/python/flask/user_guide/tutorial/database' },
@@ -278,7 +300,7 @@ export default defineConfig({
                   { text: 'Patterns for Flask', 
                     collapsed: true,
                     items: [
-                      { text: 'Index', link: '/python/flask/user_guide/pattern/index.md' },
+                      { text: 'Overview', link: '/python/flask/user_guide/pattern/index.md' },
                       { text: 'Large Applications as Packages', link: '/python/flask/user_guide/pattern/large_app' },
                       { text: 'Application Factories', link: '/python/flask/user_guide/pattern/app_factories' },
                       { text: 'Application Dispatching', link: '/python/flask/user_guide/pattern/app_dispatch' },
