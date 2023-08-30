@@ -48,7 +48,7 @@ Include the following in your patch:
 
 - The codespace will be set up, then Visual Studio Code will open. However, you’ll need to wait a bit longer for the Python extension to be installed. You’ll know it’s ready when the terminal at the bottom shows that the virtualenv was activated.
 
-- Check out a branch and [start coding](https://flask.palletsprojects.com/en/2.3.x/contributing/#start-coding).
+- Check out a branch and [start coding](/python/flask/additional_note/contribute#start-coding).
 
 ### First time setup in your local environment {#first-time-setup-in-your-local-environment}
 

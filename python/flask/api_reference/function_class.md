@@ -4,9 +4,9 @@
 
 A proxy to the application handling the current request. This is useful to access the application without needing to import it, or if it can’t be imported, such as when using the application factory pattern or in blueprints and extensions.
 
-This is only available when an [application context](https://flask.palletsprojects.com/en/2.3.x/appcontext/) is pushed. This happens automatically during requests and CLI commands. It can be controlled manually with `app_context()`.
+This is only available when an [application context](/python/flask/user_guide/app_context#the-application-context) is pushed. This happens automatically during requests and CLI commands. It can be controlled manually with `app_context()`.
 
-This is a proxy. See [Notes On Proxies](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#notes-on-proxies) for more information.
+This is a proxy. See [Notes On Proxies](/python/flask/user_guide/request_context#notes-on-proxies) for more information.
 
 ## flask.has_request_context()
 

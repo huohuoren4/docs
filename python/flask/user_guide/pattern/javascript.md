@@ -1,14 +1,14 @@
 # JavaScript, fetch, and JSON {#javascript-fetch-and-json}
 
-You may want to make your HTML page dynamic, by changing data without reloading the entire page. Instead of submitting an HTML `<form>` and performing a redirect to re-render the template, you can add [JavaScript](https://developer.mozilla.org/Web/JavaScript) that calls [fetch()](https://developer.mozilla.org/Web/API/Fetch_API) and replaces content on the page.
+You may want to make your HTML page dynamic, by changing data without reloading the entire page. Instead of submitting an HTML `<form>` and performing a redirect to re-render the template, you can add [JavaScript](https://developer.mozilla.org/Web/JavaScript) that calls `fetch()` and replaces content on the page.
 
-[fetch()](https://developer.mozilla.org/Web/API/Fetch_API) is the modern, built-in JavaScript solution to making requests from a page. You may have heard of other “AJAX” methods and libraries, such as [XMLHttpRequest()](https://developer.mozilla.org/Web/API/XMLHttpRequest) or [jQuery](https://jquery.com/). These are no longer needed in modern browsers, although you may choose to use them or another library depending on your application’s requirements. These docs will only focus on built-in JavaScript features.
+`fetch()` is the modern, built-in JavaScript solution to making requests from a page. You may have heard of other “AJAX” methods and libraries, such as `XMLHttpRequest()` or [jQuery](https://jquery.com/). These are no longer needed in modern browsers, although you may choose to use them or another library depending on your application’s requirements. These docs will only focus on built-in JavaScript features.
 
 ## Rendering Templates {#rendering-templates}
 
 It is important to understand the difference between templates and JavaScript. Templates are rendered on the server, before the response is sent to the user’s browser. JavaScript runs in the user’s browser, after the template is rendered and sent. Therefore, it is impossible to use JavaScript to affect how the Jinja template is rendered, but it is possible to render data into the JavaScript that will run.
 
-To provide data to JavaScript when rendering the template, use the [tojson()](https://jinja.palletsprojects.com/en/3.1.x/templates/#jinja-filters.tojson) filter in a `<script>` block. This will convert the data to a valid JavaScript object, and ensure that any unsafe HTML characters are rendered safely. If you do not use the `tojson` filter, you will get a `SyntaxError` in the browser console.
+To provide data to JavaScript when rendering the template, use the `tojson()` filter in a `<script>` block. This will convert the data to a valid JavaScript object, and ensure that any unsafe HTML characters are rendered safely. If you do not use the `tojson` filter, you will get a `SyntaxError` in the browser console.
 
 ```python
 data = generate_report()
@@ -32,7 +32,7 @@ A less common pattern is to add the data to a `data-` attribute on an HTML tag. 
 
 The other way to get data from the server to JavaScript is to make a request for it. First, you need to know the URL to request.
 
-The simplest way to generate URLs is to continue to use [url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for) when rendering the template. For example:
+The simplest way to generate URLs is to continue to use `url_for()` when rendering the template. For example:
 
 ```javascript
 const user_url = {{ url_for("user", id=current_user.id)|tojson }}
@@ -54,7 +54,7 @@ fetch(user_url).then(...)
 
 ## Making a Request with fetch {#making-a-request-with-fetch}
 
-[fetch()](https://developer.mozilla.org/Web/API/Fetch_API) takes two arguments, a URL and an object with other options, and returns a [Promise](https://developer.mozilla.org/Web/JavaScript/Reference/Global_Objects/Promise). We won’t cover all the available options, and will only use `then()` on the promise, not other callbacks or `await` syntax. Read the linked MDN docs for more information about those features.
+`fetch()` takes two arguments, a URL and an object with other options, and returns a `Promise`. We won’t cover all the available options, and will only use `then()` on the promise, not other callbacks or `await` syntax. Read the linked MDN docs for more information about those features.
 
 By default, the GET method is used. If the response contains JSON, it can be used with a `then()` callback chain.
 
@@ -69,7 +69,7 @@ fetch(room_url)
 
 To send data, use a data method such as `POST`, and pass the `body` option. The most common types for data are form data or JSON data.
 
-To send form data, pass a populated [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object. This uses the same format as an HTML form, and would be accessed with `request.form` in a Flask view.
+To send form data, pass a populated `FormData` object. This uses the same format as an HTML form, and would be accessed with `request.form` in a Flask view.
 
 ```javascript
 let data = new FormData()
@@ -143,7 +143,7 @@ def user_detail(id):
     }
 ```
 
-If you want to return another JSON type, use the [jsonify()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.json.jsonify) function, which creates a response object with the given data serialized to JSON.
+If you want to return another JSON type, use the `jsonify()` function, which creates a response object with the given data serialized to JSON.
 
 ```python
 from flask import jsonify
@@ -158,7 +158,7 @@ It is usually not a good idea to return file data in a JSON response. JSON canno
 
 ## Receiving JSON in Views {#receiving-json-in-views}
 
-Use the [json](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Request.json) property of the [request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request) object to decode the request’s body as JSON. If the body is not valid JSON, or the `Content-Type` header is not set to `application/json`, a `400` Bad Request error will be raised.
+Use the `json` property of the `request` object to decode the request’s body as JSON. If the body is not valid JSON, or the `Content-Type` header is not set to `application/json`, a `400` Bad Request error will be raised.
 
 ```python
 from flask import request

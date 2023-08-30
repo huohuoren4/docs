@@ -224,7 +224,7 @@ The default session interface that stores sessions in signed cookies through the
 
 - ### salt = `'cookie-session'`
 
-the salt that should be applied on top of the secret key for the signing of cookie based sessions.
+    the salt that should be applied on top of the secret key for the signing of cookie based sessions.
 
 - ### save_session(`app, session, response`)
 
@@ -300,7 +300,7 @@ Class used to generate nicer error messages if sessions are not available. Will 
 
     - `initial (t.Any)` –
 
-- ### `clear()` → `None` 
+- ### clear() → `None` 
 
     Remove all items from D.
 
@@ -368,7 +368,7 @@ Class used to generate nicer error messages if sessions are not available. Will 
 
     *Return type*: `NoReturn`
 
-## class flask.sessions.SessionMixin
+## `class` flask.sessions.SessionMixin
 
 Expands a basic dictionary with session attributes.
 
@@ -376,11 +376,11 @@ Expands a basic dictionary with session attributes.
 
     Some implementations can detect when session data is read or written and set this when that happens. The mixin default is hard coded to `True`.
 
-    - ### modified = `True`
+- ### modified = `True`
 
     Some implementations can detect changes to the session and set this when that happens. The mixin default is hard coded to ·.
 
-    - ### `property` permanent: `bool`
+- ### `property` permanent: `bool`
 
     This reflects the `'_permanent'` key in the dict.
 

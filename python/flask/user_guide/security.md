@@ -37,7 +37,7 @@ There is one class of XSS issues that Jinja’s escaping does not protect agains
 <a href="javascript:alert('unsafe');">click here</a>
 ```
 
-To prevent this, you’ll need to set the [Content Security Policy (CSP)](https://flask.palletsprojects.com/en/2.3.x/security/#security-csp) response header.
+To prevent this, you’ll need to set the [Content Security Policy (CSP)](/python/flask/user_guide/security#content-security-policy-csp) response header.
 
 ## Cross-Site Request Forgery (CSRF) {#cross-site-request-forgery-csrf}
 
@@ -132,7 +132,7 @@ Specifying `Expires` or `Max-Age` options, will remove the cookie after the give
 response.set_cookie('snakes', '3', max_age=600)
 ```
 
-For the session cookie, if [session.permanent](https://flask.palletsprojects.com/en/2.3.x/api/#flask.session.permanent) is set, then [PERMANENT_SESSION_LIFETIME](https://flask.palletsprojects.com/en/2.3.x/config/#PERMANENT_SESSION_LIFETIME) is used to set the expiration. Flask’s default cookie implementation validates that the cryptographic signature is not older than this value. Lowering this value may help mitigate replay attacks, where intercepted cookies can be sent at a later time.
+For the session cookie, if `session.permanent` is set, then `PERMANENT_SESSION_LIFETIME` is used to set the expiration. Flask’s default cookie implementation validates that the cryptographic signature is not older than this value. Lowering this value may help mitigate replay attacks, where intercepted cookies can be sent at a later time.
 
 ```python
 app.config.update(

@@ -2,7 +2,7 @@
 
 If your application has a long running task, such as processing some uploaded data or sending email, you don’t want to wait for it to finish during a request. Instead, use a task queue to send the necessary data to another process that will run the task in the background while the request returns immediately.
 
-Celery is a powerful task queue that can be used for simple background tasks as well as complex multi-stage programs and schedules. This guide will show you how to configure Celery using Flask. Read [Celery’s First Steps with Celery](https://celery.readthedocs.io/en/latest/getting-started/first-steps-with-celery.html) guide to learn how to use Celery itself.
+Celery is a powerful task queue that can be used for simple background tasks as well as complex multi-stage programs and schedules. This guide will show you how to configure Celery using Flask. Read [Celery's First Steps with Celery](https://celery.readthedocs.io/en/latest/getting-started/first-steps-with-celery.html) guide to learn how to use Celery itself.
 
 The Flask repository contains [an example](https://github.com/pallets/flask/tree/main/examples/celery) based on the information on this page, which also shows how to use JavaScript to submit tasks and poll for progress and results.
 

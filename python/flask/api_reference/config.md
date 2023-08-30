@@ -130,7 +130,7 @@ On windows use set instead.
 
     You should not use this function to load the actual configuration but rather configuration defaults. The actual config should be loaded with `from_pyfile()` and ideally from a location not within the package because the package might be installed system wide.
 
-    See [Development / Production](https://flask.palletsprojects.com/en/2.3.x/config/#config-dev-prod) for an example of class-based configuration using `from_object()`.
+    See [Development / Production](/python/flask/user_guide/configuration#development-production) for an example of class-based configuration using `from_object()`.
 
     *Parameters*:
 

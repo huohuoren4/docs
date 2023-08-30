@@ -1,6 +1,6 @@
 # Signals {#signals}
 
-Signals are provided by the Blinker library. See [Signals](https://flask.palletsprojects.com/en/2.3.x/signals/) for an introduction.
+Signals are provided by the Blinker library. See [Signals](/python/flask/user_guide/signal#signals) for an introduction.
 
 ## flask.template_rendered
 

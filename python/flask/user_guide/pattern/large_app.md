@@ -14,7 +14,7 @@ Imagine a simple flask application structure that looks like this:
         ...
 ```
 
-While this is fine for small applications, for larger applications it’s a good idea to use a package instead of a module. The [Tutorial](https://flask.palletsprojects.com/en/2.3.x/tutorial/) is structured to use the package pattern, see the [example code](https://github.com/pallets/flask/tree/main/examples/tutorial).
+While this is fine for small applications, for larger applications it’s a good idea to use a package instead of a module. The [Tutorial](/python/flask/user_guide/tutorial/introduction#tutorial) is structured to use the package pattern, see the [example code](https://github.com/pallets/flask/tree/main/examples/tutorial).
 
 ## Simple Packages {#simple-packages}
 
@@ -65,7 +65,7 @@ What did we gain from this? Now we can restructure the application a bit into mu
 
 1. the Flask application object creation has to be in the `__init__.py` file. That way each module can import it safely and the `__name__` variable will resolve to the correct package.
 
-2. all the view functions (the ones with a [route()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.route) decorator on top) have to be imported in the `__init__.py` file. Not the object itself, but the module it is in. Import the view module after the application object is created.
+2. all the view functions (the ones with a `route()` decorator on top) have to be imported in the `__init__.py` file. Not the object itself, but the module it is in. Import the view module after the application object is created.
 
 Here’s an example `__init__.py`:
 
@@ -109,4 +109,4 @@ Every Python programmer hates them, and yet we just added some: circular imports
 
 ## Working with Blueprints {#working-with-blueprints}
 
-If you have larger applications it’s recommended to divide them into smaller groups where each group is implemented with the help of a blueprint. For a gentle introduction into this topic refer to the [Modular Applications with Blueprints](https://flask.palletsprojects.com/en/2.3.x/blueprints/) chapter of the documentation.
+If you have larger applications it’s recommended to divide them into smaller groups where each group is implemented with the help of a blueprint. For a gentle introduction into this topic refer to the [Modular Applications with Blueprints](/python/flask/user_guide/blueprint#modular-applications-with-blueprints) chapter of the documentation.

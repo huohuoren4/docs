@@ -4,7 +4,7 @@ Flask is usually used with the decorators. Decorators are simple and you have th
 
 This can be a problem if your application has to import quick. It might have to do that on systems like Google’s App Engine or other systems. So if you suddenly notice that your application outgrows this approach you can fall back to a centralized URL mapping.
 
-The system that enables having a central URL map is the [add_url_rule()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.add_url_rule) function. Instead of using decorators, you have a file that sets up the application with all URLs.
+The system that enables having a central URL map is the `add_url_rule()` function. Instead of using decorators, you have a file that sets up the application with all URLs.
 
 ## Converting to Centralized URL Map {#converting-to-centralized-url-map}
 
@@ -78,7 +78,7 @@ app.add_url_rule('/user/<username>',
                  view_func=LazyView('yourapplication.views.user'))
 ```
 
-You can further optimize this in terms of amount of keystrokes needed to write this by having a function that calls into [add_url_rule()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.add_url_rule) by prefixing a string with the project name and a dot, and by wrapping `view_func` in a `LazyView` as needed.
+You can further optimize this in terms of amount of keystrokes needed to write this by having a function that calls into `add_url_rule()` by prefixing a string with the project name and a dot, and by wrapping `view_func` in a `LazyView` as needed.
 
 ```python
 def url(import_name, url_rules=[], **options):

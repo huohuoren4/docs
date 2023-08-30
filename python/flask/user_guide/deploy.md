@@ -10,19 +10,19 @@ Flask is a WSGI application. A WSGI server is used to run the application, conve
 
 The primary goal of these docs is to familiarize you with the concepts involved in running a WSGI application using a production WSGI server and HTTP server. There are many WSGI servers and HTTP servers, with many configuration possibilities. The pages below discuss the most common servers, and show the basics of running each one. The next section discusses platforms that can manage this for you.
 
-- [Gunicorn](https://flask.palletsprojects.com/en/2.3.x/deploying/gunicorn/)
-- [Waitress](https://flask.palletsprojects.com/en/2.3.x/deploying/waitress/)
-- [mod_wsgi](https://flask.palletsprojects.com/en/2.3.x/deploying/mod_wsgi/)
-- [uWSGI](https://flask.palletsprojects.com/en/2.3.x/deploying/uwsgi/)
-- [gevent](https://flask.palletsprojects.com/en/2.3.x/deploying/gevent/)
-- [eventlet](https://flask.palletsprojects.com/en/2.3.x/deploying/eventlet/)
-- [ASGI](https://flask.palletsprojects.com/en/2.3.x/deploying/asgi/)
+- [Gunicorn](/python/flask/user_guide/deploy#gunicorn)
+- [Waitress](/python/flask/user_guide/deploy#waitress)
+- [mod_wsgi](/python/flask/user_guide/deploy#mod-wsgi)
+- [uWSGI](/python/flask/user_guide/deploy#uwsgi)
+- [gevent](/python/flask/user_guide/deploy#gevent)
+- [eventlet](/python/flask/user_guide/deploy#eventlet)
+- [ASGI](/python/flask/user_guide/deploy#asgi)
 
 WSGI servers have HTTP servers built-in. However, a dedicated HTTP server may be safer, more efficient, or more capable. Putting an HTTP server in front of the WSGI server is called a “reverse proxy.”
 
-- [Tell Flask it is Behind a Proxy](https://flask.palletsprojects.com/en/2.3.x/deploying/proxy_fix/)
-- [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/)
-- [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/)
+- [Tell Flask it is Behind a Proxy](/python/flask/user_guide/deploy#tell-flask-it-is-behind-a-proxy)
+- [nginx](/python/flask/user_guide/deploy#nginx)
+- [Apache httpd](/python/flask/user_guide/deploy#apache-httpd)
 This list is not exhaustive, and you should evaluate these and other servers based on your application’s needs. Different servers will have different capabilities, configuration, and support.
 
 ## Hosting Platforms {#hosting-platforms}
@@ -41,7 +41,7 @@ There are many services available for hosting web applications without needing t
 
 This list is not exhaustive, and you should evaluate these and other services based on your application’s needs. Different services will have different capabilities, configuration, pricing, and support.
 
-You’ll probably need to [Tell Flask it is Behind a Proxy](https://flask.palletsprojects.com/en/2.3.x/deploying/proxy_fix/) when using most hosting platforms.
+You’ll probably need to [Tell Flask it is Behind a Proxy](/python/flask/user_guide/deploy#tell-flask-it-is-behind-a-proxy) when using most hosting platforms.
 
 ## Gunicorn {#gunicorn}
 
@@ -97,7 +97,7 @@ Logs for each request aren’t shown by default, only worker info and errors are
 
 ### Binding Externally {#binding-externally}
 
-Gunicorn should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/) or [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/) should be used in front of Gunicorn.
+Gunicorn should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](/python/flask/user_guide/deploy#nginx) or [Apache httpd](/python/flask/user_guide/deploy#apache-httpd) should be used in front of Gunicorn.
 
 You can bind to all external IPs on a non-privileged port using the `-b 0.0.0.0` option. Don’t do this when using a reverse proxy setup, otherwise it will be possible to bypass the proxy.
 
@@ -182,7 +182,7 @@ Logs for each request aren’t shown, only errors are shown. Logging can be conf
 
 ### Binding Externally {#binding-externally-1}
 
-Waitress should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/) or [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/) should be used in front of Waitress.
+Waitress should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](/python/flask/user_guide/deploy#nginx) or [Apache httpd](/python/flask/user_guide/deploy#apache-httpd) should be used in front of Waitress.
 
 You can bind to all external IPs on a non-privileged port by not specifying the `--host` option. Don’t do this when using a revers proxy setup, otherwise it will be possible to bypass the proxy.
 
@@ -328,7 +328,7 @@ The `--http` option starts an HTTP server at 127.0.0.1 port 8000. The `--master`
 
 ### Binding Externally {#binding-externally-2}
 
-uWSGI should not be run as root with the configuration shown in this doc because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/) or [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/) should be used in front of uWSGI. It is possible to run uWSGI as root securely, but that is beyond the scope of this doc.
+uWSGI should not be run as root with the configuration shown in this doc because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](/python/flask/user_guide/deploy#nginx) or [Apache httpd](/python/flask/user_guide/deploy#apache-httpd) should be used in front of uWSGI. It is possible to run uWSGI as root securely, but that is beyond the scope of this doc.
 
 uWSGI has optimized integration with [Nginx uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/Nginx.html) and [Apache mod_proxy_uwsgi](https://uwsgi-docs.readthedocs.io/en/latest/Apache.html#mod-proxy-uwsgi), and possibly other servers, instead of using a standard HTTP proxy. That configuration is beyond the scope of this doc, see the links for more information.
 
@@ -360,11 +360,11 @@ spawned uWSGI http 1 (pid: x)
 
 ## gevent {#gevent}
 
-Prefer using [Gunicorn](https://flask.palletsprojects.com/en/2.3.x/deploying/gunicorn/) or [uWSGI](https://flask.palletsprojects.com/en/2.3.x/deploying/uwsgi/) with gevent workers rather than using [gevent](https://www.gevent.org/) directly. Gunicorn and uWSGI provide much more configurable and production-tested servers.
+Prefer using [Gunicorn](/python/flask/user_guide/deploy#gunicorn) or [uWSGI](/python/flask/user_guide/deploy#uwsgi) with gevent workers rather than using [gevent](https://www.gevent.org/) directly. Gunicorn and uWSGI provide much more configurable and production-tested servers.
 
 [gevent](https://www.gevent.org/) allows writing asynchronous, coroutine-based code that looks like standard synchronous Python. It uses [greenlet](https://greenlet.readthedocs.io/en/latest/) to enable task switching without writing `async/await` or using `asyncio`.
 
-[eventlet](https://flask.palletsprojects.com/en/2.3.x/deploying/eventlet/) is another library that does the same thing. Certain dependencies you have, or other considerations, may affect which of the two you choose to use.
+[eventlet](/python/flask/user_guide/deploy#eventlet) is another library that does the same thing. Certain dependencies you have, or other considerations, may affect which of the two you choose to use.
 
 gevent provides a WSGI server that can handle many connections at once instead of one per worker process. You must actually use gevent in your own code to see any benefit to using the server.
 
@@ -404,7 +404,7 @@ No output is shown when the server starts.
 
 ### Binding Externally {#binding-externally-4}
 
-gevent should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/) or [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/) should be used in front of gevent.
+gevent should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](/python/flask/user_guide/deploy#nginx) or [Apache httpd](/python/flask/user_guide/deploy#apache-httpd) should be used in front of gevent.
 
 You can bind to all external IPs on a non-privileged port by using `0.0.0.0` in the server arguments shown in the previous section. Don’t do this when using a reverse proxy setup, otherwise it will be possible to bypass the proxy.
 
@@ -412,11 +412,11 @@ You can bind to all external IPs on a non-privileged port by using `0.0.0.0` in 
 
 ## eventlet {#eventlet}
 
-Prefer using [Gunicorn](https://flask.palletsprojects.com/en/2.3.x/deploying/gunicorn/) with eventlet workers rather than using [eventlet](https://eventlet.net/) directly. Gunicorn provides a much more configurable and production-tested server.
+Prefer using [Gunicorn](/python/flask/user_guide/deploy#gunicorn) with eventlet workers rather than using [eventlet](https://eventlet.net/) directly. Gunicorn provides a much more configurable and production-tested server.
 
 [eventlet](https://eventlet.net/) allows writing asynchronous, coroutine-based code that looks like standard synchronous Python. It uses [greenlet](https://greenlet.readthedocs.io/en/latest/) to enable task switching without writing `async/await` or using `asyncio`.
 
-[gevent](https://flask.palletsprojects.com/en/2.3.x/deploying/gevent/) is another library that does the same thing. Certain dependencies you have, or other considerations, may affect which of the two you choose to use.
+[gevent](/python/flask/user_guide/deploy#gevent) is another library that does the same thing. Certain dependencies you have, or other considerations, may affect which of the two you choose to use.
 
 eventlet provides a WSGI server that can handle many connections at once instead of one per worker process. You must actually use eventlet in your own code to see any benefit to using the server.
 
@@ -455,7 +455,7 @@ $ python wsgi.py
 
 ### Binding Externally {#binding-externally-5}
 
-eventlet should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](https://flask.palletsprojects.com/en/2.3.x/deploying/nginx/) or [Apache httpd](https://flask.palletsprojects.com/en/2.3.x/deploying/apache-httpd/) should be used in front of eventlet.
+eventlet should not be run as root because it would cause your application code to run as root, which is not secure. However, this means it will not be possible to bind to port 80 or 443. Instead, a reverse proxy such as [nginx](/python/flask/user_guide/deploy#nginx) or [Apache httpd](/python/flask/user_guide/deploy#apache-httpd) should be used in front of eventlet.
 
 You can bind to all external IPs on a non-privileged port by using `0.0.0.0` in the server arguments shown in the previous section. Don’t do this when using a reverse proxy setup, otherwise it will be possible to bypass the proxy.
 
@@ -463,7 +463,7 @@ You can bind to all external IPs on a non-privileged port by using `0.0.0.0` in 
 
 ## ASGI {#asgi}
 
-If you’d like to use an ASGI server you will need to utilise WSGI to ASGI middleware. The asgiref [WsgiToAsgi](https://github.com/django/asgiref#wsgi-to-asgi-adapter) adapter is recommended as it integrates with the event loop used for Flask’s [Using async and await](https://flask.palletsprojects.com/en/2.3.x/async-await/#async-await) support. You can use the adapter by wrapping the Flask app,
+If you’d like to use an ASGI server you will need to utilise WSGI to ASGI middleware. The asgiref [WsgiToAsgi](https://github.com/django/asgiref#wsgi-to-asgi-adapter) adapter is recommended as it integrates with the event loop used for Flask’s [Using async and await](/python/flask/user_guide/async#using-async-and-await) support. You can use the adapter by wrapping the Flask app,
 
 ```python
 from asgiref.wsgi import WsgiToAsgi
@@ -504,7 +504,7 @@ Remember, only apply this middleware if you are behind a proxy, and set the corr
 
 ## nginx {#nginx}
 
-[nginx](https://nginx.org/) is a fast, production level HTTP server. When serving your application with one of the WSGI servers listed in [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/), it is often good or necessary to put a dedicated HTTP server in front of it. This “reverse proxy” can handle incoming requests, TLS, and other security and performance concerns better than the WSGI server.
+[nginx](https://nginx.org/) is a fast, production level HTTP server. When serving your application with one of the WSGI servers listed in [Deploying to Production](/python/flask/user_guide/deploy#deploying-to-production), it is often good or necessary to put a dedicated HTTP server in front of it. This “reverse proxy” can handle incoming requests, TLS, and other security and performance concerns better than the WSGI server.
 
 Nginx can be installed using your system package manager, or a pre-built executable for Windows. Installing and running Nginx itself is outside the scope of this doc. This page outlines the basics of configuring Nginx to proxy your application. Be sure to read its documentation to understand what features are available.
 
@@ -542,11 +542,11 @@ server {
 }
 ```
 
-Then [Tell Flask it is Behind a Proxy](https://flask.palletsprojects.com/en/2.3.x/deploying/proxy_fix/) so that your application uses these headers.
+Then [Tell Flask it is Behind a Proxy](/python/flask/user_guide/deploy#tell-flask-it-is-behind-a-proxy) so that your application uses these headers.
 
 ## Apache httpd {#apache-httpd}
 
-[Apache httpd](https://httpd.apache.org/) is a fast, production level HTTP server. When serving your application with one of the WSGI servers listed in [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/), it is often good or necessary to put a dedicated HTTP server in front of it. This “reverse proxy” can handle incoming requests, TLS, and other security and performance concerns better than the WSGI server.
+[Apache httpd](https://httpd.apache.org/) is a fast, production level HTTP server. When serving your application with one of the WSGI servers listed in [Deploying to Production](/python/flask/user_guide/deploy#deploying-to-production), it is often good or necessary to put a dedicated HTTP server in front of it. This “reverse proxy” can handle incoming requests, TLS, and other security and performance concerns better than the WSGI server.
 
 httpd can be installed using your system package manager, or a pre-built executable for Windows. Installing and running httpd itself is outside the scope of this doc. This page outlines the basics of configuring httpd to proxy your application. Be sure to read its documentation to understand what features are available.
 
@@ -580,4 +580,4 @@ RequestHeader set X-Forwarded-Prefix /
 
 The `LoadModule` lines might already exist. If so, make sure they are uncommented instead of adding them manually.
 
-Then [Tell Flask it is Behind a Proxy](https://flask.palletsprojects.com/en/2.3.x/deploying/proxy_fix/) so that your application uses the `X-Forwarded` headers. `X-Forwarded-For` and `X-Forwarded-Host` are automatically set by `ProxyPass`.
+Then [Tell Flask it is Behind a Proxy](/python/flask/user_guide/deploy#tell-flask-it-is-behind-a-proxy) so that your application uses the `X-Forwarded` headers. `X-Forwarded-For` and `X-Forwarded-Host` are automatically set by `ProxyPass`.

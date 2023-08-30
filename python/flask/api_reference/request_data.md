@@ -595,6 +595,6 @@ If a forwarded header exists this is a list of all ip addresses from the client 
 
 To access incoming request data, you can use the global `request` object. `Flask` parses incoming request data for you and gives you access to it through that global object. Internally `Flask` makes sure that you always get the correct data for the active thread if you are in a multithreaded environment.
 
-This is a proxy. See [Notes On Proxies](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#notes-on-proxies) for more information.
+This is a proxy. See [Notes On Proxies](/python/flask/user_guide/request_context#notes-on-proxies) for more information.
 
 The request object is an instance of a `Request`.

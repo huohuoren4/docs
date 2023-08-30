@@ -6,7 +6,7 @@ Ah yes, the good old problem of file uploads. The basic idea of file uploads is 
 
 2. The application accesses the file from the `files` dictionary on the request object.
 
-3. use the [save()](https://werkzeug.palletsprojects.com/en/2.3.x/datastructures/#werkzeug.datastructures.FileStorage.save) method of the file to save the file permanently somewhere on the filesystem.
+3. use the `save()` method of the file to save the file permanently somewhere on the filesystem.
 
 ## A Gentle Introduction {#a-gentle-introduction}
 
@@ -26,7 +26,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 So first we need a couple of imports. Most should be straightforward, the `werkzeug.secure_filename()` is explained a little bit later. The `UPLOAD_FOLDER` is where we will store the uploaded files and the `ALLOWED_EXTENSIONS` is the set of allowed file extensions.
 
-Why do we limit the extensions that are allowed? You probably don’t want your users to be able to upload everything there if the server is directly sending out the data to the client. That way you can make sure that users are not able to upload HTML files that would cause XSS problems (see [Cross-Site Scripting (XSS)](https://flask.palletsprojects.com/en/2.3.x/security/#security-xss)). Also make sure to disallow `.php` files if the server executes them, but who has PHP installed on their server, right? :)
+Why do we limit the extensions that are allowed? You probably don’t want your users to be able to upload everything there if the server is directly sending out the data to the client. That way you can make sure that users are not able to upload HTML files that would cause XSS problems (see [Cross-Site Scripting (XSS)](/python/flask/user_guide/security#cross-site-scripting-xss)). Also make sure to disallow `.php` files if the server executes them, but who has PHP installed on their server, right? :)
 
 Next the functions that check if an extension is valid and that uploads the file and redirects the user to the URL for the uploaded file:
 
@@ -63,10 +63,10 @@ def upload_file():
     '''
 ```
 
-So what does that [secure_filename()](https://werkzeug.palletsprojects.com/en/2.3.x/utils/#werkzeug.utils.secure_filename) function actually do? Now the problem is that there is that principle called “never trust user input”. This is also true for the filename of an uploaded file. All submitted form data can be forged, and filenames can be dangerous. For the moment just remember: always use that function to secure a filename before storing it directly on the filesystem.
+So what does that `secure_filename()` function actually do? Now the problem is that there is that principle called “never trust user input”. This is also true for the filename of an uploaded file. All submitted form data can be forged, and filenames can be dangerous. For the moment just remember: always use that function to secure a filename before storing it directly on the filesystem.
 
 ::: tip Information for the Pros
-So you’re interested in what that [secure_filename()](https://werkzeug.palletsprojects.com/en/2.3.x/utils/#werkzeug.utils.secure_filename) function does and what the problem is if you’re not using it? So just imagine someone would send the following information as `filename` to your application:
+So you’re interested in what that `secure_filename()` function does and what the problem is if you’re not using it? So just imagine someone would send the following information as `filename` to your application:
 
 ```python
 filename = "../../../../home/username/.bashrc"
@@ -106,7 +106,7 @@ app.add_url_rule(
 *New in version 0.6.*
 :::
 
-So how exactly does Flask handle uploads? Well it will store them in the webserver’s memory if the files are reasonably small, otherwise in a temporary location (as returned by [tempfile.gettempdir()](https://docs.python.org/3/library/tempfile.html#tempfile.gettempdir)). But how do you specify the maximum file size after which an upload is aborted? By default Flask will happily accept file uploads with an unlimited amount of memory, but you can limit that by setting the `MAX_CONTENT_LENGTH` config key:
+So how exactly does Flask handle uploads? Well it will store them in the webserver’s memory if the files are reasonably small, otherwise in a temporary location (as returned by `tempfile.gettempdir()`). But how do you specify the maximum file size after which an upload is aborted? By default Flask will happily accept file uploads with an unlimited amount of memory, but you can limit that by setting the `MAX_CONTENT_LENGTH` config key:
 
 ```python
 from flask import Flask, Request
@@ -115,7 +115,7 @@ app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 ```
 
-The code above will limit the maximum allowed payload to 16 megabytes. If a larger file is transmitted, Flask will raise a [RequestEntityTooLarge](https://werkzeug.palletsprojects.com/en/2.3.x/exceptions/#werkzeug.exceptions.RequestEntityTooLarge) exception.
+The code above will limit the maximum allowed payload to 16 megabytes. If a larger file is transmitted, Flask will raise a `RequestEntityTooLarge` exception.
 
 ::: tip Connection Reset Issue
 When using the local development server, you may get a connection reset error instead of a 413 response. You will get the correct status response when running the app with a production WSGI server.

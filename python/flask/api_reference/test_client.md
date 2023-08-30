@@ -8,7 +8,7 @@ Works like a regular Werkzeug test client but has knowledge about Flask’s cont
 *Changed in version 0.12*: `app.test_client()` includes preset default environment, which can be set after instantiation of the app.`test_client()` object in `client.environ_base`.
 :::
 
-Basic usage is outlined in the [Testing Flask Applications](https://flask.palletsprojects.com/en/2.3.x/testing/) chapter.
+Basic usage is outlined in the [Testing Flask Applications](/python/flask/user_guide/application#testing-flask-applications) chapter.
 
 - *Parameters*:
 

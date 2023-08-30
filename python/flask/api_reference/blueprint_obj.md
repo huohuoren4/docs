@@ -8,7 +8,7 @@ A blueprint is an object that allows defining application functions without requ
 
 Decorating a function with a blueprint creates a deferred function that is called with `BlueprintSetupState` when the blueprint is registered on an application.
 
-See [Modular Applications with Blueprints](https://flask.palletsprojects.com/en/2.3.x/blueprints/) for more information.
+See [Modular Applications with Blueprints](/python/flask/user_guide/blueprint#modular-applications-with-blueprints) for more information.
 
 - *Parameters*:
 
@@ -571,7 +571,7 @@ See [Modular Applications with Blueprints](https://flask.palletsprojects.com/en/
         return "Hello, World!"
     ```
 
-    See [URL Route Registrations](https://flask.palletsprojects.com/en/2.3.x/api/#url-route-registrations).
+    See [URL Route Registrations](/python/flask/api_reference/url_route#url-route-registrations).
 
     The endpoint name for the route defaults to the name of the view function if the `endpoint` parameter isn’t passed.
 

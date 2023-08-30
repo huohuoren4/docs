@@ -35,7 +35,7 @@ But there is another very important reason why Flask depends on an explicit inst
 
 The third reason is “explicit is better than implicit”. That object is your WSGI application, you don’t have to remember anything else. If you want to apply a WSGI middleware, just wrap it and you’re done (though there are better ways to do that so that you do not lose the reference to the application object `wsgi_app()`).
 
-Furthermore this design makes it possible to use a factory function to create the application which is very helpful for unit testing and similar things ([Application Factories](https://flask.palletsprojects.com/en/2.3.x/patterns/appfactories/)).
+Furthermore this design makes it possible to use a factory function to create the application which is very helpful for unit testing and similar things ([Application Factories](/python/flask/user_guide/pattern/app_factories#application-factories)).
 
 ## The Routing System {#the-routing-system}
 
@@ -79,7 +79,7 @@ Flask supports `async` coroutines for view functions by executing the coroutine 
 
 Due to how tied to WSGI Flask’s code is, it’s not clear if it’s possible to make the Flask class support ASGI and WSGI at the same time. Work is currently being done in Werkzeug to work with ASGI, which may eventually enable support in Flask as well.
 
-See [Using async and await](https://flask.palletsprojects.com/en/2.3.x/async-await/) for more discussion.
+See [Using async and await](/python/flask/user_guide/async#using-async-and-await) for more discussion.
 
 ## What Flask is, What Flask is Not {#what-flask-is-what-flask-is-not}
 

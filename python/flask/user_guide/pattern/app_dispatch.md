@@ -2,20 +2,20 @@
 
 Application dispatching is the process of combining multiple Flask applications on the WSGI level. You can combine not only Flask applications but any WSGI application. This would allow you to run a Django and a Flask application in the same interpreter side by side if you want. The usefulness of this depends on how the applications work internally.
 
-The fundamental difference from [Large Applications as Packages](https://flask.palletsprojects.com/en/2.3.x/patterns/packages/) is that in this case you are running the same or different Flask applications that are entirely isolated from each other. They run different configurations and are dispatched on the WSGI level.
+The fundamental difference from [Large Applications as Packages](/python/flask/user_guide/pattern/large_app#large-applications-as-packages) is that in this case you are running the same or different Flask applications that are entirely isolated from each other. They run different configurations and are dispatched on the WSGI level.
 
 ## Working with this Document {#working-with-this-document}
 
-Each of the techniques and examples below results in an `application` object that can be run with any WSGI server. For production, see [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/). For development, Werkzeug provides a server through [werkzeug.serving.run_simple()](https://werkzeug.palletsprojects.com/en/2.3.x/serving/#werkzeug.serving.run_simple):
+Each of the techniques and examples below results in an `application` object that can be run with any WSGI server. For production, see [Deploying to Production](/python/flask/user_guide/deploy#deploying-to-production). For development, Werkzeug provides a server through `werkzeug.serving.run_simple()`:
 
 ```python
 from werkzeug.serving import run_simple
 run_simple('localhost', 5000, application, use_reloader=True)
 ```
 
-Note that [run_simple](https://werkzeug.palletsprojects.com/en/2.3.x/serving/#werkzeug.serving.run_simple) is not intended for use in production. Use a production WSGI server. See [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/).
+Note that `run_simple` is not intended for use in production. Use a production WSGI server. See [Deploying to Production](/python/flask/user_guide/deploy#deploying-to-production).
 
-In order to use the interactive debugger, debugging must be enabled both on the application and the simple server. Here is the “hello world” example with debugging and [run_simple](https://werkzeug.palletsprojects.com/en/2.3.x/serving/#werkzeug.serving.run_simple):
+In order to use the interactive debugger, debugging must be enabled both on the application and the simple server. Here is the “hello world” example with debugging and `run_simple`:
 
 ```python
 from flask import Flask
@@ -51,7 +51,7 @@ application = DispatcherMiddleware(frontend, {
 
 ## Dispatch by Subdomain {#dispatch-by-subdomain}
 
-Sometimes you might want to use multiple instances of the same application with different configurations. Assuming the application is created inside a function and you can call that function to instantiate it, that is really easy to implement. In order to develop your application to support creating new instances in functions have a look at the [Application Factories](https://flask.palletsprojects.com/en/2.3.x/patterns/appfactories/) pattern.
+Sometimes you might want to use multiple instances of the same application with different configurations. Assuming the application is created inside a function and you can call that function to instantiate it, that is really easy to implement. In order to develop your application to support creating new instances in functions have a look at the [Application Factories](/python/flask/user_guide/pattern/app_factories#application-factories) pattern.
 
 A very common example would be creating applications per subdomain. For instance you configure your webserver to dispatch all requests for all subdomains to your application and you then use the subdomain information to create user-specific instances. Once you have your server set up to listen on all subdomains you can use a very simple WSGI application to do the dynamic application creation.
 

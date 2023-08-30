@@ -30,7 +30,7 @@ def about(lang_code):
 
 This is an awful lot of repetition as you have to handle the language code setting on the `g` object yourself in every single function. Sure, a decorator could be used to simplify this, but if you want to generate URLs from one function to another you would have to still provide the language code explicitly which can be annoying.
 
-For the latter, this is where [url_defaults()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.url_defaults) functions come in. They can automatically inject values into a call to [url_for()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.url_for). The code below checks if the language code is not yet in the dictionary of URL values and if the endpoint wants a value named `'lang_code'`:
+For the latter, this is where `url_defaults()` functions come in. They can automatically inject values into a call to `url_for()`. The code below checks if the language code is not yet in the dictionary of URL values and if the endpoint wants a value named `'lang_code'`:
 
 ```python
 @app.url_defaults
@@ -41,9 +41,9 @@ def add_language_code(endpoint, values):
         values['lang_code'] = g.lang_code
 ```
 
-The method [is_endpoint_expecting()](https://werkzeug.palletsprojects.com/en/2.3.x/routing/#werkzeug.routing.Map.is_endpoint_expecting) of the URL map can be used to figure out if it would make sense to provide a language code for the given endpoint.
+The method `is_endpoint_expecting()` of the URL map can be used to figure out if it would make sense to provide a language code for the given endpoint.
 
-The reverse of that function are [url_value_preprocessor()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.url_value_preprocessor)s. They are executed right after the request was matched and can execute code based on the URL values. The idea is that they pull information out of the values dictionary and put it somewhere else:
+The reverse of that function are `url_value_preprocessor()`s. They are executed right after the request was matched and can execute code based on the URL values. The idea is that they pull information out of the values dictionary and put it somewhere else:
 
 ```python
 @app.url_value_preprocessor
@@ -80,7 +80,7 @@ def about():
 
 ## Internationalized Blueprint URLs {#internationalized-blueprint-urls}
 
-Because blueprints can automatically prefix all URLs with a common string it’s easy to automatically do that for every function. Furthermore blueprints can have per-blueprint URL processors which removes a whole lot of logic from the [url_defaults()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask.url_defaults) function because it no longer has to check if the URL is really interested in a `'lang_code'` parameter:
+Because blueprints can automatically prefix all URLs with a common string it’s easy to automatically do that for every function. Furthermore blueprints can have per-blueprint URL processors which removes a whole lot of logic from the `url_defaults()` function because it no longer has to check if the URL is really interested in a `'lang_code'` parameter:
 
 ```python
 from flask import Blueprint, g

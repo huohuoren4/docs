@@ -2,7 +2,7 @@
 
 When you have to work with form data submitted by a browser view, code quickly becomes very hard to read. There are libraries out there designed to make this process easier to manage. One of them is [WTForms](https://wtforms.readthedocs.io/) which we will handle here. If you find yourself in the situation of having many forms, you might want to give it a try.
 
-When you are working with WTForms you have to define your forms as classes first. I recommend breaking up the application into multiple modules ([Large Applications as Packages](https://flask.palletsprojects.com/en/2.3.x/patterns/packages/)) for that and adding a separate module for the forms.
+When you are working with WTForms you have to define your forms as classes first. I recommend breaking up the application into multiple modules ([Large Applications as Packages](/python/flask/user_guide/pattern/large_app#large-applications-as-packages)) for that and adding a separate module for the forms.
 
 ::: tip Getting the most out of WTForms with an Extension
 The [Flask-WTF](https://flask-wtf.readthedocs.io/) extension expands on this pattern and adds a few little helpers that make working with forms and Flask more fun. You can get it from [PyPI](https://pypi.org/project/Flask-WTF/).
@@ -43,7 +43,7 @@ def register():
     return render_template('register.html', form=form)
 ```
 
-Notice we’re implying that the view is using SQLAlchemy here ([SQLAlchemy in Flask](https://flask.palletsprojects.com/en/2.3.x/patterns/sqlalchemy/)), but that’s not a requirement, of course. Adapt the code as necessary.
+Notice we’re implying that the view is using SQLAlchemy here ([SQLAlchemy in Flask](/python/flask/user_guide/pattern/sqlalchemy#sqlalchemy-in-flask)), but that’s not a requirement, of course. Adapt the code as necessary.
 
 Things to remember:
 

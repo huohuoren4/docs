@@ -141,7 +141,7 @@ This part of the documentation covers all the interfaces of Flask. For parts whe
         app.add_url_rule("/", view_func=index)
         ```
 
-        See [URL Route Registrations](https://flask.palletsprojects.com/en/2.3.x/api/#url-route-registrations).
+        See [URL Route Registrations](/python/flask/api_reference/url_route#url-route-registrations).
 
         The endpoint name for the route defaults to the name of the view function if the `endpoint` parameter isn’t passed. An error will be raised if a function has already been registered for the endpoint.
 
@@ -208,7 +208,7 @@ This part of the documentation covers all the interfaces of Flask. For parts whe
             init_db()
         ```
 
-        See [The Application Context](https://flask.palletsprojects.com/en/2.3.x/appcontext/).
+        See [The Application Context](/python/flask/user_guide/app_context#the-application-context).
 
         ::: details Changelog
         *New in version 0.9.*
@@ -1030,7 +1030,7 @@ This part of the documentation covers all the interfaces of Flask. For parts whe
 
         Create a `RequestContext` representing a WSGI environment. Use a `with` block to push the context, which will make `request` point at this request.
 
-        See [The Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/).
+        See [The Request Context](/python/flask/user_guide/request_context#the-request-context).
 
         Typically you should not call this from your own code. A request context is automatically pushed by the `wsgi_app()` when handling a request. Use `test_request_context()` to create an environment and context instead of this method.
 
@@ -1058,7 +1058,7 @@ This part of the documentation covers all the interfaces of Flask. For parts whe
             return "Hello, World!"
         ```
 
-        See [URL Route Registrations](https://flask.palletsprojects.com/en/2.3.x/api/#url-route-registrations).
+        See [URL Route Registrations](/python/flask/api_reference/url_route#url-route-registrations).
 
         The endpoint name for the route defaults to the name of the view function if the `endpoint` parameter isn’t passed.
 
@@ -1076,7 +1076,7 @@ This part of the documentation covers all the interfaces of Flask. For parts whe
 
         Runs the application on a local development server.
 
-        Do not use `run()` in a production setting. It is not intended to meet security and performance requirements for a production server. Instead, see [Deploying to Production](https://flask.palletsprojects.com/en/2.3.x/deploying/) for WSGI server recommendations.
+        Do not use `run()` in a production setting. It is not intended to meet security and performance requirements for a production server. Instead, see [Deploying to Production](/python/flask/user_guide/deploy#deploying-to-production) for WSGI server recommendations.
 
         If the `debug` flag is set the server will automatically reload for code changes and show a debugger in case an exception happened.
 
@@ -1345,7 +1345,7 @@ This part of the documentation covers all the interfaces of Flask. For parts whe
 
     - #### test_cli_runner(`**kwargs`)
 
-        Create a CLI runner for testing CLI commands. See [Running Commands with the CLI Runner](https://flask.palletsprojects.com/en/2.3.x/testing/#testing-cli).
+        Create a CLI runner for testing CLI commands. See [Running Commands with the CLI Runner](/python/flask/user_guide/application#running-commands-with-the-cli-runner).
 
         Returns an instance of `test_cli_runner_class`, by default `FlaskCliRunner`. The Flask app object is passed as the first argument.
 
@@ -1369,7 +1369,7 @@ This part of the documentation covers all the interfaces of Flask. For parts whe
 
     - #### test_client(`use_cookies=True, **kwargs`)
 
-        Creates a test client for this application. For information about unit testing head over to [Testing Flask Applications](https://flask.palletsprojects.com/en/2.3.x/testing/).
+        Creates a test client for this application. For information about unit testing head over to [Testing Flask Applications](/python/flask/user_guide/application#testing-flask-applications).
 
         Note that if you are testing for assertions or exceptions in your application code, you must set `app.testing = True` in order for the exceptions to propagate to the test client. Otherwise, the exception will be handled by the application (not visible to the test client) and the only indication of an `AssertionError` or other exception will be a 500 status code response to the test client. See the `testing` attribute. For example:
 
@@ -1430,7 +1430,7 @@ This part of the documentation covers all the interfaces of Flask. For parts whe
 
         Create a `RequestContext` for a WSGI environment created from the given values. This is mostly useful during testing, where you may want to run a function that uses request data without dispatching a full request.
 
-        See [The Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/).
+        See [The Request Context](/python/flask/user_guide/request_context#the-request-context).
 
         Use a `with` block to push the context, which will make `request` point at the request for the created environment.
 
@@ -1643,7 +1643,7 @@ This part of the documentation covers all the interfaces of Flask. For parts whe
         Then you still have the original application object around and can continue to call methods on it.
 
         ::: details Changelog
-        *Changed in version 0.7*: Teardown events for the request and app contexts are called even if an unhandled error occurs. Other events may not be called depending on when an error occurs during dispatch. See [Callbacks and Errors](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#callbacks-and-errors).
+        *Changed in version 0.7*: Teardown events for the request and app contexts are called even if an unhandled error occurs. Other events may not be called depending on when an error occurs during dispatch. See [Callbacks and Errors](/python/flask/user_guide/request_context#callbacks-and-errors).
         :::
 
         *Parameters*:

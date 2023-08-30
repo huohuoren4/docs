@@ -2,7 +2,7 @@
 
 ## `class` flask.cli.FlaskGroup(`add_default_commands=True, create_app=None, add_version_option=True, load_dotenv=True, set_debug_flag=True, **extra`)
 
-Special subclass of the `AppGroup` group that supports loading more commands from the configured `Flask` app. Normally a developer does not have to interface with this class but there are some very advanced use cases for which it makes sense to create an instance of this. see [Custom Scripts](https://flask.palletsprojects.com/en/2.3.x/cli/#custom-scripts).
+Special subclass of the `AppGroup` group that supports loading more commands from the configured `Flask` app. Normally a developer does not have to interface with this class but there are some very advanced use cases for which it makes sense to create an instance of this. see [Custom Scripts](/python/flask/user_guide/cmd_interface#custom-scripts).
 
 - *Parameters*:
 

@@ -90,7 +90,7 @@ This can be useful for defining a REST API.
 
 `methods` is automatically set based on the methods defined on the class.
 
-See [Class-based Views](https://flask.palletsprojects.com/en/2.3.x/views/) for a detailed guide.
+See [Class-based Views](/python/flask/user_guide/view#class-based-views) for a detailed guide.
 
 ```python
 class CounterAPI(MethodView):

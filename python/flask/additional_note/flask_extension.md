@@ -87,7 +87,7 @@ Configuration should not be changed after the application setup phase is complet
 
 ## Data During a Request {#data-during-a-request}
 
-When writing a `Flask` application, the `g` object is used to store information during a request. For example the [tutorial](https://flask.palletsprojects.com/en/2.3.x/tutorial/database/) stores a connection to a SQLite database as `g.db`. Extensions can also use this, with some care. Since `g` is a single global namespace, extensions must use unique names that won’t collide with user data. For example, use the extension name as a prefix, or as a namespace.
+When writing a `Flask` application, the `g` object is used to store information during a request. For example the [tutorial](/python/flask/user_guide/tutorial/database#define-and-access-the-database) stores a connection to a SQLite database as `g.db`. Extensions can also use this, with some care. Since `g` is a single global namespace, extensions must use unique names that won’t collide with user data. For example, use the extension name as a prefix, or as a namespace.
 
 ```python
 # an internal prefix with the extension name
@@ -107,7 +107,7 @@ Your extension views might want to interact with specific models in your databas
 
 The `Post` model needs to subclass the Flask-SQLAlchemy `db.Model` object, but that’s only available once you’ve created an instance of that extension, not when your extension is defining its views. So how can the view code, defined before the model exists, access the model?
 
-One method could be to use [Class-based Views](https://flask.palletsprojects.com/en/2.3.x/views/). During `__init__`, create the model, then create the views by passing the model to the view class’s `as_view()` method.
+One method could be to use [Class-based Views](/python/flask/user_guide/view#class-based-views). During `__init__`, create the model, then create the views by passing the model to the view class’s `as_view()` method.
 
 ```python
 class PostAPI(MethodView):

@@ -2,7 +2,7 @@
 
 ## `class` flask.testing.FlaskCliRunner(`app, **kwargs`)
 
-A `CliRunner` for testing a Flask app’s `CLI` commands. Typically created using `test_cli_runner()`. See [Running Commands with the CLI Runner](https://flask.palletsprojects.com/en/2.3.x/testing/#testing-cli).
+A `CliRunner` for testing a Flask app’s `CLI` commands. Typically created using `test_cli_runner()`. See [Running Commands with the CLI Runner](/python/flask/user_guide/application#running-commands-with-the-cli-runner).
 
 - *Parameters*:
 
@@ -12,7 +12,7 @@ A `CliRunner` for testing a Flask app’s `CLI` commands. Typically created usin
 
 - ### invoke(`cli=None, args=None, **kwargs`)
 
-    Invokes a CLI command in an isolated environment. See `CliRunner.invoke` for full method documentation. See [Running Commands with the CLI Runner](https://flask.palletsprojects.com/en/2.3.x/testing/#testing-cli) for examples.
+    Invokes a CLI command in an isolated environment. See `CliRunner.invoke` for full method documentation. See [Running Commands with the CLI Runner](/python/flask/user_guide/application#running-commands-with-the-cli-runner) for examples.
 
     If the `obj` argument is not given, passes an instance of `ScriptInfo` that knows how to load the `Flask` app being tested.
 

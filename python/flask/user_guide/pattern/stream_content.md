@@ -21,7 +21,7 @@ Each `yield` expression is directly sent to the browser. Note though that some W
 
 ## Streaming from Templates {#streaming-from-templates}
 
-The `Jinja2` template engine supports rendering a template piece by piece, returning an iterator of strings. Flask provides the [stream_template()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_template) and [stream_template_string()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_template_string) functions to make this easier to use.
+The `Jinja2` template engine supports rendering a template piece by piece, returning an iterator of strings. Flask provides the `stream_template()` and `stream_template_string()` functions to make this easier to use.
 
 ```python
 from flask import stream_template
@@ -35,9 +35,9 @@ The parts yielded by the render stream tend to match statement blocks in the tem
 
 ## Streaming with Context {#streaming-with-context}
 
-The [request](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request) will not be active while the generator is running, because the view has already returned at that point. If you try to access `request`, you’ll get a `RuntimeError`.
+The `request` will not be active while the generator is running, because the view has already returned at that point. If you try to access `request`, you’ll get a `RuntimeError`.
 
-If your generator function relies on data in `request`, use the [stream_with_context()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_with_context) wrapper. This will keep the request context active during the generator.
+If your generator function relies on data in `request`, use the `stream_with_context()` wrapper. This will keep the request context active during the generator.
 
 ```python
 from flask import stream_with_context, request
@@ -62,4 +62,4 @@ def generate():
 return generate()
 ```
 
-The [stream_template()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_template) and [stream_template_string()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_template_string) functions automatically use [stream_with_context()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.stream_with_context) if a request is active.
+The `stream_template()` and `stream_template_string()` functions automatically use `stream_with_context()` if a request is active.

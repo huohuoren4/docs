@@ -26,7 +26,7 @@ Filter the flashed messages to one or more categories by providing those categor
 
 `category_filter` filters the messages down to only those matching the provided categories.
 
-See [Message Flashing](https://flask.palletsprojects.com/en/2.3.x/patterns/flashing/) for examples.
+See [Message Flashing](/python/flask/user_guide/pattern/flash#message-flashing) for examples.
 
 ::: details Changelog
 *Changed in version 0.9*: `category_filter` parameter added.

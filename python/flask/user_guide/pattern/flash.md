@@ -87,13 +87,13 @@ And here is the `login.html` template which also inherits from `layout.html`:
 
 It is also possible to provide categories when flashing a message. The default category if nothing is provided is `'message'`. Alternative categories can be used to give the user better feedback. For example error messages could be displayed with a red background.
 
-To flash a message with a different category, just use the second argument to the [flash()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.flash) function:
+To flash a message with a different category, just use the second argument to the `flash()` function:
 
 ```python
 flash('Invalid password provided', 'error')
 ```
 
-Inside the template you then have to tell the [get_flashed_messages()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.get_flashed_messages) function to also return the categories. The loop looks slightly different in that situation then:
+Inside the template you then have to tell the `get_flashed_messages()` function to also return the categories. The loop looks slightly different in that situation then:
 
 ```html
 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -115,7 +115,7 @@ This is just one example of how to render these flashed messages. One might also
 *New in version 0.9.*
 :::
 
-Optionally you can pass a list of categories which filters the results of [get_flashed_messages()](https://flask.palletsprojects.com/en/2.3.x/api/#flask.get_flashed_messages). This is useful if you wish to render each category in a separate block.
+Optionally you can pass a list of categories which filters the results of `get_flashed_messages()`. This is useful if you wish to render each category in a separate block.
 
 ```html
 {% with errors = get_flashed_messages(category_filter=["error"]) %}

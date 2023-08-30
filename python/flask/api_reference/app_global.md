@@ -4,11 +4,11 @@ To share data that is valid for one request only from one function to another, a
 
 ## flask.g
 
-A namespace object that can store data during an [application context](https://flask.palletsprojects.com/en/2.3.x/appcontext/). This is an instance of `Flask.app_ctx_globals_class`, which defaults to `ctx._AppCtxGlobals`.
+A namespace object that can store data during an [application context](/python/flask/user_guide/app_context#the-application-context). This is an instance of `Flask.app_ctx_globals_class`, which defaults to `ctx._AppCtxGlobals`.
 
 This is a good place to store resources during a request. For example, a `before_request` function could load a user object from a session id, then set `g.user` to be used in the view function.
 
-This is a proxy. See [Notes On Proxies](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#notes-on-proxies) for more information.
+This is a proxy. See [Notes On Proxies](/python/flask/user_guide/request_context#notes-on-proxies) for more information.
 
 ::: details Changelog
 *Changed in version 0.10*: Bound to the application context instead of the request context.

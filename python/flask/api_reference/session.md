@@ -8,7 +8,7 @@ To access the current session you can use the `session` object:
 
 The session object works pretty much like an ordinary dict, with the difference that it keeps track of modifications.
 
-This is a proxy. See [Notes On Proxies](https://flask.palletsprojects.com/en/2.3.x/reqcontext/#notes-on-proxies) for more information.
+This is a proxy. See [Notes On Proxies](/python/flask/user_guide/request_context#notes-on-proxies) for more information.
 
 The following attributes are interesting:
 

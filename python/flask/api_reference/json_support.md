@@ -34,7 +34,7 @@ Either positional or keyword arguments can be given, not both. If no arguments a
 
 *Changed in version 2.0.2*: `decimal.Decimal` is supported by converting to a string.
 
-*Changed in version 0.11*: Added support for serializing top-level arrays. This was a security risk in ancient browsers. See [JSON Security](https://flask.palletsprojects.com/en/2.3.x/security/#security-json).
+*Changed in version 0.11*: Added support for serializing top-level arrays. This was a security risk in ancient browsers. See [JSON Security](/python/flask/user_guide/security#json-security).
 
 *New in version 0.2.*
 :::

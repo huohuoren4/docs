@@ -1,6 +1,6 @@
 # Subclassing Flask {#subclassing-flask}
 
-The [Flask](https://flask.palletsprojects.com/en/2.3.x/api/#flask.Flask) class is designed for subclassing.
+The `Flask` class is designed for subclassing.
 
 For example, you may want to override how request parameters are handled to preserve their order:
 
