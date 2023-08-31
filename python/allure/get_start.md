@@ -34,11 +34,11 @@ There are several places to get help:
 
 - Open the [demo version](http://demo.qameta.io/allure/latest/) to see what an Allure report looks like.
 
-- Go to [Get started](https://docs.qameta.io/allure/latest/#_get_started) to build a report for an existing project.
+- Go to [Get started](#get-started) to build a report for an existing project.
 
-- Learn more about [report structure and features](https://docs.qameta.io/allure/latest/#_report_structure).
+- Learn more about [report structure and features](#report-structure).
 
-- Integrate your favorite testing framework with Allure. Supported frameworks are grouped by language: `Java`, `Python`, `JavaScript`, `Ruby`, `Groovy`, `PHP`, `.Net`, and `Scala`.
+- Integrate your favorite testing framework with Allure. Supported frameworks are grouped by language: `Java`, [Python](/python/allure/language#python), `JavaScript`, `Ruby`, `Groovy`, `PHP`, `.Net`, and `Scala`.
 
 ## Get Started
 
@@ -133,93 +133,127 @@ Before building a report you need to run your tests to obtain some basic test re
 
 ![surefire_report_folder](/allure/surefire_report_folder.png)
 
-2.3. Report generation
+### Report generation
 This is already enough to see the Allure report in one command:
 
+```shell
 allure serve /home/path/to/project/target/surefire-reports/
+```
 
-Which generates a report in temporary folder from the data found in the provided path and then creates a local Jetty server instance, serves generated report and opens it in the default browser. It is possible to use a --profile option to enable some pre-configured allure setting. junit profile is enabled by default, you will learn more about profiles in the following section.
+Which generates a report in temporary folder from the data found in the provided path and then creates a local Jetty server instance, serves generated report and opens it in the default browser. It is possible to use a `--profile` option to enable some pre-configured allure setting. `junit` profile is enabled by default, you will learn more about profiles in the following [section](https://docs.qameta.io/allure/#_commandline).
 
 This would produce a report with a minimum of information extracted from the xml data that will lack nearly all of the advanced allure features but will allow you to get a nice visual representation of executed tests.
 
-Report generated on xml data
-1. Report structure
+![get_started_report_overview](/allure/get_started_report_overview.png)
+
+##  Report structure
+
 Once you’ve got the idea what the report does look like. You will probably want to get more data-rich reports. You might have to consider using one of the Allure adaptors for your testing framework, which will allow to collect much more information. Jump to the integrations section to learn more about integration with testing frameworks.
 
 Typical report consists of 'Overview' tab, navigation bar, several tabs for different kinds of test data representation and test case pages for each individual test. Each Allure report is backed by a tree-like data structure, that represents a test execution process. Different tabs allow to switch between the views of the original data structure thus giving a different perspective. Note that all tree-like representations including Behaviors, Categories, xUnit and Packages support filtering and are sortable.
 
-3.1. Overview page
+###  Overview page
+
 Entry point for every report would be the 'Overview' page with dashboards and widgets:
 
-Overview
+![tab_overview](/allure/tab_overview.png)
+
 Overview page hosts several default widgets representing basic characteristics of your project and test environment.
 
-Statistics - overall report statistics.
+- Statistics - overall report statistics.
 
-Launches - if this report represents several test launches, statistics per launch will be shown here.
+- Launches - if this report represents several test launches, statistics per launch will be shown here.
 
-Behaviors - information on results aggregated according to stories and features.
+- Behaviors - information on results aggregated according to stories and features.
 
-Executors - information on test executors that were used to run the tests.
+- Executors - information on test executors that were used to run the tests.
 
-History Trend - if tests accumulated some historical data, it’s trend will be calculated and shown on the graph.
+- History Trend - if tests accumulated some historical data, it’s trend will be calculated and shown on the graph.
 
-Environment - information on test environment (see how to define environment).
+- Environment - information on test environment (see [how to define environment](#environment)).
 
 Home page widgets are draggable and configurable. Also, Allure supports it’s own plugin system, so quite different widget layouts are possible.
 
 Navigation bar is collapsible and enables you to switch into several of the basic results overview modes.
 
-3.2. Categories
-Categories tab gives you the way to create custom defects classification to apply for test results.
+### Categories
 
-Categories
-3.3. Suites
+Categories tab gives you the way to [create custom defects classification](#categories-1) to apply for test results.
+
+![tab_categories](/allure/tab_categories.png)
+
+### Suites
+
 On the Suites tab a standard structural representation of executed tests, grouped by suites and classes can be found.
 
-Suites
-3.4. Graphs
+![tab_suites](/allure/tab_suites.png)
+
+### Graphs
+
 Graphs allow you to see different statistics collected from the test data: statuses breakdown or severity and duration diagrams.
 
-Graphs
-3.5. Timeline
+![tab_graphs](/allure/tab_graphs.png)
+
+### Timeline
+
 Timeline tab visualizes retrospective of tests execution, allure adaptors collect precise timings of tests, and here on this tab they are arranged accordingly to their sequential or parallel timing structure.
 
-Timeline
-3.6. Behaviors
+![tab_timeline](/allure/tab_timeline.png)
+
+### Behaviors
+
 For Behavior-driven approach, this tab groups test results according to Epic, Feature and Story tags.
 
-Behaviors
-3.7. Packages
+![tab_behaviors](/allure/tab_behaviors.png)
+
+### Packages
+
 Packages tab represents a tree-like layout of test results, grouped by different packages.
 
-Packages
-3.8. Test case page
+![tab_packages](/allure/tab_packages.png)
+
+### Test case page
+
 From some of the results overview pages described above you can go to the test case page after clicking on the individual tests. This page will typically contain a lot of individual data related to the test case: steps executed during the test, timings, attachments, test categorization labels, descriptions and links.
 
-Test result page
-4. Features
+![testcase](/allure/testcase.png)
+
+## Features
+
 This section describes the main features of Allure. For example, you can group your tests by stories or features, attach files, and distribute assertions over a set of custom steps, among other features. All features are supported by Java test frameworks, so we only provide Java examples here. For details on how a particular adapter works with the test framework of your choice, refer to the adapter guide.
 
-4.1. Flaky tests
+### Flaky tests
+
 In real life not all of your tests are stable and always green or always red. A test might start to "blink" i.e. it fails from time-to-time without any obvious reason. You could disable such a test, that is a trivial solution. However what if you do not want to do that? Say you would like to get more details on possible reasons or the test is so critical that even being flaky it provides helpful information? You have an option now to mark such tests in a special way, so the resulting report will clearly show them as unstable:
 
+```python
 @Flaky
 public void aTestWhichFailsFromTimeToTime {
      ...
 }
+```
+
 Here is what you get in the report if such a test failed:
 
-A failed test marked as flaky
+![flaky_failed](/allure/flaky_failed.png)
+
+::: tip
 you can mark a whole test class as flaky as well.
-4.2. Environment
+:::
+
+### Environment
+
 To add information to Environment widget just create environment.properties (or environment.xml) file to allure-results directory before report generation.
 
-environment.properties
+```shell
+# environment.properties
 Browser=Chrome
 Browser.Version=63.0
 Stand=Production
-environment.xml
+```
+
+```xml
+<!-- environment.xml -->
 <environment>
     <parameter>
         <key>Browser</key>
@@ -234,30 +268,34 @@ environment.xml
         <value>Production</value>
     </parameter>
 </environment>
-4.3. Categories
+```
+
+### Categories
+
 There are two categories of defects by default:
 
-Product defects (failed tests)
+- Product defects (failed tests)
 
-Test defects (broken tests)
+- Test defects (broken tests)
 
-To create custom defects classification add categories.json file to allure-results directory before report generation.
+To create custom defects classification add `categories.json` file to `allure-results` directory before report generation.
 
-categories.json
+```json
+// categories.json
 [
   {
-    "name": "Ignored tests", 
-    "matchedStatuses": ["skipped"] 
+    "name": "Ignored tests",   // (mandatory) category name
+    "matchedStatuses": ["skipped"]  // (optional) list of suitable test statuses. Default ["failed", "broken", "passed", "skipped", "unknown"]
   },
   {
     "name": "Infrastructure problems",
     "matchedStatuses": ["broken", "failed"],
-    "messageRegex": ".*bye-bye.*" 
+    "messageRegex": ".*bye-bye.*"  // (optional) regex pattern to check test error message. Default ".*"
   },
   {
     "name": "Outdated tests",
     "matchedStatuses": ["broken"],
-    "traceRegex": ".*FileNotFoundException.*" 
+    "traceRegex": ".*FileNotFoundException.*"  // (optional) regex pattern to check stack trace. Default ".*"
   },
   {
     "name": "Product defects",
@@ -268,10 +306,14 @@ categories.json
     "matchedStatuses": ["broken"]
   }
 ]
-(mandatory) category name
-(optional) list of suitable test statuses. Default ["failed", "broken", "passed", "skipped", "unknown"]
-(optional) regex pattern to check test error message. Default ".*"
-(optional) regex pattern to check stack trace. Default ".*"
+```
+
+
+
+
+
 Test result falls into the category if its status is in the list and both error message and stack trace match the pattern.
 
-categories.json file can be stored in test resources directory in case of using allure-maven or allure-gradle plugins.
+::: tip
+`categories.json` file can be stored in test resources directory in case of using [allure-maven](https://docs.qameta.io/allure/#_maven_5) or [allure-gradle](https://docs.qameta.io/allure/#_gradle_4) plugins.
+:::

@@ -20,11 +20,23 @@ Record the doc progress and make monthly plan
 
 ###  allure
 
+- 🟢 copy document: 100%
+- 🟢 optimized hyperlink: 100%
+- 🔴 translate in Chinese: 0% 
+
+###  kubernetes
+
 - 🟡 copy document: 0% -> 100%
 - 🔴 optimized hyperlink: 0% -> 100%
 - 🔴 translate in Chinese: 0% 
 
-###  kubernetes
+###  django
+
+- 🟡 copy document: 0% -> 100%
+- 🔴 optimized hyperlink: 0% -> 100%
+- 🔴 translate in Chinese: 0% 
+
+###  python doc
 
 - 🟡 copy document: 0% -> 100%
 - 🔴 optimized hyperlink: 0% -> 100%

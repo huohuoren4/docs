@@ -55,7 +55,7 @@ export default defineConfig({
             text: 'Test Automatic',
             items: [
               { text: 'pytest 🟢', link: '/python/pytest/home', activeMatch: '/python/pytest'},
-              { text: 'allure 🟡', link: '/python/allure/get_start', activeMatch: '/python/allure'},
+              { text: 'allure 🟢', link: '/python/allure/get_start', activeMatch: '/python/allure'},
               { text: 'pluggy', link: 'https://pluggy.readthedocs.io/en/'},
               { text: 'pytest-xdist', link: 'https://pytest-xdist.readthedocs.io/en/'},
               { text: 'selenium', link: 'https://www.selenium.dev/documentation/' },
@@ -72,12 +72,30 @@ export default defineConfig({
           {
             text: 'Awesome Flask',
             items: [
-              { text: 'flask 🟡', link: '/python/flask/home', activeMatch: "/python/flask/"},
+              { text: 'flask 🟢', link: '/python/flask/home', activeMatch: "/python/flask/"},
               { text: 'click', link: 'https://click.palletsprojects.com/en/'},
               { text: 'werkzeug', link: 'https://werkzeug.palletsprojects.com/en/'},
               { text: 'flask-restful', link: 'https://flask-restful.readthedocs.io/en/'},
               { text: 'flask-admin', link: 'https://flask-admin.readthedocs.io/en/'},
               { text: 'celery', link: 'https://docs.celeryq.dev/en/stable/'},
+            ]
+          },
+          {
+            text: 'Awesome Django',
+            items: [
+              { text: 'django', link: 'https://docs.djangoproject.com/'},
+            ]
+          },
+          {
+            text: 'Awesome Fastapi',
+            items: [
+              { text: 'fastapi', link: 'https://fastapi.tiangolo.com/'},
+            ]
+          },
+          {
+            text: 'Awesome Package',
+            items: [
+              { text: 'setuptool', link: 'https://setuptools.pypa.io/'},
             ]
           },
         ]
@@ -101,7 +119,7 @@ export default defineConfig({
             text: 'Container Ecosystem',
             items: [
               { text: 'docker', link: 'https://docs.docker.com/'},
-              { text: 'kubernetes', link: 'https://kubernetes.io/docs/home/'},
+              { text: 'kubernetes 🟡', link: 'https://kubernetes.io/docs/home/'},
             ]
           }
         ]
