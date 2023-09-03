@@ -395,19 +395,19 @@ export default defineConfig({
             { text: 'Home', 
               collapsed: true,
               items: [
-                  { text: 'overview', link: '/golang/k8s/home/overview' },
+                  { text: 'Overview', link: '/golang/k8s/home/overview' },
                   { text: 'Available Documentation Versions', link: '/golang/k8s/home/doc_version' },
                 ] 
             },
             { text: 'Getting started', 
               collapsed: true,
               items: [
-                  { text: 'overview', link: '/golang/k8s/get_started/overview' },
+                  { text: 'Overview', link: '/golang/k8s/get_started/overview' },
                   { text: 'Learning environment', link: '/golang/k8s/task/install_tool/overview' },
                   { text: 'Production environment', 
                     collapsed: true,
                     items: [
-                        { text: 'overview', link: '/golang/k8s/get_started/prod_env/overview' },
+                        { text: 'Overview', link: '/golang/k8s/get_started/prod_env/overview' },
                         { text: 'Container Runtimes', link: '/golang/k8s/get_started/prod_env/runtime' },
                         { text: 'Installing Kubernetes with deployment tools', 
                           collapsed: true,
@@ -436,7 +436,6 @@ export default defineConfig({
                   { text: 'Best practices', 
                     collapsed: true,
                     items: [
-                        { text: 'overview', link: '/golang/k8s/get_started/best_practice/overview' },
                         { text: 'Considerations for large clusters', link: '/golang/k8s/get_started/best_practice/consideration' },
                         { text: 'Running in multiple zones', link: '/golang/k8s/get_started/best_practice/run_zone' },
                         { text: 'Validate node setup', link: '/golang/k8s/get_started/best_practice/validate_node' },
@@ -444,6 +443,138 @@ export default defineConfig({
                         { text: 'PKI certificates and requirements', link: '/golang/k8s/get_started/best_practice/pki_certificate' },
                       ] 
                   },
+                ] 
+            },
+            { text: 'Concepts', 
+              collapsed: true,
+              items: [
+                  { text: 'Introduction', link: '/golang/k8s/concept/introduction' },
+                  { text: 'Overview', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/overview/overview' },
+                        { text: 'Objects In Kubernetes', 
+                          collapsed: true,
+                          items: [
+                            { text: 'Overview', link: '/golang/k8s/concept/overview/object_k8s/overview' },
+                            { text: 'Kubernetes Object Management', link: '/golang/k8s/concept/overview/object_k8s/k8s_object_manage' },
+                            { text: 'Object Names and IDs', link: '/golang/k8s/concept/overview/object_k8s/obj_name' },
+                            { text: 'Labels and Selectors', link: '/golang/k8s/concept/overview/object_k8s/label_selector' },
+                            { text: 'Namespaces', link: '/golang/k8s/concept/overview/object_k8s/namespace' },
+                            { text: 'Annotations', link: '/golang/k8s/concept/overview/object_k8s/annotation' },
+                            { text: 'Field Selectors', link: '/golang/k8s/concept/overview/object_k8s/field_selector' },
+                            { text: 'Finalizers', link: '/golang/k8s/concept/overview/object_k8s/finalizer' },
+                            { text: 'Owners and Dependents', link: '/golang/k8s/concept/overview/object_k8s/owner' },
+                            { text: 'Recommended Labels', link: '/golang/k8s/concept/overview/object_k8s/recommend' },
+                          ]
+                        },
+                        { text: 'Kubernetes Components', link: '/golang/k8s/concept/overview/k8s_component' },
+                        { text: 'The Kubernetes API', link: '/golang/k8s/concept/overview/k8s_api' },
+                      ] 
+                  },
+                  { text: 'Cluster Architecture', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Communication between Nodes and the Control Plane', link: '/golang/k8s/concept/cluster_arch/communication' },
+                        { text: 'Controllers', link: '/golang/k8s/concept/cluster_arch/controller' },
+                        { text: 'Leases', link: '/golang/k8s/concept/cluster_arch/lease' },
+                        { text: 'Cloud Controller Manager', link: '/golang/k8s/concept/cluster_arch/cloud_controller' },
+                        { text: 'About cgroup v2', link: '/golang/k8s/concept/cluster_arch/cgroup' },
+                        { text: 'Container Runtime Interface (CRI)', link: '/golang/k8s/concept/cluster_arch/container_runtime' },
+                        { text: 'Garbage Collection', link: '/golang/k8s/concept/cluster_arch/garbage_collection' },
+                        { text: 'Mixed Version Proxy', link: '/golang/k8s/concept/cluster_arch/mix_version' },
+                      ] 
+                  },
+                  { text: 'Containers', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/container/overview' },
+                      ] 
+                  },
+                  { text: 'Workloads', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/workload/overview' },
+                      ] 
+                  },
+                  { text: 'Services, Load Balancing, and Networking', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/service/overview' },
+                      ] 
+                  },
+                  { text: 'Storage', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/storage/overview' },
+                      ] 
+                  },
+                  { text: 'Configuration', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/configuration/overview' },
+                      ] 
+                  },
+                  { text: 'Security', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/security/overview' },
+                      ] 
+                  },
+                  { text: 'Policies', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/policies/overview' },
+                      ] 
+                  },
+                  { text: 'Scheduling, Preemption and Eviction', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/schedule/overview' },
+                      ] 
+                  },
+                  { text: 'Cluster Administration', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/cluster_admin/overview' },
+                      ] 
+                  },
+                  { text: 'Windows in Kubernetes', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/windows/overview' },
+                      ] 
+                  },
+                  { text: 'Extending Kubernetes', 
+                    collapsed: true,
+                    items: [
+                        { text: 'Overview', link: '/golang/k8s/concept/extend_k8s/overview' },
+                      ] 
+                  },
+                ] 
+            },
+            { text: 'Tasks', 
+              collapsed: true,
+              items: [
+                  { text: 'Overview', link: '/golang/k8s/task/overview' },
+                ] 
+            },
+            { text: 'Tutorials', 
+              collapsed: true,
+              items: [
+                  { text: 'Overview', link: '/golang/k8s/tutorial/overview' },
+                ] 
+            },
+            { text: 'Reference', 
+              collapsed: true,
+              items: [
+                  { text: 'Overview', link: '/golang/k8s/reference/overview' },
+                ] 
+            },
+            { text: 'Contribute', 
+              collapsed: true,
+              items: [
+                  { text: 'Overview', link: '/golang/k8s/contribute/overview' },
                 ] 
             },
           ]

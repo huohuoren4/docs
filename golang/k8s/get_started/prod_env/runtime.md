@@ -206,7 +206,7 @@ To install CRI-O, follow [CRI-O Install Instructions](https://github.com/cri-o/c
 
 CRI-O uses the systemd cgroup driver per default, which is likely to work fine for you. To switch to the cgroupfs cgroup driver, either edit `/etc/crio/crio.conf` or place a drop-in configuration in `/etc/crio/crio.conf.d/02-cgroup-manager.conf`, for example:
 
-```conf
+```
 [crio.runtime]
 conmon_cgroup = "pod"
 cgroup_manager = "cgroupfs"
@@ -222,7 +222,7 @@ For CRI-O, the CRI socket is `/var/run/crio/crio.sock` by default.
 
 In your CRI-O config you can set the following config value:
 
-```conf
+```
 [crio.image]
 pause_image="registry.k8s.io/pause:3.6"
 ```
