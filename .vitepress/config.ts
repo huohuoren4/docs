@@ -119,7 +119,7 @@ export default defineConfig({
             text: 'Container Ecosystem',
             items: [
               { text: 'docker', link: 'https://docs.docker.com/'},
-              { text: 'kubernetes 🟡', link: 'https://kubernetes.io/docs/home/'},
+              { text: 'kubernetes 🟡', link: '/golang/k8s/home/overview', activeMatch: '/golang/k8s'},
             ]
           }
         ]
@@ -383,6 +383,67 @@ export default defineConfig({
                   { text: 'How to contribute to Flask', link: '/python/flask/additional_note/contribute' },
                   { text: 'BSD-3-Clause License', link: '/python/flask/additional_note/license' },
                   { text: 'Changes', link: '/python/flask/additional_note/change' },
+                ] 
+            },
+          ]
+        }
+      ],
+      "/golang/k8s/": [
+        {
+          text: 'Kubernetes v1.28',
+          items: [
+            { text: 'Home', 
+              collapsed: true,
+              items: [
+                  { text: 'overview', link: '/golang/k8s/home/overview' },
+                  { text: 'Available Documentation Versions', link: '/golang/k8s/home/doc_version' },
+                ] 
+            },
+            { text: 'Getting started', 
+              collapsed: true,
+              items: [
+                  { text: 'overview', link: '/golang/k8s/get_started/overview' },
+                  { text: 'Learning environment', link: '/golang/k8s/task/install_tool/overview' },
+                  { text: 'Production environment', 
+                    collapsed: true,
+                    items: [
+                        { text: 'overview', link: '/golang/k8s/get_started/prod_env/overview' },
+                        { text: 'Container Runtimes', link: '/golang/k8s/get_started/prod_env/runtime' },
+                        { text: 'Installing Kubernetes with deployment tools', 
+                          collapsed: true,
+                          items: [
+                              { text: 'Bootstrapping clusters with kubeadm', 
+                                collapsed: true,
+                                items: [
+                                  { text: 'Installing kubeadm', link: '/golang/k8s/get_started/prod_env/install/bootstrap/install_kubeadm' },
+                                  { text: 'Troubleshooting kubeadm', link: '/golang/k8s/get_started/prod_env/install/bootstrap/trouble_kubeadm' },
+                                  { text: 'Creating a cluster with kubeadm', link: '/golang/k8s/get_started/prod_env/install/bootstrap/create_cluster' },
+                                  { text: 'Customizing components with the kubeadm API', link: '/golang/k8s/get_started/prod_env/install/bootstrap/customize_component' },
+                                  { text: 'Options for Highly Available Topology', link: '/golang/k8s/get_started/prod_env/install/bootstrap/options_topology' },
+                                  { text: 'Creating Highly Available Clusters with kubeadm', link: '/golang/k8s/get_started/prod_env/install/bootstrap/create_available_cluster' },
+                                  { text: 'Set up a High Availability etcd Cluster with kubeadm', link: '/golang/k8s/get_started/prod_env/install/bootstrap/setup_etcd_cluster' },
+                                  { text: 'Configuring each kubelet in your cluster using kubeadm', link: '/golang/k8s/get_started/prod_env/install/bootstrap/configure_kubelet' },
+                                  { text: 'Dual-stack support with kubeadm', link: '/golang/k8s/get_started/prod_env/install/bootstrap/dual_stack_support' },
+                                ]
+                              },
+                              { text: 'Installing Kubernetes with kOps', link: '/golang/k8s/get_started/prod_env/install/install_k8s_kops' },
+                              { text: 'Installing Kubernetes with Kubespray', link: '/golang/k8s/get_started/prod_env/install/install_k8s_kubespray' },
+                            ] 
+                        },
+                        { text: 'Turnkey Cloud Solutions', link: '/golang/k8s/get_started/prod_env/turnkey' },
+                      ] 
+                  },
+                  { text: 'Best practices', 
+                    collapsed: true,
+                    items: [
+                        { text: 'overview', link: '/golang/k8s/get_started/best_practice/overview' },
+                        { text: 'Considerations for large clusters', link: '/golang/k8s/get_started/best_practice/consideration' },
+                        { text: 'Running in multiple zones', link: '/golang/k8s/get_started/best_practice/run_zone' },
+                        { text: 'Validate node setup', link: '/golang/k8s/get_started/best_practice/validate_node' },
+                        { text: 'Enforcing Pod Security Standards', link: '/golang/k8s/get_started/best_practice/enforce_pod' },
+                        { text: 'PKI certificates and requirements', link: '/golang/k8s/get_started/best_practice/pki_certificate' },
+                      ] 
+                  },
                 ] 
             },
           ]
