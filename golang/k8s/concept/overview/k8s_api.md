@@ -1,6 +1,6 @@
 # The Kubernetes API
 
-The core of Kubernetes' [control plane](https://kubernetes.io/docs/reference/glossary/?all=true#term-control-plane) is the [API server](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver). The API server exposes an HTTP API that lets end users, different parts of your cluster, and external components communicate with one another.
+The core of Kubernetes control plane is the API server. The API server exposes an HTTP API that lets end users, different parts of your cluster, and external components communicate with one another.
 
 The Kubernetes API lets you query and manipulate the state of API objects in Kubernetes (for example: Pods, Namespaces, ConfigMaps, and Events).
 
@@ -65,7 +65,7 @@ A Golang implementation to fetch the OpenAPI V3 is provided in the package `k8s.
 
 ## Persistence
 
-Kubernetes stores the serialized state of objects by writing them into [etcd](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/).
+Kubernetes stores the serialized state of objects by writing them into etcd.
 
 ## API Discovery
 

@@ -185,6 +185,6 @@ See the [list of add-ons](https://kubernetes.io/docs/concepts/cluster-administra
 ## What's next
 
 - Learn more about Kubernetes [concepts](https://kubernetes.io/docs/concepts/) and [kubectl](https://kubernetes.io/docs/reference/kubectl/).
-- Learn more about kOps [advanced usage](https://kops.sigs.k8s.io/) for tutorials, best practices and advanced configuration options.
-- Follow kOps community discussions on Slack: [community discussions](https://kops.sigs.k8s.io/contributing/#other-ways-to-communicate-with-the-contributors). (visit <https://slack.k8s.io/> for an invitation to this Slack workspace).
+- Learn more about `kOps` [advanced usage](https://kops.sigs.k8s.io/) for tutorials, best practices and advanced configuration options.
+- Follow `kOps` community discussions on Slack: [community discussions](https://kops.sigs.k8s.io/contributing/#other-ways-to-communicate-with-the-contributors). (visit <https://slack.k8s.io/> for an invitation to this Slack workspace).
 - Contribute to `kOps` by addressing or raising an [issue GitHub Issues](https://github.com/kubernetes/kops/issues).

@@ -65,9 +65,9 @@ Kubespray provides the ability to customize many aspects of the deployment:
 - Calico route reflectors
 - Component runtime options
 
-    - [Docker](https://docs.docker.com/engine/)
-    - [containerd](https://containerd.io/docs/)
-    - [CRI-O](https://cri-o.io/#what-is-cri-o)
+    - Docker
+    - containerd
+    - CRI-O
 
 - Certificate generation methods
 

@@ -1,6 +1,6 @@
 # Field Selectors
 
-Field selectors let you select Kubernetes [objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/#kubernetes-objects) based on the value of one or more resource fields. Here are some examples of field selector queries:
+Field selectors let you select Kubernetes objects based on the value of one or more resource fields. Here are some examples of field selector queries:
 
 - `metadata.name=my-service`
 - `metadata.namespace!=default`

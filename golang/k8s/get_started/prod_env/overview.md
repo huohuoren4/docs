@@ -12,7 +12,7 @@ As you decide where you want your production Kubernetes environment to live (on 
 
     - Separating the control plane from the worker nodes.
     - Replicating the control plane components on multiple nodes.
-    - Load balancing traffic to the cluster’s [API server](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver).
+    - Load balancing traffic to the cluster’s API server.
     - Having enough worker nodes available, or able to quickly become available, as changing workloads warrant it.
 
 - *Scale*: If you expect your production Kubernetes environment to receive a stable amount of demand, you might be able to set up for the capacity you need and be done. However, if you expect demand to grow over time or change dramatically based on things like season or special events, you need to plan how to scale to relieve increased pressure from more requests to the control plane and worker nodes or scale down to reduce unused resources.
@@ -104,13 +104,13 @@ As someone setting up authentication and authorization on your production Kubern
 
 Demands from production workloads can cause pressure both inside and outside of the Kubernetes control plane. Consider these items when setting up for the needs of your cluster's workloads:
 
-- *Set namespace limits*: Set per-namespace quotas on things like memory and CPU. See [Manage Memory](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/), [CPU](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/), and [API Resources](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/) for details. You can also set [Hierarchical Namespaces](https://kubernetes.io/blog/2020/08/14/introducing-hierarchical-namespaces/) for inheriting limits.
+- *Set namespace limits*: Set per-namespace quotas on things like memory and CPU. See [Manage Memory, CPU, and API Resources](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/) for details. You can also set [Hierarchical Namespaces](https://kubernetes.io/blog/2020/08/14/introducing-hierarchical-namespaces/) for inheriting limits.
 
 - *Prepare for DNS demand*: If you expect workloads to massively scale up, your DNS service must be ready to scale up as well. See [Autoscale the DNS service in a Cluster](https://kubernetes.io/docs/tasks/administer-cluster/dns-horizontal-autoscaling/).
 
 - *Create additional service accounts*: User accounts determine what users can do on a cluster, while a service account defines pod access within a particular namespace. By default, a pod takes on the default service account from its namespace. See [Managing Service Accounts](https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/) for information on creating a new service account. For example, you might want to:
 
-    - Add secrets that a pod could use to pull images from a particular container registry. See [Configure Service Accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) for Pods for an example.
+    - Add secrets that a pod could use to pull images from a particular container registry. See [Configure Service Accounts for Pods](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) for an example.
 
     - Assign RBAC permissions to a service account. See [ServiceAccount permissions](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions) for details.
 

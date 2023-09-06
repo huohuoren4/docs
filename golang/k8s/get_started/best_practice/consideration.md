@@ -1,6 +1,6 @@
 # Considerations for large clusters
 
-A cluster is a set of [nodes](https://kubernetes.io/docs/concepts/architecture/nodes/) (physical or virtual machines) running Kubernetes agents, managed by the [control plane](https://kubernetes.io/docs/reference/glossary/?all=true#term-control-plane). Kubernetes v1.28 supports clusters with up to 5,000 nodes. More specifically, Kubernetes is designed to accommodate configurations that meet all of the following criteria:
+A cluster is a set of nodes (physical or virtual machines) running Kubernetes agents, managed by the control plane. Kubernetes v1.28 supports clusters with up to 5,000 nodes. More specifically, Kubernetes is designed to accommodate configurations that meet all of the following criteria:
 
 - No more than 110 pods per node
 - No more than 5,000 nodes
@@ -43,13 +43,13 @@ To improve performance of large clusters, you can store Event objects in a separ
 When creating a cluster, you can (using custom tooling):
 
 - start and configure additional etcd instance
-- configure the [API server](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver) to use it for storing events
+- configure the API server to use it for storing events
 
 See [Operating etcd clusters for Kubernetes](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/) and [Set up a High Availability etcd cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/setup-ha-etcd-with-kubeadm/) for details on configuring and managing etcd for a large cluster.
 
 ## Addon resources
 
-Kubernetes [resource limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) help to minimize the impact of memory leaks and other ways that pods and containers can impact on other components. These resource limits apply to [addon](https://kubernetes.io/docs/concepts/cluster-administration/addons/) resources just as they apply to application workloads.
+Kubernetes [resource limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) help to minimize the impact of memory leaks and other ways that pods and containers can impact on other components. These resource limits apply to addon resources just as they apply to application workloads.
 
 For example, you can set CPU and memory limits for a logging component:
 
@@ -70,7 +70,7 @@ To avoid running into cluster addon resource issues, when creating a cluster wit
 
 - Some addons scale vertically - there is one replica of the addon for the cluster or serving a whole failure zone. For these addons, increase requests and limits as you scale out your cluster.
 - Many addons scale horizontally - you add capacity by running more pods - but with a very large cluster you may also need to raise CPU or memory limits slightly. The VerticalPodAutoscaler can run in recommender mode to provide suggested figures for requests and limits.
-- Some addons run as one copy per node, controlled by a [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset): for example, a node-level log aggregator. Similar to the case with horizontally-scaled addons, you may also need to raise CPU or memory limits slightly.
+- Some addons run as one copy per node, controlled by a DaemonSet: for example, a node-level log aggregator. Similar to the case with horizontally-scaled addons, you may also need to raise CPU or memory limits slightly.
 
 ## What's next
 

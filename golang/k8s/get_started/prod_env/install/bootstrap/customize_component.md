@@ -5,7 +5,7 @@ This page covers how to customize the components that kubeadm deploys. For contr
 All of these options are possible via the kubeadm configuration API. For more details on each field in the configuration you can navigate to our [API reference pages](https://kubernetes.io/docs/reference/config-api/kubeadm-config.v1beta3/).
 
 ::: tip Note: 
-Customizing the CoreDNS deployment of kubeadm is currently not supported. You must manually patch the `kube-system/coredns` [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/) and recreate the CoreDNS [Pods](https://kubernetes.io/docs/concepts/workloads/pods/) after that. Alternatively, you can skip the default CoreDNS deployment and deploy your own variant. For more details on that see [Using init phases with kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/#init-phases).
+Customizing the CoreDNS deployment of kubeadm is currently not supported. You must manually patch the `kube-system/coredns` ConfigMap and recreate the CoreDNS Pods after that. Alternatively, you can skip the default CoreDNS deployment and deploy your own variant. For more details on that see [Using init phases with kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/#init-phases).
 :::
 
 ::: tip Note: 
@@ -164,5 +164,5 @@ To customize kube-proxy you can pass a `KubeProxyConfiguration` next your `Clust
 For more details you can navigate to our [API reference pages](https://kubernetes.io/docs/reference/config-api/kubeadm-config.v1beta3/).
 
 ::: tip Note: 
-kubeadm deploys kube-proxy as a [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset), which means that the `KubeProxyConfiguration` would apply to all instances of kube-proxy in the cluster.
+kubeadm deploys kube-proxy as a DaemonSet, which means that the `KubeProxyConfiguration` would apply to all instances of kube-proxy in the cluster.
 :::

@@ -37,9 +37,9 @@ The pod network plugin you use may also require certain ports to be open. Since 
 
 ## Installing a container runtime
 
-To run containers in Pods, Kubernetes uses a [container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes).
+To run containers in Pods, Kubernetes uses a container runtime.
 
-By default, Kubernetes uses the [Container Runtime Interface](https://kubernetes.io/docs/concepts/overview/components/#container-runtime) (CRI) to interface with your chosen container runtime.
+By default, Kubernetes uses the Container Runtime Interface (CRI) to interface with your chosen container runtime.
 
 If you don't specify a runtime, kubeadm automatically tries to detect an installed container runtime by scanning through a list of known endpoints.
 
@@ -53,7 +53,7 @@ Docker Engine does not implement the [CRI](https://kubernetes.io/docs/concepts/a
 
 The tables below include the known endpoints for supported operating systems:
 
-- Linux
+- **Linux**
 
 |  Runtime | Path to Unix domain socket  |
 |  :---   | :---  | 
@@ -62,7 +62,7 @@ The tables below include the known endpoints for supported operating systems:
 |  Docker Engine (using cri-dockerd)   | `unix:///var/run/cri-dockerd.sock`  | 
 |  containerd   | `unix:///var/run/containerd/containerd.sock`  | 
 
-- Windows
+- **Windows**
 
 | Runtime                           | Path to Windows named pipe             |
 |-----------------------------------|----------------------------------------|
@@ -84,7 +84,7 @@ kubeadm will not install or manage `kubelet` or `kubectl` for you, so you will n
 For information about installing `kubectl`, see [Install and set up kubectl](https://kubernetes.io/docs/tasks/tools/).
 
 ::: warning Warning: 
-These instructions exclude all Kubernetes packages from any system upgrades. This is because kubeadm and Kubernetes require special attention to upgrade.
+These instructions exclude all Kubernetes packages from any system upgrades. This is because kubeadm and Kubernetes require [special attention to upgrade](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/).
 :::
 
 For more information on version skews, see:

@@ -1,4 +1,4 @@
-# Allure Framework
+# Allure Framework {#allure-framework}
 
 ::: tip Tip
 *allure version*: `2.23.1`. Only the lastest version is maintained.
@@ -12,15 +12,15 @@ From the dev/qa perspective Allure reports shorten common defect lifecycle: test
 
 From the managers perspective Allure provides a clear 'big picture' of what features have been covered, where defects are clustered, how the timeline of execution looks like and many other convenient things. Modularity and extensibility of Allure guarantees that you will always be able to fine-tune something to make Allure suit you better.
 
-## About
+## About {#about}
 
-### Copyright
+### Copyright {#copyright}
 
 The Allure reference guide is available as HTML documents. The latest copy is available at <https://docs.qameta.io/allure/>
 
 Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.
 
-### Get Help
+### Get Help {#get-help}
 
 There are several places to get help:
 
@@ -30,7 +30,7 @@ There are several places to get help:
 
 - Report bugs in [GitHub issues](https://github.com/allure-framework/allure2/issues/new?).
 
-### How to Proceed
+### How to Proceed {#how-to-proceed}
 
 - Open the [demo version](http://demo.qameta.io/allure/latest/) to see what an Allure report looks like.
 
@@ -40,7 +40,7 @@ There are several places to get help:
 
 - Integrate your favorite testing framework with Allure. Supported frameworks are grouped by language: `Java`, [Python](/python/allure/language#python), `JavaScript`, `Ruby`, `Groovy`, `PHP`, `.Net`, and `Scala`.
 
-## Get Started
+## Get Started {#get-started}
 
 To generate your first report you will need to go through just a few simple steps:
 
@@ -48,11 +48,11 @@ To generate your first report you will need to go through just a few simple step
 
 - Locating test execution data that you have to build a report on.
 
-### Installing a commandline
+### Installing a commandline {#installing-a-commandline}
 
 Several options for Allure installation are currently supported:
 
-#### Linux
+#### Linux {#linux}
 
 For debian-based repositories a PPA is provided:
 
@@ -62,7 +62,7 @@ sudo apt-get update
 sudo apt-get install allure
 ```
 
-#### Mac OS X
+#### Mac OS X {#mac-os-x}
 
 For Mas OS, automated installation is available via [Homebrew](https://brew.sh/)
 
@@ -70,7 +70,7 @@ For Mas OS, automated installation is available via [Homebrew](https://brew.sh/)
 brew install allure
 ```
 
-#### Windows
+#### Windows {#windows}
 
 For Windows, Allure is available from the [Scoop](http://scoop.sh/) commandline-installer.
 
@@ -94,7 +94,7 @@ scoop update allure
 
 to install a newer version. ([documentation](https://github.com/lukesampson/scoop/wiki/App-Manifest-Autoupdate))
 
-#### Manual installation
+#### Manual installation {#manual-installation}
 
 1. Download the latest version as zip archive from [Maven Central](https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/).
 
@@ -114,7 +114,7 @@ To run commandline application, Java Runtime Environment must be installed.
 Older releases (⇐ `2.8.0`) are available on [bintray](https://bintray.com/qameta/generic/allure2).
 :::
 
-#### Check the installation
+#### Check the installation {#check-the-installation}
 
 Execute `allure --version` in console to make sure that allure is now available:
 
@@ -123,7 +123,7 @@ $ allure --version
 2.0.1
 ```
 
-### Test execution
+### Test execution {#test-execution}
 
 ::: warning
 If you are using IDE to run tests locally it may ignore Allure configuration specified in build file (as IntelliJ IDEA does). In order to make it work consider using allure.properties file to configure Allure. Check out [configuration section](https://docs.qameta.io/allure-report/#_configuration) for more information.
@@ -133,7 +133,8 @@ Before building a report you need to run your tests to obtain some basic test re
 
 ![surefire_report_folder](/allure/surefire_report_folder.png)
 
-### Report generation
+### Report generation {#report-generation}
+
 This is already enough to see the Allure report in one command:
 
 ```shell
@@ -146,13 +147,13 @@ This would produce a report with a minimum of information extracted from the xml
 
 ![get_started_report_overview](/allure/get_started_report_overview.png)
 
-##  Report structure
+##  Report structure {#report-structure}
 
 Once you’ve got the idea what the report does look like. You will probably want to get more data-rich reports. You might have to consider using one of the Allure adaptors for your testing framework, which will allow to collect much more information. Jump to the integrations section to learn more about integration with testing frameworks.
 
 Typical report consists of 'Overview' tab, navigation bar, several tabs for different kinds of test data representation and test case pages for each individual test. Each Allure report is backed by a tree-like data structure, that represents a test execution process. Different tabs allow to switch between the views of the original data structure thus giving a different perspective. Note that all tree-like representations including Behaviors, Categories, xUnit and Packages support filtering and are sortable.
 
-###  Overview page
+###  Overview page {#overview-page}
 
 Entry point for every report would be the 'Overview' page with dashboards and widgets:
 
@@ -176,53 +177,53 @@ Home page widgets are draggable and configurable. Also, Allure supports it’s o
 
 Navigation bar is collapsible and enables you to switch into several of the basic results overview modes.
 
-### Categories
+### Categories {#categories}
 
 Categories tab gives you the way to [create custom defects classification](#categories-1) to apply for test results.
 
 ![tab_categories](/allure/tab_categories.png)
 
-### Suites
+### Suites {#suites}
 
 On the Suites tab a standard structural representation of executed tests, grouped by suites and classes can be found.
 
 ![tab_suites](/allure/tab_suites.png)
 
-### Graphs
+### Graphs {#graphs}
 
 Graphs allow you to see different statistics collected from the test data: statuses breakdown or severity and duration diagrams.
 
 ![tab_graphs](/allure/tab_graphs.png)
 
-### Timeline
+### Timeline {#timeline}
 
 Timeline tab visualizes retrospective of tests execution, allure adaptors collect precise timings of tests, and here on this tab they are arranged accordingly to their sequential or parallel timing structure.
 
 ![tab_timeline](/allure/tab_timeline.png)
 
-### Behaviors
+### Behaviors {#behaviors}
 
 For Behavior-driven approach, this tab groups test results according to Epic, Feature and Story tags.
 
 ![tab_behaviors](/allure/tab_behaviors.png)
 
-### Packages
+### Packages {#packages}
 
 Packages tab represents a tree-like layout of test results, grouped by different packages.
 
 ![tab_packages](/allure/tab_packages.png)
 
-### Test case page
+### Test case page {#test-case-page}
 
 From some of the results overview pages described above you can go to the test case page after clicking on the individual tests. This page will typically contain a lot of individual data related to the test case: steps executed during the test, timings, attachments, test categorization labels, descriptions and links.
 
 ![testcase](/allure/testcase.png)
 
-## Features
+## Features {#features}
 
 This section describes the main features of Allure. For example, you can group your tests by stories or features, attach files, and distribute assertions over a set of custom steps, among other features. All features are supported by Java test frameworks, so we only provide Java examples here. For details on how a particular adapter works with the test framework of your choice, refer to the adapter guide.
 
-### Flaky tests
+### Flaky tests {#flaky-tests}
 
 In real life not all of your tests are stable and always green or always red. A test might start to "blink" i.e. it fails from time-to-time without any obvious reason. You could disable such a test, that is a trivial solution. However what if you do not want to do that? Say you would like to get more details on possible reasons or the test is so critical that even being flaky it provides helpful information? You have an option now to mark such tests in a special way, so the resulting report will clearly show them as unstable:
 
@@ -241,7 +242,7 @@ Here is what you get in the report if such a test failed:
 you can mark a whole test class as flaky as well.
 :::
 
-### Environment
+### Environment {#environment}
 
 To add information to Environment widget just create environment.properties (or environment.xml) file to allure-results directory before report generation.
 
@@ -270,7 +271,7 @@ Stand=Production
 </environment>
 ```
 
-### Categories
+### Categories {#categories-1}
 
 There are two categories of defects by default:
 
@@ -307,10 +308,6 @@ To create custom defects classification add `categories.json` file to `allure-re
   }
 ]
 ```
-
-
-
-
 
 Test result falls into the category if its status is in the list and both error message and stack trace match the pattern.
 

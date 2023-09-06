@@ -4,7 +4,7 @@ This section lists the different ways to set up and run Kubernetes. When you ins
 
 You can [download Kubernetes](https://kubernetes.io/releases/download/) to deploy a Kubernetes cluster on a local machine, into the cloud, or for your own datacenter.
 
-Several [Kubernetes components](https://kubernetes.io/docs/concepts/overview/components/) such as [kube-apiserver](https://kubernetes.io/docs/concepts/overview/components/#kube-apiserver) or [kube-proxy](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/) can also be deployed as [container images](https://kubernetes.io/releases/download/#container-images) within the cluster.
+Several [Kubernetes components](https://kubernetes.io/docs/concepts/overview/components/) such as kube-apiserver or kube-proxy can also be deployed as [container images](https://kubernetes.io/releases/download/#container-images) within the cluster.
 
 It is recommended to run Kubernetes components as container images wherever that is possible, and to have Kubernetes manage those components. Components that run containers - notably, the kubelet - can't be included in this category.
 
@@ -23,10 +23,10 @@ For a cluster you're managing yourself, the officially supported tool for deploy
 ## What's next
 
 - [Download Kubernetes](https://kubernetes.io/releases/download/)
-- Download and [install tools](https://kubernetes.io/docs/tasks/tools/) including kubectl
+- Download and [install tools](https://kubernetes.io/docs/tasks/tools/) including `kubectl`
 - Select a [container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes/) for your new cluster
 - Learn about [best practices](https://kubernetes.io/docs/setup/best-practices/) for cluster setup
 
-Kubernetes is designed for its [control plane](https://kubernetes.io/docs/reference/glossary/?all=true#term-control-plane) to run on Linux. Within your cluster you can run applications on Linux or other operating systems, including Windows.
+Kubernetes is designed for its control plane to run on Linux. Within your cluster you can run applications on Linux or other operating systems, including Windows.
 
 - Learn to [set up clusters with Windows nodes](https://kubernetes.io/docs/concepts/windows/)

@@ -4,9 +4,9 @@
 Dockershim has been removed from the Kubernetes project as of release 1.24. Read the [Dockershim Removal FAQ](https://kubernetes.io/dockershim) for further details.
 :::
 
-You need to install a [container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes) into each node in the cluster so that Pods can run there. This page outlines what is involved and describes related tasks for setting up nodes.
+You need to install a container runtime into each node in the cluster so that Pods can run there. This page outlines what is involved and describes related tasks for setting up nodes.
 
-Kubernetes 1.28 requires that you use a runtime that conforms with the [Container Runtime Interface](https://kubernetes.io/docs/concepts/overview/components/#container-runtime) (CRI).
+Kubernetes 1.28 requires that you use a runtime that conforms with the Container Runtime Interface (CRI).
 
 See [CRI version support](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#cri-versions) for more information.
 
@@ -55,10 +55,13 @@ EOF
 sudo sysctl --system
 ```
 
-Verify that the br_netfilter, overlay modules are loaded by running the following commands:
+Verify that the `br_netfilter`, `overlay` modules are loaded by running the following commands:
 
+```shell
 lsmod | grep br_netfilter
 lsmod | grep overlay
+```
+
 Verify that the `net.bridge.bridge-nf-call-iptables`, `net.bridge.bridge-nf-call-ip6tables`, and `net.ipv4.ip_forward` system variables are set to `1` in your `sysctl` config by running the following command:
 
 ```shell
@@ -67,9 +70,9 @@ sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables ne
 
 ## cgroup drivers
 
-On Linux, [control groups](https://kubernetes.io/docs/reference/glossary/?all=true#term-cgroup) are used to constrain resources that are allocated to processes.
+On Linux, control groups are used to constrain resources that are allocated to processes.
 
-Both the [kubelet](https://kubernetes.io/docs/reference/generated/kubelet) and the underlying container runtime need to interface with control groups to enforce [resource management for pods and containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) and set resources such as cpu/memory requests and limits. To interface with control groups, the kubelet and the container runtime need to use a cgroup driver. It's critical that the kubelet and the container runtime use the same cgroup driver and are configured the same.
+Both the kubelet and the underlying container runtime need to interface with control groups to enforce [resource management for pods and containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) and set resources such as cpu/memory requests and limits. To interface with control groups, the kubelet and the container runtime need to use a cgroup driver. It's critical that the kubelet and the container runtime use the same cgroup driver and are configured the same.
 
 There are two cgroup drivers available:
 
@@ -131,24 +134,23 @@ Kubernetes [starting v1.26](https://kubernetes.io/blog/2022/11/18/upcoming-chang
 ## Container runtimes
 
 ::: tip Note: 
-This section links to third party projects that provide functionality required by Kubernetes. The Kubernetes project authors aren't responsible for these projects, which are listed alphabetically. To add a project to this list, read the content guide before submitting a change. More information.
+This section links to third party projects that provide functionality required by Kubernetes. The Kubernetes project authors aren't responsible for these projects, which are listed alphabetically. To add a project to this list, read the [content guide](https://kubernetes.io/docs/contribute/style/content-guide/#third-party-content) before submitting a change. [More information](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#third-party-content-disclaimer).
 :::
 
 ### containerd
 
 This section outlines the necessary steps to use containerd as CRI runtime.
 
-To install containerd on your system, follow the instructions on getting started with containerd. Return to this step once you've created a valid config.toml configuration file.
+To install containerd on your system, follow the instructions on [getting started with containerd](https://github.com/containerd/containerd/blob/main/docs/getting-started.md). Return to this step once you've created a valid `config.toml` configuration file.
 
-::: code-group
-``` shell [Linux]
-You can find this file under the path `/etc/containerd/config.toml`.
-```
+- **Linux**
 
-```shell [Windows]
-You can find this file under the path `C:\Program Files\containerd\config.toml`.
-```
-:::
+    You can find this file under the path `/etc/containerd/config.toml`.
+
+
+- **Windows**
+
+    You can find this file under the path `C:\Program Files\containerd\config.toml`.
 
 On Linux the default CRI socket for containerd is `/run/containerd/containerd.sock`. On Windows the default CRI endpoint is `npipe://./pipe/containerd-containerd`.
 

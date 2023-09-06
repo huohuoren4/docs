@@ -25,7 +25,7 @@ The prerequisites depend on which topology you have selected for your cluster's 
 
     - Three or more machines that meet [kubeadm's minimum requirements](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin) for the control-plane nodes. Having an odd number of control plane nodes can help with leader selection in the case of machine or zone failure.
 
-        - including a [container runtime](https://kubernetes.io/docs/setup/production-environment/container-runtimes), already set up and working
+        - including a container runtime, already set up and working
 
     - Three or more machines that meet [kubeadm's minimum requirements](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin) for the workers
 

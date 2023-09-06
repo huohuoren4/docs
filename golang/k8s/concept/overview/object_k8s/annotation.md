@@ -1,6 +1,6 @@
 # Annotations
 
-You can use Kubernetes annotations to attach arbitrary non-identifying metadata to [objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/#kubernetes-objects). Clients such as tools and libraries can retrieve this metadata.
+You can use Kubernetes annotations to attach arbitrary non-identifying metadata to objects. Clients such as tools and libraries can retrieve this metadata.
 
 ## Attaching metadata to objects
 

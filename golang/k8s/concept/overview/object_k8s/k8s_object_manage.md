@@ -1,6 +1,6 @@
 # Kubernetes Object Management
 
-The `kubectl` command-line tool supports several different ways to create and manage Kubernetes [objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/#kubernetes-objects). This document provides an overview of the different approaches. Read the [Kubectl book](https://kubectl.docs.kubernetes.io/) for details of managing objects by Kubectl.
+The `kubectl` command-line tool supports several different ways to create and manage Kubernetes objects. This document provides an overview of the different approaches. Read the [Kubectl book](https://kubectl.docs.kubernetes.io/) for details of managing objects by Kubectl.
 
 ## Management techniques 
 

@@ -1,11 +1,11 @@
 # Dual-stack support with kubeadm
 
 *FEATURE STATE*: `Kubernetes v1.23 [stable]`
-Your Kubernetes cluster includes [dual-stack](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) networking, which means that cluster networking lets you use either address family. In a cluster, the control plane can assign both an IPv4 address and an IPv6 address to a single [Pod](https://kubernetes.io/docs/concepts/workloads/pods/) or a [Service](https://kubernetes.io/docs/concepts/services-networking/service/).
+Your Kubernetes cluster includes [dual-stack](https://kubernetes.io/docs/concepts/services-networking/dual-stack/) networking, which means that cluster networking lets you use either address family. In a cluster, the control plane can assign both an IPv4 address and an IPv6 address to a single Pod or a Service.
 
 ## Before you begin
 
-You need to have installed the [kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/) tool, following the steps from [Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/).
+You need to have installed the kubeadm tool, following the steps from [Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/).
 
 For each server that you want to use as a node, make sure it allows IPv6 forwarding. On Linux, you can set this by running run `sysctl -w net.ipv6.conf.all.forwarding=1` as the root user on each server.
 
@@ -14,7 +14,7 @@ You need to have an IPv4 and and IPv6 address range to use. Cluster operators ty
 The size of the IP address allocations should be suitable for the number of Pods and Services that you are planning to run.
 
 ::: tip Note: 
-If you are upgrading an existing cluster with the kubeadm upgrade command, kubeadm does not support making modifications to the pod IP address range (“cluster CIDR”) nor to the cluster's Service address range (“Service CIDR”).
+If you are upgrading an existing cluster with the `kubeadm upgrade` command, `kubeadm` does not support making modifications to the pod IP address range (“cluster CIDR”) nor to the cluster's Service address range (“Service CIDR”).
 :::
 
 ### Create a dual-stack cluster

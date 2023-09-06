@@ -20,13 +20,13 @@ To run the node conformance test, perform the following steps:
 
 2. Run the node conformance test with command:
 
-    ```shell
-    # $CONFIG_DIR is the pod manifest path of your Kubelet.
-    # $LOG_DIR is the test output path.
-    sudo docker run -it --rm --privileged --net=host \
-    -v /:/rootfs -v $CONFIG_DIR:$CONFIG_DIR -v $LOG_DIR:/var/result \
-    registry.k8s.io/node-test:0.2
-    ```
+```shell
+# $CONFIG_DIR is the pod manifest path of your Kubelet.
+# $LOG_DIR is the test output path.
+sudo docker run -it --rm --privileged --net=host \
+-v /:/rootfs -v $CONFIG_DIR:$CONFIG_DIR -v $LOG_DIR:/var/result \
+registry.k8s.io/node-test:0.2
+```
 
 ## Running Node Conformance Test for Other Architectures
 

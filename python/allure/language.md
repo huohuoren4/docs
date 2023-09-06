@@ -1,12 +1,12 @@
-# Python
+# Python {#python}
 
 ::: tip
 Only the python language for Allure is maintained. If you want to know about other programming languages for Allure, see [the document](https://docs.qameta.io/allure/#_java) for detail.
 :::
 
-## Pytest
+## Pytest {#pytest}
 
-### Installation
+### Installation {#installation}
 
 Pytest is available for installation from the [PyPI](https://pypi.python.org/pypi/allure-pytest), therefore installation with pip is recommended. To install the latest version, execute from the command line:
 
@@ -16,7 +16,7 @@ $ pip install allure-pytest
 
 That will install allure-pytest and allure-python-commons packages to produce report data compatible with Allure 2. If you are using a previous version of adapter for the [first generation](https://pypi.python.org/pypi/pytest-allure-adaptor) of Allure reports then you will need to uninstall it first.
 
-### Usage
+### Usage {#usage}
 
 To enable Allure listener to collect results during the test execution simply add `--alluredir` option and provide path to the folder where results should be stored. E.g.:
 
@@ -32,7 +32,7 @@ $ allure serve /tmp/my_allure_results
 
 This command will show you generated report in your default browser.
 
-### Basic Reporting
+### Basic Reporting {#basic-reporting}
 
 Your can see all default pytest statuses in the Allure report: only tests that were not succeeded due to one of the assertion errors will be marked as failed, any other exception will cause a test to have a broken status.
 
@@ -58,11 +58,11 @@ def test_broken():
     raise Exception('oops')
 ```
 
-### Supported Pytest features
+### Supported Pytest features {#supported-pytest-features}
 
 Some of the common Pytest features that the Allure report supports include xfails, fixtures and finalizers, marks, conditional skips and parametrization.
 
-#### Xfail
+#### Xfail {#xfail}
 
 This is pytest way of marking expected failures: ([Pytest docs](/python/pytest/how_to_guides/skip_xfail#how-to-use-skip-and-xfail-to-deal-with-tests-that-cannot-succeed))
 
@@ -87,7 +87,7 @@ And special marking in description and a special tag when it unexpectedly passed
 
 ![pytest_xpass_unexpected_pass](/allure/pytest_xpass_unexpected_pass.png)
 
-#### Conditional mark
+#### Conditional mark {#conditional-mark}
 
 In Pytest you can conditionally mark a test to not be executed under some specific conditions ([Pytest docs](/python/pytest/how_to_guides/skip_xfail#how-to-use-skip-and-xfail-to-deal-with-tests-that-cannot-succeed)):
 
@@ -101,7 +101,7 @@ When condition is evaluated to true, test receives a 'Skipped' status in report,
 
 ![pytest_conditional_skip](/allure/pytest_conditional_skip.png)
 
-#### Fixtures and Finalizers
+#### Fixtures and Finalizers {#fixtures-and-finalizers}
 
 Fixtures and finalizers are the utility functions that will be invoked by Pytest before your test starts and after your test ends respectively. Allure tracks invocations of every fixture and shows in full details what methods with what arguments were invoked, preserving the correct sequence of the calls that were made. ([Pytest docs](/python/pytest/reference_guides/api_reference/fixtures#pytest-fixture))
 
@@ -185,7 +185,7 @@ def test_with_broken_fixture(broken_fixture):
 
 ![pytest_fixture_effect](/allure/pytest_fixture_effect.png)
 
-#### Parametrization
+#### Parametrization {#parametrization}
 
 You can generate many test cases from the sets of input parameters using `@pytest.mark.parametrize`. ([Pytest docs](/python/pytest/reference_guides/api_reference/marks#pytest-mark-parametrize))
 
@@ -228,11 +228,11 @@ Details of test execution for a parameterized test with a named parameter.
 
 ![pytest_parameterized_with_id](/allure/pytest_parameterized_with_id.png)
 
-### Allure Features
+### Allure Features {#allure-features}
 
 Allure currently supports almost every available feature except for environment with Pytest.
 
-#### Steps
+#### Steps {#steps}
 
 The first and probably most important aspect of the Allure report is that it allows to get a very detailed step-by-step representation of every test invocation. This is made possible with `@allure.step` decorator that adds invocation of the annotated method or function with provided arguments to the report.
 
@@ -334,7 +334,7 @@ Steps in fixtures are shown in separate trees for setup and teardown.
 
 ![pytest_step_in_fixture](/allure/pytest_step_in_fixture.png)
 
-#### Attachments
+#### Attachments {#attachments}
 
 Reports can display many different types of provided attachments that can complement a test, step or fixture result. Attachments can be created either with invocation of `allure.attach(body, name, attachment_type, extension)`:
 
@@ -379,7 +379,7 @@ Attachments are shown in the context of a test entity they belong to. Attachment
 
 ![pytest_attachments](/allure/pytest_attachments.png)
 
-#### Descriptions
+#### Descriptions {#descriptions}
 
 You can add a detailed description for tests to provide as much context to the report reader as you want. This can be done in several ways: you can add a `@allure.description` decorator providing a description string or you can use `@allure.description_html` to provide some HTML to be rendered in the 'Description' section of a test case. Alternatively description will be simply picked up from the docstring of a test method.
 
@@ -451,7 +451,7 @@ def test_dynamic_description():
     allure.dynamic.description('A final description.')
 ```
 
-#### Titles
+#### Titles {#titles}
 
 Test titles can be made more readable with special `@allure.title` decorator. Titles support placeholders for arguments and support dynamic replacement.
 
@@ -487,7 +487,7 @@ def test_with_dynamic_title():
 
 ![pytest_titles](/allure/pytest_titles.png)
 
-#### Links
+#### Links {#links}
 
 To integrate report with a bugtracker or test management system Allure has `@allure.link`, `@allure.issue` and` @allure.testcase` descriptors.
 
@@ -532,7 +532,7 @@ Template keywords are issue, link and test_case to provide a template for the co
 
 ![pytest_test_case_with_issue_link](/allure/pytest_test_case_with_issue_link.png)
 
-### Retries
+### Retries {#retries}
 
 Allure allows you to aggregate information about test being re-executed during a single test run as well as history of test execution over some period of time.
 
@@ -569,7 +569,7 @@ Also such a test would receive 'flaky' bomb icon in the list of executed tests.
 
 ![pytest_flaky_icon](/allure/pytest_flaky_icon.png)
 
-### Tags
+### Tags {#tags}
 
 Sometimes you want to be flexible with tests that you want to be executed. Pytest allows that by using marker decorator `@pytest.mark` ([Pytest docs](/python/pytest/further_topics/example_trick/custom_mark#working-with-custom-markers)).
 
@@ -581,7 +581,7 @@ Allure allows to mark your tests in a similar way with 3 types of marking decora
 
 3. Custom labels
 
-#### BDD markers
+#### BDD markers {#bdd-markers}
 
 There are two decorators: `@allure.feature` and `@allure.story` to mark your tests according to Feature/Story breakdown specific to your project ([for background see BDD article on Wikipedia](https://en.wikipedia.org/wiki/Behavior-driven_development)). To mark that some feature or story belong to an epic, use a name that starts with `epic_` prefix.
 
@@ -644,7 +644,7 @@ tests.py ...                                                                    
 =============================== 2 passed in 0.01 seconds ==============================
 ```
 
-#### Severity markers
+#### Severity markers {#severity-markers}
 
 To mark your tests by severity level you can use `@allure.severity` decorator. It takes a `allure.severity_level` enum value as an argument.
 
@@ -692,17 +692,17 @@ bdd_annotations_demo/test_severity_labels.py ...                                
 ================================ 3 passed in 0.01 seconds ============================
 ```
 
-## Behave
+## Behave {#behave}
 
 Allure integrates with behave as an external formatter.
 
-### Instalation
+### Instalation {#instalation}
 
 ```shell
 $ pip install allure-behave
 ```
 
-### Usage
+### Usage {#usage-1}
 
 You can specify the formatter directly in the command line:
 
@@ -710,25 +710,25 @@ You can specify the formatter directly in the command line:
 $ behave -f allure_behave.formatter:AllureFormatter -o %allure_result_folder% ./features
 ```
 
-### Features
+### Features {#features}
 
-#### Severity
+#### Severity {#severity}
 
 Tags that are matched to severity names (like critical, trivial, etc.) will be interpreted as a feature or scenario severity. Scenario inherits feature severity if not provided, or overrides it in the other case. If there is more than one severity definition tag, only the last one is used.
 
-#### Steps and Scenarious status
+#### Steps and Scenarious status {#steps-and-scenarious-status}
 
 Steps with assertion exceptions will be marked as failed. Other exceptions thrown during the test execution will cause it to have status broken. Scenario status will be determined by the first unsuccessful step status. When all steps are passed, then the whole scenario is considered passed.
 
-#### Step Data
+#### Step Data {#step-data}
 
 Step data text or table data are represented as step attachments in report.
 
-## Nose
+## Nose {#nose}
 
 It is a port of [pytest-allure-adaptor](https://github.com/allure-framework/allure-python) for [nose framework](https://github.com/nose-devs/nose).
 
-### Usage
+### Usage {#usage-2}
 
 ```shell
 nosetests --with-allure --logdir=/path/to/put/results
@@ -737,9 +737,9 @@ nosetests --with-allure --logdir=/path/to/put/results --not-clear-logdir
 
 Option "--not-clear-logdir" is useful with option "--processes" to prevent cleaning of logdr at the end of testing.
 
-### Supported features
+### Supported features {#supported-features}
 
-#### Attachment
+#### Attachment {#attachment}
 
 To attach some content to test report:
 
@@ -750,7 +750,7 @@ def test_foo():
     nose.allure.attach('my attach', 'Hello, World')
 ```
 
-#### Step
+#### Step {#step}
 
 To divide a test into steps:
 
@@ -785,7 +785,7 @@ def test_bar():
     assert make_some_data_bar() is not None
 ```
 
-#### Environment
+#### Environment {#environment}
 
 You can provide test [environment parameters](https://github.com/allure-framework/allure-core/wiki/Environment) such as report name, browser or test server address to allure test report.
 
@@ -796,7 +796,7 @@ def test_dummy():
     nose.allure.environment(report='Allure report', browser=u'Firefox')
 ```
 
-#### Severity
+#### Severity {#severity-1}
 
 Any test, class or module can be marked with different severity:
 
@@ -821,7 +821,7 @@ To run tests with concrete priority:
 nosetests my_tests/ --with-allure --logdir=tmp --severity="critical, hard"
 ```
 
-#### Issue
+#### Issue {#issue}
 
 Issues can be set for test.
 
@@ -833,7 +833,7 @@ def test_foo():
     assert False
 ```
 
-#### Features & Stories
+#### Features & Stories {#features-stories}
 
 Feature and Story can be set for test.
 

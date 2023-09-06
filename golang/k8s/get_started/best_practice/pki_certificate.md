@@ -17,7 +17,7 @@ Kubernetes requires PKI for the following operations:
 - Client and server certificates for the [front-proxy](https://kubernetes.io/docs/tasks/extend-kubernetes/configure-aggregation-layer/)
 
 ::: tip Note: 
-front-proxy certificates are required only if you run kube-proxy to support [an extension API server](https://kubernetes.io/docs/tasks/extend-kubernetes/setup-extension-api-server/).
+`front-proxy` certificates are required only if you run kube-proxy to support [an extension API server](https://kubernetes.io/docs/tasks/extend-kubernetes/setup-extension-api-server/).
 :::
 
 etcd also implements mutual TLS to authenticate clients and peers.
